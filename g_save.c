@@ -302,7 +302,7 @@ void InitGame (void)
 
 
 
-	gi.cvar ("dll_version", "Dday 5.065b",  CVAR_SERVERINFO | CVAR_LATCH); //faf
+	gi.cvar ("dll_version", "inferdday_20200409a",  CVAR_SERVERINFO | CVAR_LATCH); //faf //InFerNo_
 
 	gi.cvar ("website", "http://www.DdayDev.com",  CVAR_SERVERINFO | CVAR_LATCH); //faf
 
@@ -356,6 +356,7 @@ void InitGame (void)
 	fast_knife = gi.cvar ("fast_knife", "0", 0);
 
 	chile = gi.cvar ("chile", "0", CVAR_LATCH);
+	toggle_tired_sway = gi.cvar ("sv_toggle_tired_sway", "1", 0);
 
 	knifefest = gi.cvar ("knifefest", "0", 0);
 	

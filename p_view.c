@@ -721,13 +721,16 @@ void SV_CalcGunOffset (edict_t *ent)
 	ent->client->ps.gunangles[PITCH] = ent->client->ps.gunangles[PITCH] + ent->client->crosshair_offset_y;
 
 
-	//InFerNo: begone, stupid gun-shake-when-tired!
-	//if (ent->client->jump_stamina < 60)
-	//{
-	//	ent->client->ps.gunangles[PITCH] += 1.2 * sin (.75 * level.framenum);
-	//	ent->client->ps.gunangles[YAW] += .5 * sin (.375 * level.framenum);
-	//}
-
+	//InFerNo: tired-sway toggleable, at discretion of server owner
+	if (toggle_tired_sway && toggle_tired_sway->value == 1) 
+	{
+		if (ent->client->jump_stamina < 60)
+		{
+			ent->client->ps.gunangles[PITCH] += 1.2 * sin (.75 * level.framenum);
+			ent->client->ps.gunangles[YAW] += .5 * sin (.375 * level.framenum);
+		}
+	}
+	
 
 
 	//add extra gun shaking

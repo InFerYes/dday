@@ -767,6 +767,7 @@ extern cvar_t *mashup;
 extern cvar_t *fast_knife;
 extern cvar_t *sv_maplist; //faf
 extern cvar_t *chile;
+extern cvar_t *toggle_tired_sway;
 
 extern cvar_t *bots;
 extern cvar_t *botchat;

@@ -131,6 +131,7 @@ cvar_t	*nohud;
 cvar_t	*mapvoting;
 cvar_t	*constant_play;
 cvar_t	*serverimg;
+cvar_t	*toggle_tired_sway;
 
 //cvar_t	*crosshair;
 
