@@ -3398,7 +3398,7 @@ qboolean Setup_Map_Vote (void)
 					c++;
 				}
 				else
-					gi.dprintf("WARNING: Map '%s' in maplist.txt not found on server!\n",s);
+					gi.dprintf("WARNING: Map '%s' in votemaps.txt not found on server!\n",s);
 
 
 
