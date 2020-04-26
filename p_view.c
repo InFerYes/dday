@@ -2523,7 +2523,6 @@ void ClientEndServerFrame (edict_t *ent)
 					A_ScoreboardMessage2(ent);
 				else
 					A_ScoreboardMessage(ent);
-	//			A_ScoreboardMessage(ent);//
 				gi.unicast (ent, true);
 			}
 		}
@@ -2534,9 +2533,10 @@ void ClientEndServerFrame (edict_t *ent)
 			gi.unicast (ent, true);
 
 		}
-		if (level.time == delay + 1)
-			safe_cprintf (ent, PRINT_HIGH, "Please report bugs @ http://www.ddaydev.com/bugtracker\n");
 
+    //InFerNo_: ddaydev bugtracker no longer exists
+		if (level.time == delay + 1)
+			safe_cprintf (ent, PRINT_HIGH, "Please report bugs @ https://github.com/InFerYes/dday/issues\n");
 
 		return;
 	}

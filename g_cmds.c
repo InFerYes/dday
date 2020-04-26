@@ -721,11 +721,6 @@ void ChasePrev(edict_t *ent)
 	ent->client->chasetarget = e;
 }
 
-
-
-
-
-
 void SelectNextItem (edict_t *ent, int itflags)
 {
 	gclient_t	*cl;
@@ -742,33 +737,50 @@ void SelectNextItem (edict_t *ent, int itflags)
 	}
 
 
-   	if (cl->menu) 
+  if (cl->menu)
 	{
 		PMenu_Next(ent);
 		return;
 	}
 
+  //if scoreboard is already on...
+  if (ent->client->layout_type == SHOW_SCORES)
+  {
+    ent->client->layout_type = SHOW_PSCORES;
+    DeathmatchScoreboard(ent);
+    safe_cprintf (ent, PRINT_HIGH, "SHOW_PSCORES\n");
 
+  }
+  else if (ent->client->layout_type == SHOW_PSCORES)
+  {
+      ent->client->layout_type = SHOW_CAMPAIGN;
+      //DeathmatchScoreboard(ent);
+      safe_cprintf (ent, PRINT_HIGH, "SHOW_CAMPAIGN\n");
+  }
+  else if (ent->client->layout_type == SHOW_CAMPAIGN)
+  {
+      ent->client->layout_type = SHOW_SCORES;
+      DeathmatchScoreboard(ent);
+      safe_cprintf (ent, PRINT_HIGH, "SHOW_SCORES\n");
+  }
 
+	/* // scan  for the next valid one */
+	/* for (i=1 ; i<=MAX_ITEMS ; i++) */
+	/* { */
+	/* 	index = (cl->pers.selected_item + i)%MAX_ITEMS; */
+	/* 	if (!cl->pers.inventory[index]) */
+	/* 		continue; */
+	/* 	it = &itemlist[index]; */
+	/* 	if (!it->use) */
+	/* 		continue; */
+	/* 	if (!(it->flags & itflags)) */
+	/* 		continue; */
 
-	// scan  for the next valid one
-	for (i=1 ; i<=MAX_ITEMS ; i++)
-	{
-		index = (cl->pers.selected_item + i)%MAX_ITEMS;
-		if (!cl->pers.inventory[index])
-			continue;
-		it = &itemlist[index];
-		if (!it->use)
-			continue;
-		if (!(it->flags & itflags))
-			continue;
+	/* 	cl->pers.selected_item = index; */
+	/* 	return; */
+	/* } */
 
-		cl->pers.selected_item = index;
-		return;
-	}
-
-	cl->pers.selected_item = -1;
-
+	/* cl->pers.selected_item = -1; */
 }
 
 void SelectPrevItem (edict_t *ent, int itflags)
@@ -786,32 +798,28 @@ void SelectPrevItem (edict_t *ent, int itflags)
 		return;
 	}
 
-
-
-
    	if (cl->menu) {
 		PMenu_Prev(ent);
 		return;
 	}
 
+	/* // scan  for the next valid one */
+	/* for (i=1 ; i<=MAX_ITEMS ; i++) */
+	/* { */
+	/* 	index = (cl->pers.selected_item + MAX_ITEMS - i)%MAX_ITEMS; */
+	/* 	if (!cl->pers.inventory[index]) */
+	/* 		continue; */
+	/* 	it = &itemlist[index]; */
+	/* 	if (!it->use) */
+	/* 		continue; */
+	/* 	if (!(it->flags & itflags)) */
+	/* 		continue; */
 
-	// scan  for the next valid one
-	for (i=1 ; i<=MAX_ITEMS ; i++)
-	{
-		index = (cl->pers.selected_item + MAX_ITEMS - i)%MAX_ITEMS;
-		if (!cl->pers.inventory[index])
-			continue;
-		it = &itemlist[index];
-		if (!it->use)
-			continue;
-		if (!(it->flags & itflags))
-			continue;
+	/* 	cl->pers.selected_item = index; */
+	/* 	return; */
+	/* } */
 
-		cl->pers.selected_item = index;
-		return;
-	}
-
-	cl->pers.selected_item = -1;
+	/* cl->pers.selected_item = -1; */
 }
 
 void ValidateSelectedItem (edict_t *ent)
@@ -3588,8 +3596,7 @@ void ClientCommand (edict_t *ent)
           case 4:
               (cmdptr->cmdfunc)(ent,gi.argv(1),gi.argv(2),gi.argv(3));
               break;
-		 
-		}
+		  }
     }
 	else 
 		safe_cprintf(ent, PRINT_HIGH, "Invalid Command: %s!\n", cmd);
