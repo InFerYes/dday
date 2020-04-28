@@ -1112,7 +1112,7 @@ void MoveClientToIntermission (edict_t *client);
 
 void G_SetStats (edict_t *ent);
 void ValidateSelectedItem (edict_t *ent);
-//void DeathmatchScoreboardMessage (edict_t *client, edict_t *killer);
+void DeathmatchScoreboard (edict_t *ent);
 //void DeathmatchPlayerScore (edict_t *ent, edict_t *killer);
 
 //
@@ -1415,6 +1415,7 @@ struct gclient_s
 	*/
 
 	qboolean	inmenu;				// in menu
+  qboolean is_scoreboard_open;
 
 	pmenuhnd_t	*menu;				// current menu
 	pmenu_t		 menu_cur[MENU_MAX];

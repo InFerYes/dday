@@ -1051,16 +1051,20 @@ void DeathmatchScoreboard(edict_t * ent) {
     // pbowens: just do the scoreboard
 
     //JABot[start]
-    if (ent->ai || !ent->inuse)
+    if (ent->ai || !ent->inuse) {
         return;
+	}
     //[end]
 
-    if (ent->client->layout_type == SHOW_SCORES)
-        A_ScoreboardMessage(ent);
-    else if (ent->client->layout_type == SHOW_PSCORES)
-        A_ScoreboardMessage2(ent);
-  else if (ent->client->layout_type == SHOW_IDLEPLAYERS)
-        A_ScoreboardMessage3(ent);
+    if (ent->client->layout_type == SHOW_SCORES) {
+		A_ScoreboardMessage(ent);
+	}
+    else if (ent->client->layout_type == SHOW_PSCORES) {
+		A_ScoreboardMessage2(ent);
+	}
+ 	else if (ent->client->layout_type == SHOW_IDLEPLAYERS) {
+		A_ScoreboardMessage3(ent);
+	}
 
     gi.unicast(ent, true);
 }
@@ -1088,8 +1092,11 @@ void Cmd_Score_f(edict_t * ent) {
         return;
 
     if (level.intermissiontime) { //end of map shows scoreboard
+
         if (mapvoting->value && !ent->client->voted)
             return;
+
+        ent->client->is_scoreboard_open = true;
 
         if (ent->client->layout_type == SHOW_SCORES)
             ent->client->layout_type = SHOW_PSCORES;
@@ -1108,6 +1115,7 @@ void Cmd_Score_f(edict_t * ent) {
                 return;
             } else {
                 ent->client->layout_type = SHOW_NONE;
+                ent->client->is_scoreboard_open = false;
 
                 if (ent->client->resp.team_on) {
                     ent->client->layout_type = SHOW_OBJECTIVES_TEMP;
@@ -1123,6 +1131,7 @@ void Cmd_Score_f(edict_t * ent) {
                     ent->client->display_info = true;
 
                 ent->client->layout_type = SHOW_NONE;
+                ent->client->is_scoreboard_open = false;
 
                 if (level.campaign) {
                     ent->client->layout_type = SHOW_CAMPAIGN;
@@ -1131,6 +1140,7 @@ void Cmd_Score_f(edict_t * ent) {
                 }
             } else {
                 ent->client->layout_type = SHOW_NONE;
+                ent->client->is_scoreboard_open = false;
 
                 if (ent->client->resp.team_on) {
                     ent->client->layout_type = SHOW_OBJECTIVES_TEMP;
@@ -1141,12 +1151,14 @@ void Cmd_Score_f(edict_t * ent) {
             }
 
         } else if (ent->client->layout_type == SHOW_CAMPAIGN || ent->client->display_info == true) {
-            ent->client->layout_type = SHOW_NONE;
-            ent->client->display_info = 0;
+          ent->client->layout_type = SHOW_NONE;
+          ent->client->display_info = 0;
+          ent->client->is_scoreboard_open = false;
         } else // if (ent->client->layout_type == SHOW_NONE)
         {
-            ent->client->layout_type = SHOW_SCORES;
-            ent->client->last_menu_time = level.time;
+          ent->client->is_scoreboard_open = true;
+          ent->client->layout_type = SHOW_SCORES;
+          ent->client->last_menu_time = level.time;
         }
     }
 

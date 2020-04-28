@@ -737,32 +737,32 @@ void SelectNextItem (edict_t *ent, int itflags)
 	}
 
 
-  if (cl->menu)
+	if (cl->menu)
 	{
 		PMenu_Next(ent);
 		return;
 	}
 
-  //if scoreboard is already on...
-  if (ent->client->layout_type == SHOW_SCORES)
-  {
-    ent->client->layout_type = SHOW_PSCORES;
-    DeathmatchScoreboard(ent);
-    safe_cprintf (ent, PRINT_HIGH, "SHOW_PSCORES\n");
+	//if scoreboard is already on...
+	if (ent->client->is_scoreboard_open)
+	{
+		if (ent->client->layout_type == SHOW_SCORES)
+		{
+			ent->client->layout_type = SHOW_PSCORES;
+			DeathmatchScoreboard(ent);
+		}
+		else if (ent->client->layout_type == SHOW_PSCORES)
+		{
+			ent->client->layout_type = SHOW_IDLEPLAYERS;
+			DeathmatchScoreboard(ent);
+		}
+		else if (ent->client->layout_type == SHOW_IDLEPLAYERS)
+		{
+			ent->client->layout_type = SHOW_SCORES;
+			DeathmatchScoreboard(ent);
+		}
+ 	}
 
-  }
-  else if (ent->client->layout_type == SHOW_PSCORES)
-  {
-      ent->client->layout_type = SHOW_CAMPAIGN;
-      //DeathmatchScoreboard(ent);
-      safe_cprintf (ent, PRINT_HIGH, "SHOW_CAMPAIGN\n");
-  }
-  else if (ent->client->layout_type == SHOW_CAMPAIGN)
-  {
-      ent->client->layout_type = SHOW_SCORES;
-      DeathmatchScoreboard(ent);
-      safe_cprintf (ent, PRINT_HIGH, "SHOW_SCORES\n");
-  }
 
 	/* // scan  for the next valid one */
 	/* for (i=1 ; i<=MAX_ITEMS ; i++) */
