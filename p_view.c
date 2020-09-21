@@ -1781,7 +1781,7 @@ G_SetClientSound
 */
 void G_SetClientSound (edict_t *ent)
 {
-	int weap;
+	int weap = 0; /* MetalGod initialized September 21, 2020*/
 
 	if (ent->client->resp.game_helpchanged != game.helpchanged)
 	{

@@ -2383,7 +2383,7 @@ void Weapon_Morphine_Use(edict_t *ent)
 void Weapon_Morphine(edict_t *ent)
 {
 	static int		pause_frames[] = {0};//{19,32,0};
-	static int		fire_frames[2];
+	static int		fire_frames[3];/* MetalGod this needed to be 3, not 2 September 21, 2020*/
 
 	fire_frames[0] = (ent->client->aim)?53:4;
 	fire_frames[1] = (ent->client->aim)?53:5;
