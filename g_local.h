@@ -1933,7 +1933,7 @@ int usm_index;
 #define WEAP_MELEE				9
 
 #define WEAP_NONE			0
-#define WEAP_TOTAL			9
+#define WEAP_TOTAL			10 /* 9  MrG{DRGN} this needs to be 10 to fit the array Septemember 21, 2020 */
 //JABot[end]
 
 

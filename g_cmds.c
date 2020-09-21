@@ -2995,8 +2995,8 @@ qboolean Cmd_Reload (edict_t *ent)
 	//int rds_left;           //+BD - Variable to handle rounds left
 	int mags_left;
 
-	gitem_t *ammo_item;
-	int		ammo_index, *ammo_amount == NULL; /* MetalGod Initialized *ammo_amount April 28th 2020*/
+	gitem_t *ammo_item = NULL;
+	int		ammo_index, *ammo_amount = NULL; /* MetalGod Initialized *ammo_amount April 28th 2020*/
 
 	if (!ent ||
 		!ent->client ||

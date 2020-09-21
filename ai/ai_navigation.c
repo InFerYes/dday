@@ -322,7 +322,7 @@ int AI_ClosestNodeToReachableSpot(edict_t *self, vec3_t origin)
 	int			node=-1;
 	vec3_t		v;
 
-	int			check[3];
+	int			check[4]; /* check[3];  MrG{DRGN} this needs to be 4 to fit the array Septemember 21, 2020 */
 	int			c;
 
 
