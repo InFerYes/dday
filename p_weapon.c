@@ -898,8 +898,8 @@ void weapon_grenade_fire (edict_t *ent)
 	// unused
 	float	time = 0;
 	int		team = 0;
-
-
+	if (!ent || !ent->client ||!ent->client->grenade)
+		return;
 	//faf
 	if (ent->client && ent->client->grenade) // disable the grenade from triggering self, but still leave timers on
 	{
@@ -1342,8 +1342,7 @@ void fire_Knife ( edict_t *self, vec3_t start, vec3_t aimdir, int damage, int ki
 						damage*=25;
 
 					T_Damage (tr.ent, self, self, aimdir, tr.endpos, tr.plane.normal, damage,  (fists)?200:0   , 0,(fists)?MOD_FISTS:MOD_KNIFE);//faf:  adding knockback for fists
-					if (tr.ent->client &&
-						tr.ent->client->aim)
+					if (tr.ent->client && tr.ent->client->aim)
 					{
 						//knock em out of truesight
 						Cmd_Scope_f(tr.ent);

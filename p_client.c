@@ -4818,34 +4818,38 @@ void Write_Player_Stats (edict_t *ent)
 	{
 		gi.error ("Couldn't open %s, you may need to create a 'dday/stats' folder.", filename);
 	}
+	if (fn)/* MetalGod sanity check */
+	{
+		fprintf(fn, "%s\n", ent->client->pers.netname);
+		fprintf(fn, "%i\n", games);
+		fprintf(fn, "%i\n", ent->client->ping);
+		fprintf(fn, "%i\n", human_kills);
+		fprintf(fn, "%i\n", human_deaths);
+		fprintf(fn, "%i\n", bot_kills);
+		fprintf(fn, "%i\n", bot_deaths);
+		fprintf(fn, "%i\n", games_won);
+		fprintf(fn, "%i\n", games_lost);
+		fprintf(fn, "%i\n", played_allies);
+		fprintf(fn, "%i\n", played_axis);
+		fprintf(fn, "%i\n", infantry);
+		fprintf(fn, "%i\n", officer);
+		fprintf(fn, "%i\n", lgunner);
+		fprintf(fn, "%i\n", hgunner);
+		fprintf(fn, "%i\n", sniper);
+		fprintf(fn, "%i\n", special);
+		fprintf(fn, "%i\n", engineer);
+		fprintf(fn, "%i\n", medic);
+		fprintf(fn, "%i\n", flamer);
+		fprintf(fn, "%i\n", castrations);
+		fprintf(fn, "%i\n", helmets);
+		fprintf(fn, "%i\n", fists);
+		fprintf(fn, "%s\n", ent->client->pers.stat_chat);
 
-	fprintf (fn, "%s\n", ent->client->pers.netname);
-	fprintf (fn, "%i\n", games);
-	fprintf (fn, "%i\n", ent->client->ping);
-	fprintf (fn, "%i\n", human_kills);
-	fprintf (fn, "%i\n", human_deaths);
-	fprintf (fn, "%i\n", bot_kills);
-	fprintf (fn, "%i\n", bot_deaths);
-	fprintf (fn, "%i\n", games_won);
-	fprintf (fn, "%i\n", games_lost);
-	fprintf (fn, "%i\n", played_allies);
-	fprintf (fn, "%i\n", played_axis);
-	fprintf (fn, "%i\n", infantry);
-	fprintf (fn, "%i\n", officer);
-	fprintf (fn, "%i\n", lgunner);
-	fprintf (fn, "%i\n", hgunner);
-	fprintf (fn, "%i\n", sniper);
-	fprintf (fn, "%i\n", special);
-	fprintf (fn, "%i\n", engineer);
-	fprintf (fn, "%i\n", medic);
-	fprintf (fn, "%i\n", flamer);
-	fprintf (fn, "%i\n", castrations);
-	fprintf (fn, "%i\n", helmets);
-	fprintf (fn, "%i\n", fists);
-	fprintf (fn, "%s\n", ent->client->pers.stat_chat);
-
-
-	fclose (fn);
+		fclose(fn);
+	}
+	
+	
+	
 
 }
 

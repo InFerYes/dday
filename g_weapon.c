@@ -37,9 +37,12 @@ void Cmd_WeapNext_f (edict_t *ent);
 //      it wasnt showing the gun being lowered before
 void check_unscope (edict_t *ent)
 {
-	if (ent->client &&
-		ent->client->pers.weapon &&
-		ent->client->pers.weapon->position != LOC_SNIPER)
+	
+	/* MetalGod sanity check */
+	if (!ent || !ent->client)
+		return;
+
+	if (ent->client && ent->client->pers.weapon && ent->client->pers.weapon->position != LOC_SNIPER)
 		return;
 
 	if (ent->client->ps.fov == SCOPE_FOV)
