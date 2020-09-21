@@ -147,6 +147,11 @@ gitem_t *FindTeamItem (char *dllname, int position)  //faf:  added for team dll 
 
 void DoRespawn (edict_t *ent)
 {
+	/* MetalGod sanity check */
+	if (!ent)
+		return;
+
+	
 	if (ent->team)
 	{
 		edict_t	*master;

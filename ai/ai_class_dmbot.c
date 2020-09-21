@@ -430,6 +430,11 @@ qboolean BOT_DMclass_FindEnemy(edict_t *self)
 	gitem_t	*it;
 	int index;
 
+	/* MetalGod sanity check */
+	if (!self || !self->client)
+		return false;
+
+	
 	// we already set up an enemy this frame (reacting to attacks)
 //moved below medic check	if(self->enemy != NULL)
 //		return true;
@@ -555,16 +560,6 @@ qboolean BOT_DMclass_FindEnemy(edict_t *self)
 	//	else
 		//	gi.dprintf("obj not hittable\n");
 	}
-
-
-
-
-
-
-
-
-
-
 
 
 	if (self->client->pers.weapon)
@@ -935,7 +930,7 @@ void BOT_CheckFireWeapon (edict_t *self, usercmd_t *ucmd)
 	float  skilldelay;
 
 	vec3_t vdist;
-	float dist;
+	float dist = 0; /* MetalGod initialized */
 
 
 	if (self->ai->state != BOT_STATE_CAMP && 

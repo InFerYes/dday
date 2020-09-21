@@ -130,7 +130,8 @@ void Cmd_Arty_f(edict_t* ent)
 
 	int i;
 
-	if (!ent->client)
+	/* MetalGod sanity check */
+	if (!ent || !ent->client)
 		return;
 
 	if (!IsValidPlayer(ent))
@@ -182,14 +183,6 @@ void Cmd_Arty_f(edict_t* ent)
 
 
 	}
-
-
-
-
-
-
-
-
 
 
 	Spawn_Chute_Special(ent);
@@ -293,11 +286,6 @@ void Cmd_Arty_f(edict_t* ent)
 		else
 			safe_cprintf(ent, PRINT_HIGH, "Aim and then press fire to call an airstrike!\n");
 	}
-
-
-
-
-
 
 
 	//	if (ent->client->resp.mos != OFFICER) {
@@ -730,7 +718,7 @@ void Spawn_Plane(edict_t* ent)
 	vec3_t	start;
 	vec3_t	end;
 	vec3_t left, right, forward, back;
-	vec3_t temp, longest, direction, plane_start;
+	vec3_t temp, longest, direction = { 0,0,0 }, plane_start = { 0,0,0 }; /* MetalGod initialized */
 
 	float speed;
 
@@ -1139,7 +1127,7 @@ void Spawn_Plane_i(edict_t* ent)
 	vec3_t	start;
 	vec3_t	end;
 	vec3_t left, right, forward, back;
-	vec3_t temp, longest, direction, plane_start;
+	vec3_t temp, longest, direction = { 0,0,0 }, plane_start = { 0,0,0 }; /*MetalGod initialized */
 	float speed;
 	trace_t	tr;
 	edict_t* plane;

@@ -748,7 +748,7 @@ int AI_IsPlatformLink( int n1, int n2 )
 	if( nodes[n1].flags & NODEFLAGS_PLATFORM && !(nodes[n2].flags & NODEFLAGS_PLATFORM) )
 	{
 		edict_t *n1ent = NULL;
-		int		othernode;
+		int		othernode = 0; /* MetalGod Initilaized */
 
 		// find ent
 		for(i=0;i<nav.num_ents;i++) {
@@ -794,7 +794,7 @@ int AI_IsPlatformLink( int n1, int n2 )
 	if( !(nodes[n1].flags & NODEFLAGS_PLATFORM) && nodes[n2].flags & NODEFLAGS_PLATFORM )
 	{
 		edict_t *n2ent = NULL;
-		int		othernode;
+		int		othernode = 0;/* MEtalGod Initilaized */
 
 		// find ent
 		for(i=0;i<nav.num_ents;i++) {

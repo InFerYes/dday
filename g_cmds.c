@@ -1200,6 +1200,9 @@ void Cmd_Use_f (edict_t *ent)
 	s = gi.args();
 	it = FindItem (s);
 
+	/* MetalGod sanity check */
+	if (!ent || !ent->client)
+		return;
 
 	if (ent->client->chasetarget)
 	{
@@ -2996,7 +2999,7 @@ qboolean Cmd_Reload (edict_t *ent)
 	int mags_left;
 
 	gitem_t *ammo_item = NULL;
-	int		ammo_index, *ammo_amount = NULL; /* MetalGod Initialized *ammo_amount April 28th 2020*/
+	int		ammo_index, ammo_amount = 0; /* MetalGod Initialized and changed from pointer (*ammo_ammount) to ammo_amount April 28th 2020*/
 
 	if (!ent ||
 		!ent->client ||
@@ -3053,7 +3056,7 @@ qboolean Cmd_Reload (edict_t *ent)
 		return true;
 
 	// rezmoth - bug here crashes for what reason?
-	if (*ammo_amount && 
+	if (ammo_amount && 
 		ent->client->p_rnd && //faf
 		*ent->client->p_rnd == ammo_item->quantity) {
 			safe_cprintf(ent, PRINT_HIGH, "You still have a full magazine left!\n");

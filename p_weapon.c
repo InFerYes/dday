@@ -1013,7 +1013,11 @@ void weapon_grenade_prime (edict_t *ent, int team)
 
 void Weapon_Grenade (edict_t *ent)
 {
-//	if(	(!ent->client->grenade_index && !ent->client->pers.inventory[ent->client->ammo_index]) || 
+	/* MetalGod sanity check */
+	if (!ent||!ent->client)
+		return;
+
+	//	if(	(!ent->client->grenade_index && !ent->client->pers.inventory[ent->client->ammo_index]) || 
 //buggy, changed back to old way, watch for crash?		(ent->client->grenade_index) )//jpn crash here
 	if(	(!ent->client->grenade_index && !ent->client->pers.inventory[ent->client->ammo_index]) || 
 		(ent->client->grenade_index && !ent->client->pers.inventory[ent->client->grenade_index] && ent->client->weaponstate != WEAPON_FIRING) )
@@ -1296,11 +1300,15 @@ fire_knife
 =============
 */
 qboolean Cmd_Scope_f(edict_t *ent);
-void fire_Knife ( edict_t *self, vec3_t start, vec3_t aimdir, int damage, int kick, char *wav, qboolean fists)
-{    
-    trace_t tr; //detect whats in front of you up to range "vec3_t end"
+void fire_Knife(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick, char* wav, qboolean fists)
+{
+	trace_t tr = {0};
+	//detect whats in front of you up to range "vec3_t end"
 
     vec3_t end;
+	/* MetalGod sanity check */
+	if (!self || !tr.ent)
+		return;
 
     // Figure out what we hit, if anything:
 
@@ -1787,6 +1795,11 @@ void Weapon_Knife_Fire (edict_t *ent)
     vec3_t  start;
     vec3_t  offset;
 	vec3_t g_offset;
+	
+	/* MetalGod sanity check */
+	if (!ent || !ent->client)
+		return;
+	
 	qboolean armedfists = Q_stricmp(ent->client->pers.weapon->pickup_name,"Knife");
 //	gi.dprintf("armedfists: %s\n",(armedfists)?"True":"False");
 
@@ -2575,7 +2588,7 @@ void weapon_tnt_fire (edict_t *ent)
 	if (ent->client->ps.pmove.pm_type == PM_DEAD)
 		speed = 5; // drop the grenade
 	else
-		speed = TNT_MINSPEED + (int)(-(ent->client->tnt->nextthink - level.time) + 2.75) * ((TNT_MAXSPEED - TNT_MINSPEED) / TNT_TIMER);
+		speed = TNT_MINSPEED + (int)(-(ent->client->tnt->nextthink - level.time) + 2.75f) * ((TNT_MAXSPEED - TNT_MINSPEED) / TNT_TIMER); /* MetalGod 2.75 explicitly a float */
 	//gi.dprintf("speed: %i\n", speed);
 
 	if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )

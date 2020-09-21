@@ -2625,7 +2625,7 @@ edict_t *ApplyFirstAid (edict_t *ent)
 int DoAnarchyStuff(edict_t *ent,char *sound)
 {
 	static lastone;
-	int soundindexM,soundindexF;
+	int soundindexM,soundindexF = 0; /* MetalGod initialized */
 	float RanMale,RanFemale;
 
 	if(!ent->sexpistols) return gi.soundindex(sound);

@@ -591,14 +591,17 @@ void Camp_Spot( void )
 	f = fopen (filename, "a");
 	if (!f)
 		gi.error ("Couldn't open %s", filename);
+	if (f) /* MetalGod sanity check */
+	{
+		fprintf(f, "%i\n", player.ent->client->resp.team_on->index);
+		fprintf(f, "%i\n", (int)player.ent->s.origin[0]);
+		fprintf(f, "%i\n", (int)player.ent->s.origin[1]);
+		fprintf(f, "%i\n", (int)player.ent->s.origin[2]);
+		fprintf(f, "%i\n", (int)player.ent->s.angles[1]);
+		fprintf(f, "%i\n", player.ent->stanceflags);
 
-	fprintf (f, "%i\n", player.ent->client->resp.team_on->index);
-	fprintf (f, "%i\n", (int)player.ent->s.origin[0]);
-	fprintf (f, "%i\n", (int)player.ent->s.origin[1]);
-	fprintf (f, "%i\n", (int)player.ent->s.origin[2]);
-	fprintf (f, "%i\n", (int)player.ent->s.angles[1]);
-	fprintf (f, "%i\n", player.ent->stanceflags);
 
-	fclose (f);
+		fclose(f);
+	}
 	gi.dprintf("camp spot added.\n");
 }

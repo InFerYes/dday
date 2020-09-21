@@ -331,7 +331,7 @@ void civilian_think (edict_t *self)
 {
 	vec3_t v,temp,dist;
 	int i;
-	edict_t *e, *nearest;
+	edict_t *e, *nearest = NULL; /* MetalGod initialized */
 	float temp_distance, nearest_distance;
 	nearest_distance = 9999999999;
 

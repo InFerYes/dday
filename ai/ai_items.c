@@ -45,7 +45,7 @@ void AI_EnemyAdded(edict_t *ent)
 void AI_EnemyRemoved(edict_t *ent)
 {
 	int i;
-	int pos;
+	int pos = 0; /* MetalGod initialized */
 
 	// watch for 0 players
 	if(num_AIEnemies < 1)

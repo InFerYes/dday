@@ -691,7 +691,10 @@ void SV_CalcGunOffset (edict_t *ent)
 {
 	int		i;
 //	float	delta;
-
+	
+	/* MetalGod sanity check! */
+	if (!ent|| !ent->client)
+		return;
 
 	if (ent->client && 
 		ent->client->pers.weapon &&
@@ -768,10 +771,10 @@ void SV_CalcGunOffset (edict_t *ent)
 		if (ent->client->pers.weapon &&
 			ent->client->pers.weapon->classnameb != WEAPON_MP43)
 		{
-		if (4 *(level.time - ent->client->last_jump_time) < (3.1416))
+		if (4 *(level.time - ent->client->last_jump_time) < (3.1416f))/* MetalGod Make sure this is expelicitly a float!*/
 		{
 			ent->client->ps.gunangles[PITCH] = 
-			ent->client->ps.gunangles[PITCH] - 8 * (sin (4 *(level.time - ent->client->last_jump_time)));
+			ent->client->ps.gunangles[PITCH] - 8 * (sinf (4 *(level.time - ent->client->last_jump_time))); /* MetalGod use the float versin of sin (sinf) No need for float precision !*/
 		}}
 	}
 
@@ -2362,7 +2365,9 @@ void ClientEndServerFrame (edict_t *ent)
 
 //	int oldframe, oldanimend, newframe, newanimend;//faf
 
-
+	/* MetalGod sanity check! */
+	if (!ent || !ent->client)
+		return;
 
 
 	if (ent->client)

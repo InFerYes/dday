@@ -95,6 +95,12 @@ void SwitchToObserver(edict_t *ent)
 //faf    parachutes :P
 void Chute_Think(edict_t *ent)
 {
+	
+	/* MetalGod sanity check */
+	if (!ent || !ent->owner)
+		return;
+
+	
 	if (level.intermissiontime || ent->owner->deadflag)
 	{
 		ent->think = G_FreeEdict;
@@ -1136,6 +1142,10 @@ void M_Name_Choose (edict_t *ent, pmenu_t *p, int choice)
 
 void MainMenu(edict_t *ent)
 {
+	/* MetalGod sanity check */
+	if (!ent || !ent->client)
+		return;;
+	
 	PMenu_Close(ent);
 
 	client_menu(ent, 4, "*D-DAY: NORMANDY " /*DEVVERSION*/, PMENU_ALIGN_CENTER, NULL, NULL );

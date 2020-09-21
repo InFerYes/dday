@@ -33,7 +33,7 @@ edict_t		*LINKS_PASSENT = NULL;
 //==========================================
 char *AI_LinkString( int linktype )
 {
-	char *s;
+	char *s = NULL; /*MetalGod initialized */
 
 	if( linktype == LINK_MOVE )
 		s = "LINK_MOVE";
@@ -161,30 +161,30 @@ float AI_FindLinkDistance(int n1, int n2)
 // AI_AddLink
 // force-add of a link
 //==========================================
-qboolean AI_AddLink( int n1, int n2, int linkType )
+qboolean AI_AddLink(int n1, int n2, int linkType)
 {
 	//never store self-link
-	if( n1 == n2 )
+	if (n1 == n2)
 		return false;
-	
+
 	//already referenced
-	if( AI_PlinkExists(n1, n2) )
+	if (AI_PlinkExists(n1, n2))
 		return false;
 
 	if (linkType == LINK_INVALID)
 		return false;
 
 	//add the link
-	if (pLinks[n1].numLinks > NODES_MAX_PLINKS) 
+	if (pLinks[n1].numLinks > NODES_MAX_PLINKS)
 	{
-//		G_Printf("MaxPlinks Reached! node:%i numPlinks:%i\n", n1, pLinks[n1].numLinks);
+		//		G_Printf("MaxPlinks Reached! node:%i numPlinks:%i\n", n1, pLinks[n1].numLinks);
 		return false;
 	}
 
 	pLinks[n1].nodes[pLinks[n1].numLinks] = n2;
 	pLinks[n1].dist[pLinks[n1].numLinks] = (int)AI_FindLinkDistance(n1, n2);
 	pLinks[n1].moveType[pLinks[n1].numLinks] = linkType;
-	
+
 	pLinks[n1].numLinks++;
 	
 	return true;

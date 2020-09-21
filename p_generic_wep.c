@@ -64,6 +64,9 @@ void Weapon_Generic (edict_t *ent,
 	int		FRAME_FIRE_FIRST,FRAME_IDLE_FIRST,FRAME_IDLE_LAST;
 
 //	vec3_t	vieworg;
+	/* MetalGod sanity check */
+	if (!ent || !ent->client)
+		return;
 
 
 	if (ent->ai)
