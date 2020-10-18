@@ -5,7 +5,7 @@
  *   $Date: 2002/07/12 00:52:57 $
  *
  ***********************************
- 
+
 Copyright (C) 2002 Vipersoft
 
 This program is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -33,7 +33,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define STANCE_DUCK  2
 #define STANCE_CRAWL 4
 
-
 #define LEG_WOUND			1
 #define STOMACH_WOUND		2
 #define CHEST_WOUND			4
@@ -42,7 +41,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define R_ARM_WOUND			32
 #define NEAR_MISS			64 //Wheaty: Near Miss/Bullet Whiz
 #define TANK_HIT			128 //faf
-
 
 //Wheaty: Relative direction strike came from
 
@@ -71,8 +69,6 @@ implemented it yet? */
 #define MAX_ENGINEER		1
 #define MAX_MEDIC			4
 #define MAX_FLAMER			1	// To reduce flamer-rambos due to the new power of this weapon
-
-
 
 /*
 
@@ -110,17 +106,13 @@ implemented it yet? */
 
 #define STARTING_GRENADES	2
 
-
 #define TRACERSHOT			5
-
 
 #define MAX_MOS				10
 #define MAX_BATTARY			10
 #define MAX_MOS_NAME_CHAR	15
 
-
 #define FLAME_DEFAULT		"1"
-
 
 #define	LOC_NONE			0
 #define LOC_KNIFE			1
@@ -160,8 +152,7 @@ implemented it yet? */
 #define PSPEED_SIDE			75
 #define	PSPEED_UP			50
 
-
-#define TRUESIGHT_FACTOR	1.75		// / 
+#define TRUESIGHT_FACTOR	1.75F	/* MetalGod make this explicitly a float! */
 #define MAX_CMD_BUFFER		64	// bytes
 #define CMD_DELAY			2	// seconds
 
@@ -183,9 +174,8 @@ implemented it yet? */
 #define SURF_METAL			4
 #define SURF_GLASS			5
 
-
 //pbowens: easier to modify
-#define HEALTH_MAX			100 
+#define HEALTH_MAX			100
 #define HEALTH_INCREMENT	50
 #define	HEALTH_RECOVERY		40
 

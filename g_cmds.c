@@ -3030,7 +3030,7 @@ qboolean Cmd_Reload (edict_t *ent)
 	{
 		ammo_item = FindItem(ent->client->pers.weapon->ammo);
 		ammo_index = ITEM_INDEX(ammo_item);
-		ammo_amount = &ent->client->pers.inventory[ammo_index];
+		ammo_amount = ent->client->pers.inventory[ammo_index]; /* MetalGod was &ent... for some odd reason. */
 	}
 
     // Grab the current magazine max count...
@@ -3296,7 +3296,7 @@ void Cmd_Shout_f(edict_t *ent)
 		}
 		if (newshout)
 		{
-			if (user_shout_count >10)
+			if (user_shout_count > MAXSHOUTS)
 			{
 				safe_cprintf(ent, PRINT_HIGH, "Too many user shouts already, sorry!\n");
 				return;

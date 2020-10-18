@@ -3,7 +3,7 @@
  *   $Source: /usr/local/cvsroot/dday/src/q_shared.h,v $
  *   $Revision: 1.8 $
  *   $Date: 2002/07/23 19:12:49 $
- * 
+ *
  ***********************************
 
 Copyright (C) 2002 Vipersoft
@@ -15,7 +15,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -25,16 +25,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
 
-	
 // q_shared.h -- included first by ALL program modules
 
 #ifdef _WIN32
 // unknown pragmas are SUPPOSED to be ignored, but....
 #pragma warning(disable : 4244)     // MIPS
-#pragma warning(disable : 4136)     // X86
-#pragma warning(disable : 4051)     // ALPHA
+//#pragma warning(disable : 4136)     // X86
+//#pragma warning(disable : 4051)     // ALPHA
 
-#pragma warning(disable : 4018)     // signed/unsigned mismatch
+//#pragma warning(disable : 4018)     // signed/unsigned mismatch
 #pragma warning(disable : 4305)		// truncation from const double to float
 #pragma warning(disable : 4996)		// SHut up MSVS
 #endif
@@ -61,13 +60,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #endif
 
 typedef unsigned char 		byte;
-typedef enum {false, true}      qboolean;
-
+typedef enum { false, true }      qboolean;
 
 #ifndef NULL
 #define NULL ((void *)0)
 #endif
-
 
 // angle indexes
 #define	PITCH				0		// up / down
@@ -93,14 +90,11 @@ typedef enum {false, true}      qboolean;
 #define	MAX_ITEMS			256
 #define MAX_GENERAL			(MAX_CLIENTS*2)	// general config strings
 
-
 // game print flags
 #define	PRINT_LOW			0		// pickup messages
 #define	PRINT_MEDIUM		1		// death messages
 #define	PRINT_HIGH			2		// critical messages
 #define	PRINT_CHAT			3		// chat messages
-
-
 
 #define	ERR_FATAL			0		// exit the entire game with a popup window
 #define	ERR_DROP			1		// print to console and disconnect from game
@@ -108,20 +102,18 @@ typedef enum {false, true}      qboolean;
 
 #define	PRINT_ALL			0
 #define PRINT_DEVELOPER		1		// only print when "developer 1"
-#define PRINT_ALERT			2		
-
+#define PRINT_ALERT			2
 
 // destination class for gi.multicast()
 typedef enum
 {
-MULTICAST_ALL,
-MULTICAST_PHS,
-MULTICAST_PVS,
-MULTICAST_ALL_R,
-MULTICAST_PHS_R,
-MULTICAST_PVS_R
+	MULTICAST_ALL,
+	MULTICAST_PHS,
+	MULTICAST_PVS,
+	MULTICAST_ALL_R,
+	MULTICAST_PHS_R,
+	MULTICAST_PVS_R
 } multicast_t;
-
 
 /*
 ==============================================================
@@ -155,7 +147,7 @@ extern vec3_t vec3_origin;
 //float Q_fabs (float f);
 //#define	fabs(f) Q_fabs(f)
 #if !defined C_ONLY && !defined __linux__ && !defined __sgi && !defined(AMIGA)
-extern long Q_ftol( float f );
+extern long Q_ftol(float f);
 #else
 #define Q_ftol( f ) ( long ) (f)
 #endif
@@ -170,32 +162,32 @@ extern long Q_ftol( float f );
 
 #ifndef USER_EXCLUDE_FUNCTIONS // DDAY
 
-void VectorMA (vec3_t veca, float scale, vec3_t vecb, vec3_t vecc);
+void VectorMA(vec3_t veca, float scale, vec3_t vecb, vec3_t vecc);
 
 // just in case you do't want to use the macros
-vec_t _DotProduct (vec3_t v1, vec3_t v2);
-void _VectorSubtract (vec3_t veca, vec3_t vecb, vec3_t out);
-void _VectorAdd (vec3_t veca, vec3_t vecb, vec3_t out);
-void _VectorCopy (vec3_t in, vec3_t out);
+vec_t _DotProduct(vec3_t v1, vec3_t v2);
+void _VectorSubtract(vec3_t veca, vec3_t vecb, vec3_t out);
+void _VectorAdd(vec3_t veca, vec3_t vecb, vec3_t out);
+void _VectorCopy(vec3_t in, vec3_t out);
 
-void ClearBounds (vec3_t mins, vec3_t maxs);
-void AddPointToBounds (vec3_t v, vec3_t mins, vec3_t maxs);
-int VectorCompare (vec3_t v1, vec3_t v2);
-vec_t VectorLength (vec3_t v);
-void CrossProduct (vec3_t v1, vec3_t v2, vec3_t cross);
-vec_t VectorNormalize (vec3_t v);		// returns vector length
-vec_t VectorNormalize2 (vec3_t v, vec3_t out);
-void VectorInverse (vec3_t v);
-void VectorScale (vec3_t in, vec_t scale, vec3_t out);
+void ClearBounds(vec3_t mins, vec3_t maxs);
+void AddPointToBounds(vec3_t v, vec3_t mins, vec3_t maxs);
+int VectorCompare(vec3_t v1, vec3_t v2);
+vec_t VectorLength(vec3_t v);
+void CrossProduct(vec3_t v1, vec3_t v2, vec3_t cross);
+vec_t VectorNormalize(vec3_t v);		// returns vector length
+vec_t VectorNormalize2(vec3_t v, vec3_t out);
+void VectorInverse(vec3_t v);
+void VectorScale(vec3_t in, vec_t scale, vec3_t out);
 int Q_log2(int val);
 
-void R_ConcatRotations (float in1[3][3], float in2[3][3], float out[3][3]);
-void R_ConcatTransforms (float in1[3][4], float in2[3][4], float out[3][4]);
+void R_ConcatRotations(float in1[3][3], float in2[3][3], float out[3][3]);
+void R_ConcatTransforms(float in1[3][4], float in2[3][4], float out[3][4]);
 
-void AngleVectors (vec3_t angles, vec3_t forward, vec3_t right, vec3_t up);
-int BoxOnPlaneSide (vec3_t emins, vec3_t emaxs, struct cplane_s *plane);
+void AngleVectors(vec3_t angles, vec3_t forward, vec3_t right, vec3_t up);
+int BoxOnPlaneSide(vec3_t emins, vec3_t emaxs, struct cplane_s* plane);
 float	anglemod(float a);
-float LerpAngle (float a1, float a2, float frac);
+float LerpAngle(float a1, float a2, float frac);
 
 #define BOX_ON_PLANE_SIDE(emins, emaxs, p)	\
 	(((p)->type < 3)?						\
@@ -213,44 +205,43 @@ float LerpAngle (float a1, float a2, float frac);
 	:										\
 		BoxOnPlaneSide( (emins), (emaxs), (p)))
 
-void ProjectPointOnPlane( vec3_t dst, const vec3_t p, const vec3_t normal );
-void PerpendicularVector( vec3_t dst, const vec3_t src );
-void RotatePointAroundVector( vec3_t dst, const vec3_t dir, const vec3_t point, float degrees );
-
+void ProjectPointOnPlane(vec3_t dst, const vec3_t p, const vec3_t normal);
+void PerpendicularVector(vec3_t dst, const vec3_t src);
+void RotatePointAroundVector(vec3_t dst, const vec3_t dir, const vec3_t point, float degrees);
 
 //=============================================
 
-char *COM_SkipPath (char *pathname);
-void COM_StripExtension (char *in, char *out);
-void COM_FileBase (char *in, char *out);
-void COM_FilePath (char *in, char *out);
-void COM_DefaultExtension (char *path, char *extension);
+char* COM_SkipPath(char* pathname);
+void COM_StripExtension(char* in, char* out);
+void COM_FileBase(char* in, char* out);
+void COM_FilePath(char* in, char* out);
+void COM_DefaultExtension(char* path, char* extension);
 
-char *COM_Parse (char **data_p);
+char* COM_Parse(char** data_p);
 // data is an in/out parm, returns a parsed out token
 
-void Com_sprintf (char *dest, int size, char *fmt, ...);
+void Com_sprintf(char* dest, int size, char* fmt, ...);
 
-void Com_PageInMemory (byte *buffer, int size);
+void Com_PageInMemory(byte* buffer, int size);
 
 //=============================================
 
 // portable case insensitive compare
-int Q_stricmp (char *s1, char *s2);
-int Q_strcasecmp (char *s1, char *s2);
-int Q_strncasecmp (char *s1, char *s2, int n);
+int Q_stricmp(char* s1, char* s2);
+int Q_strcasecmp(char* s1, char* s2);
+int Q_strncasecmp(char* s1, char* s2, int n);
 
 //=============================================
 
 short	BigShort(short l);
 short	LittleShort(short l);
-int		BigLong (int l);
-int		LittleLong (int l);
-float	BigFloat (float l);
-float	LittleFloat (float l);
+int		BigLong(int l);
+int		LittleLong(int l);
+float	BigFloat(float l);
+float	LittleFloat(float l);
 
-void	Swap_Init (void);
-char	*va(char *format, ...);
+void	Swap_Init(void);
+char* va(char* format, ...);
 
 //=============================================
 #endif // USER_EXCLUDE_FUNCTIONS // DDAY
@@ -262,10 +253,10 @@ char	*va(char *format, ...);
 #define	MAX_INFO_VALUE		64
 #define	MAX_INFO_STRING		512
 
-char *Info_ValueForKey (char *s, char *key);
-void Info_RemoveKey (char *s, char *key);
-void Info_SetValueForKey (char *s, char *key, char *value);
-qboolean Info_Validate (char *s);
+char* Info_ValueForKey(char* s, char* key);
+void Info_RemoveKey(char* s, char* key);
+void Info_SetValueForKey(char* s, char* key, char* value);
+qboolean Info_Validate(char* s);
 
 /*
 ==============================================================
@@ -277,14 +268,14 @@ SYSTEM SPECIFIC
 
 extern	int	curtime;		// time returned by last Sys_Milliseconds
 
-int		Sys_Milliseconds (void);
-void	Sys_Mkdir (char *path);
+int		Sys_Milliseconds(void);
+void	Sys_Mkdir(char* path);
 
 // large block stack allocation routines
-void	*Hunk_Begin (int maxsize);
-void	*Hunk_Alloc (int size);
-void	Hunk_Free (void *buf);
-int		Hunk_End (void);
+void* Hunk_Begin(int maxsize);
+void* Hunk_Alloc(int size);
+void	Hunk_Free(void* buf);
+int		Hunk_End(void);
 
 // directory searching
 #define SFF_ARCH    0x01
@@ -296,15 +287,13 @@ int		Hunk_End (void);
 /*
 ** pass in an attribute mask of things you wish to REJECT
 */
-char	*Sys_FindFirst (char *path, unsigned musthave, unsigned canthave );
-char	*Sys_FindNext ( unsigned musthave, unsigned canthave );
-void	Sys_FindClose (void);
-
+char* Sys_FindFirst(char* path, unsigned musthave, unsigned canthave);
+char* Sys_FindNext(unsigned musthave, unsigned canthave);
+void	Sys_FindClose(void);
 
 // this is only here so the functions in q_shared.c and q_shwin.c can link
-void Sys_Error (char *error, ...);
-void Com_Printf (char *msg, ...);
-
+void Sys_Error(char* error, ...);
+void Com_Printf(char* msg, ...);
 
 /*
 ==========================================================
@@ -321,19 +310,19 @@ CVARS (console variables)
 #define	CVAR_USERINFO	2	// added to userinfo  when changed
 #define	CVAR_SERVERINFO	4	// added to serverinfo when changed
 #define	CVAR_NOSET		8	// don't allow change from console at all,
-							// but can be set from the command line
+// but can be set from the command line
 #define	CVAR_LATCH		16	// save changes until server restart
 
 // nothing outside the Cvar_*() functions should modify these fields!
 typedef struct cvar_s
 {
-	char		*name;
-	char		*string;
-	char		*latched_string;	// for CVAR_LATCH vars
+	char* name;
+	char* string;
+	char* latched_string;	// for CVAR_LATCH vars
 	int			flags;
 	qboolean	modified;	// set each time the cvar is changed
 	float		value;
-	struct cvar_s *next;
+	struct cvar_s* next;
 } cvar_t;
 
 #endif		// CVAR
@@ -379,8 +368,6 @@ COLLISION DETECTION
 #define	CONTENTS_TRANSLUCENT	0x10000000	// auto set if any surface has trans
 #define	CONTENTS_LADDER			0x20000000
 
-
-
 #define	SURF_LIGHT		0x1		// value will hold the light strength
 
 #define	SURF_SLICK		0x2		// effects game physics
@@ -391,8 +378,6 @@ COLLISION DETECTION
 #define	SURF_TRANS66	0x20
 #define	SURF_FLOWING	0x40	// scroll towards angle
 #define	SURF_NODRAW		0x80	// don't bother referencing the texture
-
-
 
 // content masks
 #define	MASK_ALL				(-1)
@@ -405,12 +390,10 @@ COLLISION DETECTION
 #define	MASK_SHOT				(CONTENTS_SOLID|CONTENTS_MONSTER|CONTENTS_WINDOW|CONTENTS_DEADMONSTER)
 #define MASK_CURRENT			(CONTENTS_CURRENT_0|CONTENTS_CURRENT_90|CONTENTS_CURRENT_180|CONTENTS_CURRENT_270|CONTENTS_CURRENT_UP|CONTENTS_CURRENT_DOWN)
 
-
 // gi.BoxEdicts() can return a list of either solid or trigger entities
 // FIXME: eliminate AREA_ distinction?
 #define	AREA_SOLID		1
 #define	AREA_TRIGGERS	2
-
 
 // plane_t structure
 // !!! if this is changed, it must be changed in asm code too !!!
@@ -461,16 +444,14 @@ typedef struct
 	float		fraction;	// time completed, 1.0 = didn't hit anything
 	vec3_t		endpos;		// final position
 	cplane_t	plane;		// surface normal at impact
-	csurface_t	*surface;	// surface hit
+	csurface_t* surface;	// surface hit
 	int			contents;	// contents on other side of surface hit
-	struct edict_s	*ent;		// not set by CM_*() functions
+	struct edict_s* ent;		// not set by CM_*() functions
 } trace_t;
-
-
 
 // pmove_state_t is the information necessary for client side movement
 // prediction
-typedef enum 
+typedef enum
 {
 	// can accelerate and turn
 	PM_NORMAL,
@@ -508,14 +489,12 @@ typedef struct
 									// changed by spawns, rotating objects, and teleporters
 } pmove_state_t;
 
-
 //
 // button bits
 //
 #define	BUTTON_ATTACK		1
 #define	BUTTON_USE			2
 #define	BUTTON_ANY			128			// any key whatsoever
-
 
 // usercmd_t is sent to the server each client frame
 typedef struct usercmd_s
@@ -527,7 +506,6 @@ typedef struct usercmd_s
 	byte	impulse;		// remove?
 	byte	lightlevel;		// light level the player is standing on
 } usercmd_t;
-
 
 #define	MAXTOUCH	32
 typedef struct
@@ -541,22 +519,21 @@ typedef struct
 
 	// results (out)
 	int			numtouch;
-	struct edict_s	*touchents[MAXTOUCH];
+	struct edict_s* touchents[MAXTOUCH];
 
 	vec3_t		viewangles;			// clamped
 	float		viewheight;
 
 	vec3_t		mins, maxs;			// bounding box size
 
-	struct edict_s	*groundentity;
+	struct edict_s* groundentity;
 	int			watertype;
 	int			waterlevel;
 
 	// callbacks to test the world
-	trace_t		(*trace) (vec3_t start, vec3_t mins, vec3_t maxs, vec3_t end);
+	trace_t(*trace) (vec3_t start, vec3_t mins, vec3_t maxs, vec3_t end);
 	int			(*pointcontents) (vec3_t point);
 } pmove_t;
-
 
 // entity_state_t->effects
 // Effects are things handled on the client side (lights, particles, frame animations)
@@ -902,8 +879,7 @@ typedef struct
 
 // ROGUE
 
-extern	vec3_t monster_flash_offset [];
-
+extern	vec3_t monster_flash_offset[];
 
 // temp entity events
 //
@@ -943,7 +919,7 @@ typedef enum
 	TE_BLUEHYPERBLASTER,
 	TE_PLASMA_EXPLOSION,
 	TE_TUNNEL_SPARKS,
-//ROGUE
+	//ROGUE
 	TE_BLASTER2,
 	TE_RAILTRAIL2,
 	TE_FLAME,
@@ -970,7 +946,7 @@ typedef enum
 	TE_EXPLOSION1_BIG,
 	TE_EXPLOSION1_NP,
 	TE_FLECHETTE
-//ROGUE
+	//ROGUE
 } temp_event_t;
 
 #define SPLASH_UNKNOWN		0
@@ -980,7 +956,6 @@ typedef enum
 #define SPLASH_SLIME		4
 #define	SPLASH_LAVA			5
 #define SPLASH_BLOOD		6
-
 
 // sound channels
 // channel 0 never willingly overrides
@@ -994,13 +969,11 @@ typedef enum
 #define	CHAN_NO_PHS_ADD			8	// send to all clients, not just ones in PHS (ATTN 0 will also do this)
 #define	CHAN_RELIABLE			16	// send by reliable message, not datagram
 
-
 // sound attenuation values
 #define	ATTN_NONE               0	// full volume the entire level
 #define	ATTN_NORM               1
 #define	ATTN_IDLE               2
 #define	ATTN_STATIC             3	// diminish very rapidly with distance
-
 
 // player_state->stats[] indexes
 #define STAT_HEALTH_ICON		0
@@ -1036,14 +1009,11 @@ typedef enum
 #define	STAT_STAMINA_CUR		28
 //#define	STAT_CROSSHAIR			29
 //#define STAT_RESPAWNTIME		30
-#define STAT_TIMER2             30//faf   
-#define STAT_TIMER2_ICON        31//faf   
-#define STAT_AUTOPICKUP				29//faf   
-
-
+#define STAT_TIMER2             30//faf
+#define STAT_TIMER2_ICON        31//faf
+#define STAT_AUTOPICKUP				29//faf
 
 #define	MAX_STATS				32
-
 
 // dmflags->value flags
 #define	DF_NO_HEALTH		0x00000001	// 1
@@ -1063,7 +1033,6 @@ typedef enum
 #define DF_QUAD_DROP		0x00004000	// 16384
 #define DF_FIXED_FOV		0x00008000	// 32768
 #define DF_MAP_LIST         0x00010000	// 65536  -- pbowens: MAP LIST
-
 
 // RAFAEL
 #define	DF_QUADFIRE_DROP	0x00010000	// 65536
@@ -1119,7 +1088,6 @@ ROGUE - VERSIONS
 #define	ANGLE2SHORT(x)	((int)((x)*65536/360) & 65535)
 #define	SHORT2ANGLE(x)	((x)*(360.0/65536))
 
-
 //
 // config strings are a general means of communication from
 // the server to all connected clients.
@@ -1149,9 +1117,7 @@ ROGUE - VERSIONS
 //#define	MAX_CONFIGSTRINGS	(CS_GENERAL+MAX_GENERAL)
 #define	MAX_CONFIGSTRINGS	(CS_OBJECTIVES+MAX_GENERAL)
 
-
 //==============================================
-
 
 // entity_state_t->event values
 // ertity events are for effects that take place reletive
@@ -1168,7 +1134,6 @@ typedef enum
 	EV_PLAYER_TELEPORT,
 	EV_OTHER_TELEPORT
 } entity_event_t;
-
 
 // entity_state_t is the information conveyed from the server
 // in an update message about entities that the client will
@@ -1197,7 +1162,6 @@ typedef struct entity_state_s
 
 //==============================================
 
-
 // player_state_t is the information needed in addition to pmove_state_t
 // to rendered a view.  There will only be 10 player_state_t sent each second,
 // but the number of pmove_state_t changes will be reletive to client
@@ -1219,7 +1183,7 @@ typedef struct
 	int			gunframe;
 
 	float		blend[4];		// rgba full screen effect
-	
+
 	float		fov;			// horizontal field of view
 
 	int			rdflags;		// refdef flags
@@ -1227,9 +1191,8 @@ typedef struct
 	short		stats[MAX_STATS];		// fast status bar updates
 } player_state_t;
 
-
 // ==================
-// PGM 
+// PGM
 #define VIDREF_GL		1
 #define VIDREF_SOFT		2
 #define VIDREF_OTHER	3
