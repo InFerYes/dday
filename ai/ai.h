@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -36,26 +36,22 @@ typedef struct
 	float		inventoryWeights[MAX_ITEMS];
 	float		playersWeights[MAX_EDICTS];
 	float		broam_timeouts[MAX_BOT_ROAMS];	//revisit bot roams
-	
 } ai_status_t;
 
 typedef struct
 {
-	char		*netname;
+	char* netname;
 	int			skillLevel;			// Affects AIM and fire rate
 	int			moveTypesMask;		// bot can perform these moves, to check against required moves for a given path
 
 	float		inventoryWeights[MAX_ITEMS];
 
 	//class based functions
-	void		(*UpdateStatus)(edict_t *ent);
-	void		(*RunFrame)(edict_t *ent);
-	void		(*bloquedTimeout)(edict_t *ent);
-	void		(*deadFrame)(edict_t *ent);
-
+	void		(*UpdateStatus)(edict_t* ent);
+	void		(*RunFrame)(edict_t* ent);
+	void		(*bloquedTimeout)(edict_t* ent);
+	void		(*deadFrame)(edict_t* ent);
 } ai_pers_t;
-
-
 
 typedef struct
 {
@@ -67,7 +63,6 @@ typedef struct
 	//NPC state
 	int				state;			// Bot State (WANDER, MOVE, etc)
 	float			state_combat_timeout;
-
 
 	// movement
 	vec3_t			move_vector;
@@ -97,21 +92,21 @@ typedef struct
 	float			last_reload_try;
 	float			med_heal_time;
 
-	edict_t			*objective;
+	edict_t* objective;
 
 	int				dodge_node;
-	edict_t			*nadedodge;
+	edict_t* nadedodge;
 	float			fireattempt;
 	float			reached_obj_time;
 
-	edict_t			*teammatedodge;
+	edict_t* teammatedodge;
 	float			teammatedodgetime;
 
 	float			ducktime;
 	float			sniperspot;
 
 	float			last_jump_try;
-	edict_t			*last_enemy;
+	edict_t* last_enemy;
 	int				unduck_stance;
 
 	float			last_enemy_time;
@@ -125,31 +120,29 @@ typedef struct
 
 	qboolean	defend_bot;
 
-	char    *chat;
+	char* chat;
 	int		chatdelay;
-
 } ai_handle_t;
 
-
 // bot_cmds.c
-qboolean	BOT_Commands(edict_t *ent);
-qboolean	BOT_ServerCommand (void);
+qboolean	BOT_Commands(edict_t* ent);
+qboolean	BOT_ServerCommand(void);
 
 // ai_main.c
 void		AI_Init(void);
 void		AI_NewMap(void);
-void		G_FreeAI( edict_t *ent );
-void		G_SpawnAI( edict_t *ent );
-qboolean 	pointinfront (edict_t *self, vec3_t point);
+void		G_FreeAI(edict_t* ent);
+void		G_SpawnAI(edict_t* ent);
+qboolean 	pointinfront(edict_t* self, vec3_t point);
 
 // ai_items.c
-void		AI_EnemyAdded(edict_t *ent);
-void		AI_EnemyRemoved(edict_t *ent);
+void		AI_EnemyAdded(edict_t* ent);
+void		AI_EnemyRemoved(edict_t* ent);
 
 // bot_spawn.c
-void		BOT_SpawnBot (int team, char *name, char *skin, char *userinfo);
-void		BOT_RemoveBot(char *name, edict_t *botremove);
-void		BOT_Respawn (edict_t *self);
+void		BOT_SpawnBot(int team, char* name, char* skin, char* userinfo);
+void		BOT_RemoveBot(char* name, edict_t* botremove);
+void		BOT_Respawn(edict_t* self);
 
 //bot_misc.c
 //void		AI_BotObituary (edict_t *self, edict_t *inflictor, edict_t *attacker);
@@ -158,10 +151,10 @@ void		BOT_Respawn (edict_t *self);
 void		AIDebug_ToogleBotDebug(void);
 
 void		AITools_Frame(void);
-void		AITools_DropNodes(edict_t *ent);
+void		AITools_DropNodes(edict_t* ent);
 
 // safe **cough** prints
-void		debug_printf(char *fmt, ...);
-void		safe_cprintf (edict_t *ent, int printlevel, char *fmt, ...);
-void		safe_centerprintf (edict_t *ent, char *fmt, ...);
-void		safe_bprintf (int printlevel, char *fmt, ...);
+void		debug_printf(char* fmt, ...);
+void		safe_cprintf(edict_t* ent, int printlevel, char* fmt, ...);
+void		safe_centerprintf(edict_t* ent, char* fmt, ...);
+void		safe_bprintf(int printlevel, char* fmt, ...);

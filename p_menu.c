@@ -15,7 +15,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -27,15 +27,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "g_local.h"
 
-void PMenu_Open(edict_t *ent, pmenu_t *entries, int cur, int num)
+void PMenu_Open(edict_t* ent, pmenu_t* entries, int cur, int num)
 {
-	pmenuhnd_t *hnd;
-	pmenu_t *p;
+	pmenuhnd_t* hnd;
+	pmenu_t* p;
 	int i;
 
 	if (!ent->client)
 		return;
-	
+
 	//JABot[start]
 	if (ent->ai || !ent->inuse)
 		return;
@@ -57,7 +57,8 @@ void PMenu_Open(edict_t *ent, pmenu_t *entries, int cur, int num)
 		for (i = 0, p = entries; i < num; i++, p++)
 			if (p->SelectFunc)
 				break;
-	} else
+	}
+	else
 		i = cur;
 
 	if (i >= num)
@@ -71,47 +72,40 @@ void PMenu_Open(edict_t *ent, pmenu_t *entries, int cur, int num)
 	ent->client->menu = hnd;
 
 	PMenu_Update(ent);
-	gi.unicast (ent, true);
+	gi.unicast(ent, true);
 }
 
-void PMenu_Close(edict_t *ent)
+void PMenu_Close(edict_t* ent)
 {
-
 	//JABot[start]
 	if (ent->ai || !ent->inuse)
 		return;
 	//[end]
 
 	//pbowens: this fixes the 'no-hud' bug
-	memset (&ent->client->menu_cur, 0, sizeof(ent->client->menu_cur));
-
+	memset(&ent->client->menu_cur, 0, sizeof(ent->client->menu_cur));
 
 	if (!ent->client->menu)
 		return;
 
-
 	gi.TagFree(ent->client->menu);
 	ent->client->menu = NULL;
-
 
 	if (ent->client->resp.mos == MEDIC)
 		ent->client->layout_type = SHOW_MEDIC_SCREEN;
 	else
 		ent->client->layout_type = SHOW_NONE;
-
-
 }
 
-void PMenu_Update(edict_t *ent)
+void PMenu_Update(edict_t* ent)
 {
 	char string[1400];
 	int i;
-	pmenu_t *p;
+	pmenu_t* p;
 	int x;
-	pmenuhnd_t *hnd;
-	char *t;
+	pmenuhnd_t* hnd;
+	char* t;
 	qboolean alt = false;
-
 
 	//JABot[start]
 	if (ent->ai || !ent->inuse)
@@ -137,9 +131,9 @@ void PMenu_Update(edict_t *ent)
 		}
 		sprintf(string + strlen(string), "yv %d ", 32 + i * 8);
 		if (p->align == PMENU_ALIGN_CENTER)
-			x = 196/2 - strlen(t)*4 + 64;
+			x = 196 / 2 - strlen(t) * 4 + 64;
 		else if (p->align == PMENU_ALIGN_RIGHT)
-			x = 64 + (196 - strlen(t)*8);
+			x = 64 + (196 - strlen(t) * 8);
 		else
 			x = 64;
 
@@ -155,16 +149,15 @@ void PMenu_Update(edict_t *ent)
 		alt = false;
 	}
 
-	gi.WriteByte (svc_layout);
-	gi.WriteString (string);
+	gi.WriteByte(svc_layout);
+	gi.WriteString(string);
 }
 
-void PMenu_Next(edict_t *ent)
+void PMenu_Next(edict_t* ent)
 {
-	pmenuhnd_t *hnd;
+	pmenuhnd_t* hnd;
 	int i;
-	pmenu_t *p;
-
+	pmenu_t* p;
 
 	if (!ent->client->menu) {
 		gi.dprintf("warning:  ent has no menu\n");
@@ -189,14 +182,14 @@ void PMenu_Next(edict_t *ent)
 	hnd->cur = i;
 
 	PMenu_Update(ent);
-	gi.unicast (ent, true);
+	gi.unicast(ent, true);
 }
 
-void PMenu_Prev(edict_t *ent)
+void PMenu_Prev(edict_t* ent)
 {
-	pmenuhnd_t *hnd;
+	pmenuhnd_t* hnd;
 	int i;
-	pmenu_t *p;
+	pmenu_t* p;
 
 	if (!ent->client->menu) {
 		gi.dprintf("warning:  ent has no menu\n");
@@ -214,7 +207,8 @@ void PMenu_Prev(edict_t *ent)
 		if (i == 0) {
 			i = hnd->num - 1;
 			p = hnd->entries + i;
-		} else
+		}
+		else
 			i--, p--;
 		if (p->SelectFunc)
 			break;
@@ -223,13 +217,13 @@ void PMenu_Prev(edict_t *ent)
 	hnd->cur = i;
 
 	PMenu_Update(ent);
-	gi.unicast (ent, true);
+	gi.unicast(ent, true);
 }
 
-void PMenu_Select(edict_t *ent)
+void PMenu_Select(edict_t* ent)
 {
-	pmenuhnd_t *hnd;
-	pmenu_t *p;
+	pmenuhnd_t* hnd;
+	pmenu_t* p;
 
 	if (!ent->client->menu) {
 		gi.dprintf("warning:  ent has no menu\n");

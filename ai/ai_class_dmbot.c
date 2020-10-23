@@ -170,7 +170,7 @@ void BOT_DMclass_Move(edict_t* self, usercmd_t* ucmd)
 	if (!level.intermissiontime && self->ai->state != BOT_STATE_CAMP && VectorLength(self->velocity) < 50 &&
 		self->stanceflags == STANCE_STAND && self->oldstance == STANCE_STAND)//37)
 	{
-		if (1 || self->ai->last_jump_try < level.time - 3)
+		/*if (1 || self->ai->last_jump_try < level.time - 3) MetalGod - Seriously wtf!? if (1| ) will always evaluate true! */
 		{
 			trace_t tr; //faf
 			vec3_t end, forward, right, start; //faf
@@ -679,8 +679,10 @@ void BOT_DMclass_ChooseWeapon(edict_t* self)
 	float	dist;
 	vec3_t	v;
 	//	int		i;
+	/* MetalGod initialized, but not referenced
 	float	best_weight = 0.0;
 	gitem_t* best_weapon = NULL;
+	*/
 	int		weapon_range = 0;
 
 	gitem_t* it;

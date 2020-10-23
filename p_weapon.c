@@ -852,7 +852,7 @@ GRENADE
 ======================================================================
 */
 
-#define GRENADE_TIMER		4.5
+#define GRENADE_TIMER		4.5F /* MetalGod Explicit Float */
 #define GRENADE_MINSPEED	400
 #define GRENADE_MAXSPEED	800
 
@@ -1175,7 +1175,7 @@ void Weapon_Grenade(edict_t* ent)
 			if (((ent->client->latched_buttons | ent->client->buttons) & BUTTON_ATTACK))
 				return;
 		}
-
+		/* Metalgod both gunframe 14 so I combined them
 		// Throw it
 		if (ent->client->ps.gunframe == 14)
 		{
@@ -1188,6 +1188,15 @@ void Weapon_Grenade(edict_t* ent)
 			gi.sound(ent, CHAN_WEAPON, gi.soundindex("weapons/throw.wav"), 1, ATTN_NORM, 0);
 			ent->client->throw_grenade_time = level.time;
 		}
+		*/
+		
+		if (ent->client->ps.gunframe == 14)
+		{
+			weapon_grenade_fire(ent);
+			gi.sound(ent, CHAN_WEAPON, gi.soundindex("weapons/throw.wav"), 1, ATTN_NORM, 0);
+			ent->client->throw_grenade_time = level.time;
+		}
+		/* END */
 
 		//		if ((ent->client->ps.gunframe == 17))
 		//			return;
@@ -1407,12 +1416,16 @@ int Play_Bullet_Hit(edict_t* ent, char* surface, vec3_t endpos, edict_t* impact_
 qboolean Surface(char* name, int type);
 void Blade_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
-	qboolean fistarmed = Q_stricmp(self->classname, "blade");
+	/* qboolean fistarmed = Q_stricmp(self->classname, "blade"); MetalGod initialized, but not referenced */
 	gitem_t* item = FindItem("Knife");
 	edict_t* dropped;
 	vec3_t          move_angles;//, origin;
-
-	if (other == self->owner || !surf) /* MetalGod added check for surf */
+	/* MetalGod sanity check! */
+	if (!self )
+		return;
+	/* END */
+	
+	if (other == self->owner)
 		return;
 
 	if (surf && (surf->flags & SURF_SKY))
@@ -1459,10 +1472,8 @@ void Blade_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* sur
 			gi.WritePosition(self->s.origin);
 			gi.WriteDir(vec3_origin);
 			gi.multicast(self->s.origin, MULTICAST_PVS);
-
 			return;
 		}
-
 		else
 		{
 			dropped = G_Spawn();
@@ -1479,12 +1490,9 @@ void Blade_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* sur
 			dropped->touch = Touch_Item;
 			dropped->owner = self;
 			dropped->gravity = 0;
-
 			vectoangles(self->velocity, move_angles);
-
 			VectorCopy(self->s.origin, dropped->s.origin);
 			VectorCopy(move_angles, dropped->s.angles);
-
 			dropped->nextthink = level.time + 120;
 			dropped->think = G_FreeEdict;
 			gi.linkentity(dropped);
@@ -1558,7 +1566,7 @@ void Helmet_Drop(edict_t* self)
 
 void Helmet_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
-	gitem_t* item = FindItem("Helmet");
+	/* gitem_t* item = FindItem("Helmet"); MetalGod initialized, but not referenced */
 
 	self->count++;
 
@@ -1620,7 +1628,7 @@ void Helmet_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* su
 
 void Knife_Throw(edict_t* self, vec3_t start, vec3_t dir, int damage)
 {
-	int effect = EF_ANIM01;
+	/* int effect = EF_ANIM01; MetalGod initialized, but not referenced */
 	edict_t* blade;
 	trace_t	tr;
 	qboolean fistarmed = Q_stricmp(self->client->pers.weapon->pickup_name, "Knife");
@@ -1935,9 +1943,11 @@ void Binocular_Fire(edict_t* ent)
 	VectorCopy(tr.endpos, ent->client->arty_entry);
 
 	//randnum = ((rand() % ARTILLARY_WAIT) + 5);  //generate random number for eta
-
+	
+	/* MetalGod I'd hope so! 
 	if (ent)
-		safe_cprintf(ent, PRINT_HIGH, "Ok, give us %d seconds to reach the target!\n", (int)arty_delay->value);
+	*/
+	safe_cprintf(ent, PRINT_HIGH, "Ok, give us %d seconds to reach the target!\n", (int)arty_delay->value);
 
 	/*				check_unscope(ent);//faf
 
@@ -2237,7 +2247,7 @@ void Weapon_Morphine_Use(edict_t* ent)
 void Weapon_Morphine(edict_t* ent)
 {
 	static int		pause_frames[] = { 0 };//{19,32,0};
-	static int		fire_frames[3];/* MetalGod this needed to be 3, not 2 September 21, 2020*/
+	static int		fire_frames[3];/* MetalGod this needed to be 3, not 2 or the end of the array would be overrun */
 
 	fire_frames[0] = (ent->client->aim) ? 53 : 4;
 	fire_frames[1] = (ent->client->aim) ? 53 : 5;
@@ -2394,7 +2404,7 @@ void Weapon_Flamethrower(edict_t* ent)
 }
 
 //bcass start - TNT
-#define TNT_TIMER		15.0
+#define TNT_TIMER		15.0F/* MetalGod explicit float */
 #define TNT_MINSPEED	400
 #define TNT_MAXSPEED	800
 
@@ -2419,7 +2429,7 @@ void weapon_tnt_fire(edict_t* ent)
 	if (ent->client->ps.pmove.pm_type == PM_DEAD)
 		speed = 5; // drop the grenade
 	else
-		speed = TNT_MINSPEED + (int)(-(ent->client->tnt->nextthink - level.time) + 2.75F) * ((TNT_MAXSPEED - TNT_MINSPEED) / TNT_TIMER); /* MetalGod 2.75 explicitly a float */
+		speed = TNT_MINSPEED + (int)(-(ent->client->tnt->nextthink - level.time) + 2.75) * ((TNT_MAXSPEED - TNT_MINSPEED) / TNT_TIMER);
 	//gi.dprintf("speed: %i\n", speed);
 
 	if (!((int)dmflags->value & DF_INFINITE_AMMO))

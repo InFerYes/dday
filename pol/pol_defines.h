@@ -3,7 +3,7 @@
  *   $Source: /usr/local/cvsroot/dday/src/pol/pol_defines.h,v $
  *   $Revision: 1.8 $
  *   $Date: 2002/06/04 19:49:50 $
- * 
+ *
  ***********************************
 
 Copyright (C) 2002 Vipersoft
@@ -15,7 +15,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -45,11 +45,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define POL_M98KS_FRAME		6
 
 #define DAMAGE_VIS			25
-#define DAMAGE_SVT			45	
-//#define DAMAGE_STEN			25 
-#define DAMAGE_MORS			25 
+#define DAMAGE_SVT			45
+//#define DAMAGE_STEN			25
+#define DAMAGE_MORS			25
 #define DAMAGE_RKM			35
 #define DAMAGE_MG34			50
-#define DAMAGE_PIAT_HIT	1000 
+#define DAMAGE_PIAT_HIT	1000
 #define DAMAGE_PIAT_RAD	500
 #define DAMAGE_M98KS		100

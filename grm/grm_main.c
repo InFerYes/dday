@@ -3,7 +3,7 @@
  *   $Source: /usr/local/cvsroot/dday/src/grm/grm_main.c,v $
  *   $Revision: 1.11 $
  *   $Date: 2002/07/23 21:11:37 $
- * 
+ *
  ***********************************
 
 Copyright (C) 2002 Vipersoft
@@ -15,7 +15,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -30,14 +30,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
   vjj  03/29/98
 
-  We are using the dll template that was created for the multiple dll 
+  We are using the dll template that was created for the multiple dll
  modification.
 */
 
 #include "grm_main.h"
 #include "grm_classes.h"
 
-void GRM_UserPrecache(void) 
+void GRM_UserPrecache(void)
 {
 	gi.imageindex("scope_grm");
 	gi.imageindex("victory_grm");
@@ -50,7 +50,7 @@ void GRM_UserPrecache(void)
 	// V-WEPS
 	//
 
-	// GRM 
+	// GRM
 	gi.modelindex("players/grm/w_p38.md2");
 	gi.modelindex("players/grm/w_m98k.md2");
 	gi.modelindex("players/grm/w_mp40.md2");
@@ -60,10 +60,7 @@ void GRM_UserPrecache(void)
 	gi.modelindex("players/grm/w_m98ks.md2");
 	gi.modelindex("players/grm/a_masher.md2");
 
-
 	//faf:  airstrike plane
 	gi.modelindex("models/ships/grmplane/tris.md2");
 	gi.soundindex("airstrike/stuka.wav");
-
-
 }

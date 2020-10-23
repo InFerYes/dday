@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -21,78 +21,69 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "../g_local.h"
 #include "ai_local.h"
 
-void Camp_Spot( void );
+void Camp_Spot(void);
 
 //ACE
-
-
 
 //==========================================
 // BOT_Commands
 // Special command processor
 //==========================================
-qboolean BOT_Commands(edict_t *ent)
+qboolean BOT_Commands(edict_t* ent)
 {
 	return false;
 }
-
 
 //==========================================
 // BOT_ServerCommand
 // Special server command processor
 //==========================================
-qboolean BOT_ServerCommand (void)
+qboolean BOT_ServerCommand(void)
 {
-	char	*cmd;
+	char* cmd;
 
-	cmd = gi.argv (1);
+	cmd = gi.argv(1);
 
-	
-
-/*	if( !Q_stricmp (cmd, "addbot") )
-	{ 
-		if(ctf->value) // name, skin, team
-			BOT_SpawnBot ( gi.argv(2), gi.argv(3), gi.argv(4), NULL );
-		else // name, skin
-			BOT_SpawnBot ( NULL, gi.argv(2), gi.argv(3), NULL );
-	}	*/
+	/*	if( !Q_stricmp (cmd, "addbot") )
+		{
+			if(ctf->value) // name, skin, team
+				BOT_SpawnBot ( gi.argv(2), gi.argv(3), gi.argv(4), NULL );
+			else // name, skin
+				BOT_SpawnBot ( NULL, gi.argv(2), gi.argv(3), NULL );
+		}	*/
 
 	if /*(Q_stricmp (cmd, "alliedbot") == 0)
 		BOT_SpawnBot ( 0, gi.argv(2), gi.argv(3), NULL);
 	else if (Q_stricmp (cmd, "axisbot") == 0)
 		BOT_SpawnBot ( 1, gi.argv(2), gi.argv(3), NULL);
 	// removebot
-    else if( !Q_stricmp (cmd, "removebot") )
-    	BOT_RemoveBot(gi.argv(2));
+	else if( !Q_stricmp (cmd, "removebot") )
+		BOT_RemoveBot(gi.argv(2));
 
-	else if*/( !Q_stricmp (cmd, "editnodes") )
+	else if*/ (!Q_stricmp(cmd, "editnodes"))
 		AITools_InitEditnodes();
 
-	else if( !Q_stricmp (cmd, "makenodes") )
+	else if (!Q_stricmp(cmd, "makenodes"))
 		AITools_InitMakenodes();
 
-	else if( !Q_stricmp (cmd, "savenodes") )
+	else if (!Q_stricmp(cmd, "savenodes"))
 		AITools_SaveNodes();
 
-	else if( !Q_stricmp (cmd, "addbotroam") )
+	else if (!Q_stricmp(cmd, "addbotroam"))
 		AITools_AddBotRoamNode();
-	else if (!Q_stricmp (cmd, "dropnode"))
+	else if (!Q_stricmp(cmd, "dropnode"))
 		AI_PathMap(true);
-	else if ( ! Q_stricmp (cmd, "campspot"))
+	else if (!Q_stricmp(cmd, "campspot"))
 		Camp_Spot();
 
-
-
-	
-//	else if( !Q_stricmp (cmd, "addmonster") )
-//    	M_default_Spawn ();
+	//	else if( !Q_stricmp (cmd, "addmonster") )
+	//    	M_default_Spawn ();
 
 	else
 		return false;
 
 	return true;
 }
-
 
 //==========================================
 // AI_BotObituary
@@ -108,18 +99,18 @@ void AI_BotObituary (edict_t *self, edict_t *inflictor, edict_t *attacker)
 
 	if (coop->value && attacker->client)
 		meansOfDeath |= MOD_FRIENDLY_FIRE;
-	
+
 	if ( deathmatch->value || coop->value )
 	{
 		ff = meansOfDeath & MOD_FRIENDLY_FIRE;
 		mod = meansOfDeath & ~MOD_FRIENDLY_FIRE;
-		
+
 		GS_Obituary ( self, G_PlayerGender ( self ), attacker, mod, message, message2 );
-		
+
 		// duplicate message at server console for logging
-		if ( attacker && attacker->client ) 
+		if ( attacker && attacker->client )
 		{
-			if ( attacker != self ) 
+			if ( attacker != self )
 			{		// regular death message
 				if ( deathmatch->value ) {
 					if( ff )
@@ -127,9 +118,9 @@ void AI_BotObituary (edict_t *self, edict_t *inflictor, edict_t *attacker)
 					else
 						attacker->client->resp.score++;
 				}
-				
+
 				self->enemy = attacker;
-				
+
 				if( dedicated->value )
 					G_Printf ( "%s %s %s%s\n", self->client->pers.netname, message, attacker->client->pers.netname, message2 );
 				else
@@ -141,14 +132,12 @@ void AI_BotObituary (edict_t *self, edict_t *inflictor, edict_t *attacker)
 						attacker->client->pers.netname,
 						message2);
 				}
-				
 			} else {			// suicide
-				
 				if( deathmatch->value )
 					self->client->resp.score--;
-				
+
 				self->enemy = NULL;
-				
+
 				if( dedicated->value )
 					G_Printf ( "%s %s\n", self->client->pers.netname, message );
 				else
@@ -159,14 +148,12 @@ void AI_BotObituary (edict_t *self, edict_t *inflictor, edict_t *attacker)
 						message );
 				}
 			}
-			
 		} else {		// wrong place, suicide, etc.
-			
 			if( deathmatch->value )
 				self->client->resp.score--;
-			
+
 			self->enemy = NULL;
-			
+
 			if( dedicated->value )
 				G_Printf( "%s %s\n", self->client->pers.netname, message );
 			else
@@ -178,56 +165,55 @@ void AI_BotObituary (edict_t *self, edict_t *inflictor, edict_t *attacker)
 			}
 		}
 	}
-
 }*/
 
-
 ///////////////////////////////////////////////////////////////////////
-// These routines are bot safe print routines, all id code needs to be 
-// changed to these so the bots do not blow up on messages sent to them. 
-// Do a find and replace on all code that matches the below criteria. 
+// These routines are bot safe print routines, all id code needs to be
+// changed to these so the bots do not blow up on messages sent to them.
+// Do a find and replace on all code that matches the below criteria.
 //
 // (Got the basic idea from Ridah)
-//	
+//
 //  change: gi.cprintf to safe_cprintf
 //  change: gi.bprintf to safe_bprintf
 //  change: gi.centerprintf to safe_centerprintf
-// 
+//
 ///////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////
 // Debug print, could add a "logging" feature to print to a file
 ///////////////////////////////////////////////////////////////////////
-void debug_printf(char *fmt, ...)
+
+/* MetalGod would we be better have not pounding the stack and moving data to the heap by using gi.Tag.malloc/gi.Tagfree? */
+void debug_printf(char* fmt, ...)
 {
 	int     i;
 	char	bigbuffer[0x10000];
 	int		len;
 	va_list	argptr;
-	edict_t	*cl_ent;
-	
-	va_start (argptr,fmt);
-	len = vsprintf (bigbuffer,fmt,argptr);
-	va_end (argptr);
+	edict_t* cl_ent;
+
+	va_start(argptr, fmt);
+	len = vsprintf(bigbuffer, fmt, argptr);
+	va_end(argptr);
 
 	if (dedicated->value)
 		gi.cprintf(NULL, PRINT_MEDIUM, bigbuffer);
 
-	for (i=0 ; i<maxclients->value ; i++)
+	for (i = 0; i < maxclients->value; i++)
 	{
 		cl_ent = g_edicts + 1 + i;
 		if (!cl_ent->inuse || cl_ent->ai)
 			continue;
 
-		gi.cprintf(cl_ent,  PRINT_MEDIUM, bigbuffer);
+		gi.cprintf(cl_ent, PRINT_MEDIUM, bigbuffer);
 	}
-
 }
 
 ///////////////////////////////////////////////////////////////////////
 // botsafe cprintf
 ///////////////////////////////////////////////////////////////////////
-void safe_cprintf (edict_t *ent, int printlevel, char *fmt, ...)
+void safe_cprintf(edict_t* ent, int printlevel, char* fmt, ...)
 {
 	char	bigbuffer[0x10000];
 	va_list		argptr;
@@ -236,18 +222,17 @@ void safe_cprintf (edict_t *ent, int printlevel, char *fmt, ...)
 	if (ent && (!ent->inuse || ent->ai))
 		return;
 
-	va_start (argptr,fmt);
-	len = vsprintf (bigbuffer,fmt,argptr);
-	va_end (argptr);
+	va_start(argptr, fmt);
+	len = vsprintf(bigbuffer, fmt, argptr);
+	va_end(argptr);
 
 	gi.cprintf(ent, printlevel, bigbuffer);
-	
 }
 
 ///////////////////////////////////////////////////////////////////////
 // botsafe centerprintf
 ///////////////////////////////////////////////////////////////////////
-void safe_centerprintf (edict_t *ent, char *fmt, ...)
+void safe_centerprintf(edict_t* ent, char* fmt, ...)
 {
 	char	bigbuffer[0x10000];
 	va_list		argptr;
@@ -255,34 +240,33 @@ void safe_centerprintf (edict_t *ent, char *fmt, ...)
 
 	if (!ent->inuse || ent->ai)
 		return;
-	
-	va_start (argptr,fmt);
-	len = vsprintf (bigbuffer,fmt,argptr);
-	va_end (argptr);
-	
+
+	va_start(argptr, fmt);
+	len = vsprintf(bigbuffer, fmt, argptr);
+	va_end(argptr);
+
 	gi.centerprintf(ent, bigbuffer);
-	
 }
 
 ///////////////////////////////////////////////////////////////////////
 // botsafe bprintf
 ///////////////////////////////////////////////////////////////////////
-void safe_bprintf (int printlevel, char *fmt, ...)
+void safe_bprintf(int printlevel, char* fmt, ...)
 {
 	int i;
 	char	bigbuffer[0x10000];
 	int		len;
 	va_list		argptr;
-	edict_t	*cl_ent;
+	edict_t* cl_ent;
 
-	va_start (argptr,fmt);
-	len = vsprintf (bigbuffer,fmt,argptr);
-	va_end (argptr);
+	va_start(argptr, fmt);
+	len = vsprintf(bigbuffer, fmt, argptr);
+	va_end(argptr);
 
 	if (dedicated->value)
 		gi.cprintf(NULL, printlevel, bigbuffer);
 
-	for (i=0 ; i<maxclients->value ; i++)
+	for (i = 0; i < maxclients->value; i++)
 	{
 		cl_ent = g_edicts + 1 + i;
 		if (!cl_ent->inuse || cl_ent->ai)
@@ -292,7 +276,7 @@ void safe_bprintf (int printlevel, char *fmt, ...)
 	}
 }
 
-qboolean objective_hittable (edict_t *self, edict_t *objective, vec3_t orig)
+qboolean objective_hittable(edict_t* self, edict_t* objective, vec3_t orig)
 {
 	vec3_t	spot1;
 
@@ -301,17 +285,17 @@ qboolean objective_hittable (edict_t *self, edict_t *objective, vec3_t orig)
 	if (self->waterlevel)
 		return false;
 
-	VectorCopy (self->s.origin, spot1);
+	VectorCopy(self->s.origin, spot1);
 	spot1[2] += self->viewheight;
 
 	//move spot to kneeling position if hmger is standing:
 	if ((self->client && self->client->resp.mos == H_GUNNER || self->client && self->client->resp.mos == ENGINEER) && self->stanceflags == STANCE_STAND)
 	{
-		spot1[2] -=16;
+		spot1[2] -= 16;
 	}
 
-	trace = gi.trace (spot1, tv(-5,-5,-5), tv(5,5,5), orig, self, MASK_SHOT);
-	
+	trace = gi.trace(spot1, tv(-5, -5, -5), tv(5, 5, 5), orig, self, MASK_SHOT);
+
 	if (trace.fraction < 1.0)
 	{
 		if (trace.ent == objective)
@@ -326,16 +310,16 @@ qboolean objective_hittable (edict_t *self, edict_t *objective, vec3_t orig)
 	return false;
 }
 
-qboolean objective_point_hittable (edict_t *self, vec3_t self_orig, edict_t *objective, vec3_t orig)
+qboolean objective_point_hittable(edict_t* self, vec3_t self_orig, edict_t* objective, vec3_t orig)
 {
 	vec3_t	spot1;
 
 	trace_t	trace;
 
-	VectorCopy (self_orig, spot1);
+	VectorCopy(self_orig, spot1);
 	spot1[2] += 20;//self->viewheight;
-	trace = gi.trace (spot1, tv(-5,-5,-5), tv(5,5,5), orig, self, MASK_SHOT);
-	
+	trace = gi.trace(spot1, tv(-5, -5, -5), tv(5, 5, 5), orig, self, MASK_SHOT);
+
 	if (trace.fraction < 1.0)
 	{
 		if (trace.ent == objective)

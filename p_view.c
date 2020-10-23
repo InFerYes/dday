@@ -379,7 +379,7 @@ void P_ExplosionEffects(edict_t* player)
 													:	 0;
 		*/
 		player->client->explosion_angles[YAW] = (frame > SWAY_START && intensity > 15) ? \
-			sin(frame + 145) * (intensity / 10) * 2 * (1 - (float)(frame) / (SWAY_BREAK * SWAY_MULTI + SWAY_START))					\
+			sinf(frame + 145) * (intensity / 10) * 2 * (1 - (float)(frame) / (SWAY_BREAK * SWAY_MULTI + SWAY_START)) /* MetalGod use the float version of sin */					\
 			:	 0;
 		/*
 				player->client->explosion_angles[ROLL] =	(frame == 0) ?											\
@@ -398,8 +398,8 @@ void P_ExplosionEffects(edict_t* player)
 			:	intensity * -0.5								\
 			: (frame > SWAY_START && intensity > 15) ? \
 			(intensity % 2) ? \
-			sin(frame + 90) * (intensity / 10) * 2 * 0.35 * (1 - (float)(frame) / (SWAY_BREAK * SWAY_MULTI + SWAY_START))	\
-			:	sin(frame + 90) * (intensity / 10) * 2 * -0.35 * (1 - (float)(frame) / (SWAY_BREAK * SWAY_MULTI + SWAY_START))	\
+			sinf(frame + 90) * (intensity / 10) * 2 * 0.35F * (1 - (float)(frame) / (SWAY_BREAK * SWAY_MULTI + SWAY_START))	\
+			:	sinf(frame + 90) * (intensity / 10) * 2 * -0.35F * (1 - (float)(frame) / (SWAY_BREAK * SWAY_MULTI + SWAY_START))	\
 			: 0;
 
 		if (frame > 0 && frame < 11 && player->client->dmgef_flash == true) {
@@ -587,7 +587,7 @@ void SV_CalcViewOffset(edict_t* ent)
 	ratio = (ent->client->fall_time - level.time) / FALL_TIME;
 	if (ratio < 0)
 		ratio = 0;
-	v[2] -= ratio * ent->client->fall_value * 0.4;
+	v[2] -= ratio * ent->client->fall_value * 0.4F; /* MetalGod explicit float */
 
 	// add bob height
 
@@ -798,7 +798,7 @@ void SV_CalcBlend(edict_t* ent)
 	int		remaining;
 	//	float	blendtime_remain;
 
-	if (ent->client->resp.mos && ent->client->resp.mos == MEDIC)
+	if (/* ent->client->resp.mos && */ent->client->resp.mos == MEDIC) /* MetalGod redundant if && x is true */
 		ent->client->ps.rdflags |= RDF_IRGOGGLES;
 	else
 		ent->client->ps.rdflags &= ~RDF_IRGOGGLES;
@@ -823,9 +823,11 @@ void SV_CalcBlend(edict_t* ent)
 
 	if (ent->client->smoke_effect_actual)
 		SV_AddBlend(1.0, 1.0, 1.0, ent->client->smoke_effect_actual, ent->client->ps.blend);
-
+	
+	/* MetalGod duplicate of preceding! 
 	if (ent->client->smoke_effect_actual)
 		SV_AddBlend(1.0, 1.0, 1.0, ent->client->smoke_effect_actual, ent->client->ps.blend);
+	*/
 
 	/*  better not to warn them
    if (ent->client->pers.weapon && ent->client->pers.weapon->classnameb == WEAPON_MG42
@@ -1158,7 +1160,6 @@ void P_ShowID(edict_t* ent)
 {
 	trace_t tr;
 	vec3_t start, forward, end;
-
 	vec3_t mins, maxs;
 
 	VectorSet(mins, -10, -10, -10);
@@ -1546,8 +1547,11 @@ void Play_Footstep_Sound(edict_t* ent)
 
 		//		float volume = (float)(VectorLength(ent->velocity))/200;
 
+		/* MetalGod declaration hides previous local declaration
 		vec3_t end, down = { 0, 0, -1 };
 		trace_t tr;
+		so all that's needed is */
+		vec3_t down = { 0, 0, -1 };
 
 		if (volume > .8)
 			volume = .8;
@@ -2216,7 +2220,7 @@ void ClientEndServerFrame(edict_t* ent)
 
 	vec3_t	start;
 	vec3_t	end;
-	vec3_t  up;
+	vec3_t up = { 0, 0, 1 }; /* MetalGod moved assignment here */
 	trace_t	tr;
 
 	vec3_t offset, right;
@@ -2397,7 +2401,7 @@ void ClientEndServerFrame(edict_t* ent)
 	// calculate speed and cycle to be used for
 	// all cyclic walking effects
 	//
-	xyspeed = sqrt(ent->velocity[0] * ent->velocity[0] + ent->velocity[1] * ent->velocity[1]);
+	xyspeed = sqrtf(ent->velocity[0] * ent->velocity[0] + ent->velocity[1] * ent->velocity[1]); /* MetalGod use float version of sqrt */
 
 	if (xyspeed < 5)
 	{
@@ -2634,10 +2638,13 @@ void ClientEndServerFrame(edict_t* ent)
 			//overhead view
 			if (ent->client->aim == 4 && !ent->client->chasetarget->client->limbo_mode)
 			{
+				/* MetalGod these hide the pervious local declaration 
 				trace_t tr;
 				vec3_t end, start;
-				vec3_t up = { 0, 0, 1 };
+				vec3_t up = { 0, 0, 1 }; assigned this at initial previous declaration
+				*/
 				vec3_t forward = { 1, 0, 0 };
+				
 				vec3_t distv;
 				float dist = 0;
 				vec3_t targetview;

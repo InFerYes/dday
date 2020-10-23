@@ -245,7 +245,6 @@
     <ClCompile Include="p_weapon.c" />
     <ClCompile Include="q_shared.c" />
     <ClCompile Include="u_entmgr.c" />
-    <ClCompile Include="x_fbomb.c" />
     <ClCompile Include="x_fire.c" />
   </ItemGroup>
   <ItemGroup>
@@ -354,7 +353,6 @@
     <ClInclude Include="p_menus.h" />
     <ClInclude Include="p_observer.h" />
     <ClInclude Include="q_shared.h" />
-    <ClInclude Include="x_fbomb.h" />
     <ClInclude Include="x_fire.h" />
   </ItemGroup>
   <ItemGroup>

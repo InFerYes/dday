@@ -3,7 +3,7 @@
  *   $Source: /usr/local/cvsroot/dday/src/rus/rus_defines.h,v $
  *   $Revision: 1.8 $
  *   $Date: 2002/06/04 19:49:50 $
- * 
+ *
  ***********************************
 
 Copyright (C) 2002 Vipersoft
@@ -15,7 +15,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -42,10 +42,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define m9130S_FRAME		6
 
 #define DAMAGE_tt33			33      //normal = 25
-#define DAMAGE_m9130			100	
+#define DAMAGE_m9130			100
 #define DAMAGE_ppsh41			25 //faf: was 20, lowered due to high fire rate //normal = 25
-#define DAMAGE_pps43			35  
+#define DAMAGE_pps43			35
 #define DAMAGE_dpm			50
-#define DAMAGE_RPG1_HIT	1250//1000 
+#define DAMAGE_RPG1_HIT	1250//1000
 #define DAMAGE_RPG1_RAD	500
 #define DAMAGE_m9130S		100

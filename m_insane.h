@@ -3,7 +3,7 @@
  *   $Source: /usr/local/cvsroot/dday/src/m_insane.h,v $
  *   $Revision: 1.4 $
  *   $Date: 2002/06/04 19:49:48 $
- * 
+ *
  ***********************************
 
 Copyright (C) 2002 Vipersoft
@@ -15,7 +15,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 

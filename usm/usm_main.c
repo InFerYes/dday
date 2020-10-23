@@ -3,7 +3,7 @@
  *   $Source: /usr/local/cvsroot/dday/src/usa/usa_main.c,v $
  *   $Revision: 1.9 $
  *   $Date: 2002/07/23 19:12:49 $
- * 
+ *
  ***********************************
 
 Copyright (C) 2002 Vipersoft
@@ -15,7 +15,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -28,11 +28,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "usm_main.h"
 #include "usm_classes.h"
 
-
-
-void USM_UserPrecache(void) 
+void USM_UserPrecache(void)
 {
-
 	gi.imageindex("scope_usa");
 	gi.imageindex("victory_usa");
 
@@ -43,7 +40,6 @@ void USM_UserPrecache(void)
 	//
 	// V-WEPS
 	//
-
 
 	// USA
 	gi.modelindex("players/usa/w_colt45.md2");
@@ -61,4 +57,3 @@ void USM_UserPrecache(void)
 	gi.modelindex("players/usa/w_knife.md2");
 	gi.modelindex("players/usa/w_binoc.md2");
 }
-

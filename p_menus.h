@@ -3,7 +3,7 @@
  *   $Source: /usr/local/cvsroot/dday/src/p_menus.h,v $
  *   $Revision: 1.5 $
  *   $Date: 2002/06/04 19:49:49 $
- * 
+ *
  ***********************************
 
 Copyright (C) 2002 Vipersoft
@@ -15,7 +15,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -41,7 +41,6 @@ pmenu_t menu_teams[] = {
 
 	{ NULL,								PMENU_ALIGN_RIGHT,	NULL, NULL },
 	{ "Main Menu",						PMENU_ALIGN_RIGHT,	NULL, M_Main_Menu },
-
 };
 
 pmenu_t menu_classes[] = {
@@ -61,7 +60,7 @@ pmenu_t menu_classes[] = {
 	{ NULL,								PMENU_ALIGN_LEFT, NULL, M_MOS_Join },
 	{ NULL,								PMENU_ALIGN_LEFT, NULL, M_MOS_Join },
 	{ NULL,								PMENU_ALIGN_LEFT, NULL, M_MOS_Join },
-	
+
 	{ NULL,								PMENU_ALIGN_RIGHT,	NULL, NULL },
 	{ "Main Menu",						PMENU_ALIGN_RIGHT,	NULL, M_Main_Menu },
 };

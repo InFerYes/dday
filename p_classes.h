@@ -15,7 +15,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -24,7 +24,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
-
 
 // This is imported from the team DLL's
 
@@ -42,7 +41,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define MAX_ENGINEER 2
 #define MAX_MEDIC 1
 #define MAX_FLAMER 2
-
 
 SMos_t def_MOS_List[]=
 {
@@ -63,7 +61,7 @@ SMos_t def_MOS_List[]=
 		STANDARD_SPEED_MOD,
 		STANDARD_MARKSMANSHIP
 	},
-	
+
 	{
 		"Officer",
 		"Tommygun",
@@ -80,7 +78,7 @@ SMos_t def_MOS_List[]=
 		STANDARD_MAX,
 		STANDARD_SPEED_MOD,
 		STANDARD_MARKSMANSHIP
-	},	
+	},
 
 	{
 		"Light Gunner",
@@ -153,7 +151,7 @@ SMos_t def_MOS_List[]=
 		(STANDARD_SPEED_MOD*1.10),
 		0.33
 	},
-	
+
 	{
 		"Engineer",
 		"Colt .45",
@@ -170,9 +168,8 @@ SMos_t def_MOS_List[]=
 		STANDARD_MAX-5,
 		STANDARD_SPEED_MOD,
 		0.6
-	},	
+	},
 
-	
 	{
 		"Medic",
 		"Colt .45",
@@ -189,7 +186,7 @@ SMos_t def_MOS_List[]=
 		STANDARD_MAX,
 		(STANDARD_SPEED_MOD*1.15),
 		0.75
-	},	
+	},
 	{
 		"Flame Thrower",
 		"Flamethrower",
@@ -208,5 +205,5 @@ SMos_t def_MOS_List[]=
 		0.66
 	}
 };
-	
-*/	
+
+*/

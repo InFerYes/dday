@@ -3,7 +3,7 @@
  *   $Source: /usr/local/cvsroot/dday/src/pol/pol_main.c,v $
  *   $Revision: 1.11 $
  *   $Date: 2002/07/23 21:11:37 $
- * 
+ *
  ***********************************
 
 Copyright (C) 2002 Vipersoft
@@ -15,7 +15,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -30,14 +30,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
   vjj  03/29/98
 
-  We are using the dll template that was created for the multiple dll 
+  We are using the dll template that was created for the multiple dll
  modification.
 */
 
 #include "pol_main.h"
 #include "pol_classes.h"
 
-void POL_UserPrecache(void) 
+void POL_UserPrecache(void)
 {
 	gi.imageindex("scope_pol");
 	gi.imageindex("victory_pol");
@@ -50,10 +50,10 @@ void POL_UserPrecache(void)
 	// V-WEPS
 	//
 
-	// POL 
+	// POL
 	gi.modelindex("players/pol/w_vis.md2");
 	gi.modelindex("players/pol/w_svt.md2");
-//	gi.modelindex("players/pol/w_sten.md2");
+	//	gi.modelindex("players/pol/w_sten.md2");
 	gi.modelindex("players/pol/w_mors.md2");
 	gi.modelindex("players/pol/w_rkm.md2");
 	gi.modelindex("players/pol/w_mg34.md2");
@@ -62,10 +62,7 @@ void POL_UserPrecache(void)
 	gi.modelindex("players/pol/a_masher.md2");
 	gi.modelindex("players/pol/w_sabre.md2");
 
-
 	//faf:  airstrike plane
 	gi.modelindex("models/ships/polplane/tris.md2");
-//	gi.soundindex("airstrike/stuka.wav");
-
+	//	gi.soundindex("airstrike/stuka.wav");
 }
-

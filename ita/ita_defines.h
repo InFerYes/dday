@@ -3,7 +3,7 @@
  *   $Source: /usr/local/cvsroot/dday/src/ita/ita_defines.h,v $
  *   $Revision: 1.8 $
  *   $Date: 2002/06/04 19:49:50 $
- * 
+ *
  ***********************************
 
 Copyright (C) 2002 Vipersoft
@@ -15,7 +15,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -24,7 +24,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
-	
+
 #define B34_MAG				9
 #define B38_MAG				40
 #define MC_MAG				6
@@ -45,8 +45,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define BREDA_FRAME			7
 
 #define DAMAGE_B34			25
-#define DAMAGE_CARCANO			100	
-#define DAMAGE_B38			25 
+#define DAMAGE_CARCANO			100
+#define DAMAGE_B38			25
 #define DAMAGE_K43			45
 #define DAMAGE_B3842			30
 #define DAMAGE_PANZER_HIT	1100 //900

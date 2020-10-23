@@ -15,7 +15,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -290,11 +290,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define FRAME_steprightaim05		257
 #define FRAME_steprightaim06		258
 #define FRAME_stepleftaim01			259
-#define FRAME_stepleftaim02			260		
-#define FRAME_stepleftaim03			261		
-#define FRAME_stepleftaim04			262		
-#define FRAME_stepleftaim05			263		
-#define FRAME_stepleftaim06			264		
+#define FRAME_stepleftaim02			260
+#define FRAME_stepleftaim03			261
+#define FRAME_stepleftaim04			262
+#define FRAME_stepleftaim05			263
+#define FRAME_stepleftaim06			264
 #define FRAME_walkaim01				265
 #define FRAME_walkaim02				266
 #define FRAME_walkaim03				267
@@ -334,4 +334,3 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define FRAME_hipattack7			301
 
 #define MODEL_SCALE		1.000000
-

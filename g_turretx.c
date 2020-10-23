@@ -260,7 +260,7 @@ void fire_shell (edict_t *self, vec3_t start, vec3_t dir, int damage, int speed,
 	shell->touch = shell_touch;
 
 //	shell->s.effects |= EF_GRENADE;
-	shell->nextthink = shell->nextthink = level.time + 8000/speed;
+	shell->nextthink /* MetalGod = shell->nextthink */ = level.time + 8000/speed;
 	shell->think = G_FreeEdict;
 
 

@@ -1274,8 +1274,8 @@ void player_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int damage
 	{ // normal death
 		if (!self->deadflag)
 		{
-			static int i;
-			i = (i + 1) % 3;
+			static int m; /* MetalGod this vairable was i, which hid the previos local declaration! */
+			m = (m + 1) % 3;
 
 			// start a death animation
 			self->client->anim_priority = ANIM_DEATH;
@@ -1294,7 +1294,7 @@ void player_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int damage
 				self->s.frame = 184;
 				self->client->anim_end = 189;
 			}
-			else switch (i)
+			else switch (m)
 			{
 			case 0:
 				self->s.frame = FRAME_death101 - 1;
@@ -2218,13 +2218,13 @@ void respawn(edict_t* self)
 	self->client->pers.weapon = NULL;
 	self->client->limbo_mode = true;
 	gi.linkentity(self);
-	return;
+	return; /* MetalGod  everything below this line is unreachable code, so I commented it out!
 	//		}
 	gi.linkentity(self);
 
 	DoEndOM(self);
 	//
-	return;
+	return;*/
 	//}
 	// restart the entire server
 //gi.AddCommandString ("menu_loadgame\n");
@@ -3294,9 +3294,11 @@ void ClientThink(edict_t* ent, usercmd_t* ucmd)
 	int			 nWoundFrame;
 
 	// dday
+	/* MetalGod unused, yet initialized!
 	qboolean oob_pitch = false;
 	qboolean found = false;
 	int CT_DUCKED = 0;
+	*/
 	int pronedist = 12;//8 causes getting stuck in doors;//faf 12;
 	char cmd[MAX_CMD_BUFFER];
 
@@ -4268,8 +4270,7 @@ void Write_Player_Stats(edict_t* ent)
 	char* chat;
 
 	char	filename[MAX_QPATH] = "";
-	FILE* fn;
-
+	
 	//gi.dprintf("Write_Player_Stats\n");
 
 	if (ent->ai)
@@ -4452,11 +4453,13 @@ void Write_Player_Stats(edict_t* ent)
 	fists = fists + ent->client->resp.stat_fists;
 
 	sprintf(filename, "dday/stats/%s.stats", ip);
-	fn = fopen(filename, "w");
+	
+	FILE* fn = fopen(filename, "w"); /* MetalGod redid for clarity*/
 	if (!fn)
+	{
 		gi.error("Couldn't open %s, you may need to create a 'dday/stats' folder.", filename);
-
-	if (fn)/* MetalGod sanity check */
+	}
+	else 
 	{
 		fprintf(fn, "%s\n", ent->client->pers.netname);
 		fprintf(fn, "%i\n", games);
@@ -4482,9 +4485,10 @@ void Write_Player_Stats(edict_t* ent)
 		fprintf(fn, "%i\n", helmets);
 		fprintf(fn, "%i\n", fists);
 		fprintf(fn, "%s\n", ent->client->pers.stat_chat);
-
+		
 		fclose(fn);
-	}
+	}	
+	free(f); /*  Added free as there was a memory leak! */
 }
 
 //writes players stat average from .stat file to pers
@@ -4498,7 +4502,7 @@ void SetPlayerRating(edict_t* ent)
 	char* statsc;
 
 	char* name;
-	float ratio = 0.0;
+	/* float ratio = 0.0;  MetalGod initialized but not referenced */
 	int games = 0;
 	int ping = 0;
 	int	human_kills = 0;

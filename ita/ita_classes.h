@@ -3,7 +3,7 @@
  *   $Source: /usr/local/cvsroot/dday/src/ita/ita_classes.h,v $
  *   $Revision: 1.14 $
  *   $Date: 2002/06/04 19:49:50 $
- * 
+ *
  ***********************************
 
 Copyright (C) 2002 Vipersoft
@@ -15,7 +15,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -26,7 +26,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 /*
-typedef struct 
+typedef struct
 {
 	char *name;				//mos name
 	char *skinname;			//mos skin (general model defined within user dll)
@@ -48,8 +48,7 @@ typedef struct
 } SMos_t;
 */
 
-
-SMos_t ITA_MOS_List[NUM_CLASSES]=
+SMos_t ITA_MOS_List[NUM_CLASSES] =
 {
 	{NULL}, // for NO MOS selectin
 	{
@@ -89,7 +88,7 @@ SMos_t ITA_MOS_List[NUM_CLASSES]=
 		(STANDARD_SPEED_MOD * 0.90),
 		STANDARD_MARKSMANSHIP,
 		"info_officer_start"
-	},	
+	},
 
 	{
 		"Support Inf",//"Leicht Kanoier",
@@ -124,8 +123,8 @@ SMos_t ITA_MOS_List[NUM_CLASSES]=
 		0,
 		H_GUNNER,
 		MAX_H_GUNNER,
-		STANDARD_NORMAL+15,
-		STANDARD_MAX+5,
+		STANDARD_NORMAL + 15,
+		STANDARD_MAX + 5,
 		(STANDARD_SPEED_MOD * 0.90),
 		0.55,
 		"info_hgunner_start"
@@ -144,8 +143,8 @@ SMos_t ITA_MOS_List[NUM_CLASSES]=
 		0,
 		SNIPER,
 		MAX_SNIPER,
-		STANDARD_NORMAL-10,
-		STANDARD_MAX-10,
+		STANDARD_NORMAL - 10,
+		STANDARD_MAX - 10,
 		(STANDARD_SPEED_MOD * 1.10),
 		0,
 		"info_sniper_start"
@@ -164,13 +163,13 @@ SMos_t ITA_MOS_List[NUM_CLASSES]=
 		0,
 		SPECIAL,
 		MAX_SPECIAL,
-		STANDARD_NORMAL+10,
-		STANDARD_MAX+5,
+		STANDARD_NORMAL + 10,
+		STANDARD_MAX + 5,
 		(STANDARD_SPEED_MOD * 1),
 		0.33,
 		"info_special_start"
 	},
-	
+
 	{
 		"Engineer",//"Sturmpionier",
 		"class_engineer",
@@ -189,8 +188,8 @@ SMos_t ITA_MOS_List[NUM_CLASSES]=
 		(STANDARD_SPEED_MOD * 0.85),
 		0.60,
 		"info_engineer_start"
-	},	
-	
+	},
+
 	{
 		"Medic",//"Sanitatssoldat",
 		"class_medic",
@@ -204,12 +203,12 @@ SMos_t ITA_MOS_List[NUM_CLASSES]=
 		0,
 		MEDIC,
 		MAX_MEDIC,
-		STANDARD_NORMAL-15,
+		STANDARD_NORMAL - 15,
 		STANDARD_MAX,
 		(STANDARD_SPEED_MOD * 1.10),
 		0.80,
 		"info_medic_start"
-	},	
+	},
 	{
 		"Flamethrower",//"Flammensoldat",
 		"class_flamethrower",
@@ -223,13 +222,10 @@ SMos_t ITA_MOS_List[NUM_CLASSES]=
 		0,
 		FLAMER,
 		MAX_FLAMER,
-		STANDARD_NORMAL+5,
+		STANDARD_NORMAL + 5,
 		STANDARD_MAX,
 		(STANDARD_SPEED_MOD * 0.85),
 		0.70,
 		"info_flamethrower_start"
 	}
 };
-
-	
-	

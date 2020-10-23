@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -32,9 +32,9 @@ in NO WAY supported by Steve Yeager.
 // AI_EnemyAdded
 // Add the Player to our list
 //==========================================
-void AI_EnemyAdded(edict_t *ent)
+void AI_EnemyAdded(edict_t* ent)
 {
-	if( num_AIEnemies < MAX_EDICTS )
+	if (num_AIEnemies < MAX_EDICTS)
 		AIEnemies[num_AIEnemies++] = ent;
 }
 
@@ -42,35 +42,33 @@ void AI_EnemyAdded(edict_t *ent)
 // AI_EnemyRemoved
 // Remove the Player from list
 //==========================================
-void AI_EnemyRemoved(edict_t *ent)
+void AI_EnemyRemoved(edict_t* ent)
 {
 	int i;
 	int pos = 0; /* MetalGod initialized */
 
 	// watch for 0 players
-	if(num_AIEnemies < 1)
+	if (num_AIEnemies < 1)
 		return;
 
 	// special case for only one player
-	if(num_AIEnemies == 1)
+	if (num_AIEnemies == 1)
 	{
 		num_AIEnemies = 0;
 		return;
 	}
 
 	// Find the player
-	for(i=0;i<num_AIEnemies;i++)
-		if(ent == AIEnemies[i])
+	for (i = 0; i < num_AIEnemies; i++)
+		if (ent == AIEnemies[i])
 			pos = i;
 
 	// decrement
-	for( i=pos; i<num_AIEnemies-1; i++ )
-		AIEnemies[i] = AIEnemies[i+1];
+	for (i = pos; i < num_AIEnemies - 1; i++)
+		AIEnemies[i] = AIEnemies[i + 1];
 
 	num_AIEnemies--;
 }
-
-
 
 extern gitem_armor_t jacketarmor_info;
 extern gitem_armor_t combatarmor_info;
@@ -79,41 +77,34 @@ extern gitem_armor_t bodyarmor_info;
 // AI_CanUseArmor
 // Check if we can use the armor
 //==========================================
-qboolean AI_CanUseArmor (gitem_t *item, edict_t *other)
+qboolean AI_CanUseArmor(gitem_t* item, edict_t* other)
 {
-
-	
 	return false;
-
-
 }
 
 //==========================================
 // AI_CanPick_Ammo
 // Check if we can use the Ammo
 //==========================================
-qboolean AI_CanPick_Ammo (edict_t *ent, gitem_t *item)
+qboolean AI_CanPick_Ammo(edict_t* ent, gitem_t* item)
 {
-
 	return false;
-
 }
-
 
 //==========================================
 // AI_ItemIsReachable
 // Can we get there? Jalfixme: this needs much better checks
 //==========================================
-qboolean AI_ItemIsReachable(edict_t *self, vec3_t goal)
+qboolean AI_ItemIsReachable(edict_t* self, vec3_t goal)
 {
 	trace_t trace;
 	vec3_t v;
 
-	VectorCopy(self->mins,v);
+	VectorCopy(self->mins, v);
 	v[2] += AI_STEPSIZE;
 
-//	trap_Trace (&trace, self->s.origin, v, self->maxs, goal, self, MASK_NODESOLID);
-	trace = gi.trace ( self->s.origin, v, self->maxs, goal, self, MASK_NODESOLID );
+	//	trap_Trace (&trace, self->s.origin, v, self->maxs, goal, self, MASK_NODESOLID);
+	trace = gi.trace(self->s.origin, v, self->maxs, goal, self, MASK_NODESOLID);
 
 	// Yes we can see it
 	if (trace.fraction == 1.0)
@@ -121,7 +112,6 @@ qboolean AI_ItemIsReachable(edict_t *self, vec3_t goal)
 	else
 		return false;
 }
-
 
 //==========================================
 // AI_ItemWeight
@@ -183,7 +173,7 @@ qboolean AI_ItemIsReachable(edict_t *self, vec3_t goal)
 
 		if (weight < 0.2)
 			weight = 0.2;
-		
+
 		return weight;
 	}
 
@@ -212,12 +202,12 @@ qboolean AI_ItemIsReachable(edict_t *self, vec3_t goal)
 //==========================================
 //QUAKED item_botroam
 //==========================================
-void SP_item_botroam (edict_t *ent)
+void SP_item_botroam(edict_t* ent)
 {
 	float weight;
-	
+
 	//try to convert Q3 weights (doh)
-	if(st.weight)
+	if (st.weight)
 	{
 		weight = st.weight;
 
@@ -230,6 +220,6 @@ void SP_item_botroam (edict_t *ent)
 	}
 	else
 		weight = 30;	//default value
-				
+
 	ent->count = (int)weight;
 }

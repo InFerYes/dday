@@ -3,7 +3,7 @@
  *   $Source: /usr/local/cvsroot/dday/src/p_trail.c,v $
  *   $Revision: 1.4 $
  *   $Date: 2002/06/04 19:49:49 $
- * 
+ *
  ***********************************
 
 Copyright (C) 2002 Vipersoft
@@ -15,7 +15,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -26,7 +26,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "g_local.h"
-
 
 /*
 ==============================================================================
@@ -43,18 +42,16 @@ the player has been recently.  It is used by monsters for pursuit.
 .aiment		backward link
 */
 
-
 #define	TRAIL_LENGTH	8
 
-edict_t		*trail[TRAIL_LENGTH];
+edict_t* trail[TRAIL_LENGTH];
 int			trail_head;
 qboolean	trail_active = false;
 
 #define NEXT(n)		(((n) + 1) & (TRAIL_LENGTH - 1))
 #define PREV(n)		(((n) - 1) & (TRAIL_LENGTH - 1))
 
-
-void PlayerTrail_Init (void)
+void PlayerTrail_Init(void)
 {
 	int		n;
 
@@ -71,36 +68,33 @@ void PlayerTrail_Init (void)
 	trail_active = true;
 }
 
-
-void PlayerTrail_Add (vec3_t spot)
+void PlayerTrail_Add(vec3_t spot)
 {
 	vec3_t	temp;
 
 	if (!trail_active)
 		return;
 
-	VectorCopy (spot, trail[trail_head]->s.origin);
+	VectorCopy(spot, trail[trail_head]->s.origin);
 
 	trail[trail_head]->timestamp = level.time;
 
-	VectorSubtract (spot, trail[PREV(trail_head)]->s.origin, temp);
-	trail[trail_head]->s.angles[1] = vectoyaw (temp);
+	VectorSubtract(spot, trail[PREV(trail_head)]->s.origin, temp);
+	trail[trail_head]->s.angles[1] = vectoyaw(temp);
 
 	trail_head = NEXT(trail_head);
 }
 
-
-void PlayerTrail_New (vec3_t spot)
+void PlayerTrail_New(vec3_t spot)
 {
 	if (!trail_active)
 		return;
 
-	PlayerTrail_Init ();
-	PlayerTrail_Add (spot);
+	PlayerTrail_Init();
+	PlayerTrail_Add(spot);
 }
 
-
-edict_t *PlayerTrail_PickFirst (edict_t *self)
+edict_t* PlayerTrail_PickFirst(edict_t* self)
 {
 	int		marker;
 	int		n;
@@ -110,7 +104,7 @@ edict_t *PlayerTrail_PickFirst (edict_t *self)
 
 	for (marker = trail_head, n = TRAIL_LENGTH; n; n--)
 	{
-		if(trail[marker]->timestamp <= self->monsterinfo.trail_time)
+		if (trail[marker]->timestamp <= self->monsterinfo.trail_time)
 			marker = NEXT(marker);
 		else
 			break;
@@ -129,7 +123,7 @@ edict_t *PlayerTrail_PickFirst (edict_t *self)
 	return trail[marker];
 }
 
-edict_t *PlayerTrail_PickNext (edict_t *self)
+edict_t* PlayerTrail_PickNext(edict_t* self)
 {
 	int		marker;
 	int		n;
@@ -139,7 +133,7 @@ edict_t *PlayerTrail_PickNext (edict_t *self)
 
 	for (marker = trail_head, n = TRAIL_LENGTH; n; n--)
 	{
-		if(trail[marker]->timestamp <= self->monsterinfo.trail_time)
+		if (trail[marker]->timestamp <= self->monsterinfo.trail_time)
 			marker = NEXT(marker);
 		else
 			break;
@@ -148,7 +142,7 @@ edict_t *PlayerTrail_PickNext (edict_t *self)
 	return trail[marker];
 }
 
-edict_t *PlayerTrail_LastSpot (void)
+edict_t* PlayerTrail_LastSpot(void)
 {
 	return trail[PREV(trail_head)];
 }
