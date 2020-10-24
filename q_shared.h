@@ -37,7 +37,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma warning(disable : 4305)		// truncation from const double to float
 #pragma warning(disable : 4057)		// function differes slightly in indirection to slightly different base type
 
-
 #pragma warning(disable : 4100)     // unused parameter
 #pragma warning(disable : 4996)		// Shut up MSVS
 #pragma warning(disable : 4701)     // potentially uninitialized variable used
