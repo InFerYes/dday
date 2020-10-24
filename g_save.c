@@ -105,53 +105,50 @@ field_t fields[] = {
 	{"volly",FOFS(sounds),F_INT},
 	{"round_type",FOFS(mass),F_INT},
 	//these are for SP_info_Arty_strike
-		{"firing_bat",FOFS(count),F_INT},
-		{"time_to_fire",FOFS(health),F_INT},
-		{"accuracy",FOFS(dmg),F_INT},
-		{"strike_type",FOFS(mass),F_INT},
+	{"firing_bat",FOFS(count),F_INT},
+	{"time_to_fire",FOFS(health),F_INT},
+	{"accuracy",FOFS(dmg),F_INT},
+	{"strike_type",FOFS(mass),F_INT},
 
-		{"turret_sound",FOFS(map), F_LSTRING},
+	{"turret_sound",FOFS(map), F_LSTRING},
+	//these are for SP_info_Mission_Results
+	{"nextmap",FOFS(map), F_LSTRING},
+	{"map1",FOFS(map), F_LSTRING},
+	{"team1",FOFS(dmg), F_INT},
+	{"map2",FOFS(classname), F_LSTRING},
+	{"team2",FOFS(mass),F_INT},
+	// temp spawn vars -- only valid when the spawn function is called
+	{"lip", STOFS(lip), F_INT, FFL_SPAWNTEMP},
+	{"distance", STOFS(distance), F_INT, FFL_SPAWNTEMP},
+	{"height", STOFS(height), F_INT, FFL_SPAWNTEMP},
+	{"noise", STOFS(noise), F_LSTRING, FFL_SPAWNTEMP},
+	{"pausetime", STOFS(pausetime), F_FLOAT, FFL_SPAWNTEMP},
+	{"item", STOFS(item), F_LSTRING, FFL_SPAWNTEMP},
+	{"gravity", STOFS(gravity), F_LSTRING, FFL_SPAWNTEMP},
+	{"sky", STOFS(sky), F_LSTRING, FFL_SPAWNTEMP},
+	{"skyrotate", STOFS(skyrotate), F_FLOAT, FFL_SPAWNTEMP},
+	{"skyaxis", STOFS(skyaxis), F_VECTOR, FFL_SPAWNTEMP},
+	{"minyaw", STOFS(minyaw), F_FLOAT, FFL_SPAWNTEMP},
+	{"maxyaw", STOFS(maxyaw), F_FLOAT, FFL_SPAWNTEMP},
+	{"minpitch", STOFS(minpitch), F_FLOAT, FFL_SPAWNTEMP},
+	{"maxpitch", STOFS(maxpitch), F_FLOAT, FFL_SPAWNTEMP},
+	{"nextmap", STOFS(nextmap), F_LSTRING, FFL_SPAWNTEMP},
+	//added by kmm
+	{"dll",FOFS(pathtarget),F_LSTRING},
+	{"obj_name",FOFS(obj_name),F_LSTRING},
+	{"obj_area",FOFS(obj_area),F_FLOAT},
+	{"obj_time",FOFS(obj_time),F_FLOAT},
+	{"obj_owner",FOFS(obj_owner),F_INT},//pointer to who currently owns target
+	{"obj_gain",FOFS(obj_gain),F_INT},
+	{"obj_loss",FOFS(obj_loss),F_INT},
+	{"obj_count",FOFS(obj_count),F_INT},
+	{"obj_perm_owner",FOFS(obj_perm_owner),F_INT},
+	{"chute",FOFS(obj_count),F_INT},
+	{"weight", STOFS(weight), F_INT, FFL_SPAWNTEMP},//JABot
 
-		//these are for SP_info_Mission_Results
-			{"nextmap",FOFS(map), F_LSTRING},
-			{"map1",FOFS(map), F_LSTRING},
-			{"team1",FOFS(dmg), F_INT},
-			{"map2",FOFS(classname), F_LSTRING},
-			{"team2",FOFS(mass),F_INT},
-			// temp spawn vars -- only valid when the spawn function is called
-			{"lip", STOFS(lip), F_INT, FFL_SPAWNTEMP},
-			{"distance", STOFS(distance), F_INT, FFL_SPAWNTEMP},
-			{"height", STOFS(height), F_INT, FFL_SPAWNTEMP},
-			{"noise", STOFS(noise), F_LSTRING, FFL_SPAWNTEMP},
-			{"pausetime", STOFS(pausetime), F_FLOAT, FFL_SPAWNTEMP},
-			{"item", STOFS(item), F_LSTRING, FFL_SPAWNTEMP},
-			{"gravity", STOFS(gravity), F_LSTRING, FFL_SPAWNTEMP},
-			{"sky", STOFS(sky), F_LSTRING, FFL_SPAWNTEMP},
-			{"skyrotate", STOFS(skyrotate), F_FLOAT, FFL_SPAWNTEMP},
-			{"skyaxis", STOFS(skyaxis), F_VECTOR, FFL_SPAWNTEMP},
-			{"minyaw", STOFS(minyaw), F_FLOAT, FFL_SPAWNTEMP},
-			{"maxyaw", STOFS(maxyaw), F_FLOAT, FFL_SPAWNTEMP},
-			{"minpitch", STOFS(minpitch), F_FLOAT, FFL_SPAWNTEMP},
-			{"maxpitch", STOFS(maxpitch), F_FLOAT, FFL_SPAWNTEMP},
-			{"nextmap", STOFS(nextmap), F_LSTRING, FFL_SPAWNTEMP},
-			//added by kmm
-				{"dll",FOFS(pathtarget),F_LSTRING},
-				{"obj_name",FOFS(obj_name),F_LSTRING},
-				{"obj_area",FOFS(obj_area),F_FLOAT},
-				{"obj_time",FOFS(obj_time),F_FLOAT},
-				{"obj_owner",FOFS(obj_owner),F_INT},//pointer to who currently owns target
-				{"obj_gain",FOFS(obj_gain),F_INT},
-				{"obj_loss",FOFS(obj_loss),F_INT},
-				{"obj_count",FOFS(obj_count),F_INT},
-				{"obj_perm_owner",FOFS(obj_perm_owner),F_INT},
-
-				{"chute",FOFS(obj_count),F_INT},
-
-				{"weight", STOFS(weight), F_INT, FFL_SPAWNTEMP},//JABot
-
-				{"fullbright",FOFS(groundentity_linkcount),F_INT},
-				{"fog",FOFS(teleport_time),F_FLOAT},
-				{"obj_origin", FOFS(obj_origin), F_VECTOR}
+	{"fullbright",FOFS(groundentity_linkcount),F_INT},
+	{"fog",FOFS(teleport_time),F_FLOAT},
+	{"obj_origin", FOFS(obj_origin), F_VECTOR}
 };
 
 // -------- just for savegames ----------
@@ -404,7 +401,7 @@ void InitGame(void)
 }
 
 //=========================================================
-
+/*
 void WriteField1(FILE* f, field_t* field, byte* base)
 {
 	void* p;
@@ -539,7 +536,7 @@ void ReadField(FILE* f, field_t* field, byte* base)
 }
 
 //=========================================================
-
+*/
 /*
 ==============
 WriteClient
@@ -547,6 +544,7 @@ WriteClient
 All pointer variables (except function pointers) must be handled specially.
 ==============
 */
+/*
 void WriteClient(FILE* f, gclient_t* client)
 {
 	field_t* field;
@@ -570,7 +568,7 @@ void WriteClient(FILE* f, gclient_t* client)
 		WriteField2(f, field, (byte*)client);
 	}
 }
-
+*/
 /*
 ==============
 ReadClient
@@ -578,6 +576,7 @@ ReadClient
 All pointer variables (except function pointers) must be handled specially.
 ==============
 */
+/*
 void ReadClient(FILE* f, gclient_t* client)
 {
 	field_t* field;
@@ -589,7 +588,7 @@ void ReadClient(FILE* f, gclient_t* client)
 		ReadField(f, field, (byte*)client);
 	}
 }
-
+*/
 /*
 ============
 WriteGame
@@ -604,6 +603,7 @@ A single player death will automatically restore from the
 last save position.
 ============
 */
+/*
 void WriteGame(char* filename, qboolean autosave)
 {
 	FILE* f;
@@ -614,7 +614,7 @@ void WriteGame(char* filename, qboolean autosave)
 		SaveClientData();
 
 	f = fopen(filename, "wb");
-	/* MetalGod reformatted for clarity and checking return values */
+	// MetalGod reformatted for clarity and checking return values
 	if (!f)
 	{
 		gi.error("Couldn't open %s", filename);
@@ -648,7 +648,7 @@ void ReadGame(char* filename)
 
 	f = fopen(filename, "rb");
 
-	/* MetalGod reformatted for clarity and checking return values */
+	// MetalGod reformatted for clarity and checking return values
 	if (!f)
 	{
 		gi.error("Couldn't open %s", filename);
@@ -684,6 +684,7 @@ WriteEdict
 All pointer variables (except function pointers) must be handled specially.
 ==============
 */
+/*
 void WriteEdict(FILE* f, edict_t* ent)
 {
 	field_t* field;
@@ -707,7 +708,7 @@ void WriteEdict(FILE* f, edict_t* ent)
 		WriteField2(f, field, (byte*)ent);
 	}
 }
-
+*/
 /*
 ==============
 WriteLevelLocals
@@ -715,6 +716,7 @@ WriteLevelLocals
 All pointer variables (except function pointers) must be handled specially.
 ==============
 */
+/*
 void WriteLevelLocals(FILE* f)
 {
 	field_t* field;
@@ -738,7 +740,7 @@ void WriteLevelLocals(FILE* f)
 		WriteField2(f, field, (byte*)&level);
 	}
 }
-
+*/
 /*
 ==============
 ReadEdict
@@ -746,6 +748,7 @@ ReadEdict
 All pointer variables (except function pointers) must be handled specially.
 ==============
 */
+/*
 void ReadEdict(FILE* f, edict_t* ent)
 {
 	field_t* field;
@@ -757,6 +760,7 @@ void ReadEdict(FILE* f, edict_t* ent)
 		ReadField(f, field, (byte*)ent);
 	}
 }
+*/
 
 /*
 ==============
@@ -765,6 +769,7 @@ ReadLevelLocals
 All pointer variables (except function pointers) must be handled specially.
 ==============
 */
+/*
 void ReadLevelLocals(FILE* f)
 {
 	field_t* field;
@@ -775,7 +780,7 @@ void ReadLevelLocals(FILE* f)
 	{
 		ReadField(f, field, (byte*)&level);
 	}
-}
+}*/
 
 /*
 =================
@@ -783,6 +788,7 @@ WriteLevel
 
 =================
 */
+/*
 void WriteLevel(char* filename)
 {
 	int		i;
@@ -792,7 +798,7 @@ void WriteLevel(char* filename)
 
 	f = fopen(filename, "wb");
 
-	/* MetalGod reformatted for clarity and checking return values */
+	// MetalGod reformatted for clarity and checking return values
 	if (!f)
 	{
 		gi.error("Couldn't open %s", filename);
@@ -826,7 +832,7 @@ void WriteLevel(char* filename)
 		fclose(f);
 	}
 }
-
+*/
 /*
 =================
 ReadLevel
@@ -843,6 +849,7 @@ calling ReadLevel.
 No clients are connected yet.
 =================
 */
+/*
 void ReadLevel(char* filename)
 {
 	int		entnum;
@@ -928,4 +935,21 @@ void ReadLevel(char* filename)
 			if (strcmp(ent->classname, "target_crosslevel_target") == 0)
 				ent->nextthink = level.time + ent->delay;
 	}
+}
+*/
+
+void WriteGame(char* filename, qboolean autosave)
+{
+}
+
+void ReadGame(char* filename)
+{
+}
+
+void WriteLevel(char* filename)
+{
+}
+
+void ReadLevel(char* filename)
+{
 }
