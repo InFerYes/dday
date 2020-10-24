@@ -132,7 +132,9 @@ void BOT_DMclass_Move(edict_t* self, usercmd_t* ucmd)
 			//prevent double jumping on crates
 			VectorCopy(self->s.origin, v1);
 			v1[2] += self->mins[2];
+			/* MetalGod trace unused
 			trace = gi.trace(v1, tv(-12, -12, -8), tv(12, 12, 0), v1, self, MASK_AISOLID);
+			*/
 			//if( trace.startsolid )
 			ucmd->upmove = 400;
 			return;
@@ -420,7 +422,8 @@ qboolean BOT_DMclass_FindEnemy(edict_t* self)
 //		return true;
 
 	//medibot = check for wounded teammate
-	if (self->client && self->client->resp.mos && self->client->resp.mos == MEDIC)
+	/* MetalGod Cleanup some redundant checks*/
+	if (self->client && /* self->client->resp.mos && MetalGod */ self->client->resp.mos == MEDIC)
 	{
 		for (i = 0; i < maxclients->value; i++)
 		{
@@ -433,7 +436,7 @@ qboolean BOT_DMclass_FindEnemy(edict_t* self)
 				continue;
 			if (cl_ent->client->resp.team_on != self->client->resp.team_on)
 				continue;
-			if (cl_ent->client->resp.mos && cl_ent->client->resp.mos == MEDIC)
+			if (/*cl_ent->client->resp.mos && MetalGod*/cl_ent->client->resp.mos == MEDIC)
 				continue;
 			if (cl_ent == self)
 				continue;
@@ -741,7 +744,8 @@ void BOT_DMclass_ChooseWeapon(edict_t* self)
 		weapon_range = AIWEAP_LONG_RANGE;
 
 	//if we've just fired sniper and an enemy is close by.  switch to pistol
-	if (dist < 500 && self->client->pers.weapon && self->client->pers.weapon->position == LOC_SNIPER &&
+	/* MetalGod - let's actually use weapon_range! */
+	if (weapon_range == AIWEAP_SHORT_RANGE && self->client->pers.weapon && self->client->pers.weapon->position == LOC_SNIPER &&
 		!self->client->newweapon)
 	{
 		if (self->client->sniper_loaded[self->client->resp.team_on->index] == false)
@@ -929,8 +933,7 @@ void BOT_CheckFireWeapon(edict_t* self, usercmd_t* ucmd)
 		return;
 
 	//medibot: if no enemy & wounded, heal yourself
-	if (self->ai->last_enemy_time < level.time - 5 &&
-		self->client->resp.mos && self->client->resp.mos == MEDIC && self->health < 100)
+	if (self->ai->last_enemy_time < level.time - 5 && /*self->client->resp.mos && MetalGod */self->client->resp.mos == MEDIC && self->health < 100)
 	{
 		if (self->client->pers.weapon && self->client->pers.weapon->classnameb != WEAPON_MORPHINE)
 		{

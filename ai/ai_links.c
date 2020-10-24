@@ -590,7 +590,7 @@ int AI_GravityBoxToLink(int n1, int n2)
 int	AI_FindFallOrigin(int n1, int n2, vec3_t fallorigin)
 {
 	int			move;
-	int			movemask = 0;
+	/*int			movemask = 0; MetalGod assigned, but unused */
 	float		movescale = 8;
 	trace_t		trace;
 	vec3_t		boxmins, boxmaxs;
@@ -619,7 +619,7 @@ int	AI_FindFallOrigin(int n1, int n2, vec3_t fallorigin)
 		if (move & LINK_INVALID)
 			return LINK_INVALID;
 
-		movemask |= move;
+		/* movemask |= move; MetalGod asigned, but unused */
 
 		if (move & LINK_FALL) {
 			VectorCopy(o1, fallorigin);
@@ -749,10 +749,12 @@ int AI_IsLadderLink(int n1, int n2)
 		eorg[j] = nodes[n2].origin[j] - nodes[n1].origin[j];
 	eorg[2] = 0; //ignore height
 
+	
 	xzdist = VectorLength(eorg);
 
 	if (xzdist < 0)
 		xzdist = -xzdist;
+	
 
 	//if both are ladder nodes
 	if (nodes[n1].flags & NODEFLAGS_LADDER && nodes[n2].flags & NODEFLAGS_LADDER)

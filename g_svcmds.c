@@ -406,7 +406,8 @@ void SetupCampaign(qboolean restart)
 
 		c = 0;
 		f = strdup(campinfo);
-		s = strtok(f, "\n");
+		s = strtok(f, "\n"); 
+		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
 
 		if (s != NULL) {
 			alliedplatoons = atoi(s);

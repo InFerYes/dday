@@ -303,9 +303,9 @@ int AI_ClosestNodeToSpot(vec3_t origin, edict_t* passent, qboolean visible)
 int AI_ClosestNodeToReachableSpot(edict_t* self, vec3_t origin)
 {
 	int			i;
-	float		closest = 999999999;
+	float		closest;
 	float		dist;
-	int			node = -1;
+	int			node;
 	vec3_t		v;
 
 	int			check[4]; /* check[3];  MetalGod this needs to be 4 to fit the array Septemember 21, 2020 */

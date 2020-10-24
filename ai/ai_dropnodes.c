@@ -337,7 +337,7 @@ void AI_PathMap(qboolean force)
 			player.was_falling = true;
 			return;
 		}
-		else if (player.ent->is_swim)
+		else /* if (player.ent->is_swim) MetalGod it's one or the other, no need to check the other. */
 			player.was_falling = false;
 	}
 

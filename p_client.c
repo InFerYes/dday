@@ -2760,6 +2760,7 @@ qboolean ClientConnect(edict_t* ent, char* userinfo)
 
 	f = strdup(value);
 	ip = strtok(f, ":");
+	gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
 
 	//for people with dynamic ip's, let them save their stats by name if they set gender to cyborg
 	if (!strcmp(Info_ValueForKey(userinfo, "gender"), "cyborg"))
@@ -3147,6 +3148,8 @@ qboolean Setup_Map_Vote(void)
 		c = 0;
 		f = strdup(maps);
 		s = strtok(f, "\n");
+		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
+
 		while (c < 300)
 		{
 			if (s != NULL)
@@ -4293,7 +4296,8 @@ void Write_Player_Stats(edict_t* ent)
 	{
 		c = 0;
 		f = strdup(statsc);
-		s = strtok(f, "\n");
+		s = strtok(f, "\n"); 
+		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
 
 		if (s != NULL) {
 			name = s;
@@ -4459,34 +4463,35 @@ void Write_Player_Stats(edict_t* ent)
 	{
 		gi.error("Couldn't open %s, you may need to create a 'dday/stats' folder.", filename);
 	}
+	else
+	{
+		fprintf(fn, "%s\n", ent->client->pers.netname);
+		fprintf(fn, "%i\n", games);
+		fprintf(fn, "%i\n", ent->client->ping);
+		fprintf(fn, "%i\n", human_kills);
+		fprintf(fn, "%i\n", human_deaths);
+		fprintf(fn, "%i\n", bot_kills);
+		fprintf(fn, "%i\n", bot_deaths);
+		fprintf(fn, "%i\n", games_won);
+		fprintf(fn, "%i\n", games_lost);
+		fprintf(fn, "%i\n", played_allies);
+		fprintf(fn, "%i\n", played_axis);
+		fprintf(fn, "%i\n", infantry);
+		fprintf(fn, "%i\n", officer);
+		fprintf(fn, "%i\n", lgunner);
+		fprintf(fn, "%i\n", hgunner);
+		fprintf(fn, "%i\n", sniper);
+		fprintf(fn, "%i\n", special);
+		fprintf(fn, "%i\n", engineer);
+		fprintf(fn, "%i\n", medic);
+		fprintf(fn, "%i\n", flamer);
+		fprintf(fn, "%i\n", castrations);
+		fprintf(fn, "%i\n", helmets);
+		fprintf(fn, "%i\n", fists);
+		fprintf(fn, "%s\n", ent->client->pers.stat_chat);
 
-	fprintf(fn, "%s\n", ent->client->pers.netname);
-	fprintf(fn, "%i\n", games);
-	fprintf(fn, "%i\n", ent->client->ping);
-	fprintf(fn, "%i\n", human_kills);
-	fprintf(fn, "%i\n", human_deaths);
-	fprintf(fn, "%i\n", bot_kills);
-	fprintf(fn, "%i\n", bot_deaths);
-	fprintf(fn, "%i\n", games_won);
-	fprintf(fn, "%i\n", games_lost);
-	fprintf(fn, "%i\n", played_allies);
-	fprintf(fn, "%i\n", played_axis);
-	fprintf(fn, "%i\n", infantry);
-	fprintf(fn, "%i\n", officer);
-	fprintf(fn, "%i\n", lgunner);
-	fprintf(fn, "%i\n", hgunner);
-	fprintf(fn, "%i\n", sniper);
-	fprintf(fn, "%i\n", special);
-	fprintf(fn, "%i\n", engineer);
-	fprintf(fn, "%i\n", medic);
-	fprintf(fn, "%i\n", flamer);
-	fprintf(fn, "%i\n", castrations);
-	fprintf(fn, "%i\n", helmets);
-	fprintf(fn, "%i\n", fists);
-	fprintf(fn, "%s\n", ent->client->pers.stat_chat);
-
-	fclose(fn);
-	free(f); /*  Added free as there was a memory leak! */
+		fclose(fn);
+	}
 }
 
 //writes players stat average from .stat file to pers
@@ -4527,7 +4532,7 @@ void SetPlayerRating(edict_t* ent)
 		c = 0;
 		f = strdup(statsc);
 		s = strtok(f, "\n");
-
+		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
 		if (s != NULL) {
 			name = s;
 			s = strtok(NULL, "\n");
