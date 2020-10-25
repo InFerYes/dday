@@ -232,7 +232,7 @@ void ThrowGib(edict_t* self, char* gibname, int damage, int type)
 	//	VectorSet (self->mins, -16, -16, 0);
 	//	VectorSet (self->maxs, 16, 16, 16);
 
-	gib->solid = SOLID_NOT;
+	/* gib->solid = SOLID_NOT; MetalGod Overwritten below */
 	gib->s.effects |= EF_GIB;
 	gib->flags |= FL_NO_KNOCKBACK;
 	gib->takedamage = DAMAGE_NO;//DAMAGE_YES;

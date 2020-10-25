@@ -2031,7 +2031,7 @@ void CopyToBodyQue(edict_t* ent)
 	body->monsterinfo.aiflags |= AI_GOOD_GUY;
 	/*-----------------------------------------------------------------*/
 
-	body->svflags = ent->svflags;
+	/* body->svflags = ent->svflags; MetalGod this was deliberately changed above */
 	VectorCopy(ent->mins, body->mins);
 	VectorCopy(ent->maxs, body->maxs);
 	VectorCopy(ent->absmin, body->absmin);
@@ -2097,14 +2097,14 @@ void CopyToBodyQue(edict_t* ent)
 	{
 		//		ang = 0;
 	}
-	else if (ang >= 45 && ang < 135)
+	else if (/* ang >= 45 && */ang < 135) /* MetalGod if we got here it's always >= 45 */
 	{
 		body->mins[0] = -1 * a[1];
 		body->mins[1] = a[0];
 		body->maxs[0] = -1 * b[1];
 		body->maxs[1] = b[0];
 	}
-	else if (ang >= 135 && ang < 225)
+	else if (/* ang >= 135 && */ang < 225)/* MetalGod if we got here it's always >= 135 */
 	{
 		body->mins[0] = -1 * a[0];
 		body->mins[1] = -1 * a[1];
@@ -3939,7 +3939,7 @@ void ClientThink(edict_t* ent, usercmd_t* ucmd)
 
 		if (ent->wound_location & STOMACH_WOUND)
 			temp_damage = 2;
-		if (ent->wound_location & CHEST_WOUND)
+		else if (ent->wound_location & CHEST_WOUND) /* MetalGod added else */
 			temp_damage = 4;
 		else
 			// rezmoth - changed to 0 to prevent leg wound dmg
