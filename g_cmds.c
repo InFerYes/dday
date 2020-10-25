@@ -2324,7 +2324,10 @@ void Cmd_Say_f(edict_t* ent, qboolean team, qboolean arg0, qboolean saved)
 		sprintf(teamname, "%s ", ent->client->resp.team_on->playermodel);
 	}
 	else
+		/* MetalGod don't do this
 		sprintf(teamname, "");
+		Do this instead         */
+		sprintf(teamname, "%s", "");
 
 	if (saved)
 	{

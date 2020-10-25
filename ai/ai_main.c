@@ -956,7 +956,10 @@ void AI_Think(edict_t* self)
 				sprintf(teamname, "%s ", self->client->resp.team_on->playermodel);
 			}
 			else
+				/* MetalGod don't do this
 				sprintf(teamname, "");
+				Do this instead         */
+				sprintf(teamname, "%s", "");
 
 			if (dedicated->value) {
 				safe_cprintf(NULL, PRINT_HIGH, "%s", teamname);
