@@ -37,7 +37,7 @@ void Cmd_WeapNext_f(edict_t* ent);
 void check_unscope(edict_t* ent)
 {
 	/* MetalGod sanity check */
-	if (!ent)
+	if (!ent || !ent->client)
 		return;
 
 	if (ent->client && ent->client->pers.weapon && ent->client->pers.weapon->position != LOC_SNIPER)
@@ -966,7 +966,7 @@ void fire_underwater(edict_t* self, vec3_t start, vec3_t dir, int damage, int mo
 	underwater_bullet->owner = self;
 	underwater_bullet->touch = tracer_touch;
 	underwater_bullet->nextthink = level.time + .2;// + 2;
-	underwater_bullet->think = G_FreeEdict;
+	/* underwater_bullet->think = G_FreeEdict; MetalGod overwritten on next line */
 	underwater_bullet->think = make_splash;
 	underwater_bullet->dmg = damage;
 	underwater_bullet->classname = "underwater_bullet";
@@ -1891,7 +1891,7 @@ void BotWarnThink(edict_t* ent)
 	//this "turns it on" //not sure this even works
 	ent->classnameb = BOTWARN;
 
-	if (!ent->owner || ent->owner && !ent->owner->inuse)
+	if (!ent->owner ||/* ent->owner && */!ent->owner->inuse) /* MetalGod this is equivalent/removes redundant check */
 	{
 		ent->think = G_FreeEdict;
 	}
@@ -2005,10 +2005,11 @@ void fire_rocket_piat(edict_t* self, vec3_t start, vec3_t dir, int damage, int s
 	rocket->touch = rocket_touch;
 
 	rocket->gravity = gravity;//1;//.9; //faf
-
+	
+	/* Metalgod reassigend in either of the conditionals below
 	rocket->nextthink = level.time + 8000 / speed;
 	rocket->think = G_FreeEdict;
-
+	*/
 	//faf
 	if (self->client && self->client->pers.weapon &&
 		self->client->pers.weapon->classnameb == WEAPON_PANZERFAUST)
@@ -2060,9 +2061,10 @@ void fire_rocket_panzerfaust(edict_t* self, vec3_t start, vec3_t dir, int damage
 
 	rocket->gravity = gravity;//1;//.9; //faf
 
+	/* MetalGod reassigned in either conditional below.
 	rocket->nextthink = level.time + 8000 / speed;
 	rocket->think = G_FreeEdict;
-
+	*/
 	//faf
 	if (self->client && self->client->pers.weapon &&
 		self->client->pers.weapon->classnameb == WEAPON_PANZERFAUST)
@@ -4023,9 +4025,7 @@ void TNT_Think(edict_t* ent)
 	//switch teams exploit fix
 	if (ent->owner && ent->owner->client)
 	{
-		if (!ent->owner->client->resp.team_on ||
-			ent->owner->client->resp.team_on &&
-			ent->owner->client->resp.team_on->index != ent->obj_owner)
+		if (!ent->owner->client->resp.team_on || /* ent->owner->client->resp.team_on && */ ent->owner->client->resp.team_on->index != ent->obj_owner) /* Metalgod this is equivalent/removes redundant check */
 		{
 			ent->think = G_FreeEdict;
 			ent->nextthink = level.time + .1;
@@ -4613,7 +4613,8 @@ void Weapon_Sten_Fire(edict_t* ent)
 
 		return;
 	}
-
+	
+	/* MetalGod this is horseshit... if you comment out all the innards, why not just comment the whole damn thing!?!?
 	if (!ent->client->aim)
 	{
 		for (i = 0; i < 3; i++)
@@ -4641,7 +4642,7 @@ void Weapon_Sten_Fire(edict_t* ent)
 		//ent->client->kick_origin[0] = crandom() * 0.35;
 		//ent->client->kick_angles[0] = ent->client->machinegun_shots * -1.5;
 	}
-
+*/
 	// raise the gun as it is firing
 //	if (!deathmatch->value)
 //	{
@@ -4673,7 +4674,8 @@ void Weapon_Sten_Fire(edict_t* ent)
 		ent->client->mags[mag_index].submg_rnd = 0;
 		return;
 	}
-
+	
+	/* MetalGod overwritten below
 	// rezmoth - cosmetic recoil
 	if (level.framenum % 3 == 0)
 	{
@@ -4682,7 +4684,8 @@ void Weapon_Sten_Fire(edict_t* ent)
 		else
 			ent->client->kick_angles[0] = -3;
 	}
-
+	*/
+	
 	// pbowens: for darwin's 3.2 kick
 	ent->client->kick_angles[0] = ent->client->machinegun_shots * -1;
 	ent->client->kick_angles[1] = ent->client->machinegun_shots * .3;
@@ -4842,6 +4845,7 @@ void Weapon_Bren_Fire(edict_t* ent)
 	else
 		gi.dprintf("*** Firing System Error\n");
 
+	/* MetalGod this is just reassigned below
 	// rezmoth - cosmetic recoil
 	if (level.framenum % 3 == 0)
 	{
@@ -4849,7 +4853,7 @@ void Weapon_Bren_Fire(edict_t* ent)
 			ent->client->kick_angles[0] -= 1.5;
 		else
 			ent->client->kick_angles[0] = -3;
-	}
+	}*/
 
 	// pbowens: for darwin's 3.2 kick
 	ent->client->kick_angles[0] = ent->client->machinegun_shots * -1.5;

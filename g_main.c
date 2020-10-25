@@ -332,6 +332,7 @@ qboolean MapExists(char* map)
 	if (check = fopen(filename, "r"))
 	{
 		fclose(check);
+		gi.dprintf("Map %s found in dday\n", filename);
 		return true;
 	}
 
@@ -341,6 +342,7 @@ qboolean MapExists(char* map)
 	if (check = fopen(filename, "r"))
 	{
 		fclose(check);
+		gi.dprintf("Map %s found in baseq2\n", filename);
 		return true;
 	}
 
@@ -351,6 +353,7 @@ qboolean MapExists(char* map)
 	if (check = fopen(filename, "r"))
 	{
 		fclose(check);
+		gi.dprintf("Map override %s found in dday\n", filename);
 		return true;
 	}
 
