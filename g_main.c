@@ -390,7 +390,7 @@ void Read_Last_Maps()
 		c = 0;
 		f = strdup(lastmaps);
 		s = strtok(f, "\n");
-		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
+
 		for (i = 1; i < 20; i++) {
 			if (s != NULL) {
 				last_maps_played[i] = s;
@@ -424,7 +424,7 @@ char* Get_Next_MaplistTxt_Map()
 		c = 0;
 		f = strdup(maps);
 		s = strtok(f, "\n");
-		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
+
 		while (c < 300)
 		{
 			if (s != NULL)
@@ -638,7 +638,7 @@ void EndDMLevel(void)
 			s = strdup(sv_maplist->string);
 			f = NULL;
 			t = strtok(s, seps);
-			gi.TagFree(s); /* MetalGod a call to strdup requires a free! */
+
 			while (t != NULL)
 			{
 				//add campaigns to maplist
@@ -675,7 +675,7 @@ void EndDMLevel(void)
 			s = strdup(sv_maplist->string);
 			f = NULL;
 			t = strtok(s, seps);
-			gi.TagFree(s); /* MetalGod a call to strdup requires a free! */
+
 			while (t != NULL)
 			{
 				if (Q_stricmp(t, mapname) == 0)   //if the running map is on maplist
@@ -709,13 +709,13 @@ void EndDMLevel(void)
 								check = t;
 								if (check)/* MetalGod avoid NULL ptr crash */
 								{
-								strcat(check, "1");
-								if (MapExists(check))
-								{
-									safe_bprintf(PRINT_HIGH, "Next map: %s \n", check);
-									BeginIntermission(CreateTargetChangeLevel(check));
-									return;
-								}
+									strcat(check, "1");
+									if (MapExists(check))
+									{
+										safe_bprintf(PRINT_HIGH, "Next map: %s \n", check);
+										BeginIntermission(CreateTargetChangeLevel(check));
+										return;
+									}
 								}
 							}
 						}
@@ -774,7 +774,6 @@ void EndDMLevel(void)
 					//restart maplist
 					sb = strdup(sv_maplist->string);
 					tb = strtok(s, seps);
-					gi.TagFree(sb); /* MetalGod a call to strdup requires a free! */
 					if (MapExists(tb))
 					{
 						safe_bprintf(PRINT_HIGH, "Next map: %s \n", tb);

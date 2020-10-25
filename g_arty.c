@@ -259,7 +259,7 @@ void Cmd_Arty_f(edict_t* ent)
 		ent->client->airstrike = NULL;
 		return;
 	}
-	else if ((ent->client->pers.weapon && /* MetalGod this is redundant April 28th 202
+	else if ((ent->client->pers.weapon && /* MetalGod this is redundant April 28th 2020
 		ent->client->pers.weapon->classnameb) && */
 		ent->client->pers.weapon->classnameb == WEAPON_BINOCULARS))
 	{

@@ -509,7 +509,7 @@ void ED_ParseField(char* key, char* value, edict_t* ent)
 				*(char**)(b + f->ofs) = ED_NewString(value);
 				break;
 			case F_VECTOR:
-				 /* MetalGod check the return of sscanf! */
+				/* MetalGod check the return of sscanf! */
 				if (sscanf(value, "%f %f %f", &vec[0], &vec[1], &vec[2])) {
 					((float*)(b + f->ofs))[0] = vec[0];
 					((float*)(b + f->ofs))[1] = vec[1];
@@ -893,7 +893,6 @@ void LoadCampFile(void)
 		c = 0;
 		f = strdup(camplocs);
 		s = strtok(f, "\n");
-		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
 		while (s != NULL)
 		{
 			if (s != NULL) {

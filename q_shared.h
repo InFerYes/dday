@@ -41,9 +41,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma warning(disable : 4996)		// Shut up MSVS
 #pragma warning(disable : 4701)     // potentially uninitialized variable used
 #pragma warning(disable : 4703)     // potentially uninitialized pointer variable used
-
+#pragma warning(disable : 4706)     // assignment within conditional expression
 #pragma warning(disable : 4061)		// enumerator in switch not explicitly handled by case label
 #pragma warning(disable : 4062)		// enumerator in switch not handled by case label
+#pragma warning(disable : 4459)     // dclaration of variable hides global declaration
 /*
 #pragma warning(disable : 5045)		// Spectre mitigation
 #pragma warning(disable : 4820)     // padding added after data member
@@ -65,10 +66,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <stdlib.h>
 #include <time.h>
 #include <ctype.h> /* MetalGod added September 21, 2020 */
-
-#ifdef _WIN32
-#define strdup _strdup
-#endif
 
 #if (defined _M_IX86 || defined __i386__) && !defined C_ONLY && !defined __sun__
 #define id386	1

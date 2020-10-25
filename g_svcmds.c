@@ -406,9 +406,7 @@ void SetupCampaign(qboolean restart)
 
 		c = 0;
 		f = strdup(campinfo);
-		s = strtok(f, "\n"); 
-		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
-
+		s = strtok(f, "\n");
 		if (s != NULL) {
 			alliedplatoons = atoi(s);
 			//gi.dprintf ("alliedplatoons: %s\n",s);

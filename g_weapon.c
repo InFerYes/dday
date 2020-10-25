@@ -37,7 +37,7 @@ void Cmd_WeapNext_f(edict_t* ent);
 void check_unscope(edict_t* ent)
 {
 	/* MetalGod sanity check */
-	if (!ent || !ent->client)
+	if (!ent)
 		return;
 
 	if (ent->client && ent->client->pers.weapon && ent->client->pers.weapon->position != LOC_SNIPER)

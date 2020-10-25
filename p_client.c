@@ -2760,7 +2760,6 @@ qboolean ClientConnect(edict_t* ent, char* userinfo)
 
 	f = strdup(value);
 	ip = strtok(f, ":");
-	gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
 
 	//for people with dynamic ip's, let them save their stats by name if they set gender to cyborg
 	if (!strcmp(Info_ValueForKey(userinfo, "gender"), "cyborg"))
@@ -2827,7 +2826,6 @@ qboolean ClientConnect(edict_t* ent, char* userinfo)
 
 	return true;
 }
-
 /*
 ===========
 ClientDisconnect
@@ -2852,9 +2850,6 @@ void ClientDisconnect(edict_t* ent)
 	change_stance(ent, STANCE_STAND);
 
 	turret_off(ent);
-
-	stuffcmd(ent, "cl_forwardspeed 200;cl_sidespeed 200;cl_upspeed 200;");
-	safe_bprintf(PRINT_HIGH, "%s disconnected\n", ent->client->pers.netname);
 
 	//faf:  ctb code
 	if (ent->client->pers.inventory[ITEM_INDEX(FindItem("briefcase"))])
@@ -2881,6 +2876,9 @@ void ClientDisconnect(edict_t* ent)
 	ent->inuse = false;
 	ent->classname = "disconnected";
 	ent->client->pers.connected = false;
+	/* MetalGod moved these down here to avoid sending to free/zombie client */
+	stuffcmd(ent, "cl_forwardspeed 200;cl_sidespeed 200;cl_upspeed 200;");
+	safe_bprintf(PRINT_HIGH, "%s disconnected\n", ent->client->pers.netname);
 
 	playernum = ent - g_edicts - 1;
 
@@ -3148,7 +3146,6 @@ qboolean Setup_Map_Vote(void)
 		c = 0;
 		f = strdup(maps);
 		s = strtok(f, "\n");
-		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
 
 		while (c < 300)
 		{
@@ -4296,8 +4293,7 @@ void Write_Player_Stats(edict_t* ent)
 	{
 		c = 0;
 		f = strdup(statsc);
-		s = strtok(f, "\n"); 
-		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
+		s = strtok(f, "\n");
 
 		if (s != NULL) {
 			name = s;
@@ -4532,7 +4528,6 @@ void SetPlayerRating(edict_t* ent)
 		c = 0;
 		f = strdup(statsc);
 		s = strtok(f, "\n");
-		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
 		if (s != NULL) {
 			name = s;
 			s = strtok(NULL, "\n");

@@ -1130,7 +1130,7 @@ void Cmd_Use_f(edict_t* ent)
 	it = FindItem(s);
 
 	/* MetalGod sanity check */
-	if (!ent || !ent->client)
+	if (!ent)
 		return;
 
 	if (ent->client->chasetarget)
@@ -2889,7 +2889,7 @@ qboolean Cmd_Reload(edict_t* ent)
 			return false;
 	}
 
-	if (/*ent->client->weaponstate &&	*/ ent->client->weaponstate == WEAPON_RELOADING && ent->client->pers.weapon && ent->client->pers.weapon->position == LOC_SHOTGUN) /* MetalGod redundant if the first is true */
+	if (ent->client->weaponstate && ent->client->weaponstate == WEAPON_RELOADING && ent->client->pers.weapon && ent->client->pers.weapon->position == LOC_SHOTGUN)
 	{
 		ent->client->weaponstate = WEAPON_READY;
 		gi.sound(ent, CHAN_VOICE, gi.soundindex("misc/null.wav"), 1, ATTN_NORM, 0);//silences reload sound

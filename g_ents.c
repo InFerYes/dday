@@ -420,7 +420,6 @@ void LoadBotChat(int teamnum, char* teamid)
 	if (tempchat) {
 		f = strdup(tempchat);
 		s = strtok(f, "\n");
-		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
 		Com_sprintf(botchat_sorry[teamnum][c], sizeof(botchat_sorry[teamnum][c]), "%s", s);
 		while (s != NULL) {
 			s = strtok(NULL, "\n");
@@ -437,7 +436,6 @@ void LoadBotChat(int teamnum, char* teamid)
 	if (tempchat) {
 		f = strdup(tempchat);
 		s = strtok(f, "\n");
-		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
 		Com_sprintf(botchat_killed[teamnum][c], sizeof(botchat_killed[teamnum][c]), "%s", s);
 		while (s != NULL) {
 			s = strtok(NULL, "\n");
@@ -454,7 +452,6 @@ void LoadBotChat(int teamnum, char* teamid)
 	if (tempchat) {
 		f = strdup(tempchat);
 		s = strtok(f, "\n");
-		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
 		Com_sprintf(botchat_forgive[teamnum][c], sizeof(botchat_forgive[teamnum][c]), "%s", s);
 		while (s != NULL) {
 			s = strtok(NULL, "\n");
@@ -471,7 +468,6 @@ void LoadBotChat(int teamnum, char* teamid)
 	if (tempchat) {
 		f = strdup(tempchat);
 		s = strtok(f, "\n");
-		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
 		Com_sprintf(botchat_self[teamnum][c], sizeof(botchat_self[teamnum][c]), "%s", s);
 		while (s != NULL) {
 			s = strtok(NULL, "\n");

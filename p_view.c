@@ -653,7 +653,7 @@ void SV_CalcGunOffset(edict_t* ent)
 	//	float	delta;
 
 		/* MetalGod sanity check! */
-	if (!ent || !ent->client)
+	if (!ent)
 		return;
 
 	if (ent->client &&
@@ -823,8 +823,8 @@ void SV_CalcBlend(edict_t* ent)
 
 	if (ent->client->smoke_effect_actual)
 		SV_AddBlend(1.0, 1.0, 1.0, ent->client->smoke_effect_actual, ent->client->ps.blend);
-	
-	/* MetalGod duplicate of preceding! 
+
+	/* MetalGod duplicate of preceding!
 	if (ent->client->smoke_effect_actual)
 		SV_AddBlend(1.0, 1.0, 1.0, ent->client->smoke_effect_actual, ent->client->ps.blend);
 	*/
@@ -2228,7 +2228,7 @@ void ClientEndServerFrame(edict_t* ent)
 	//	int oldframe, oldanimend, newframe, newanimend;//faf
 
 		/* MetalGod sanity check! */
-	if (!ent || !ent->client)
+	if (!ent)
 		return;
 
 	if (ent->client)
@@ -2638,13 +2638,13 @@ void ClientEndServerFrame(edict_t* ent)
 			//overhead view
 			if (ent->client->aim == 4 && !ent->client->chasetarget->client->limbo_mode)
 			{
-				/* MetalGod these hide the pervious local declaration 
+				/* MetalGod these hide the pervious local declaration
 				trace_t tr;
 				vec3_t end, start;
 				vec3_t up = { 0, 0, 1 }; assigned this at initial previous declaration
 				*/
 				vec3_t forward = { 1, 0, 0 };
-				
+
 				vec3_t distv;
 				float dist = 0;
 				vec3_t targetview;

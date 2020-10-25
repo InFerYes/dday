@@ -1759,7 +1759,7 @@ void Weapon_Sandbag_Fire(edict_t* ent)
 			return;
 		}
 	}
-	else /*if (ent->client->resp.team_on->index == 1) MetalGod unless we're adding more teams later, this is an unnecessary comparison! */
+	else if (ent->client->resp.team_on->index == 1)
 	{
 		if (axis_sandbags >= sandbaglimit->value)
 		{
