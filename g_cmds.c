@@ -2892,7 +2892,10 @@ qboolean Cmd_Reload(edict_t* ent)
 			return false;
 	}
 
+	/* MetalGod remove redundant checks!
 	if (ent->client->weaponstate && ent->client->weaponstate == WEAPON_RELOADING && ent->client->pers.weapon && ent->client->pers.weapon->position == LOC_SHOTGUN)
+	*/
+	if (ent->client->weaponstate == WEAPON_RELOADING && ent->client->pers.weapon->position == LOC_SHOTGUN)
 	{
 		ent->client->weaponstate = WEAPON_READY;
 		gi.sound(ent, CHAN_VOICE, gi.soundindex("misc/null.wav"), 1, ATTN_NORM, 0);//silences reload sound

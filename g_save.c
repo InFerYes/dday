@@ -290,7 +290,7 @@ void InitGame(void)
 	gi.cvar("gamename", GAMEVERSION, CVAR_SERVERINFO | CVAR_LATCH);
 	gi.cvar("gamedate", __DATE__, CVAR_SERVERINFO | CVAR_LATCH);
 
-	gi.cvar("dll_version", "inferdday_20200409a", CVAR_SERVERINFO | CVAR_LATCH); //faf //InFerNo_
+	gi.cvar("dll_version", "MetalGod_D-Day 01b", CVAR_SERVERINFO | CVAR_LATCH); //faf //InFerNo_
 
 	gi.cvar("website", "http://www.DdayDev.com", CVAR_SERVERINFO | CVAR_LATCH); //faf
 
