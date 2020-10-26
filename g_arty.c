@@ -319,7 +319,9 @@ void Cmd_Arty_f(edict_t* ent)
 				if (check->obj_owner != ent->client->resp.team_on->index)
 				{
 					level.obj_team = ent->client->resp.team_on->index;
+					/* reassiged before use outside of this if/else below
 					check->obj_owner = ent->client->resp.team_on->index;
+					*/
 					check->wait = level.time;
 					//if (!check->wait) check->wait =level.time;
 				}

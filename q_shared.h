@@ -79,6 +79,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define idaxp	0
 #endif
 
+/* MetalGod MS's replacement for POSIX non-standard C function name */
+#ifdef _WIN32
+#define strdup _strdup
+#endif
+
 typedef unsigned char 		byte;
 typedef enum { false, true }      qboolean;
 
