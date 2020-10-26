@@ -888,7 +888,8 @@ void weapon_grenade_fire(edict_t* ent)
 		speed = 5; // drop the grenade
 	else
 	{
-		speed = GRENADE_MINSPEED + (int)(-(ent->client->grenade->nextthink - level.time) + 2.75) * ((GRENADE_MAXSPEED - GRENADE_MINSPEED) / GRENADE_TIMER);
+		/* MetalGod Overwritten before use
+		speed = GRENADE_MINSPEED + (int)(-(ent->client->grenade->nextthink - level.time) + 2.75) * ((GRENADE_MAXSPEED - GRENADE_MINSPEED) / GRENADE_TIMER); */
 		//gi.dprintf("speed: %i\n", speed);
 
 		speed = 500;
@@ -2527,7 +2528,8 @@ void Weapon_TNT(edict_t* ent)
 	if (ent->client->weaponstate == WEAPON_ACTIVATING)
 	{
 		gi.sound(ent, CHAN_WEAPON, gi.soundindex("weapons/tnt/pullout.wav"), 1, ATTN_NORM, 0);
-		ent->client->ps.gunframe = 1;
+		/* MetalGod overwritten before use
+		ent->client->ps.gunframe = 1;*/
 		ent->client->weaponstate = WEAPON_READY;
 		ent->client->ps.gunframe = 52;
 		return;

@@ -2104,8 +2104,9 @@ newanim:
 						ent->s.frame = FRAME_run1;
 					else
 						ent->s.frame = FRAME_run4;
-
-					client->anim_end = FRAME_run6;
+					
+					/* MetalGod reassigned before use
+					client->anim_end = FRAME_run6; */
 
 					//faf:  for limping:
 					if (ent->wound_location == LEG_WOUND)
@@ -2277,13 +2278,14 @@ void ClientEndServerFrame(edict_t* ent)
 			tr = gi.trace(start, ent->mins, ent->maxs, end, ent, MASK_SHOT | CONTENTS_SLIME | CONTENTS_LAVA);
 
 			if (tr.fraction < 1.0)
-			{
-				ent->viewheight = -1;
+			{	
+				/* MetalGod reassigned before use
+				ent->viewheight = -1;*/
 				ent->stance_view = -1;
 				//if (ent->client->v_angle[0] > 40)
-			}
+			}/* MetalGod reassigned before use
 			else
-				ent->stance_view = 4;
+				ent->stance_view = 4;*/
 			ent->viewheight = 4;
 		}
 	}
@@ -2678,8 +2680,9 @@ void ClientEndServerFrame(edict_t* ent)
 				VectorCopy(ent->client->chasetarget->client->ps.viewangles, ent->client->ps.viewangles);
 				VectorCopy(ent->client->chasetarget->client->v_angle, ent->client->v_angle);
 				ent->client->v_angle[0] = 0;
-
-				dist = .5 * height + 125;
+				
+				/* MetalGod overwritten before use
+				dist = .5 * height + 125; */
 				dist = 0.8 * height + 39;
 				//dist = height-10;
 
