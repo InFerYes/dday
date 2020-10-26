@@ -465,7 +465,7 @@ void plat_spawn_inside_trigger(edict_t* ent)
 
 	tmin[0] = ent->mins[0] + 25;
 	tmin[1] = ent->mins[1] + 25;
-	tmin[2] = ent->mins[2];
+	/* tmin[2] = ent->mins[2]; MetalGod reassigned before use below */
 
 	tmax[0] = ent->maxs[0] - 25;
 	tmax[1] = ent->maxs[1] - 25;

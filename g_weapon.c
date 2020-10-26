@@ -4554,7 +4554,7 @@ void Weapon_PIAT_Fire(edict_t* ent)
 
 void Weapon_Sten_Fire(edict_t* ent)
 {
-	int	i;
+	/* int	i; MetalGod unused */
 	vec3_t		start;
 	vec3_t		forward, right;
 	vec3_t		angles;
@@ -5730,7 +5730,8 @@ void Weapon_Pps43_Fire(edict_t* ent)
 		VectorSet(offset, 0, 0, ent->viewheight - 0);	//10
 	else
 		gi.dprintf("*** Firing System Error\n");
-
+	
+	/* MetalGod overwritten below
 	// rezmoth - cosmetic recoil
 	if (level.framenum % 3 == 0)
 	{
@@ -5739,7 +5740,8 @@ void Weapon_Pps43_Fire(edict_t* ent)
 		else
 			ent->client->kick_angles[0] = -3;
 	}
-
+	*/
+	
 	// pbowens: for darwin's 3.2 kick
 	ent->client->kick_angles[0] = ent->client->machinegun_shots * -1;
 

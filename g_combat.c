@@ -754,7 +754,7 @@ void T_Damage(edict_t* targ, edict_t* inflictor, edict_t* attacker, vec3_t dir, 
 		targ->client->last_wound_inflictor = attacker;
 
 	//hacky
-	if (attacker && attacker->ai && targ->classnameb && targ->classnameb == SANDBAGS && !OnSameTeam(targ, attacker)) /* MetalGod added !OnSameTeam(targ, attacker) so bots don't destroy their teams sandbags */
+	if (attacker && attacker->ai && /* targ->classnameb && */targ->classnameb == SANDBAGS && !OnSameTeam(targ, attacker)) /* MetalGod removed redundant check and added !OnSameTeam(targ, attacker) so bots don't destroy their teams sandbags */
 		damage = 1000;
 
 	//JABOT:  if someone attacks this guy, the teammate bots go into aim mode                         ///make attacker their enemy: //needs work
@@ -1514,16 +1514,16 @@ void SprayBlood(edict_t* self, vec3_t point, vec3_t angle, int damage, int mod)
 		break;
 	case MOD_SNIPER:
 		speed = 1600;//800;
-		break;
-	case 69:
-		speed = 2000;
+		break;/*
+	case 69:  MetalGod Magic number 69, What  is it? I can't find it. 
+		speed = 2000; */
 	default:
 		speed = 1600;//500;
 	}
 
 	//Wheaty: To prevent fireworks bloodspray
 	if (mod == MOD_PISTOL || mod == MOD_SHOTGUN || mod == MOD_RIFLE || mod == MOD_LMG
-		|| mod == MOD_HMG || mod == MOD_SUBMG || mod == MOD_SNIPER || mod == MOD_KNIFE || mod == 69)
+		|| mod == MOD_HMG || mod == MOD_SUBMG || mod == MOD_SNIPER || mod == MOD_KNIFE /*|| mod == 69*/)/* MetalGod Magic number 69, What  is it? I can't find it. */
 	{
 		level.gib_count++;//faf
 

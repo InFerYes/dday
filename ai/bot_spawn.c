@@ -493,7 +493,7 @@ void Set_VIP_Defense_Bot(edict_t* ent)
 			bot = g_edicts + i + 1;
 			if (!bot->inuse || !bot->ai)
 				continue;
-			if (!bot->client && !bot->client->resp.team_on)
+			if (!bot->client || !bot->client->resp.team_on)/* this is redundant or it's a dereference. This should have been an ||, not an && */
 				continue;
 			if (bot->client->resp.team_on->index !=
 				ent->client->resp.team_on->index)
