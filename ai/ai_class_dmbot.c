@@ -1799,12 +1799,10 @@ void BOT_DMclass_RunFrame(edict_t* self)
 	ucmd.angles[YAW] = ANGLE2SHORT(self->s.angles[YAW]);
 	ucmd.angles[ROLL] = ANGLE2SHORT(self->s.angles[ROLL]);
 
-	/*MetalGod pointless as reassigned before use.
 	// set approximate ping and show values
-	ucmd.msec = 75 + floorf(random() * 25.0) + 1;
-	self->client->ping = ucmd.msec;
-	*/
-	self->client->ping = 0;
+	ucmd.msec = 75 + floorf(random() * 25.0F) + 1;/* MetalGod changed to floorf and made explicitly a float */
+	self->client->ping = ucmd.msec;/*
+	self->client->ping = 0; Metalgod not sure why it was set, then reset to 0 here? */
 
 	// send command through id's code
 	ClientThink(self, &ucmd);

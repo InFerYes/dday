@@ -1176,7 +1176,7 @@ void Weapon_Grenade(edict_t* ent)
 			if (((ent->client->latched_buttons | ent->client->buttons) & BUTTON_ATTACK))
 				return;
 		}
-		/* MetalGod both gunframe 14 so I combined them
+		/* Metalgod both gunframe 14 so I combined them
 		// Throw it
 		if (ent->client->ps.gunframe == 14)
 		{
