@@ -710,7 +710,7 @@ void EndDMLevel(void)
 							else
 							{
 								check = t;
-								if (check)/* MetalGod avoid NULL ptr crash */
+								//if (check != =NULL)/* MetalGod avoid NULL ptr crash */
 								{
 									strcat(check, "1");
 									if (MapExists(check))
@@ -1201,7 +1201,7 @@ void ExitLevel(void)
 	BOT_RemoveBot("all", NULL);
 	//[end]
 
-	Com_sprintf(command, sizeof(command), "map \"%s\"\n", level.changemap);
+	Com_sprintf(command, sizeof(command), "gamemap \"%s\"\n", level.changemap); /*MetalGod changemap is appropriate */
 	//	Com_sprintf (command, sizeof(command), "gamemap \"%s\"\n", level.changemap);
 	gi.AddCommandString(command);
 	level.changemap = NULL;

@@ -2005,8 +2005,8 @@ void fire_rocket_piat(edict_t* self, vec3_t start, vec3_t dir, int damage, int s
 	rocket->touch = rocket_touch;
 
 	rocket->gravity = gravity;//1;//.9; //faf
-	
-	/* Metalgod reassigend in either of the conditionals below
+
+	/* MetalGod reassigned in either of the conditionals below
 	rocket->nextthink = level.time + 8000 / speed;
 	rocket->think = G_FreeEdict;
 	*/
@@ -4025,7 +4025,7 @@ void TNT_Think(edict_t* ent)
 	//switch teams exploit fix
 	if (ent->owner && ent->owner->client)
 	{
-		if (!ent->owner->client->resp.team_on || /* ent->owner->client->resp.team_on && */ ent->owner->client->resp.team_on->index != ent->obj_owner) /* Metalgod this is equivalent/removes redundant check */
+		if (!ent->owner->client->resp.team_on || /* ent->owner->client->resp.team_on && */ ent->owner->client->resp.team_on->index != ent->obj_owner) /* MetalGod this is equivalent/removes redundant check */
 		{
 			ent->think = G_FreeEdict;
 			ent->nextthink = level.time + .1;
@@ -4613,7 +4613,7 @@ void Weapon_Sten_Fire(edict_t* ent)
 
 		return;
 	}
-	
+
 	/* MetalGod this is horseshit... if you comment out all the innards, why not just comment the whole damn thing!?!?
 	if (!ent->client->aim)
 	{
@@ -4643,7 +4643,7 @@ void Weapon_Sten_Fire(edict_t* ent)
 		//ent->client->kick_angles[0] = ent->client->machinegun_shots * -1.5;
 	}
 */
-	// raise the gun as it is firing
+// raise the gun as it is firing
 //	if (!deathmatch->value)
 //	{
 	if (!ent->ai)
@@ -4674,7 +4674,7 @@ void Weapon_Sten_Fire(edict_t* ent)
 		ent->client->mags[mag_index].submg_rnd = 0;
 		return;
 	}
-	
+
 	/* MetalGod overwritten below
 	// rezmoth - cosmetic recoil
 	if (level.framenum % 3 == 0)
@@ -4685,7 +4685,7 @@ void Weapon_Sten_Fire(edict_t* ent)
 			ent->client->kick_angles[0] = -3;
 	}
 	*/
-	
+
 	// pbowens: for darwin's 3.2 kick
 	ent->client->kick_angles[0] = ent->client->machinegun_shots * -1;
 	ent->client->kick_angles[1] = ent->client->machinegun_shots * .3;
@@ -5730,7 +5730,7 @@ void Weapon_Pps43_Fire(edict_t* ent)
 		VectorSet(offset, 0, 0, ent->viewheight - 0);	//10
 	else
 		gi.dprintf("*** Firing System Error\n");
-	
+
 	/* MetalGod overwritten below
 	// rezmoth - cosmetic recoil
 	if (level.framenum % 3 == 0)
@@ -5741,7 +5741,7 @@ void Weapon_Pps43_Fire(edict_t* ent)
 			ent->client->kick_angles[0] = -3;
 	}
 	*/
-	
+
 	// pbowens: for darwin's 3.2 kick
 	ent->client->kick_angles[0] = ent->client->machinegun_shots * -1;
 

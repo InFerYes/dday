@@ -534,7 +534,7 @@ void Set_VIP_Defense_Bot(edict_t* ent)
 void BOT_DMClass_JoinGame(edict_t* ent, char* team_name)
 {
 	vec3_t	spawn_origin, spawn_angles;
-	/* int randnum = rand() % 5; Metalgod initialized, but not referenced */
+	/* int randnum = rand() % 5; MetalGod initialized, but not referenced */
 
 	if (!BOT_JoinCTFTeam(ent, team_name))
 		Com_Printf("%s joined the game.\n",

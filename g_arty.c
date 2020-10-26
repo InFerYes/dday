@@ -539,8 +539,8 @@ void Plane_Fly_Off(edict_t* ent)
 
 void Plane_Fire(edict_t* ent)
 {
-	ent->nextthink = level.time +.2;
-	
+	ent->nextthink = level.time + .2;
+
 	if (ent->leave_limbo_time < level.time - 20)
 	{
 		ent->nextthink = level.time + .1;
@@ -552,7 +552,7 @@ void Plane_Fire(edict_t* ent)
 		ent->think = Plane_Fly_Off;
 		ent->nextthink = level.time + .1;
 	}
-	/* Metalgod assign the default above the exceptions 
+	/* MetalGod assign the default above the exceptions
 	else
 	{
 		ent->nextthink = level.time + .2;
@@ -956,7 +956,7 @@ void Drop_Bomb_i(edict_t* ent)
 void Plane_Fire_i(edict_t* ent)
 {
 	ent->nextthink = level.time + .2;
-	
+
 	if (ent->leave_limbo_time < level.time - 20)
 	{
 		ent->nextthink = level.time + .1;

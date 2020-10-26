@@ -1473,7 +1473,7 @@ struct gclient_s
 	//pbowens
 	int			dmgef_startframe;
 	int			dmgef_sway_value;
-	int			dmgef_sway_switch; /* Metalgod this was qboolean, but it's set to\checked for -1 */
+	int			dmgef_sway_switch; /* MetalGod this was qboolean, but it's set to\checked for -1 */
 	float		dmgef_intensity;
 	qboolean	dmgef_flash;
 	float		dmgef_ablend;

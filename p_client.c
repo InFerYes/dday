@@ -2612,11 +2612,6 @@ void ClientUserinfoChanged(edict_t* ent, char* userinfo)
 {
 	char* s;
 	int		playernum;
-
-	/* MetalGod sanity check */
-	if (!ent)
-		return;
-	/* END */
 	//gi.dprintf("+ %s->userinfo changed\n", ent->client->pers.netname);
 
 	// check for malformed or illegal info strings
@@ -2638,7 +2633,7 @@ void ClientUserinfoChanged(edict_t* ent, char* userinfo)
 	{
 		char skin[64];
 
-		if ((ent->client->resp.team_on !=NULL) && ent->client->resp.mos)
+		if ((ent->client->resp.team_on != NULL) && ent->client->resp.mos)
 		{
 			//faf:  has the mapper set a custom skin?
 /*			if (team_list[ent->client->resp.team_on->index]->skin)
@@ -2649,33 +2644,37 @@ void ClientUserinfoChanged(edict_t* ent, char* userinfo)
 				if (ent->client->resp.mos == MEDIC)
 					strcat(skin, "_medic");
 			}*/
-
-			if (team_list[ent->client->resp.team_on->index]->skin)
+			/* MetalGod check for this first...*/
+			if (team_list[ent->client->resp.team_on->index] != NULL)
 			{
-				strcpy(skin, va("%s/%s_",
-					ent->client->resp.team_on->playermodel,
-					team_list[ent->client->resp.team_on->index]->skin)
-				);
-				if (ent->client->resp.mos == MEDIC)
-					strcat(skin, "medic");
-				else if (ent->client->resp.mos == INFANTRY)
-					strcat(skin, "infantry");
-				else if (ent->client->resp.mos == OFFICER)
-					strcat(skin, "officer");
-				else if (ent->client->resp.mos == L_GUNNER)
-					strcat(skin, "lmg");
-				else if (ent->client->resp.mos == H_GUNNER)
-					strcat(skin, "hmg");
-				else if (ent->client->resp.mos == SNIPER)
-					strcat(skin, "sniper");
-				else if (ent->client->resp.mos == SPECIAL)
-					strcat(skin, "special");
-				else if (ent->client->resp.mos == ENGINEER)
-					strcat(skin, "engineer");
-				else if (ent->client->resp.mos == FLAMER)
-					strcat(skin, "flamethrower");
-				else
-					strcat(skin, "infantry");
+				/* MetalGod then this... */
+				if (team_list[ent->client->resp.team_on->index]->skin)
+				{
+					strcpy(skin, va("%s/%s_",
+						ent->client->resp.team_on->playermodel,
+						team_list[ent->client->resp.team_on->index]->skin)
+					);
+					if (ent->client->resp.mos == MEDIC)
+						strcat(skin, "medic");
+					else if (ent->client->resp.mos == INFANTRY)
+						strcat(skin, "infantry");
+					else if (ent->client->resp.mos == OFFICER)
+						strcat(skin, "officer");
+					else if (ent->client->resp.mos == L_GUNNER)
+						strcat(skin, "lmg");
+					else if (ent->client->resp.mos == H_GUNNER)
+						strcat(skin, "hmg");
+					else if (ent->client->resp.mos == SNIPER)
+						strcat(skin, "sniper");
+					else if (ent->client->resp.mos == SPECIAL)
+						strcat(skin, "special");
+					else if (ent->client->resp.mos == ENGINEER)
+						strcat(skin, "engineer");
+					else if (ent->client->resp.mos == FLAMER)
+						strcat(skin, "flamethrower");
+					else
+						strcat(skin, "infantry");
+				}
 			}
 			else
 			{
