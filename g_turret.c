@@ -570,7 +570,7 @@ void turret_breach_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int
 		else
 			turret_off(self->owner);
 	}
-	while ((t = G_Find(t, FOFS(classname), "turret_range")))
+	while ((t = G_Find(t, FOFS(classname), "turret_range")) != NULL) /* MetalGod != NULL*/
 	{
 		if (!t->inuse)
 			continue;
@@ -580,7 +580,7 @@ void turret_breach_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int
 	}
 
 	t = NULL;
-	while ((t = G_Find(t, FOFS(classname), "turret_base")))
+	while ((t = G_Find(t, FOFS(classname), "turret_base")) != NULL) /* MetalGod != NULL*/
 	{
 		if (!t->inuse)
 			continue;
@@ -615,7 +615,7 @@ void turret_base_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int d
 				G_FreeEdict(t);
 		}
 		t = NULL;*/
-	while ((t = G_Find(t, FOFS(classname), "turret_breach")))
+	while ((t = G_Find(t, FOFS(classname), "turret_breach")) != NULL) /* MetalGod != NULL*/
 	{
 		if (!t->inuse)
 			continue;
@@ -887,7 +887,7 @@ void turret_driver_link(edict_t* self)
 
 	t = NULL;
 
-	while ((t = G_Find(t, FOFS(classname), "turret_driver")))
+	while ((t = G_Find(t, FOFS(classname), "turret_driver")) != NULL) /* MetalGod != NULL*/
 	{
 		if (!strcmp(t->target, self->target_ent->targetname))
 		{
@@ -1014,7 +1014,7 @@ qboolean CheckForTurret(edict_t* ent)
 
 	t = NULL;
 
-	while ((t = G_Find(t, FOFS(classname), "turret_range")))
+	while ((t = G_Find(t, FOFS(classname), "turret_range")) != NULL) /* MetalGod != NULL*/
 	{
 		if (t->oldenemy == ent &&
 			t->obj_time > level.time - .2 &&

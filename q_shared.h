@@ -32,20 +32,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma warning(disable : 4244)     // MIPS
 #pragma warning(disable : 4136)     // X86
 #pragma warning(disable : 4051)     // ALPHA
-
+#pragma warning(disable : 4100)     // unused parameter
 #pragma warning(disable : 4018)     // signed/unsigned mismatch
 #pragma warning(disable : 4305)		// truncation from const double to float
-#pragma warning(disable : 4057)		// function differes slightly in indirection to slightly different base type
+#pragma warning(disable : 4057)		// function differs slightly in indirection to slightly different base type
 
-#pragma warning(disable : 4100)     // unused parameter
-#pragma warning(disable : 4996)		// Shut up MSVS
 #pragma warning(disable : 4701)     // potentially uninitialized variable used
 #pragma warning(disable : 4703)     // potentially uninitialized pointer variable used
+#pragma warning(disable : 4459)		// declaration hides global declaration
+/*
 #pragma warning(disable : 4706)     // assignment within conditional expression
 #pragma warning(disable : 4061)		// enumerator in switch not explicitly handled by case label
 #pragma warning(disable : 4062)		// enumerator in switch not handled by case label
 #pragma warning(disable : 4459)     // dclaration of variable hides global declaration
-/*
+
 #pragma warning(disable : 5045)		// Spectre mitigation
 #pragma warning(disable : 4820)     // padding added after data member
 #pragma warning(disable : 4464)     // relative path contains '..'
@@ -53,9 +53,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma warning(disable : 4703)     // potentially uninitialized variable used
 #pragma warning(disable : 4242)     // converstion from type 1 to type 2 possible loss of data
 #pragma warning(disable : 4255)		// no function prototype given: converting to void
-#pragma warning(disable : 4459)		// declaration hides global declaration
-*/
 
+*/
+#pragma warning(disable : 4996)		// Shut up MSVS
 #endif
 
 #include <assert.h>

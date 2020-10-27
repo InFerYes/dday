@@ -1417,7 +1417,9 @@ int Play_Bullet_Hit(edict_t* ent, char* surface, vec3_t endpos, edict_t* impact_
 qboolean Surface(char* name, int type);
 void Blade_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
+	/* MetalGod is initialized but not referenced
 	qboolean fistarmed = Q_stricmp(self->classname, "blade");
+	*/
 	gitem_t* item = FindItem("Knife");
 	edict_t* dropped;
 	vec3_t          move_angles;//, origin;
@@ -2265,7 +2267,9 @@ void Weapon_Bandage_Use(edict_t* ent)
 {
 	edict_t* target;
 	ent->client->ps.gunframe++;
-	if (!(target = ApplyFirstAid(ent)))return;
+	if (!(target = ApplyFirstAid(ent)))
+		return;
+
 	if (target->wound_location & (CHEST_WOUND | STOMACH_WOUND))
 	{
 		if (target->die_time) target->die_time += (BANDAGE_TIME);

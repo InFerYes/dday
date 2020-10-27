@@ -1178,14 +1178,14 @@ void Cmd_Use_f(edict_t* ent)
 		}
 		else if (Q_stricmp(s, "weapon1") == 0)
 		{
-			if (it = FindItem(ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon1))
+			if ((it = FindItem(ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon1)) != NULL) /* MetalGod != NULL*/
 				strcpy(s, ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon1);
 			else
 				it = ent->client->pers.weapon;
 		}
 		else if (Q_stricmp(s, "weapon2") == 0)
 		{
-			if (it = FindItem(ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon2))
+			if ((it = FindItem(ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon2)) != NULL) /* MetalGod != NULL*/
 				strcpy(s, ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon2);
 			else
 				it = ent->client->pers.weapon;
@@ -1201,7 +1201,7 @@ void Cmd_Use_f(edict_t* ent)
 		*/
 		else if (Q_stricmp(s, "special") == 0)
 		{
-			if (it = FindItem(ent->client->resp.team_on->mos[ent->client->resp.mos]->special))
+			if ((it = FindItem(ent->client->resp.team_on->mos[ent->client->resp.mos]->special)) != NULL) /* MetalGod != NULL*/
 				strcpy(s, ent->client->resp.team_on->mos[ent->client->resp.mos]->special);
 			else
 				it = ent->client->pers.weapon;
@@ -1532,7 +1532,7 @@ void Cmd_Objectives(edict_t* ent)
 	char	entryb[1024];
 	int	stringlength;
 	char* bp;
-	char* objective_name;
+	char* objective_name = NULL; /* MetalGod initialized */
 
 	//JABot[start]
 	if (ent->ai || !ent->inuse)
@@ -2131,7 +2131,7 @@ void GetNearbyLocation(edict_t* self, char* buf)
 	float nearest_distance = 9999999;
 
 	vec3_t dist, dist2;
-	edict_t* e, * closest;
+	edict_t* e, * closest = NULL; /*MetalGod initialized */
 
 	for (i = 0; i < globals.num_edicts; i++)
 	{
@@ -2314,7 +2314,7 @@ void Cmd_Say_f(edict_t* ent, qboolean team, qboolean arg0, qboolean saved)
 	int			i, j, offset_of_text;
 	edict_t* entR = NULL;
 	/* edict_t* entG = NULL; MetalGod initialized, but not referenced */
-	char* p;
+	char* p = NULL; /* MetalGod initialized */
 	char		text[2048];
 	gclient_t* cl;
 	char teamname[5];
@@ -3215,7 +3215,7 @@ void Cmd_MOTD(edict_t* ent)
 	char motd[1000];
 	char line[100];
 
-	if (motd_file = fopen(GAMEVERSION "/motd.txt", "r"))
+	if ((motd_file = fopen(GAMEVERSION "/motd.txt", "r")) != NULL)/* MetalGod !=NULL */
 	{
 		// we successfully opened the file "motd.txt"
 		if (fgets(motd, 900, motd_file))

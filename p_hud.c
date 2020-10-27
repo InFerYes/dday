@@ -96,7 +96,7 @@ void MoveClientToIntermission(edict_t* ent)
 
 			t = NULL;
 
-			while ((t = G_Find(t, FOFS(classname), "target_speaker")))
+			while ((t = G_Find(t, FOFS(classname), "target_speaker")) != NULL) /* MetalGod != NULL*/
 			{
 				t->s.sound = 0;
 			}

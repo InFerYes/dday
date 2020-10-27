@@ -879,7 +879,7 @@ void door_use_areaportals(edict_t* self, qboolean open)
 	if (!self->target)
 		return;
 
-	while ((t = G_Find(t, FOFS(targetname), self->target)))
+	while ((t = G_Find(t, FOFS(targetname), self->target)) != NULL) /* MetalGod != NULL*/
 	{
 		if (Q_stricmp(t->classname, "func_areaportal") == 0)
 		{

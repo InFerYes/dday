@@ -392,16 +392,16 @@ spawn_t spawns[MAX_EDICTS] = {
 										{"timed_objective_touch",SP_timed_objective_touch},
 										{"func_explosive_objective", SP_func_explosive_objective}, //test
 										{"map_location", SP_map_location},//faf
-										{"spawn_protect", SP_spawn_protect},//faf
-										{"misc_airstrike", SP_airstrike},
-										{"spawn_toggle", SP_Spawn_Toggle},
-										//end of item modifications.
+			{"spawn_protect", SP_spawn_protect},//faf
+			{"misc_airstrike", SP_airstrike},
+			{"spawn_toggle", SP_Spawn_Toggle},
+			//end of item modifications.
 
-									   {"item_botroam", SP_item_botroam},	//JABot
+			{"item_botroam", SP_item_botroam},	//JABot
 
-									   {"briefcase", SP_briefcase},//faf:ctb code
+			{"briefcase", SP_briefcase},//faf:ctb code
 
-									   {NULL, NULL}
+			{NULL, NULL}
 };
 /*
 ===============

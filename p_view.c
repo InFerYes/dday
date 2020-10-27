@@ -1233,7 +1233,7 @@ void P_ShowID(edict_t* ent)
 		ent->client->ps.stats[STAT_IDENT_HEALTH] = 0;//CS_OBJECTIVES + (ent - g_edicts - 1);
 
 		ent->client->ps.stats[STAT_IDENT] = 1;
-		ent->client->ps.stats[STAT_IDENT_PLAYER] = CS_OBJECTIVES + (ent - g_edicts - 1);;
+		ent->client->ps.stats[STAT_IDENT_PLAYER] = CS_OBJECTIVES + (ent - g_edicts - 1);
 		ent->client->ps.stats[STAT_IDENT_ICON] = 0;
 	}
 	else if (level.intermissiontime || (ent->client->last_id_time + 1) < level.time) //delay on player id: faf
@@ -2104,7 +2104,7 @@ newanim:
 						ent->s.frame = FRAME_run1;
 					else
 						ent->s.frame = FRAME_run4;
-					
+
 					/* MetalGod reassigned before use
 					client->anim_end = FRAME_run6; */
 
@@ -2278,7 +2278,7 @@ void ClientEndServerFrame(edict_t* ent)
 			tr = gi.trace(start, ent->mins, ent->maxs, end, ent, MASK_SHOT | CONTENTS_SLIME | CONTENTS_LAVA);
 
 			if (tr.fraction < 1.0)
-			{	
+			{
 				/* MetalGod reassigned before use
 				ent->viewheight = -1;*/
 				ent->stance_view = -1;
@@ -2680,7 +2680,7 @@ void ClientEndServerFrame(edict_t* ent)
 				VectorCopy(ent->client->chasetarget->client->ps.viewangles, ent->client->ps.viewangles);
 				VectorCopy(ent->client->chasetarget->client->v_angle, ent->client->v_angle);
 				ent->client->v_angle[0] = 0;
-				
+
 				/* MetalGod overwritten before use
 				dist = .5 * height + 125; */
 				dist = 0.8 * height + 39;

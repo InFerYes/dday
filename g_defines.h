@@ -96,7 +96,7 @@ implemented it yet? */
 #define TEAM_OFFENCE		1
 #define TEAM_PATROL			2
 
-#define MAX_TEAMS			3 // 0 being NONE, 1 and 2 are real teams /* MetalGod This is wrong, given it's used in an array for 2 teams it needed to be 3, not 2! */
+#define MAX_TEAMS			2 // 0 being NONE, 1 and 2 are real teams 
 #define MAX_TEAM_MATES		16  //max number of people on team
 
 #define SHOUT_RADIUS		1500

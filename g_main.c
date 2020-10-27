@@ -329,20 +329,18 @@ qboolean MapExists(char* map)
 	strcat(filename, map);
 	strcat(filename, ".bsp");
 
-	if (check = fopen(filename, "r"))
+	if ((check = fopen(filename, "r")) != NULL) /* MetalGod != NULL*/
 	{
 		fclose(check);
-		gi.dprintf("Map %s found in dday\n", filename);
 		return true;
 	}
 
 	strcpy(filename, "baseq2/maps/");
 	strcat(filename, map);
 	strcat(filename, ".bsp");
-	if (check = fopen(filename, "r"))
+	if ((check = fopen(filename, "r")) != NULL) /* MetalGod != NULL*/
 	{
 		fclose(check);
-		gi.dprintf("Map %s found in baseq2\n", filename);
 		return true;
 	}
 
@@ -350,10 +348,9 @@ qboolean MapExists(char* map)
 	strcat(filename, map);
 	strcat(filename, ".bsp.override");
 
-	if (check = fopen(filename, "r"))
+	if ((check = fopen(filename, "r")) != NULL) /* MetalGod != NULL*/
 	{
 		fclose(check);
-		gi.dprintf("Map override %s found in dday\n", filename);
 		return true;
 	}
 

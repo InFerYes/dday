@@ -1046,8 +1046,8 @@ void M_Name_Choose(edict_t* ent, pmenu_t* p, int choice)
 void MainMenu(edict_t* ent)
 {
 	/* MetalGod sanity check */
-	if (!ent || !ent->client)
-		return;;
+	if (!ent)
+		return;
 
 	PMenu_Close(ent);
 

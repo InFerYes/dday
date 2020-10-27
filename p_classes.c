@@ -170,7 +170,7 @@ void Give_Class_Weapon(edict_t* ent)
 	item = NULL;
 	//if(client->resp.team_on->mos[client->resp.mos]->weapon2)
 	//{
-	if (item = FindItem(client->resp.team_on->mos[client->resp.mos]->weapon2))
+	if ((item = FindItem(client->resp.team_on->mos[client->resp.mos]->weapon2)) != NULL) /* MetalGod != NULL */
 		client->pers.inventory[ITEM_INDEX(item)] = 1;
 
 	// Loads secondary weapon, if existant, when spawning
@@ -195,12 +195,12 @@ void Give_Class_Weapon(edict_t* ent)
 	//if(client->resp.team_on->mos[client->resp.mos]->grenades)
 	//{
 	if (!no_nades->value)//ddaylife
-		if (item = FindItem(client->resp.team_on->mos[client->resp.mos]->grenades))
+		if ((item = FindItem(client->resp.team_on->mos[client->resp.mos]->grenades)) != NULL) /* MetalGod != NULL */
 			client->pers.inventory[ITEM_INDEX(item)] = client->resp.team_on->mos[client->resp.mos]->grenadenum;
 	//}
 	//if(client->resp.team_on->mos[client->resp.mos]->special)
 	//{
-	if (item = FindItem(client->resp.team_on->mos[client->resp.mos]->special))
+	if ((item = FindItem(client->resp.team_on->mos[client->resp.mos]->special)) != NULL) /* MetalGod != NULL */
 		client->pers.inventory[ITEM_INDEX(item)] = client->resp.team_on->mos[client->resp.mos]->specnum;
 	//}
 

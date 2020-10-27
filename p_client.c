@@ -2613,10 +2613,6 @@ void ClientUserinfoChanged(edict_t* ent, char* userinfo)
 	char* s;
 	int		playernum;
 
-	/* MetalGod sanity check */
-	if (!ent)
-		return;
-	/* END */
 	//gi.dprintf("+ %s->userinfo changed\n", ent->client->pers.netname);
 
 	// check for malformed or illegal info strings
