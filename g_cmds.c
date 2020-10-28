@@ -2248,67 +2248,10 @@ char* SeekBufEnd(char* buf)
 		buf++;
 	return buf;
 }
-#define PARSE_BUFSIZE 256
-void ParseSayText(edict_t* ent, char* text, size_t size)
-{
-	char buf[PARSE_BUFSIZE + 256] = "\0"; //Parsebuf + chatpuf size
-	char* p, * pbuf;
 
-	p = text;
-	pbuf = buf;
-
-
-	while (*p != 0)
-	{
-		if (*p == '%')
-		{
-			switch (*(p + 1))
-			{
-			case 'L':
-				GetNearbyLocation(ent, pbuf);
-				pbuf = SeekBufEnd(pbuf);
-				p += 2;
-				break;
-			case 'T':
-				GetNearbyTeammates(ent, pbuf);
-				pbuf = SeekBufEnd(pbuf);
-				p += 2;
-				break;
-			case 'M':
-				GetNearestMedic(ent, pbuf);
-				pbuf = SeekBufEnd(pbuf);
-				p += 2;
-				break;
-			case 'C':
-				GetClass(ent, pbuf);
-				pbuf = SeekBufEnd(pbuf);
-				p += 2;
-				break;
-				//AQ2:TNG END
-			default:
-				*pbuf++ = *p++;
-				break;
-			}
-		}
-		else
-		{
-			*pbuf++ = *p++;
-		}
-
-		if (buf[size - 1])
-		{
-			buf[size - 1] = 0;
-			break;
-		}
-	}
-
-	*pbuf = 0;
-	strcpy(text, buf);
-}
-/*
 void ParseSayText(edict_t* ent, char* text)
 {
-	static unsigned char buf[10240], infobuf[10240];
+	char buf[10240], infobuf[10240]; /* MetalGod no need to be unsigned */
 	char* p, * pbuf;
 
 	p = text;
@@ -2359,7 +2302,6 @@ void ParseSayText(edict_t* ent, char* text)
 	strncpy(text, buf, 150);
 	text[150] = 0; // in case it's 150
 }
-*/
 /*
 ==================
 Cmd_Say_f
@@ -2371,7 +2313,7 @@ void Cmd_Say_f(edict_t* ent, qboolean team, qboolean arg0, qboolean saved)
 	int			i, j, offset_of_text;
 	edict_t* entR = NULL;
 	/* edict_t* entG = NULL; MetalGod initialized, but not referenced */
-	char* p = NULL, *s = NULL; /* MetalGod initialized  and added *s */
+	char* p = NULL; /* MetalGod initialized */
 	char		text[2048];
 	gclient_t* cl;
 	char teamname[5];
@@ -2439,9 +2381,7 @@ void Cmd_Say_f(edict_t* ent, qboolean team, qboolean arg0, qboolean saved)
 
 		//faf: from aq2
 		if (ent->solid != SOLID_NOT && ent->deadflag != DEAD_DEAD)
-			/* MetalGod replaced using revised function
-			ParseSayText(ent, text + offset_of_text);  //FB 5/31/99 - offset change*/
-		ParseSayText(ent, s, sizeof(text) - (s - text + 1) - 2);
+			ParseSayText(ent, text + offset_of_text);  //FB 5/31/99 - offset change
 							// this will parse the % variables,
 
 		strcat(text, "\n");
