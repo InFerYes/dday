@@ -542,12 +542,13 @@ void SP_info_team_start(edict_t* ent)
 			strcpy (ent->message, team);*/
 		int r;
 		char* team;
-		r = (int)(random() * 5);
+		/*r = (int)(random() * 5); MetalGod put this where it's used and use an appropriate choice for sides */
 		if (i == 0)
 		{
+			r = (int)(random() * 5);/* MetalGod */
 			switch (r)
 			{
-				/* MetalGod this does noting but make the following code in the swtich unreachable
+				/* MetalGod this does nothing but make the following code in the switch unreachable
 				r = (int)(random() * 4); */
 			case 0: team = "rus"; break;
 			case 1: team = "gbr"; break;
@@ -558,9 +559,10 @@ void SP_info_team_start(edict_t* ent)
 		}
 		else
 		{
+			r = (int)(random() * 3); /* MetalGod +*/
 			switch (r)
 			{
-				/* MetalGod this does noting but make the following code in the swtich unreachable
+				/* MetalGod this does nothing but make the following code in the switch unreachable
 				r = (int)(random() * 2);
 				*/
 			case 0: team = "grm"; break;

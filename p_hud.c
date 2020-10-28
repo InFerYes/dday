@@ -666,7 +666,7 @@ void A_ScoreboardMessage(edict_t* ent)//, edict_t *killer)
 		strcat(scoretoprightpic, team_list[1]->teamid);
 		strcat(scoretoprightpic, "_score_top  ");
 
-		strcat(string, scoretopleftpic); //team 0 /* MetalGod oops here! was set to sprintf, not strcat!*/
+		sprintf(string, scoretopleftpic); //team 0 /* MetalGod Note sprintf*/
 		strcat(string, scoretoprightpic); // team 1
 		strcat(string, scoreleftpic); //background left list pic
 		strcat(string, scorerightpic); // background right list pic
@@ -974,7 +974,7 @@ void A_ScoreboardMessage2(edict_t* ent)//, edict_t *killer)
 		strcat(scoretoprightpic, team_list[1]->teamid);
 		strcat(scoretoprightpic, "_score_top  ");
 
-		strcat(string, scoretopleftpic); //team 0 /* MetalGod oops here! was set to sprintf, not strcat! */
+		sprintf(string, scoretopleftpic); //team 0 /* MetalGod Note sprintf! */
 		strcat(string, scoretoprightpic); // team 1
 		strcat(string, scoreleftpic); //background left list pic
 		strcat(string, scorerightpic); // background right list pic
