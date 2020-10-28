@@ -772,7 +772,7 @@ char* ReadEntFile(char* filename)
 	long int	i = 0;
 	int			ch;
 
-	while (true)
+	for(;;)/* MetalGod shut up compiler */
 	{
 		fp = fopen(filename, "r");
 		if (!fp) break;

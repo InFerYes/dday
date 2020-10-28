@@ -96,19 +96,19 @@ qboolean fire_hit(edict_t* self, vec3_t aim, int damage, int kick)
 	vec3_t		forward, right, up;
 	vec3_t		v;
 	vec3_t		point;
-	float		range;
+	float		extent;/* MetalGod was range, changed to avoid shadowing outer function */
 	vec3_t		dir;
 
-	//see if enemy is in range
+	//see if enemy is in extent
 	VectorSubtract(self->enemy->s.origin, self->s.origin, dir);
-	range = VectorLength(dir);
-	if (range > aim[0])
+	extent = VectorLength(dir);
+	if (extent > aim[0])
 		return false;
 
 	if (aim[1] > self->mins[0] && aim[1] < self->maxs[0])
 	{
-		// the hit is straight on so back the range up to the edge of their bbox
-		range -= self->enemy->maxs[0];
+		// the hit is straight on so back the extent up to the edge of their bbox
+		extent -= self->enemy->maxs[0];
 	}
 	else
 	{
@@ -119,7 +119,7 @@ qboolean fire_hit(edict_t* self, vec3_t aim, int damage, int kick)
 			aim[1] = self->enemy->maxs[0];
 	}
 
-	VectorMA(self->s.origin, range, dir, point);
+	VectorMA(self->s.origin, extent, dir, point);
 
 	tr = gi.trace(self->s.origin, NULL, NULL, point, self, MASK_SHOT);
 	if (tr.fraction < 1)
@@ -132,7 +132,7 @@ qboolean fire_hit(edict_t* self, vec3_t aim, int damage, int kick)
 	}
 
 	AngleVectors(self->s.angles, forward, right, up);
-	VectorMA(self->s.origin, range, forward, point);
+	VectorMA(self->s.origin, extent, forward, point);
 	VectorMA(point, aim[1], right, point);
 	VectorMA(point, aim[2], up, point);
 	VectorSubtract(point, self->enemy->s.origin, dir);

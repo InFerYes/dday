@@ -703,10 +703,10 @@ void ClientObituary(edict_t* self, edict_t* inflictor, edict_t* attacker)
 				/*-----------------------------------------------------------------*/
 			case MOD_KNIFE:
 
-				if (attacker->client->pers.weapon &&
+				if (/*attacker->client->pers.weapon && MetalGod redundant check */
 					attacker->client->pers.weapon->classnameb == WEAPON_KATANA)
 					message = "was sliced in half by";
-				else if (attacker->client->pers.weapon &&
+				else if (/*attacker->client->pers.weapon &&  MetalGod redundant check */
 					attacker->client->pers.weapon->classnameb == WEAPON_SABRE)
 					message = "was sliced in half by";
 				else

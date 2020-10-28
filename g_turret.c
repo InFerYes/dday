@@ -846,7 +846,7 @@ void turret_driver_link(edict_t* self)
 
 	int i;
 
-	if (self->client->turret->obj_gain &&
+	if (/* self->client->turret->obj_gain && MetalGod redundant check */
 		self->client->turret->obj_gain == 1) //(mapper set ("tank" to 1))
 	{
 		self->svflags |= SVF_NOCLIENT;
@@ -859,8 +859,9 @@ void turret_driver_link(edict_t* self)
 		change_stance(self, self->client->turret->sounds);
 		//		gi.dprintf ("%s\n",self->client->turret->sounds);
 	}
+	/* MetalGod reassigned before use below
 	self->movetype = MOVETYPE_FLYMISSILE;
-
+	*/
 	VectorClear(self->velocity);
 
 	self->client->ps.pmove.pm_type = PM_FREEZE;

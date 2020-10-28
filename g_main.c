@@ -707,16 +707,14 @@ void EndDMLevel(void)
 							else
 							{
 								check = t;
-								if (check)/* MetalGod avoid NULL ptr crash */
+								strcat(check, "1");
+							
+							if (MapExists(check))
 								{
-									strcat(check, "1");
-									if (MapExists(check))
-									{
-										safe_bprintf(PRINT_HIGH, "Next map: %s \n", check);
-										BeginIntermission(CreateTargetChangeLevel(check));
-										return;
-									}
-								}
+									safe_bprintf(PRINT_HIGH, "Next map: %s \n", check);
+									BeginIntermission(CreateTargetChangeLevel(check));
+									return;
+								}	
 							}
 						}
 					}
@@ -773,7 +771,7 @@ void EndDMLevel(void)
 				{
 					//restart maplist
 					sb = strdup(sv_maplist->string);
-					tb = strtok(s, seps);
+					tb = strtok(sb, seps);/* MetalGod changed to sb from s */
 					if (MapExists(tb))
 					{
 						safe_bprintf(PRINT_HIGH, "Next map: %s \n", tb);
