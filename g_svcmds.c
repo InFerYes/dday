@@ -391,7 +391,7 @@ void SetupCampaign(qboolean restart)
 	for (i = 0; campaignfilename[i]; i++)
 		campaignfilename[i] = tolower(campaignfilename[i]);
 
-	if (restart == true || !(check = fopen(campaignfilename, "r")))//no current campaign
+	if (restart == true || (check = fopen(campaignfilename, "r")) == NULL)//no current campaign /* MetalGod made this a bit clearer */
 	{
 		sprintf(campaignfilename, "dday/campaigns/%s.cpgntemplate", campaign->string);
 	}

@@ -464,7 +464,7 @@ char* ED_NewString(char* string)
 
 	for (i = 0; i < l; i++)
 	{
-		if (string[i] == '\\' && i < l - 1)
+		if (string[i] == '\\' && l-1  > i)/* Metalgod was i < l - 1 Changed to ensure the limit check was made before checking the value of i! */
 		{
 			i++;
 			if (string[i] == 'n')
@@ -864,13 +864,13 @@ void LoadCampFile(void)
 	char	cmpfilename[MAX_QPATH] = "";
 	char* camplocs;
 	int		i, c;
-
 	char* s, * f;
-
 	vec3_t	loc;
-	int x, y, z;
-	int angle;
-	int team;
+	/* MetalGod initialized */
+	int x = 0, y = 0, z = 0;
+	int angle = 0;
+	int team = 0;
+	/* END */
 	int	stance;
 
 	if (level.botfiles)

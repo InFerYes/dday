@@ -261,12 +261,12 @@ int AI_ClosestNodeToSpot(vec3_t origin, edict_t* passent, qboolean visible)
 	float		rng;
 	vec3_t		maxs, mins;
 
-	int range = 200;
+	int nrange = 200; /* MetalGod changed to nrange to avoid shadowing outer function */
 
 	VectorSet(mins, -15, -15, -15);
 	VectorSet(maxs, 15, 15, 15);
 
-	rng = (float)(range * range); // square range for distance comparison (eliminate sqrt)
+	rng = (float)(nrange * nrange); // square range for distance comparison (eliminate sqrt)
 
 	for (i = 0; i < nav.num_nodes; i++)
 	{

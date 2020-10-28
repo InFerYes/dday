@@ -402,7 +402,7 @@ qboolean BOT_DMclass_FindEnemy(edict_t* self)
 
 	edict_t* bestenemy = NULL;
 	float		bestweight = 99999;
-	float		weight;
+	float		weight = 0; /* MetalGod initialized */
 	vec3_t		dist;
 	int wrange;
 	int camp_targ_save;
@@ -890,7 +890,7 @@ void BOT_CheckFireWeapon(edict_t* self, usercmd_t* ucmd)
 	//float	dist;
 	vec3_t	fireorig;
 	vec3_t	enemyorig;
-	int		enemystance;
+	int		enemystance = 0; /*( MetalGod initialized */
 
 	int randnum;
 

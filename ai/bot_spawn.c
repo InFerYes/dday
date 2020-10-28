@@ -270,7 +270,7 @@ edict_t* BOT_FindFreeClient(void)
 void BOT_SetName(edict_t* bot, char* name, char* skin, int team)
 {
 	//	float rnd;
-	int  randname;
+	int  randname = 0; /* MetalGod initialized */
 	char userinfo[MAX_INFO_STRING];
 	char bot_skin[MAX_INFO_STRING];
 	char bot_name[MAX_INFO_STRING];

@@ -898,7 +898,7 @@ void CheckDMRules(void)
 	if (level.ctb_time)
 	{
 		vec3_t		w; //faf
-		float		range;//faf
+		float		briefcase_range;//faf /* MetalGod was range. Changed to a name that doesn't shadow an outer function */
 		edict_t* check;
 		edict_t* usaflag = NULL; /* MetalGod initialized */
 		edict_t* grmflag = NULL; /* MetalGod initialized */
@@ -949,17 +949,17 @@ void CheckDMRules(void)
 					if (!strcmp(check->classname, "briefcase"))
 					{
 						VectorSubtract(check->s.origin, usaflag->s.origin, w);
-						range = VectorLength(w);
+						briefcase_range = VectorLength(w);
 
-						if (range < 40)  //briefcase is near usa flag at end of map
+						if (briefcase_range < 40)  //briefcase is near usa flag at end of map
 						{
 							team_list[0]->score += 100;
 						}
 
 						VectorSubtract(check->s.origin, grmflag->s.origin, w);
-						range = VectorLength(w);
+						briefcase_range = VectorLength(w);
 
-						if (range < 40)  //briefcase is near grm flag at end of map
+						if (briefcase_range < 40)  //briefcase is near grm flag at end of map
 						{
 							team_list[1]->score += 100;
 						}
@@ -975,17 +975,17 @@ void CheckDMRules(void)
 					if (e->client->pers.inventory[ITEM_INDEX(FindItem("briefcase"))])
 					{
 						VectorSubtract(e->s.origin, usaflag->s.origin, w);
-						range = VectorLength(w);
+						briefcase_range = VectorLength(w);
 
-						if (range < 40)  //briefcase is near usa flag at end of map
+						if (briefcase_range < 40)  //briefcase is near usa flag at end of map
 						{
 							team_list[0]->score += 100;
 						}
 
 						VectorSubtract(e->s.origin, grmflag->s.origin, w);
-						range = VectorLength(w);
+						briefcase_range = VectorLength(w);
 
-						if (range < 40)  //briefcase is near grm flag at end of map
+						if (briefcase_range < 40)  //briefcase is near grm flag at end of map
 						{
 							team_list[1]->score += 100;
 						}

@@ -3124,7 +3124,7 @@ qboolean Setup_Map_Vote(void)
 	int mapcount;
 	int	newmapcount;
 	int x;
-	int randnum;
+	int randnum = 0; /* MetalGod initialized */
 	int removed;
 	char* possible_maps[300];
 	char* maplisttxt[300];

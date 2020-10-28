@@ -2128,7 +2128,7 @@ void Weapon_Morphine_Use(edict_t* ent)
 		target = ent;
 	else
 	{
-		if (!(target = ApplyFirstAid(ent)))
+		if ((target = ApplyFirstAid(ent))== NULL) /* MetalGod if NULL*/
 			return;
 
 		if (!target->client)
@@ -2267,7 +2267,7 @@ void Weapon_Bandage_Use(edict_t* ent)
 {
 	edict_t* target;
 	ent->client->ps.gunframe++;
-	if (!(target = ApplyFirstAid(ent)))
+	if ((target = ApplyFirstAid(ent)) == NULL) /* MetalGod if NULL */
 		return;
 
 	if (target->wound_location & (CHEST_WOUND | STOMACH_WOUND))

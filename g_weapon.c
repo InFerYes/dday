@@ -2433,7 +2433,7 @@ edict_t* ApplyFirstAid(edict_t* ent)
 int DoAnarchyStuff(edict_t* ent, char* sound)
 {
 	static int lastone; /* MetalGod this was missing typee specifier - C no longer supports default - int */
-	int soundindexM, soundindexF = 0; /* MetalGod initialized */
+	int soundindexM = 0, soundindexF = 0; /* MetalGod initialized */
 	float RanMale, RanFemale;
 
 	if (!ent->sexpistols) return gi.soundindex(sound);
