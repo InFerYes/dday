@@ -879,7 +879,7 @@ void ShowSpot(vec3_t orig, qboolean blah)
 
 void ParseBotChat(char* text, edict_t* attacker)
 {
-	static unsigned char buf[10240], infobuf[10240];
+	static char buf[10240], infobuf[10240];/* MetalGod No need to be unsigned */
 	char* p, * pbuf;
 
 	p = text;
@@ -912,7 +912,6 @@ void ParseBotChat(char* text, edict_t* attacker)
 	*pbuf = 0;
 
 	strncpy(text, buf, 150);
-	if (strlen(text) > 149)
 		text[150] = 0; // in case it's 150
 }
 

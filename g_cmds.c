@@ -216,8 +216,8 @@ g_cmds_t id_GameCmds[NUM_ID_CMDS] = // remember to set back to NUM_ID_COMDS
 	"main",			1,	Cmd_Menu_Main_f,//Cmd_Join_team,
 	"menu",			1,	Cmd_Menu_Main_f,//Cmd_Join_team,
 	"list_team",	1,	Cmd_List_team,
-	"reload",		1,	(void*)Cmd_Reload_f,
-	"scope",		2,	(void*)Cmd_Scope_f,
+	"reload",		1,	Cmd_Reload_f,/* MetalGod removed (void*) */
+	"scope",		2,	Cmd_Scope_f,
 	"shout",		3,	Cmd_Shout_f,
 	"aliciamode",	1,	Cmd_AliciaMode_f,
 	"iwannabeanarchy",1,Cmd_SexPistols_f,
@@ -2020,7 +2020,7 @@ void Cmd_Wave_f(edict_t* ent, int wave)
 //faf:  based on aq2 code
 void GetNearbyTeammates(edict_t* self, char* buf)
 {
-	unsigned char nearby_teammates[10][16];
+	char nearby_teammates[10][16];/* MetalGod no need for this to be unsigned */
 	int nearby_teammates_num, l;
 	edict_t* ent = NULL;
 
@@ -2248,7 +2248,64 @@ char* SeekBufEnd(char* buf)
 		buf++;
 	return buf;
 }
+#define PARSE_BUFSIZE 256
+void ParseSayText(edict_t* ent, char* text, size_t size)
+{
+	char buf[PARSE_BUFSIZE + 256] = "\0"; //Parsebuf + chatpuf size
+	char* p, * pbuf;
 
+	p = text;
+	pbuf = buf;
+
+
+	while (*p != 0)
+	{
+		if (*p == '%')
+		{
+			switch (*(p + 1))
+			{
+			case 'L':
+				GetNearbyLocation(ent, pbuf);
+				pbuf = SeekBufEnd(pbuf);
+				p += 2;
+				break;
+			case 'T':
+				GetNearbyTeammates(ent, pbuf);
+				pbuf = SeekBufEnd(pbuf);
+				p += 2;
+				break;
+			case 'M':
+				GetNearestMedic(ent, pbuf);
+				pbuf = SeekBufEnd(pbuf);
+				p += 2;
+				break;
+			case 'C':
+				GetClass(ent, pbuf);
+				pbuf = SeekBufEnd(pbuf);
+				p += 2;
+				break;
+				//AQ2:TNG END
+			default:
+				*pbuf++ = *p++;
+				break;
+			}
+		}
+		else
+		{
+			*pbuf++ = *p++;
+		}
+
+		if (buf[size - 1])
+		{
+			buf[size - 1] = 0;
+			break;
+		}
+	}
+
+	*pbuf = 0;
+	strcpy(text, buf);
+}
+/*
 void ParseSayText(edict_t* ent, char* text)
 {
 	static unsigned char buf[10240], infobuf[10240];
@@ -2302,7 +2359,7 @@ void ParseSayText(edict_t* ent, char* text)
 	strncpy(text, buf, 150);
 	text[150] = 0; // in case it's 150
 }
-
+*/
 /*
 ==================
 Cmd_Say_f
@@ -2314,7 +2371,7 @@ void Cmd_Say_f(edict_t* ent, qboolean team, qboolean arg0, qboolean saved)
 	int			i, j, offset_of_text;
 	edict_t* entR = NULL;
 	/* edict_t* entG = NULL; MetalGod initialized, but not referenced */
-	char* p = NULL; /* MetalGod initialized */
+	char* p = NULL, *s = NULL; /* MetalGod initialized  and added *s */
 	char		text[2048];
 	gclient_t* cl;
 	char teamname[5];
@@ -2382,7 +2439,9 @@ void Cmd_Say_f(edict_t* ent, qboolean team, qboolean arg0, qboolean saved)
 
 		//faf: from aq2
 		if (ent->solid != SOLID_NOT && ent->deadflag != DEAD_DEAD)
-			ParseSayText(ent, text + offset_of_text);  //FB 5/31/99 - offset change
+			/* MetalGod replaced using revised function
+			ParseSayText(ent, text + offset_of_text);  //FB 5/31/99 - offset change*/
+		ParseSayText(ent, s, sizeof(text) - (s - text + 1) - 2);
 							// this will parse the % variables,
 
 		strcat(text, "\n");
