@@ -211,10 +211,10 @@ void P_DamageFeedback(edict_t* player)
 		client->damage_alpha = 0;
 	client->damage_alpha += count * 0.01;
 	if (client->damage_alpha < 0.2)
-		client->damage_alpha = 0.2;
+		client->damage_alpha = 0.2F; /* MetalGod explicit float */
 	// rezmoth - was 0.6
 	if (client->damage_alpha > 0.3)
-		client->damage_alpha = 0.3;		// don't go too saturated
+		client->damage_alpha = 0.3F;		// don't go too saturated /* MetalGod explicit float */
 
 	// the color of the blend will vary based on how much was absorbed
 	// by different armors
@@ -707,7 +707,7 @@ void SV_CalcGunOffset(edict_t* ent)
 	//align weapon md2 better   should do this in md2
 	if (ent->client->pers.weapon) {
 		if (!strcmp(ent->client->pers.weapon->classname, "weapon_bazooka"))
-			ent->client->ps.gunangles[YAW] += .999999;
+			ent->client->ps.gunangles[YAW] += .999999F; /* MetalGod explicit float */
 		else if (!strcmp(ent->client->pers.weapon->classname, "weapon_panzer"))
 		{
 			ent->client->ps.gunangles[YAW] += 1.5;
@@ -816,7 +816,7 @@ void SV_CalcBlend(edict_t* ent)
 
 	// make blind if on fire
 	if (ent->burnout)
-		SV_AddBlend(0.9, 0.9, 0.6, 0.84, ent->client->ps.blend);
+		SV_AddBlend(0.9F, 0.9F, 0.6F, 0.84F, ent->client->ps.blend); /* MetalGod explicit floats */
 
 	if (level.fog)
 		SV_AddBlend(1.0, 1.0, 1.0, level.fog, ent->client->ps.blend);
@@ -865,7 +865,7 @@ void SV_CalcBlend(edict_t* ent)
 		!ent->flyingnun)
 	{
 		if (ent->client->resp.deathblend < 1)
-			ent->client->resp.deathblend += 0.1;
+			ent->client->resp.deathblend += 0.1F; /* MetalGod explicit float */
 		if (ent->client->resp.deathblend > 1)
 			ent->client->resp.deathblend = 1;
 		SV_AddBlend(0.5 - (0.5 * ent->client->resp.deathblend), 0.0, 0.0, ent->client->resp.deathblend, ent->client->ps.blend);
@@ -882,13 +882,13 @@ void SV_CalcBlend(edict_t* ent)
 	else if (ent->client->resp.deathblend) {
 		ent->client->resp.deathblend = 0;
 	}
-
+	/* MetalGod explicit floats */
 	if (contents & (CONTENTS_SOLID))//|CONTENTS_LAVA))
-		SV_AddBlend(1.0, 0.3, 0.0, 0.6, ent->client->ps.blend);
+		SV_AddBlend(1.0, 0.3F, 0.0, 0.6F, ent->client->ps.blend);
 	else if (contents & CONTENTS_SLIME)
-		SV_AddBlend(0.0, 0.1, 0.05, 0.6, ent->client->ps.blend);
+		SV_AddBlend(0.0, 0.1F, 0.05F, 0.6F, ent->client->ps.blend);
 	else if (contents & CONTENTS_WATER)
-		SV_AddBlend(0.5, 0.3, 0.2, 0.4, ent->client->ps.blend);
+		SV_AddBlend(0.5F, 0.3F, 0.2F, 0.F, ent->client->ps.blend);
 	//else if (ent->client->display_info)	// pbowens: objectives
 		//SV_AddBlend	(0.3, 0.3, 0.3, 0.7, ent->client->ps.blend);
 	else if (ent->client->dmgef_flash) //pbowens: explosion effect
@@ -901,7 +901,7 @@ void SV_CalcBlend(edict_t* ent)
 		if (remaining == 30)	// beginning to fade
 			gi.sound(ent, CHAN_ITEM, gi.soundindex("items/damage2.wav"), 1, ATTN_NORM, 0);
 		if (remaining > 30 || (remaining & 4))
-			SV_AddBlend(0, 0, 1, 0.08, ent->client->ps.blend);
+			SV_AddBlend(0, 0, 1, 0.08F, ent->client->ps.blend); /* MetalGod explicit float */
 	}
 	else if (ent->client->invincible_framenum > level.framenum)
 	{
@@ -909,7 +909,7 @@ void SV_CalcBlend(edict_t* ent)
 		if (remaining == 30)	// beginning to fade
 			gi.sound(ent, CHAN_ITEM, gi.soundindex("items/protect2.wav"), 1, ATTN_NORM, 0);
 		if (remaining > 30 || (remaining & 4))
-			SV_AddBlend(1, 1, 0, 0.08, ent->client->ps.blend);
+			SV_AddBlend(1, 1, 0, 0.08F, ent->client->ps.blend); /* MetalGod explicit float */
 	}
 	else if (ent->client->enviro_framenum > level.framenum)
 	{
@@ -917,7 +917,7 @@ void SV_CalcBlend(edict_t* ent)
 		if (remaining == 30)	// beginning to fade
 			gi.sound(ent, CHAN_ITEM, gi.soundindex("items/airout.wav"), 1, ATTN_NORM, 0);
 		if (remaining > 30 || (remaining & 4))
-			SV_AddBlend(0, 1, 0, 0.08, ent->client->ps.blend);
+			SV_AddBlend(0, 1, 0, 0.08F, ent->client->ps.blend); /* MetalGod explicit float */
 	}
 	else if (ent->client->breather_framenum > level.framenum)
 	{
@@ -925,7 +925,7 @@ void SV_CalcBlend(edict_t* ent)
 		if (remaining == 30)	// beginning to fade
 			gi.sound(ent, CHAN_ITEM, gi.soundindex("items/airout.wav"), 1, ATTN_NORM, 0);
 		if (remaining > 30 || (remaining & 4))
-			SV_AddBlend(0.4, 1, 0.4, 0.04, ent->client->ps.blend);
+			SV_AddBlend(0.4F, 1, 0.4F, 0.04F, ent->client->ps.blend); /* MetalGod explicit float */
 	}
 
 	// add for damage
@@ -940,18 +940,18 @@ void SV_CalcBlend(edict_t* ent)
 				ent->client->ps.blend);
 
 		if (ent->client->bonus_alpha > 0)
-			SV_AddBlend(0.85, 0.7, 0.3,
+			SV_AddBlend(0.85F, 0.7F, 0.3F, /* MetalGod explicit float */
 				ent->client->bonus_alpha,
 				ent->client->ps.blend);
 	}
 	else
 	{ // drop the damage value
-		ent->client->damage_alpha -= 0.06;
+		ent->client->damage_alpha -= 0.06F; /* MetalGod explicit float */
 		if (ent->client->damage_alpha < 0)
 			ent->client->damage_alpha = 0;
 
 		// drop the bonus value
-		ent->client->bonus_alpha -= 0.1;
+		ent->client->bonus_alpha -= 0.1F; /* MetalGod explicit float */
 		if (ent->client->bonus_alpha < 0)
 			ent->client->bonus_alpha = 0;
 	}
@@ -980,7 +980,7 @@ void SV_CalcBlend(edict_t* ent)
 		}*/
 
 	if (ent->client->ps.fov == SCOPE_FOV)
-		SV_AddBlend(0.0, 0.0, 0.25, .1, ent->client->ps.blend);//faf:  blue tinge
+		SV_AddBlend(0.0, 0.0, 0.25F, .1F, ent->client->ps.blend);//faf:  blue tinge /* MetalGod explicit float */
 //		SV_AddBlend (0.0, 0.0, 0.0, .1, ent->client->ps.blend);
 //		SV_AddBlend (0.0, 0.0, 0.0, .1 + (xyspeed/1000), ent->client->ps.blend);
 		//end faf
@@ -1554,13 +1554,13 @@ void Play_Footstep_Sound(edict_t* ent)
 		vec3_t down = { 0, 0, -1 };
 
 		if (volume > .8)
-			volume = .8;
+			volume = .8F; /* MetalGod explicit float */
 
 		if (ent->client->last_jump_time < level.time - 1 && volume < .3) //if they're barely moving/still, don't play it.  unless they're landing from jump
 			return;
 
 		if (volume < .3)
-			volume = .3;
+			volume = .3F; /* MetalGod explicit float */
 
 		VectorMA(ent->s.origin, 50, down, end);
 		tr = gi.trace(ent->s.origin, NULL, NULL, end, ent, CONTENTS_SOLID);
@@ -2243,13 +2243,13 @@ void ClientEndServerFrame(edict_t* ent)
 		//		gi.dprintf ("%i frame\n", (level.framenum - ent->client->resp.enterframe) );
 	}
 
-	if (ent->client->smoke_effect_goal <= .005)
+	if (ent->client->smoke_effect_goal <= .005F) /* MetalGod explicit float */
 		ent->client->smoke_effect_goal = 0;
 
 	if (ent->client->smoke_effect_goal) {
-		ent->client->smoke_effect_goal -= .0013;
+		ent->client->smoke_effect_goal -= .0013F; /* MetalGod explicit float */
 		if (ent->deadflag)
-			ent->client->smoke_effect_goal -= .02;
+			ent->client->smoke_effect_goal -= .02F; /* MetalGod explicit float */
 	}
 	if (ent->client->smoke_effect_actual != ent->client->smoke_effect_goal)
 		ent->client->smoke_effect_actual = (ent->client->smoke_effect_goal + ent->client->smoke_effect_actual) / 2;
@@ -2500,14 +2500,14 @@ void ClientEndServerFrame(edict_t* ent)
 	if (ent->client->jump_stamina < JUMP_MAX)
 	{
 		if (!ent->client->movement)
-			ent->client->jump_stamina += JUMP_REGEN * 6.5;
+			ent->client->jump_stamina += JUMP_REGEN * 6.5F;
 		else if (ent->client->jump_stamina > 60)
 			ent->client->jump_stamina += JUMP_REGEN * 2;
 		else
 			ent->client->jump_stamina += JUMP_REGEN;
 
 		if (ent->ai)
-			ent->client->jump_stamina += JUMP_REGEN * 6.5;
+			ent->client->jump_stamina += JUMP_REGEN * 6.5F; /* MetalGod explicit float */
 	}
 
 	if (ent->client->resp.chatsave[0] != '\0' && ent->client->resp.chatsavetime + 5 < level.framenum)
@@ -2516,7 +2516,7 @@ void ClientEndServerFrame(edict_t* ent)
 	//should be done with the gun instead of client, but it won't matter 99% of the time
 	if (ent->client->mg42_temperature > 0)
 	{
-		ent->client->mg42_temperature -= .15;
+		ent->client->mg42_temperature -= .15F; /* MetalGod explicit float */
 		//gi.dprintf("%f \n", ent->client->mg42_temperature);
 
 		if (ent->client->pers.weapon &&
@@ -2917,7 +2917,7 @@ void ClientEndServerFrame(edict_t* ent)
 		{
 			//vol = (250 + (ent->velocity[2] * (-1)))/1250;
 			//gi.dprintf ("%f\n",vol);
-			gi.sound(ent, CHAN_BODY, gi.soundindex("player/bodyfall.wav"), .3, ATTN_NORM, 0);
+			gi.sound(ent, CHAN_BODY, gi.soundindex("player/bodyfall.wav"), .3F, ATTN_NORM, 0); /* MetalGod explicit float */
 		}
 	}
 

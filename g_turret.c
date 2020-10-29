@@ -135,7 +135,7 @@ void shell_touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* surf
 		PlayerNoise(ent->owner, ent->s.origin, PNOISE_IMPACT);
 
 	// calculate position for the explosion entity
-	VectorMA(ent->s.origin, -0.02, ent->velocity, origin);
+	VectorMA(ent->s.origin, -0.02F, ent->velocity, origin); /* MetalGod made explicit float */
 
 	if (other->takedamage)
 	{
@@ -475,7 +475,7 @@ void turret_breach_think(edict_t* self)
 	if (delta[1] < -1 * self->speed * FRAMETIME)
 		delta[1] = -1 * self->speed * FRAMETIME;
 
-	VectorScale(delta, 1.0 / FRAMETIME, self->avelocity);
+	VectorScale(delta, 1.0F / FRAMETIME, self->avelocity); /* MetalGod made explicit float */
 
 	self->nextthink = level.time + FRAMETIME;
 

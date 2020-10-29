@@ -32,25 +32,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma warning(disable : 4244)	// MIPS
 #pragma warning(disable : 4136)	// X86
 #pragma warning(disable : 4051)	// ALPHA
-#pragma warning(disable : 4018)	// signed/unsigned mismatch
-#pragma warning(disable : 4305)	// truncation from const double to float
+
+
 #pragma warning(disable : 4996)	// deprecated functions
 #pragma warning(disable : 4100)	// unreferenced formal parameter
 
 
 /*
-#pragma warning(disable : 4706)     // assignment within conditional expression
-#pragma warning(disable : 4061)		// enumerator in switch not explicitly handled by case label
-#pragma warning(disable : 4062)		// enumerator in switch not handled by case label
-#pragma warning(disable : 4459)     // dclaration of variable hides global declaration
-
-#pragma warning(disable : 5045)		// Spectre mitigation
-#pragma warning(disable : 4820)     // padding added after data member
-#pragma warning(disable : 4464)     // relative path contains '..'
-
-#pragma warning(disable : 4703)     // potentially uninitialized variable used
-#pragma warning(disable : 4242)     // converstion from type 1 to type 2 possible loss of data
-#pragma warning(disable : 4255)		// no function prototype given: converting to void
+#pragma warning(disable : 4305)	// truncation from const double to float
+#pragma warning(disable : 4018)	// signed/unsigned mismatch
+#pragma warning(disable : 4706)	// assignment within conditional expression
+#pragma warning(disable : 4061)	// enumerator in switch not explicitly handled by case label
+#pragma warning(disable : 4062)	// enumerator in switch not handled by case label
+#pragma warning(disable : 4459) // dclaration of variable hides global declaration
+#pragma warning(disable : 5045)	// Spectre mitigation
+#pragma warning(disable : 4820) // padding added after data member
+#pragma warning(disable : 4464) // relative path contains '..'
+#pragma warning(disable : 4703) // potentially uninitialized variable used
+#pragma warning(disable : 4242) // converstion from type 1 to type 2 possible loss of data
+#pragma warning(disable : 4255)	// no function prototype given: converting to void
 
 */
 #pragma warning(disable : 4996)		// Shut up MSVS
@@ -62,6 +62,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <stdarg.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stddef.h> /* MetalGod added */
 #include <time.h>
 #include <ctype.h> /* MetalGod added September 21, 2020 */
 
@@ -165,7 +166,7 @@ typedef	int	fixed8_t;
 typedef	int	fixed16_t;
 
 #ifndef M_PI
-#define M_PI		3.14159265358979323846	// matches value in gcc v2 math.h
+#define M_PI		3.14159265358979323846F	// matches value in gcc v2 math.h  /* MetalGod made explicit float */
 #endif
 
 struct cplane_s;

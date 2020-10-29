@@ -493,7 +493,7 @@ int AI_AddNode_BotRoam(edict_t* ent)
 	if (ent->count)
 		nav.broams[nav.num_broams].weight = ent->count * 0.01;//count is a int with a value in between 0 and 100
 	else
-		nav.broams[nav.num_broams].weight = 0.3;
+		nav.broams[nav.num_broams].weight = 0.3F; /* MetalGod explicit float */
 
 	nav.num_broams++;
 	nav.num_nodes++;
@@ -611,7 +611,7 @@ void AI_CreateNodesForEntities(void)
 					if (ent->count)
 						nav.broams[nav.num_broams].weight = ent->count * 0.01;//count is a int with a value in between 0 and 100
 					else
-						nav.broams[nav.num_broams].weight = 0.3; //jalfixme: add cmd to weight (dropped by console cmd, self is player)
+						nav.broams[nav.num_broams].weight = 0.3F; /* MetalGod explicit float */ //jalfixme: add cmd to weight (dropped by console cmd, self is player)
 
 					nav.broams[nav.num_broams].node = node;
 					nav.num_broams++;
@@ -883,7 +883,7 @@ int AI_LinkServerNodes(int start)
 {
 	int			n1, n2;
 	int			count = 0;
-	float		pLinkRadius = NODE_DENSITY * 1.2;
+	float		pLinkRadius = NODE_DENSITY * 1.2F; /* MetalGod explicit float */
 	qboolean	ignoreHeight = true;
 
 	if (start >= nav.num_nodes)

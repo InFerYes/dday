@@ -80,9 +80,9 @@ void VelocityForDamage(int damage, vec3_t v)
 	v[2] = 200.0 + 100.0 * random();
 
 	if (damage < 50)
-		VectorScale(v, 0.7, v);
+		VectorScale(v, 0.7F, v); /* MetalGod made explicit float */
 	else
-		VectorScale(v, 1.2, v);
+		VectorScale(v, 1.2F, v); /* MetalGod made explicit float */
 }
 
 void ClipGibVelocity(edict_t* ent)
@@ -2209,7 +2209,7 @@ void SP_target_character(edict_t* self)
 void target_string_use(edict_t* self, edict_t* other, edict_t* activator)
 {
 	edict_t* e;
-	int		n, l;
+	size_t		n, l; /* MetalGod changed from int to size_t*/
 	char	c;
 
 	l = strlen(self->message);

@@ -320,7 +320,7 @@ int AI_ClosestNodeToReachableSpot(edict_t* self, vec3_t origin)
 	c = 0;
 	while (c < 4)
 	{
-		closest = 999999999;
+		closest = 999999999.0F; /* MetalGod explicit float */
 		node = -1;
 
 		for (i = 0; i < nav.num_nodes; i++)

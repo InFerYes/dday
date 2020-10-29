@@ -1161,7 +1161,7 @@ void Smoke_Effect(vec3_t origin, float strength)
 			e->client->smoke_effect_goal += (strength * (1000 - distance)) / 1000;
 		}
 		if (e->client->smoke_effect_goal > .10)
-			e->client->smoke_effect_goal = .10;
+			e->client->smoke_effect_goal = .10F; /* MetalGod made explicit float */
 	}
 }
 
@@ -1281,7 +1281,7 @@ void Shrapnel_Explode(edict_t* ent)
 	ent->takedamage = DAMAGE_NO;
 
 	Play_Ricochet_Noise(ent, ent->s.origin);
-	Smoke_Effect(ent->s.origin, .1);
+	Smoke_Effect(ent->s.origin, .1F); /* MetalGod made explicit float */
 
 	//faf:  for when player is carrying a nade and the timer runs out.  Moved
 	//	    from clientthink
@@ -1374,7 +1374,7 @@ void Shrapnel_Explode(edict_t* ent)
 
 	T_RadiusDamage(ent, ent->owner, ent->dmg, ent, ent->dmg_radius, mod);
 
-	VectorMA(ent->s.origin, -0.02, ent->velocity, origin);
+	VectorMA(ent->s.origin, -0.02F, ent->velocity, origin); /* MetalGod made explicit float */
 	gi.WriteByte(svc_temp_entity);
 	if (ent->waterlevel)
 	{
@@ -1457,10 +1457,10 @@ void Shrapnel_Touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* s
 			Play_Bullet_Hit(ent, surf->name, ent->s.origin, other);
 
 		else if (surf && (Surface(surf->name, SURF_SAND) || Surface(surf->name, SURF_GRASS)))
-			gi.sound(ent, CHAN_VOICE, gi.soundindex("bullet/sand3.wav"), .4, ATTN_NORM, 0);
+			gi.sound(ent, CHAN_VOICE, gi.soundindex("bullet/sand3.wav"), .4F, ATTN_NORM, 0); /* MetalGod made explicit float */
 
 		else if (surf && Surface(surf->name, SURF_WOOD))
-			gi.sound(ent, CHAN_VOICE, gi.soundindex("bullet/wood3.wav"), .3, ATTN_NORM, 0);
+			gi.sound(ent, CHAN_VOICE, gi.soundindex("bullet/wood3.wav"), .3F, ATTN_NORM, 0); /* MetalGod made explicit float */
 
 		else
 		{
@@ -1770,7 +1770,7 @@ void rocket_touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* sur
 		PlayerNoise(ent->owner, ent->s.origin, PNOISE_IMPACT);
 
 	// calculate position for the explosion entity
-	VectorMA(ent->s.origin, -0.02, ent->velocity, origin);
+	VectorMA(ent->s.origin, -0.02F, ent->velocity, origin); /* MetalGod made explicit float */
 
 	if (other->takedamage)
 	{
@@ -1793,7 +1793,7 @@ void rocket_touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* sur
 	T_RadiusDamage(ent, ent->owner, ent->radius_dmg, other, ent->dmg_radius, MOD_R_SPLASH);
 
 	Play_Ricochet_Noise(ent, ent->s.origin);
-	Smoke_Effect(ent->s.origin, .1);
+	Smoke_Effect(ent->s.origin, .1F); /* MetalGod made explicit float */
 
 	gi.WriteByte(svc_temp_entity);
 	if (ent->waterlevel)
@@ -1843,7 +1843,7 @@ void airstrike_touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* 
 		PlayerNoise(ent->owner, ent->s.origin, PNOISE_IMPACT);
 
 	// calculate position for the explosion entity
-	VectorMA(ent->s.origin, -0.02, ent->velocity, origin);
+	VectorMA(ent->s.origin, -0.02F, ent->velocity, origin); /* MetalGod made explicit float */
 
 	if (other->takedamage)
 	{
@@ -1874,7 +1874,7 @@ void airstrike_touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* 
 	gi.multicast(ent->s.origin, MULTICAST_PHS);
 
 	Play_Ricochet_Noise(ent, ent->s.origin);
-	Smoke_Effect(ent->s.origin, .05);
+	Smoke_Effect(ent->s.origin, .05F); /* MetalGod made explicit float */
 
 	G_FreeEdict(ent);
 }
@@ -2017,7 +2017,7 @@ void fire_rocket_piat(edict_t* self, vec3_t start, vec3_t dir, int damage, int s
 		rocket->s.effects = EF_ROCKET;
 		rocket->nextthink = level.time + .6;
 		rocket->think = panzerf_effect;
-		rocket->gravity = .2;
+		rocket->gravity = .2F; /* MetalGod made explicit float */
 	}
 	else
 	{
@@ -2072,7 +2072,7 @@ void fire_rocket_panzerfaust(edict_t* self, vec3_t start, vec3_t dir, int damage
 		rocket->s.effects = EF_ROCKET;
 		rocket->nextthink = level.time + .6;
 		rocket->think = panzerf_effect;
-		rocket->gravity = .2;
+		rocket->gravity = .2F; /* MetalGod made explicit float */
 	}
 	else
 	{
@@ -3918,7 +3918,7 @@ void TNT_Explode(edict_t* ent)
 	//    T_RadiusDamage(ent, ent->owner, ent->dmg, ent, ent->dmg_radius, MOD_TNT_SPLASH);
 	TNT_RadiusDamage(ent, ent->owner, ent->dmg, ent, ent->dmg_radius * 2, MOD_TNT_SPLASH);
 
-	VectorMA(ent->s.origin, -0.02, ent->velocity, origin);
+	VectorMA(ent->s.origin, -0.02F, ent->velocity, origin); /* MetalGod made explicit float */
 	gi.WriteByte(svc_temp_entity);
 	/*
 		if (ent->waterlevel)
@@ -3944,7 +3944,7 @@ void TNT_Explode(edict_t* ent)
 	gi.sound(ent, CHAN_WEAPON, gi.soundindex("weapons/tnt/boom.wav"), 1, ATTN_NORM, 0);
 
 	Play_Ricochet_Noise(ent, ent->s.origin);
-	Smoke_Effect(ent->s.origin, .2);
+	Smoke_Effect(ent->s.origin, .2F); /* MetalGod made explicit float */
 
 	G_FreeEdict(ent);
 }
@@ -6410,7 +6410,7 @@ void Weapon_Panzerfaust_Fire(edict_t* ent)
 
 	ent->client->last_fire_time = level.time;//faf
 
-	fire_rocket_panzerfaust(ent, start, forward, damage, 1600, damage_radius, radius_damage, .7);
+	fire_rocket_panzerfaust(ent, start, forward, damage, 1600, damage_radius, radius_damage, .7F); /* MetalGod made explicit float */
 	// rezmoth - cosmetic recoil
 	ent->client->kick_angles[0] -= 7;
 	ent->client->kick_origin[2] -= 5;

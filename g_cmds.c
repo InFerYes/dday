@@ -2544,7 +2544,7 @@ return;
 
 //bcass start - make a thud sound when you go prone
 		if (!self->waterlevel) //Wheaty: Don't play sound if they are in water
-			gi.sound(self, CHAN_BODY, gi.soundindex("misc/prone2.wav"), .4, ATTN_NORM, 0);
+			gi.sound(self, CHAN_BODY, gi.soundindex("misc/prone2.wav"), .4F, ATTN_NORM, 0); /* MetalGod made explicit float */
 		//bcass end
 	}
 	else // 					//if we're supposed to stand

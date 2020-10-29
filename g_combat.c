@@ -945,7 +945,7 @@ void T_Damage(edict_t* targ, edict_t* inflictor, edict_t* attacker, vec3_t dir, 
 			wound_location |= LEG_WOUND;
 
 			if (targ->client)
-				targ->client->damage_div = 1.7;
+				targ->client->damage_div = 1.7F; /* MetalGod made explicit float */
 
 			gi.sound(targ, CHAN_BODY, gi.soundindex("misc/hitleg.wav"), 1, ATTN_NORM, 0);
 
@@ -963,7 +963,7 @@ void T_Damage(edict_t* targ, edict_t* inflictor, edict_t* attacker, vec3_t dir, 
 			//targ->enemy=attacker;
 
 			if (targ->client)
-				targ->client->damage_div = 1.4;
+				targ->client->damage_div = 1.4F; /* MetalGod made explicit float */
 
 			gi.sound(targ, CHAN_BODY, gi.soundindex("misc/hittorso.wav"), 1, ATTN_NORM, 0);
 			break;
@@ -1005,7 +1005,7 @@ void T_Damage(edict_t* targ, edict_t* inflictor, edict_t* attacker, vec3_t dir, 
 
 				if (targ->client)
 				{
-					targ->client->damage_div = 1.3;
+					targ->client->damage_div = 1.3F; /* MetalGod made explicit float */
 				}
 
 				gi.sound(targ, CHAN_BODY, gi.soundindex("misc/hittorso.wav"), 1, ATTN_NORM, 0);

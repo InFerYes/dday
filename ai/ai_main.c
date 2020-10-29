@@ -455,7 +455,7 @@ void AI_PickLongRangeGoal(edict_t* self)
 		{
 			rand_obj_num = 1 + rand() % obj_count;
 
-			nearest_distance = 999999999;
+			nearest_distance = 999999999.0F; /* MetalGod explicit float */
 
 			obj_count = 1;
 			for (i = 0; i < game.maxentities; i++)
@@ -1180,7 +1180,7 @@ void AI_Think(edict_t* self)
 	if (self->ai->nadedodge)
 	{
 		nearest = -1;
-		nearlength = 999999999;
+		nearlength = 999999999.0F; /* MetalGod explicit float */
 		for (i = 0; i < nav.num_nodes; i++)
 		{
 			VectorSubtract(self->ai->nadedodge->s.origin, nodes[i].origin, vdist);

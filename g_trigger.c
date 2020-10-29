@@ -142,7 +142,7 @@ void SP_trigger_multiple(edict_t* ent)
 		ent->noise_index = gi.soundindex("misc/trigger1.wav");
 
 	if (!ent->wait)
-		ent->wait = 0.2;
+		ent->wait = 0.2F; /* MetalGod made explicit float */
 	ent->touch = Touch_Multi;
 	ent->movetype = MOVETYPE_NONE;
 	ent->svflags |= SVF_NOCLIENT;
@@ -389,8 +389,8 @@ This trigger will always fire.  It is activated by the world.
 void SP_trigger_always(edict_t* ent)
 {
 	// we must have some delay to make sure our use targets are present
-	if (ent->delay < 0.2)
-		ent->delay = 0.2;
+	if (ent->delay < 0.2F) /* MetalGod made explicit float */
+		ent->delay = 0.2F; /* MetalGod made explicit float */
 	G_UseTargets(ent, ent);
 }
 

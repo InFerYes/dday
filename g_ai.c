@@ -664,22 +664,22 @@ qboolean M_CheckAttack(edict_t* self)
 
 	if (enemy_range == RANGE_FAR)
 		return false;
-
+	/* MetalGod made explicit floats */
 	if (self->monsterinfo.aiflags & AI_STAND_GROUND)
 	{
-		chance = 0.4;
+		chance = 0.4F;
 	}
 	else if (enemy_range == RANGE_MELEE)
 	{
-		chance = 0.2;
+		chance = 0.2F;
 	}
 	else if (enemy_range == RANGE_NEAR)
 	{
-		chance = 0.1;
+		chance = 0.1F;
 	}
 	else if (enemy_range == RANGE_MID)
 	{
-		chance = 0.02;
+		chance = 0.02F;
 	}
 	else
 	{
