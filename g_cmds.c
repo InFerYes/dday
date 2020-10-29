@@ -309,11 +309,13 @@ void Cmd_Spot(edict_t* ent)
 void Cmd_RemoveDoors(edict_t* end)//for help with adding bot support
 {
 	edict_t* check;
-	int e;
+	
 
 	check = g_edicts + 1;
 	if (sv_cheats->value != 0)
 	{
+		int e;/* MetalGod moved to reduce variable scope */
+		
 		for (e = 1; e < globals.num_edicts; e++, check++)
 		{
 			if (!check->inuse)
@@ -784,7 +786,7 @@ void Cmd_Give_f(edict_t* ent)
 	int			index;
 	int			i;
 	qboolean	give_all;
-	edict_t* it_ent;
+	
 
 	if (deathmatch->value && !sv_cheats->value)
 	{
@@ -894,6 +896,9 @@ void Cmd_Give_f(edict_t* ent)
 	}
 	else
 	{
+		/* MetalGod moved to reduce variable scope */
+		edict_t* it_ent;
+		
 		it_ent = G_Spawn();
 		it_ent->classname = it->classname;
 		SpawnItem(it_ent, it);

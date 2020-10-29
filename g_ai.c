@@ -114,7 +114,7 @@ Distance is for slight position adjustments needed by the animations
 void civilian_think(edict_t* self);
 void ai_stand(edict_t* self, float dist)
 {
-	vec3_t	v;
+	
 
 	if (!strcmp(self->classname, "misc_civilian"))
 		civilian_think(self);
@@ -126,6 +126,7 @@ void ai_stand(edict_t* self, float dist)
 	{
 		if (self->enemy)
 		{
+			vec3_t	v; /* MetalGod moved to reduce variable scope */
 			VectorSubtract(self->enemy->s.origin, self->s.origin, v);
 			self->ideal_yaw = vectoyaw(v);
 			if (self->s.angles[YAW] != self->ideal_yaw && self->monsterinfo.aiflags & AI_TEMP_STAND_GROUND)
@@ -423,7 +424,7 @@ qboolean FindTarget(edict_t* self)
 {
 	edict_t* client;
 	qboolean	heardit;
-	int			r;
+	
 
 	if (self->monsterinfo.aiflags & AI_GOOD_GUY)
 	{
@@ -503,6 +504,7 @@ qboolean FindTarget(edict_t* self)
 
 	if (!heardit)
 	{
+		int			r; /* MetalGod moved to reduce variable scope */
 		r = range(self, client);
 
 		if (r == RANGE_FAR)
@@ -619,12 +621,14 @@ qboolean FacingIdeal(edict_t* self)
 
 qboolean M_CheckAttack(edict_t* self)
 {
-	vec3_t	spot1, spot2;
+	
 	float	chance;
 	trace_t	tr;
 
 	if (self->enemy->health > 0)
-	{
+	{ 
+		vec3_t	spot1, spot2; /* MetalGod moved to reduce variable scope */
+		
 		// see if any entities are in the way of the shot
 		VectorCopy(self->s.origin, spot1);
 		spot1[2] += self->viewheight;
@@ -925,10 +929,9 @@ void ai_run(edict_t* self, float dist)
 	edict_t* save;
 	qboolean	new;
 	edict_t* marker;
-	float		d1, d2;
+	float		d1;
 	trace_t		tr;
-	vec3_t		v_forward, v_right;
-	float		left, center, right;
+	
 	vec3_t		left_target, right_target;
 
 	// if we're going to a combat point, just proceed
@@ -1059,6 +1062,12 @@ void ai_run(edict_t* self, float dist)
 		tr = gi.trace(self->s.origin, self->mins, self->maxs, self->monsterinfo.last_sighting, self, MASK_PLAYERSOLID);
 		if (tr.fraction < 1)
 		{
+			/* MetalGod moved to reduce variable scope */
+			float	d2; 
+			vec3_t		v_forward, v_right;
+			float		left, center, right;
+			/* END */
+			
 			VectorSubtract(self->goalentity->s.origin, self->s.origin, v);
 			d1 = VectorLength(v);
 			center = tr.fraction;

@@ -863,16 +863,9 @@ void LoadCampFile(void)
 {
 	char	cmpfilename[MAX_QPATH] = "";
 	char* camplocs;
-	int		i, c;
-	char* s, * f;
-	vec3_t	loc;
-	/* MetalGod initialized */
-	int x = 0, y = 0, z = 0;
-	int angle = 0;
-	int team = 0;
-	/* END */
-	int	stance;
-
+	int		i; 	
+	vec3_t	loc;	
+	
 	if (level.botfiles)
 		sprintf(cmpfilename, "dday/navigation/%s.cmp", level.botfiles);
 	else
@@ -887,7 +880,17 @@ void LoadCampFile(void)
 	camplocs = ReadEntFile(cmpfilename);
 
 	if (camplocs)
-	{   //leave these dprints active they show up in the server init console section
+	{   
+		/* MetalGod moved to reduce variable scope */
+		int	c;
+		char* s, * f;
+		int	stance;
+		/* initialized */
+		int x = 0, y = 0, z = 0;
+		int angle = 0;
+		int team = 0;
+		/* END */
+		//leave these dprints active they show up in the server init console section
 		gi.dprintf("%s.cmp Loaded\n", level.mapname);
 
 		c = 0;

@@ -719,7 +719,7 @@ void T_Damage(edict_t* targ, edict_t* inflictor, edict_t* attacker, vec3_t dir, 
 	gclient_t* client;
 	int			take,
 
-		save,
+		/* save, MetalGod assigned a value that is never used */
 		//				asave,
 		//	int			psave;
 		te_sparks,
@@ -1241,7 +1241,7 @@ void T_Damage(edict_t* targ, edict_t* inflictor, edict_t* attacker, vec3_t dir, 
 	}
 
 	take = damage;
-	save = 0;
+	/* save = 0; /* MetalGod assigned a value that is never used */
 
 	//psave = CheckPowerArmor (targ, point, normal, take, dflags);
 	//take -= psave;
