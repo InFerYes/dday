@@ -2209,7 +2209,7 @@ void SP_target_character(edict_t* self)
 void target_string_use(edict_t* self, edict_t* other, edict_t* activator)
 {
 	edict_t* e;
-	int		n, l;
+	size_t		n, l; /* MetalGod changed from int to size_t*/
 	char	c;
 
 	l = strlen(self->message);
