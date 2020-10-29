@@ -129,7 +129,7 @@ int LoadMapList(char* filename)
 			while ((!feof(fp)) && (i < MAX_MAPS))
 			{
 				fscanf(fp, "%s", szLineIn);
-
+				
 				if (Q_stricmp(szLineIn, "###") == 0)  // terminator is "###"
 					break;
 

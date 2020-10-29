@@ -58,9 +58,9 @@ void Weapon_Generic(edict_t* ent,
 	int* pause_frames, int* fire_frames, void (*fire)(edict_t* ent))
 {
 	int		i, n;
-	gitem_t* ammo_item;
+	gitem_t* ammo_item = NULL; /* MetalGod initialized */
 
-	int		ammo_index, * ammo_amount;
+	int		ammo_index = 0, * ammo_amount = NULL; /* MetalGod Initialized */
 	int		FRAME_FIRE_FIRST, FRAME_IDLE_FIRST, FRAME_IDLE_LAST;
 
 	//	vec3_t	vieworg;

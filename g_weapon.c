@@ -96,19 +96,19 @@ qboolean fire_hit(edict_t* self, vec3_t aim, int damage, int kick)
 	vec3_t		forward, right, up;
 	vec3_t		v;
 	vec3_t		point;
-	float		range;
+	float		extent;/* MetalGod was range, changed to avoid shadowing outer function */
 	vec3_t		dir;
 
-	//see if enemy is in range
+	//see if enemy is in extent
 	VectorSubtract(self->enemy->s.origin, self->s.origin, dir);
-	range = VectorLength(dir);
-	if (range > aim[0])
+	extent = VectorLength(dir);
+	if (extent > aim[0])
 		return false;
 
 	if (aim[1] > self->mins[0] && aim[1] < self->maxs[0])
 	{
-		// the hit is straight on so back the range up to the edge of their bbox
-		range -= self->enemy->maxs[0];
+		// the hit is straight on so back the extent up to the edge of their bbox
+		extent -= self->enemy->maxs[0];
 	}
 	else
 	{
@@ -119,7 +119,7 @@ qboolean fire_hit(edict_t* self, vec3_t aim, int damage, int kick)
 			aim[1] = self->enemy->maxs[0];
 	}
 
-	VectorMA(self->s.origin, range, dir, point);
+	VectorMA(self->s.origin, extent, dir, point);
 
 	tr = gi.trace(self->s.origin, NULL, NULL, point, self, MASK_SHOT);
 	if (tr.fraction < 1)
@@ -132,7 +132,7 @@ qboolean fire_hit(edict_t* self, vec3_t aim, int damage, int kick)
 	}
 
 	AngleVectors(self->s.angles, forward, right, up);
-	VectorMA(self->s.origin, range, forward, point);
+	VectorMA(self->s.origin, extent, forward, point);
 	VectorMA(point, aim[1], right, point);
 	VectorMA(point, aim[2], up, point);
 	VectorSubtract(point, self->enemy->s.origin, dir);
@@ -966,7 +966,7 @@ void fire_underwater(edict_t* self, vec3_t start, vec3_t dir, int damage, int mo
 	underwater_bullet->owner = self;
 	underwater_bullet->touch = tracer_touch;
 	underwater_bullet->nextthink = level.time + .2;// + 2;
-	underwater_bullet->think = G_FreeEdict;
+	/* underwater_bullet->think = G_FreeEdict; MetalGod overwritten on next line */
 	underwater_bullet->think = make_splash;
 	underwater_bullet->dmg = damage;
 	underwater_bullet->classname = "underwater_bullet";
@@ -1891,7 +1891,7 @@ void BotWarnThink(edict_t* ent)
 	//this "turns it on" //not sure this even works
 	ent->classnameb = BOTWARN;
 
-	if (!ent->owner || ent->owner && !ent->owner->inuse)
+	if (!ent->owner ||/* ent->owner && */!ent->owner->inuse) /* MetalGod this is equivalent/removes redundant check */
 	{
 		ent->think = G_FreeEdict;
 	}
@@ -2005,10 +2005,11 @@ void fire_rocket_piat(edict_t* self, vec3_t start, vec3_t dir, int damage, int s
 	rocket->touch = rocket_touch;
 
 	rocket->gravity = gravity;//1;//.9; //faf
-
+	
+	/* Metalgod reassigend in either of the conditionals below
 	rocket->nextthink = level.time + 8000 / speed;
 	rocket->think = G_FreeEdict;
-
+	*/
 	//faf
 	if (self->client && self->client->pers.weapon &&
 		self->client->pers.weapon->classnameb == WEAPON_PANZERFAUST)
@@ -2060,9 +2061,10 @@ void fire_rocket_panzerfaust(edict_t* self, vec3_t start, vec3_t dir, int damage
 
 	rocket->gravity = gravity;//1;//.9; //faf
 
+	/* MetalGod reassigned in either conditional below.
 	rocket->nextthink = level.time + 8000 / speed;
 	rocket->think = G_FreeEdict;
-
+	*/
 	//faf
 	if (self->client && self->client->pers.weapon &&
 		self->client->pers.weapon->classnameb == WEAPON_PANZERFAUST)
@@ -2431,7 +2433,7 @@ edict_t* ApplyFirstAid(edict_t* ent)
 int DoAnarchyStuff(edict_t* ent, char* sound)
 {
 	static int lastone; /* MetalGod this was missing typee specifier - C no longer supports default - int */
-	int soundindexM, soundindexF = 0; /* MetalGod initialized */
+	int soundindexM = 0, soundindexF = 0; /* MetalGod initialized */
 	float RanMale, RanFemale;
 
 	if (!ent->sexpistols) return gi.soundindex(sound);
@@ -4023,9 +4025,7 @@ void TNT_Think(edict_t* ent)
 	//switch teams exploit fix
 	if (ent->owner && ent->owner->client)
 	{
-		if (!ent->owner->client->resp.team_on ||
-			ent->owner->client->resp.team_on &&
-			ent->owner->client->resp.team_on->index != ent->obj_owner)
+		if (!ent->owner->client->resp.team_on || /* ent->owner->client->resp.team_on && */ ent->owner->client->resp.team_on->index != ent->obj_owner) /* Metalgod this is equivalent/removes redundant check */
 		{
 			ent->think = G_FreeEdict;
 			ent->nextthink = level.time + .1;
@@ -4554,7 +4554,7 @@ void Weapon_PIAT_Fire(edict_t* ent)
 
 void Weapon_Sten_Fire(edict_t* ent)
 {
-	int	i;
+	/* int	i; MetalGod unused */
 	vec3_t		start;
 	vec3_t		forward, right;
 	vec3_t		angles;
@@ -4613,7 +4613,8 @@ void Weapon_Sten_Fire(edict_t* ent)
 
 		return;
 	}
-
+	
+	/* MetalGod this is horseshit... if you comment out all the innards, why not just comment the whole damn thing!?!?
 	if (!ent->client->aim)
 	{
 		for (i = 0; i < 3; i++)
@@ -4641,7 +4642,7 @@ void Weapon_Sten_Fire(edict_t* ent)
 		//ent->client->kick_origin[0] = crandom() * 0.35;
 		//ent->client->kick_angles[0] = ent->client->machinegun_shots * -1.5;
 	}
-
+*/
 	// raise the gun as it is firing
 //	if (!deathmatch->value)
 //	{
@@ -4673,7 +4674,8 @@ void Weapon_Sten_Fire(edict_t* ent)
 		ent->client->mags[mag_index].submg_rnd = 0;
 		return;
 	}
-
+	
+	/* MetalGod overwritten below
 	// rezmoth - cosmetic recoil
 	if (level.framenum % 3 == 0)
 	{
@@ -4682,7 +4684,8 @@ void Weapon_Sten_Fire(edict_t* ent)
 		else
 			ent->client->kick_angles[0] = -3;
 	}
-
+	*/
+	
 	// pbowens: for darwin's 3.2 kick
 	ent->client->kick_angles[0] = ent->client->machinegun_shots * -1;
 	ent->client->kick_angles[1] = ent->client->machinegun_shots * .3;
@@ -4842,6 +4845,7 @@ void Weapon_Bren_Fire(edict_t* ent)
 	else
 		gi.dprintf("*** Firing System Error\n");
 
+	/* MetalGod this is just reassigned below
 	// rezmoth - cosmetic recoil
 	if (level.framenum % 3 == 0)
 	{
@@ -4849,7 +4853,7 @@ void Weapon_Bren_Fire(edict_t* ent)
 			ent->client->kick_angles[0] -= 1.5;
 		else
 			ent->client->kick_angles[0] = -3;
-	}
+	}*/
 
 	// pbowens: for darwin's 3.2 kick
 	ent->client->kick_angles[0] = ent->client->machinegun_shots * -1.5;
@@ -5726,7 +5730,8 @@ void Weapon_Pps43_Fire(edict_t* ent)
 		VectorSet(offset, 0, 0, ent->viewheight - 0);	//10
 	else
 		gi.dprintf("*** Firing System Error\n");
-
+	
+	/* MetalGod overwritten below
 	// rezmoth - cosmetic recoil
 	if (level.framenum % 3 == 0)
 	{
@@ -5735,7 +5740,8 @@ void Weapon_Pps43_Fire(edict_t* ent)
 		else
 			ent->client->kick_angles[0] = -3;
 	}
-
+	*/
+	
 	// pbowens: for darwin's 3.2 kick
 	ent->client->kick_angles[0] = ent->client->machinegun_shots * -1;
 

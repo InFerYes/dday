@@ -465,7 +465,7 @@ void plat_spawn_inside_trigger(edict_t* ent)
 
 	tmin[0] = ent->mins[0] + 25;
 	tmin[1] = ent->mins[1] + 25;
-	tmin[2] = ent->mins[2];
+	/* tmin[2] = ent->mins[2]; MetalGod reassigned before use below */
 
 	tmax[0] = ent->maxs[0] - 25;
 	tmax[1] = ent->maxs[1] - 25;
@@ -879,7 +879,7 @@ void door_use_areaportals(edict_t* self, qboolean open)
 	if (!self->target)
 		return;
 
-	while ((t = G_Find(t, FOFS(targetname), self->target)))
+	while ((t = G_Find(t, FOFS(targetname), self->target)) != NULL) /* MetalGod != NULL*/
 	{
 		if (Q_stricmp(t->classname, "func_areaportal") == 0)
 		{

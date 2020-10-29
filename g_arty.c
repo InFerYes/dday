@@ -259,7 +259,7 @@ void Cmd_Arty_f(edict_t* ent)
 		ent->client->airstrike = NULL;
 		return;
 	}
-	else if ((ent->client->pers.weapon && /* MetalGod this is redundant April 28th 202
+	else if ((ent->client->pers.weapon && /* MetalGod this is redundant April 28th 2020
 		ent->client->pers.weapon->classnameb) && */
 		ent->client->pers.weapon->classnameb == WEAPON_BINOCULARS))
 	{
@@ -319,7 +319,9 @@ void Cmd_Arty_f(edict_t* ent)
 				if (check->obj_owner != ent->client->resp.team_on->index)
 				{
 					level.obj_team = ent->client->resp.team_on->index;
+					/* reassiged before use outside of this if/else below
 					check->obj_owner = ent->client->resp.team_on->index;
+					*/
 					check->wait = level.time;
 					//if (!check->wait) check->wait =level.time;
 				}
@@ -537,6 +539,8 @@ void Plane_Fly_Off(edict_t* ent)
 
 void Plane_Fire(edict_t* ent)
 {
+	ent->nextthink = level.time +.2;
+	
 	if (ent->leave_limbo_time < level.time - 20)
 	{
 		ent->nextthink = level.time + .1;
@@ -548,10 +552,12 @@ void Plane_Fire(edict_t* ent)
 		ent->think = Plane_Fly_Off;
 		ent->nextthink = level.time + .1;
 	}
+	/* Metalgod assign the default above the exceptions 
 	else
 	{
 		ent->nextthink = level.time + .2;
 	}
+	*/
 
 	if (ent->count == 0 && ent->owner->client)
 		safe_cprintf(ent->owner, PRINT_HIGH, "Airstrike confirmed, sir!\n");
@@ -949,6 +955,8 @@ void Drop_Bomb_i(edict_t* ent)
 
 void Plane_Fire_i(edict_t* ent)
 {
+	ent->nextthink = level.time + .2;
+	
 	if (ent->leave_limbo_time < level.time - 20)
 	{
 		ent->nextthink = level.time + .1;
@@ -959,10 +967,12 @@ void Plane_Fire_i(edict_t* ent)
 		ent->think = Plane_Fly_Off;
 		ent->nextthink = level.time + .1;
 	}
+	/*MetalGod assign the default above the exceptions
 	else
 	{
 		ent->nextthink = level.time + .2;
 	}
+	*/
 	Drop_Bomb_i(ent);
 	ent->count++;
 }

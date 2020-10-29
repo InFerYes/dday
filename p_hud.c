@@ -96,7 +96,7 @@ void MoveClientToIntermission(edict_t* ent)
 
 			t = NULL;
 
-			while ((t = G_Find(t, FOFS(classname), "target_speaker")))
+			while ((t = G_Find(t, FOFS(classname), "target_speaker")) != NULL) /* MetalGod != NULL*/
 			{
 				t->s.sound = 0;
 			}
@@ -666,7 +666,7 @@ void A_ScoreboardMessage(edict_t* ent)//, edict_t *killer)
 		strcat(scoretoprightpic, team_list[1]->teamid);
 		strcat(scoretoprightpic, "_score_top  ");
 
-		sprintf(string, scoretopleftpic); //team 0
+		sprintf(string, scoretopleftpic); //team 0 /* MetalGod Note sprintf*/
 		strcat(string, scoretoprightpic); // team 1
 		strcat(string, scoreleftpic); //background left list pic
 		strcat(string, scorerightpic); // background right list pic
@@ -974,7 +974,7 @@ void A_ScoreboardMessage2(edict_t* ent)//, edict_t *killer)
 		strcat(scoretoprightpic, team_list[1]->teamid);
 		strcat(scoretoprightpic, "_score_top  ");
 
-		sprintf(string, scoretopleftpic); //team 0
+		sprintf(string, scoretopleftpic); //team 0 /* MetalGod Note sprintf! */
 		strcat(string, scoretoprightpic); // team 1
 		strcat(string, scoreleftpic); //background left list pic
 		strcat(string, scorerightpic); // background right list pic

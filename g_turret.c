@@ -570,7 +570,7 @@ void turret_breach_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int
 		else
 			turret_off(self->owner);
 	}
-	while ((t = G_Find(t, FOFS(classname), "turret_range")))
+	while ((t = G_Find(t, FOFS(classname), "turret_range")) != NULL) /* MetalGod != NULL*/
 	{
 		if (!t->inuse)
 			continue;
@@ -580,7 +580,7 @@ void turret_breach_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int
 	}
 
 	t = NULL;
-	while ((t = G_Find(t, FOFS(classname), "turret_base")))
+	while ((t = G_Find(t, FOFS(classname), "turret_base")) != NULL) /* MetalGod != NULL*/
 	{
 		if (!t->inuse)
 			continue;
@@ -615,7 +615,7 @@ void turret_base_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int d
 				G_FreeEdict(t);
 		}
 		t = NULL;*/
-	while ((t = G_Find(t, FOFS(classname), "turret_breach")))
+	while ((t = G_Find(t, FOFS(classname), "turret_breach")) != NULL) /* MetalGod != NULL*/
 	{
 		if (!t->inuse)
 			continue;
@@ -846,7 +846,7 @@ void turret_driver_link(edict_t* self)
 
 	int i;
 
-	if (self->client->turret->obj_gain &&
+	if (/* self->client->turret->obj_gain && MetalGod redundant check */
 		self->client->turret->obj_gain == 1) //(mapper set ("tank" to 1))
 	{
 		self->svflags |= SVF_NOCLIENT;
@@ -859,8 +859,9 @@ void turret_driver_link(edict_t* self)
 		change_stance(self, self->client->turret->sounds);
 		//		gi.dprintf ("%s\n",self->client->turret->sounds);
 	}
+	/* MetalGod reassigned before use below
 	self->movetype = MOVETYPE_FLYMISSILE;
-
+	*/
 	VectorClear(self->velocity);
 
 	self->client->ps.pmove.pm_type = PM_FREEZE;
@@ -887,7 +888,7 @@ void turret_driver_link(edict_t* self)
 
 	t = NULL;
 
-	while ((t = G_Find(t, FOFS(classname), "turret_driver")))
+	while ((t = G_Find(t, FOFS(classname), "turret_driver")) != NULL) /* MetalGod != NULL*/
 	{
 		if (!strcmp(t->target, self->target_ent->targetname))
 		{
@@ -1014,7 +1015,7 @@ qboolean CheckForTurret(edict_t* ent)
 
 	t = NULL;
 
-	while ((t = G_Find(t, FOFS(classname), "turret_range")))
+	while ((t = G_Find(t, FOFS(classname), "turret_range")) != NULL) /* MetalGod != NULL*/
 	{
 		if (t->oldenemy == ent &&
 			t->obj_time > level.time - .2 &&

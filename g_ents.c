@@ -420,7 +420,6 @@ void LoadBotChat(int teamnum, char* teamid)
 	if (tempchat) {
 		f = strdup(tempchat);
 		s = strtok(f, "\n");
-		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
 		Com_sprintf(botchat_sorry[teamnum][c], sizeof(botchat_sorry[teamnum][c]), "%s", s);
 		while (s != NULL) {
 			s = strtok(NULL, "\n");
@@ -437,7 +436,6 @@ void LoadBotChat(int teamnum, char* teamid)
 	if (tempchat) {
 		f = strdup(tempchat);
 		s = strtok(f, "\n");
-		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
 		Com_sprintf(botchat_killed[teamnum][c], sizeof(botchat_killed[teamnum][c]), "%s", s);
 		while (s != NULL) {
 			s = strtok(NULL, "\n");
@@ -454,7 +452,6 @@ void LoadBotChat(int teamnum, char* teamid)
 	if (tempchat) {
 		f = strdup(tempchat);
 		s = strtok(f, "\n");
-		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
 		Com_sprintf(botchat_forgive[teamnum][c], sizeof(botchat_forgive[teamnum][c]), "%s", s);
 		while (s != NULL) {
 			s = strtok(NULL, "\n");
@@ -471,7 +468,6 @@ void LoadBotChat(int teamnum, char* teamid)
 	if (tempchat) {
 		f = strdup(tempchat);
 		s = strtok(f, "\n");
-		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
 		Com_sprintf(botchat_self[teamnum][c], sizeof(botchat_self[teamnum][c]), "%s", s);
 		while (s != NULL) {
 			s = strtok(NULL, "\n");
@@ -546,12 +542,14 @@ void SP_info_team_start(edict_t* ent)
 			strcpy (ent->message, team);*/
 		int r;
 		char* team;
-		r = (int)(random() * 5);
+		/*r = (int)(random() * 5); MetalGod put this where it's used and use an appropriate choice for sides */
 		if (i == 0)
 		{
+			r = (int)(random() * 5);/* MetalGod */
 			switch (r)
 			{
-				r = (int)(random() * 4);
+				/* MetalGod this does nothing but make the following code in the switch unreachable
+				r = (int)(random() * 4); */
 			case 0: team = "rus"; break;
 			case 1: team = "gbr"; break;
 			case 2: team = "pol"; break;
@@ -561,9 +559,12 @@ void SP_info_team_start(edict_t* ent)
 		}
 		else
 		{
+			r = (int)(random() * 3); /* MetalGod +*/
 			switch (r)
 			{
+				/* MetalGod this does nothing but make the following code in the switch unreachable
 				r = (int)(random() * 2);
+				*/
 			case 0: team = "grm"; break;
 			case 1: team = "ita"; break;
 			default: team = "jpn"; break;

@@ -406,7 +406,7 @@ void timed_objective_touch(edict_t* self, edict_t* other, cplane_t* plane, csurf
 			self->style = 0;
 			//trigger spawn_toggle only
 			t = NULL;
-			while ((t = G_Find(t, FOFS(targetname), self->target)))
+			while ((t = G_Find(t, FOFS(targetname), self->target)) != NULL) /* MetalGod != NULL*/
 			{
 				if (t->use)
 				{
@@ -690,7 +690,7 @@ void GetMapObjective(void) {
 	strcat(filename, ".pcx");
 
 	gi.dprintf("Loading map objective pic %s...", filename);
-	if (map_file = fopen(filename, "r"))
+	if ((map_file = fopen(filename, "r")) != NULL) /* MetalGod != NULL*/
 	{
 		fclose(map_file);
 		level.objectivepic = filename;
@@ -828,6 +828,9 @@ void Create_CTB_Entities(edict_t* self)
 	spot = NULL;
 
 	return;
+	/* MetalGod : Someone disabled this... faf?
+	* Contemplating making ctb a cvar_t to renable thes game option
+	*
 
 	if (!stricmp(level.mapname, "dday3"))
 	{
@@ -1059,6 +1062,7 @@ void Create_CTB_Entities(edict_t* self)
 		spot->s.angles[1] = 10;
 		SP_briefcase(spot);
 	}
+	*/
 }
 
 //faf:  ctb code

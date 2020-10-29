@@ -239,9 +239,10 @@ void Spawn_Chute_Special(edict_t* ent)
 	VectorCopy(ent->s.origin, start);
 	VectorSet(world_up, 0, 0, 1);
 	VectorMA(start, 8192, world_up, end);
-
+	
+	/* MetalGod reassigned before use below 
 	tr = gi.trace(start, NULL, NULL, end, ent, MASK_SHOT | CONTENTS_SLIME | CONTENTS_LAVA);
-
+	*/
 	//	if ( tr.surface && !(tr.surface->flags & SURF_SKY))  //under a roof
 	//	{
 	//		return;
@@ -795,7 +796,7 @@ void M_ChooseMOS(edict_t* ent)
 void M_Team_Join(edict_t* ent, pmenu_t* p, int choice)
 {
 	/* qboolean foundspot=false; MetalGod initialized but not referenced */
-	int i, j, k, l, m;
+	int i, j, l, m; /* MetalGod K was unused after faf commented out code below */
 
 	if (ent->client->menu)
 		PMenu_Close(ent);
@@ -803,7 +804,8 @@ void M_Team_Join(edict_t* ent, pmenu_t* p, int choice)
 	choice -= 11;//7;
 
 	if (choice == -2) { // auto team
-		i = j = k = 0;
+		/* MetalGod assigned to variable that is no longer used
+		i = j = k = 0; */
 
 		/*faf
 		for (k = 0; k <= MAX_TEAM_MATES; k++)
@@ -909,9 +911,11 @@ void M_Team_Join(edict_t* ent, pmenu_t* p, int choice)
 		safe_bprintf(PRINT_HIGH, "%s has joined team %s.\n", ent->client->pers.netname, ent->client->resp.team_on->teamname);
 		ent->client->pers.afk_check_time = level.framenum;
 	}
-
+	
+	/* MetalGod maybe, but this is reassigned on the next line and has zero effect!
 	ent->client->resp.mos = NONE; // reset MOS
-
+	*/
+	
 	ent->client->resp.mos = INFANTRY;
 	ent->client->resp.changeteam = true;
 	ent->client->forcespawn = level.time + .5;//faf: fixes standing corpse bug
@@ -1046,8 +1050,8 @@ void M_Name_Choose(edict_t* ent, pmenu_t* p, int choice)
 void MainMenu(edict_t* ent)
 {
 	/* MetalGod sanity check */
-	if (!ent || !ent->client)
-		return;;
+	if (!ent)
+		return;
 
 	PMenu_Close(ent);
 

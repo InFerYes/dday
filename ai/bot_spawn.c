@@ -270,7 +270,7 @@ edict_t* BOT_FindFreeClient(void)
 void BOT_SetName(edict_t* bot, char* name, char* skin, int team)
 {
 	//	float rnd;
-	int  randname;
+	int  randname = 0; /* MetalGod initialized */
 	char userinfo[MAX_INFO_STRING];
 	char bot_skin[MAX_INFO_STRING];
 	char bot_name[MAX_INFO_STRING];
@@ -493,7 +493,7 @@ void Set_VIP_Defense_Bot(edict_t* ent)
 			bot = g_edicts + i + 1;
 			if (!bot->inuse || !bot->ai)
 				continue;
-			if (!bot->client && !bot->client->resp.team_on)
+			if (!bot->client || !bot->client->resp.team_on)/* this is redundant or it's a dereference. This should have been an ||, not an && */
 				continue;
 			if (bot->client->resp.team_on->index !=
 				ent->client->resp.team_on->index)

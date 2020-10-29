@@ -329,7 +329,7 @@ qboolean MapExists(char* map)
 	strcat(filename, map);
 	strcat(filename, ".bsp");
 
-	if (check = fopen(filename, "r"))
+	if ((check = fopen(filename, "r")) != NULL) /* MetalGod != NULL*/
 	{
 		fclose(check);
 		return true;
@@ -338,7 +338,7 @@ qboolean MapExists(char* map)
 	strcpy(filename, "baseq2/maps/");
 	strcat(filename, map);
 	strcat(filename, ".bsp");
-	if (check = fopen(filename, "r"))
+	if ((check = fopen(filename, "r")) != NULL) /* MetalGod != NULL*/
 	{
 		fclose(check);
 		return true;
@@ -348,7 +348,7 @@ qboolean MapExists(char* map)
 	strcat(filename, map);
 	strcat(filename, ".bsp.override");
 
-	if (check = fopen(filename, "r"))
+	if ((check = fopen(filename, "r")) != NULL) /* MetalGod != NULL*/
 	{
 		fclose(check);
 		return true;
@@ -390,7 +390,7 @@ void Read_Last_Maps()
 		c = 0;
 		f = strdup(lastmaps);
 		s = strtok(f, "\n");
-		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
+
 		for (i = 1; i < 20; i++) {
 			if (s != NULL) {
 				last_maps_played[i] = s;
@@ -424,7 +424,7 @@ char* Get_Next_MaplistTxt_Map()
 		c = 0;
 		f = strdup(maps);
 		s = strtok(f, "\n");
-		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
+
 		while (c < 300)
 		{
 			if (s != NULL)
@@ -638,7 +638,7 @@ void EndDMLevel(void)
 			s = strdup(sv_maplist->string);
 			f = NULL;
 			t = strtok(s, seps);
-			gi.TagFree(s); /* MetalGod a call to strdup requires a free! */
+
 			while (t != NULL)
 			{
 				//add campaigns to maplist
@@ -675,7 +675,7 @@ void EndDMLevel(void)
 			s = strdup(sv_maplist->string);
 			f = NULL;
 			t = strtok(s, seps);
-			gi.TagFree(s); /* MetalGod a call to strdup requires a free! */
+
 			while (t != NULL)
 			{
 				if (Q_stricmp(t, mapname) == 0)   //if the running map is on maplist
@@ -707,16 +707,14 @@ void EndDMLevel(void)
 							else
 							{
 								check = t;
-								if (check)/* MetalGod avoid NULL ptr crash */
-								{
 								strcat(check, "1");
-								if (MapExists(check))
+							
+							if (MapExists(check))
 								{
 									safe_bprintf(PRINT_HIGH, "Next map: %s \n", check);
 									BeginIntermission(CreateTargetChangeLevel(check));
 									return;
-								}
-								}
+								}	
 							}
 						}
 					}
@@ -773,8 +771,7 @@ void EndDMLevel(void)
 				{
 					//restart maplist
 					sb = strdup(sv_maplist->string);
-					tb = strtok(s, seps);
-					gi.TagFree(sb); /* MetalGod a call to strdup requires a free! */
+					tb = strtok(sb, seps);/* MetalGod changed to sb from s */
 					if (MapExists(tb))
 					{
 						safe_bprintf(PRINT_HIGH, "Next map: %s \n", tb);
@@ -899,7 +896,7 @@ void CheckDMRules(void)
 	if (level.ctb_time)
 	{
 		vec3_t		w; //faf
-		float		range;//faf
+		float		briefcase_range;//faf /* MetalGod was range. Changed to a name that doesn't shadow an outer function */
 		edict_t* check;
 		edict_t* usaflag = NULL; /* MetalGod initialized */
 		edict_t* grmflag = NULL; /* MetalGod initialized */
@@ -950,17 +947,17 @@ void CheckDMRules(void)
 					if (!strcmp(check->classname, "briefcase"))
 					{
 						VectorSubtract(check->s.origin, usaflag->s.origin, w);
-						range = VectorLength(w);
+						briefcase_range = VectorLength(w);
 
-						if (range < 40)  //briefcase is near usa flag at end of map
+						if (briefcase_range < 40)  //briefcase is near usa flag at end of map
 						{
 							team_list[0]->score += 100;
 						}
 
 						VectorSubtract(check->s.origin, grmflag->s.origin, w);
-						range = VectorLength(w);
+						briefcase_range = VectorLength(w);
 
-						if (range < 40)  //briefcase is near grm flag at end of map
+						if (briefcase_range < 40)  //briefcase is near grm flag at end of map
 						{
 							team_list[1]->score += 100;
 						}
@@ -976,17 +973,17 @@ void CheckDMRules(void)
 					if (e->client->pers.inventory[ITEM_INDEX(FindItem("briefcase"))])
 					{
 						VectorSubtract(e->s.origin, usaflag->s.origin, w);
-						range = VectorLength(w);
+						briefcase_range = VectorLength(w);
 
-						if (range < 40)  //briefcase is near usa flag at end of map
+						if (briefcase_range < 40)  //briefcase is near usa flag at end of map
 						{
 							team_list[0]->score += 100;
 						}
 
 						VectorSubtract(e->s.origin, grmflag->s.origin, w);
-						range = VectorLength(w);
+						briefcase_range = VectorLength(w);
 
-						if (range < 40)  //briefcase is near grm flag at end of map
+						if (briefcase_range < 40)  //briefcase is near grm flag at end of map
 						{
 							team_list[1]->score += 100;
 						}

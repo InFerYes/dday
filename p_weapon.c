@@ -888,7 +888,8 @@ void weapon_grenade_fire(edict_t* ent)
 		speed = 5; // drop the grenade
 	else
 	{
-		speed = GRENADE_MINSPEED + (int)(-(ent->client->grenade->nextthink - level.time) + 2.75) * ((GRENADE_MAXSPEED - GRENADE_MINSPEED) / GRENADE_TIMER);
+		/* MetalGod Overwritten before use
+		speed = GRENADE_MINSPEED + (int)(-(ent->client->grenade->nextthink - level.time) + 2.75) * ((GRENADE_MAXSPEED - GRENADE_MINSPEED) / GRENADE_TIMER); */
 		//gi.dprintf("speed: %i\n", speed);
 
 		speed = 500;
@@ -982,7 +983,7 @@ void weapon_grenade_prime(edict_t* ent, int team)
 void Weapon_Grenade(edict_t* ent)
 {
 	/* MetalGod sanity check */
-	if (!ent || !ent->client || !ent->client->pers.weapon)
+	if (!ent)
 		return;
 
 	//	if(	(!ent->client->grenade_index && !ent->client->pers.inventory[ent->client->ammo_index]) ||
@@ -1189,7 +1190,7 @@ void Weapon_Grenade(edict_t* ent)
 			ent->client->throw_grenade_time = level.time;
 		}
 		*/
-		
+
 		if (ent->client->ps.gunframe == 14)
 		{
 			weapon_grenade_fire(ent);
@@ -1275,7 +1276,7 @@ void fire_Knife(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick
 
 	vec3_t end;
 	/* MetalGod sanity check */
-	if (!self || !tr.ent)
+	if (!self)
 		return;
 
 	// Figure out what we hit, if anything:
@@ -1416,15 +1417,13 @@ int Play_Bullet_Hit(edict_t* ent, char* surface, vec3_t endpos, edict_t* impact_
 qboolean Surface(char* name, int type);
 void Blade_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
-	/* qboolean fistarmed = Q_stricmp(self->classname, "blade"); MetalGod initialized, but not referenced */
+	/* MetalGod is initialized but not referenced
+	qboolean fistarmed = Q_stricmp(self->classname, "blade");
+	*/
 	gitem_t* item = FindItem("Knife");
 	edict_t* dropped;
 	vec3_t          move_angles;//, origin;
-	/* MetalGod sanity check! */
-	if (!self )
-		return;
-	/* END */
-	
+
 	if (other == self->owner)
 		return;
 
@@ -1704,7 +1703,7 @@ void Weapon_Knife_Fire(edict_t* ent)
 	vec3_t g_offset;
 
 	/* MetalGod sanity check */
-	if (!ent || !ent->client)
+	if (!ent)
 		return;
 
 	qboolean armedfists = Q_stricmp(ent->client->pers.weapon->pickup_name, "Knife");
@@ -1943,8 +1942,8 @@ void Binocular_Fire(edict_t* ent)
 	VectorCopy(tr.endpos, ent->client->arty_entry);
 
 	//randnum = ((rand() % ARTILLARY_WAIT) + 5);  //generate random number for eta
-	
-	/* MetalGod I'd hope so! 
+
+	/* MetalGod I'd hope so!
 	if (ent)
 	*/
 	safe_cprintf(ent, PRINT_HIGH, "Ok, give us %d seconds to reach the target!\n", (int)arty_delay->value);
@@ -2129,7 +2128,7 @@ void Weapon_Morphine_Use(edict_t* ent)
 		target = ent;
 	else
 	{
-		if (!(target = ApplyFirstAid(ent)))
+		if ((target = ApplyFirstAid(ent))== NULL) /* MetalGod if NULL*/
 			return;
 
 		if (!target->client)
@@ -2268,7 +2267,9 @@ void Weapon_Bandage_Use(edict_t* ent)
 {
 	edict_t* target;
 	ent->client->ps.gunframe++;
-	if (!(target = ApplyFirstAid(ent)))return;
+	if ((target = ApplyFirstAid(ent)) == NULL) /* MetalGod if NULL */
+		return;
+
 	if (target->wound_location & (CHEST_WOUND | STOMACH_WOUND))
 	{
 		if (target->die_time) target->die_time += (BANDAGE_TIME);
@@ -2531,7 +2532,8 @@ void Weapon_TNT(edict_t* ent)
 	if (ent->client->weaponstate == WEAPON_ACTIVATING)
 	{
 		gi.sound(ent, CHAN_WEAPON, gi.soundindex("weapons/tnt/pullout.wav"), 1, ATTN_NORM, 0);
-		ent->client->ps.gunframe = 1;
+		/* MetalGod overwritten before use
+		ent->client->ps.gunframe = 1;*/
 		ent->client->weaponstate = WEAPON_READY;
 		ent->client->ps.gunframe = 52;
 		return;

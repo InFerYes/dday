@@ -216,8 +216,8 @@ g_cmds_t id_GameCmds[NUM_ID_CMDS] = // remember to set back to NUM_ID_COMDS
 	"main",			1,	Cmd_Menu_Main_f,//Cmd_Join_team,
 	"menu",			1,	Cmd_Menu_Main_f,//Cmd_Join_team,
 	"list_team",	1,	Cmd_List_team,
-	"reload",		1,	(void*)Cmd_Reload_f,
-	"scope",		2,	(void*)Cmd_Scope_f,
+	"reload",		1,	Cmd_Reload_f,/* MetalGod removed (void*) */
+	"scope",		2,	Cmd_Scope_f,
 	"shout",		3,	Cmd_Shout_f,
 	"aliciamode",	1,	Cmd_AliciaMode_f,
 	"iwannabeanarchy",1,Cmd_SexPistols_f,
@@ -1130,7 +1130,7 @@ void Cmd_Use_f(edict_t* ent)
 	it = FindItem(s);
 
 	/* MetalGod sanity check */
-	if (!ent || !ent->client)
+	if (!ent)
 		return;
 
 	if (ent->client->chasetarget)
@@ -1178,14 +1178,14 @@ void Cmd_Use_f(edict_t* ent)
 		}
 		else if (Q_stricmp(s, "weapon1") == 0)
 		{
-			if (it = FindItem(ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon1))
+			if ((it = FindItem(ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon1)) != NULL) /* MetalGod != NULL*/
 				strcpy(s, ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon1);
 			else
 				it = ent->client->pers.weapon;
 		}
 		else if (Q_stricmp(s, "weapon2") == 0)
 		{
-			if (it = FindItem(ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon2))
+			if ((it = FindItem(ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon2)) != NULL) /* MetalGod != NULL*/
 				strcpy(s, ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon2);
 			else
 				it = ent->client->pers.weapon;
@@ -1201,7 +1201,7 @@ void Cmd_Use_f(edict_t* ent)
 		*/
 		else if (Q_stricmp(s, "special") == 0)
 		{
-			if (it = FindItem(ent->client->resp.team_on->mos[ent->client->resp.mos]->special))
+			if ((it = FindItem(ent->client->resp.team_on->mos[ent->client->resp.mos]->special)) != NULL) /* MetalGod != NULL*/
 				strcpy(s, ent->client->resp.team_on->mos[ent->client->resp.mos]->special);
 			else
 				it = ent->client->pers.weapon;
@@ -1532,7 +1532,7 @@ void Cmd_Objectives(edict_t* ent)
 	char	entryb[1024];
 	int	stringlength;
 	char* bp;
-	char* objective_name;
+	char* objective_name = NULL; /* MetalGod initialized */
 
 	//JABot[start]
 	if (ent->ai || !ent->inuse)
@@ -2020,7 +2020,7 @@ void Cmd_Wave_f(edict_t* ent, int wave)
 //faf:  based on aq2 code
 void GetNearbyTeammates(edict_t* self, char* buf)
 {
-	unsigned char nearby_teammates[10][16];
+	char nearby_teammates[10][16];/* MetalGod no need for this to be unsigned */
 	int nearby_teammates_num, l;
 	edict_t* ent = NULL;
 
@@ -2131,7 +2131,7 @@ void GetNearbyLocation(edict_t* self, char* buf)
 	float nearest_distance = 9999999;
 
 	vec3_t dist, dist2;
-	edict_t* e, * closest;
+	edict_t* e, * closest = NULL; /*MetalGod initialized */
 
 	for (i = 0; i < globals.num_edicts; i++)
 	{
@@ -2251,7 +2251,7 @@ char* SeekBufEnd(char* buf)
 
 void ParseSayText(edict_t* ent, char* text)
 {
-	static unsigned char buf[10240], infobuf[10240];
+	char buf[10240], infobuf[10240]; /* MetalGod no need to be unsigned */
 	char* p, * pbuf;
 
 	p = text;
@@ -2302,7 +2302,6 @@ void ParseSayText(edict_t* ent, char* text)
 	strncpy(text, buf, 150);
 	text[150] = 0; // in case it's 150
 }
-
 /*
 ==================
 Cmd_Say_f
@@ -2314,7 +2313,7 @@ void Cmd_Say_f(edict_t* ent, qboolean team, qboolean arg0, qboolean saved)
 	int			i, j, offset_of_text;
 	edict_t* entR = NULL;
 	/* edict_t* entG = NULL; MetalGod initialized, but not referenced */
-	char* p;
+	char* p = NULL; /* MetalGod initialized */
 	char		text[2048];
 	gclient_t* cl;
 	char teamname[5];
@@ -2324,7 +2323,10 @@ void Cmd_Say_f(edict_t* ent, qboolean team, qboolean arg0, qboolean saved)
 		sprintf(teamname, "%s ", ent->client->resp.team_on->playermodel);
 	}
 	else
+		/* MetalGod don't do this
 		sprintf(teamname, "");
+		Do this instead         */
+		sprintf(teamname, "%s", "");
 
 	if (saved)
 	{
@@ -2889,7 +2891,10 @@ qboolean Cmd_Reload(edict_t* ent)
 			return false;
 	}
 
-	if (/*ent->client->weaponstate &&	*/ ent->client->weaponstate == WEAPON_RELOADING && ent->client->pers.weapon && ent->client->pers.weapon->position == LOC_SHOTGUN) /* MetalGod redundant if the first is true */
+	/* MetalGod remove redundant checks!
+	if (ent->client->weaponstate && ent->client->weaponstate == WEAPON_RELOADING && ent->client->pers.weapon && ent->client->pers.weapon->position == LOC_SHOTGUN)
+	*/
+	if (ent->client->weaponstate == WEAPON_RELOADING && ent->client->pers.weapon->position == LOC_SHOTGUN)
 	{
 		ent->client->weaponstate = WEAPON_READY;
 		gi.sound(ent, CHAN_VOICE, gi.soundindex("misc/null.wav"), 1, ATTN_NORM, 0);//silences reload sound
@@ -3209,7 +3214,7 @@ void Cmd_MOTD(edict_t* ent)
 	char motd[1000];
 	char line[100];
 
-	if (motd_file = fopen(GAMEVERSION "/motd.txt", "r"))
+	if ((motd_file = fopen(GAMEVERSION "/motd.txt", "r")) != NULL)/* MetalGod !=NULL */
 	{
 		// we successfully opened the file "motd.txt"
 		if (fgets(motd, 900, motd_file))

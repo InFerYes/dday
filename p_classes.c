@@ -155,13 +155,14 @@ void Give_Class_Weapon(edict_t* ent)
 	else
 		item = FindItem(client->resp.team_on->mos[client->resp.mos]->weapon1);
 
-	// Loads primary weapon when spawning
-	Load_Weapon(ent, item);
+	
 
 	if (!item) { //pbowens: prevents from crashing the game
 		safe_cprintf(ent, PRINT_HIGH, "weapon1 item not found!\n");
 		return;
 	}
+	// Loads primary weapon when spawning
+	Load_Weapon(ent, item); /* MetalGod moved this to AFTER the check to see if Item exists */
 
 	client->pers.selected_item = ITEM_INDEX(item);
 	client->newweapon = item;
@@ -170,7 +171,7 @@ void Give_Class_Weapon(edict_t* ent)
 	item = NULL;
 	//if(client->resp.team_on->mos[client->resp.mos]->weapon2)
 	//{
-	if (item = FindItem(client->resp.team_on->mos[client->resp.mos]->weapon2))
+	if ((item = FindItem(client->resp.team_on->mos[client->resp.mos]->weapon2)) != NULL) /* MetalGod != NULL */
 		client->pers.inventory[ITEM_INDEX(item)] = 1;
 
 	// Loads secondary weapon, if existant, when spawning
@@ -195,12 +196,12 @@ void Give_Class_Weapon(edict_t* ent)
 	//if(client->resp.team_on->mos[client->resp.mos]->grenades)
 	//{
 	if (!no_nades->value)//ddaylife
-		if (item = FindItem(client->resp.team_on->mos[client->resp.mos]->grenades))
+		if ((item = FindItem(client->resp.team_on->mos[client->resp.mos]->grenades)) != NULL) /* MetalGod != NULL */
 			client->pers.inventory[ITEM_INDEX(item)] = client->resp.team_on->mos[client->resp.mos]->grenadenum;
 	//}
 	//if(client->resp.team_on->mos[client->resp.mos]->special)
 	//{
-	if (item = FindItem(client->resp.team_on->mos[client->resp.mos]->special))
+	if ((item = FindItem(client->resp.team_on->mos[client->resp.mos]->special)) != NULL) /* MetalGod != NULL */
 		client->pers.inventory[ITEM_INDEX(item)] = client->resp.team_on->mos[client->resp.mos]->specnum;
 	//}
 

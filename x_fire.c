@@ -1180,7 +1180,9 @@ void Become_Flame(edict_t* fireball)
 	{
 		fireball->s.effects = EF_ROCKET;  //EF_GRENADE;
 	}
+	/* MetalGod make faf's code do something!
 	fireball->s.effects = EF_ROCKET;  //EF_GRENADE;
+	*/
 	fireball->s.renderfx = RF_TRANSLUCENT;
 
 	//	}

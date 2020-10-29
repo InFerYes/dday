@@ -651,9 +651,9 @@ void SV_CalcGunOffset(edict_t* ent)
 {
 	int		i;
 	//	float	delta;
-
-		/* MetalGod sanity check! */
-	if (!ent || !ent->client)
+	
+	/* MetalGod sanity check! */
+	if (!ent)
 		return;
 
 	if (ent->client &&
@@ -823,8 +823,8 @@ void SV_CalcBlend(edict_t* ent)
 
 	if (ent->client->smoke_effect_actual)
 		SV_AddBlend(1.0, 1.0, 1.0, ent->client->smoke_effect_actual, ent->client->ps.blend);
-	
-	/* MetalGod duplicate of preceding! 
+
+	/* MetalGod duplicate of preceding!
 	if (ent->client->smoke_effect_actual)
 		SV_AddBlend(1.0, 1.0, 1.0, ent->client->smoke_effect_actual, ent->client->ps.blend);
 	*/
@@ -1159,7 +1159,7 @@ P_ShowID
 void P_ShowID(edict_t* ent)
 {
 	trace_t tr;
-	vec3_t start, forward, end;
+	vec3_t start, fward, end;/* MetalGod changed to fward  to avoid clash with global variable name */
 	vec3_t mins, maxs;
 
 	VectorSet(mins, -10, -10, -10);
@@ -1167,8 +1167,8 @@ void P_ShowID(edict_t* ent)
 
 	VectorCopy(ent->s.origin, start);
 	start[2] += ent->viewheight;
-	AngleVectors(ent->client->v_angle, forward, NULL, NULL);
-	VectorMA(start, 8192, forward, end);
+	AngleVectors(ent->client->v_angle, fward, NULL, NULL);
+	VectorMA(start, 8192, fward, end);
 
 	tr = gi.trace(start, mins, maxs, end, ent, MASK_ALL);
 	//tr = gi.trace(start, NULL, NULL, end, ent, MASK_ALL);
@@ -1233,7 +1233,7 @@ void P_ShowID(edict_t* ent)
 		ent->client->ps.stats[STAT_IDENT_HEALTH] = 0;//CS_OBJECTIVES + (ent - g_edicts - 1);
 
 		ent->client->ps.stats[STAT_IDENT] = 1;
-		ent->client->ps.stats[STAT_IDENT_PLAYER] = CS_OBJECTIVES + (ent - g_edicts - 1);;
+		ent->client->ps.stats[STAT_IDENT_PLAYER] = CS_OBJECTIVES + (ent - g_edicts - 1);
 		ent->client->ps.stats[STAT_IDENT_ICON] = 0;
 	}
 	else if (level.intermissiontime || (ent->client->last_id_time + 1) < level.time) //delay on player id: faf
@@ -2105,7 +2105,8 @@ newanim:
 					else
 						ent->s.frame = FRAME_run4;
 
-					client->anim_end = FRAME_run6;
+					/* MetalGod reassigned before use
+					client->anim_end = FRAME_run6; */
 
 					//faf:  for limping:
 					if (ent->wound_location == LEG_WOUND)
@@ -2220,15 +2221,15 @@ void ClientEndServerFrame(edict_t* ent)
 
 	vec3_t	start;
 	vec3_t	end;
-	vec3_t up = { 0, 0, 1 }; /* MetalGod moved assignment here */
+	vec3_t upward = { 0, 0, 1 }; /* MetalGod moved assignment here and changed name to avoid clash with global variable name */
 	trace_t	tr;
 
-	vec3_t offset, right;
+	vec3_t offset, rightturn;/* MetalGod changed to avoid clash with global variable name */
 
 	//	int oldframe, oldanimend, newframe, newanimend;//faf
 
 		/* MetalGod sanity check! */
-	if (!ent || !ent->client)
+	if (!ent)
 		return;
 
 	if (ent->client)
@@ -2262,28 +2263,29 @@ void ClientEndServerFrame(edict_t* ent)
 	{
 		VectorCopy(ent->s.origin, start);
 		start[2] += ent->viewheight;
-		VectorSet(up, 0, 0, 1);
-		VectorMA(start, 48, up, end);
+		VectorSet(upward, 0, 0, 1);
+		VectorMA(start, 48, upward, end);
 
 		tr = gi.trace(start, ent->mins, ent->maxs, end, ent, MASK_SHOT | CONTENTS_SLIME | CONTENTS_LAVA);
 
 		if (tr.fraction < 1.0)
 		{
 			if (ent->stance_view == -1)
-				VectorMA(start, 10, up, end);
+				VectorMA(start, 10, upward, end);
 			else
-				VectorMA(start, 5, up, end);
+				VectorMA(start, 5, upward, end);
 
 			tr = gi.trace(start, ent->mins, ent->maxs, end, ent, MASK_SHOT | CONTENTS_SLIME | CONTENTS_LAVA);
 
 			if (tr.fraction < 1.0)
 			{
-				ent->viewheight = -1;
+				/* MetalGod reassigned before use
+				ent->viewheight = -1;*/
 				ent->stance_view = -1;
 				//if (ent->client->v_angle[0] > 40)
-			}
+			}/* MetalGod reassigned before use
 			else
-				ent->stance_view = 4;
+				ent->stance_view = 4;*/
 			ent->viewheight = 4;
 		}
 	}
@@ -2380,7 +2382,7 @@ void ClientEndServerFrame(edict_t* ent)
 		return;
 	}
 
-	AngleVectors(ent->client->v_angle, forward, right, up);
+	AngleVectors(ent->client->v_angle, forward, rightturn, up);
 
 	// burn from lava, etc
 	P_WorldEffects();
@@ -2522,10 +2524,10 @@ void ClientEndServerFrame(edict_t* ent)
 			ent->client->mg42_temperature > 33)
 		{
 			edict_t* smoke;
-			vec3_t pos, forward;
+			vec3_t pos, fward;
 
 			AngleVectors(ent->client->v_angle, forward, NULL, NULL);
-			VectorMA(ent->s.origin, 20, forward, pos);  //calculates the range vector  //faf: 10 = range
+			VectorMA(ent->s.origin, 20, fward, pos);  //calculates the range vector  //faf: 10 = range
 			pos[2] += ent->viewheight;
 
 			smoke = G_Spawn();
@@ -2638,13 +2640,13 @@ void ClientEndServerFrame(edict_t* ent)
 			//overhead view
 			if (ent->client->aim == 4 && !ent->client->chasetarget->client->limbo_mode)
 			{
-				/* MetalGod these hide the pervious local declaration 
+				/* MetalGod these hide the pervious local declaration
 				trace_t tr;
 				vec3_t end, start;
 				vec3_t up = { 0, 0, 1 }; assigned this at initial previous declaration
 				*/
-				vec3_t forward = { 1, 0, 0 };
-				
+				vec3_t fward = { 1, 0, 0 };
+
 				vec3_t distv;
 				float dist = 0;
 				vec3_t targetview;
@@ -2679,15 +2681,16 @@ void ClientEndServerFrame(edict_t* ent)
 				VectorCopy(ent->client->chasetarget->client->v_angle, ent->client->v_angle);
 				ent->client->v_angle[0] = 0;
 
-				dist = .5 * height + 125;
+				/* MetalGod overwritten before use
+				dist = .5 * height + 125; */
 				dist = 0.8 * height + 39;
 				//dist = height-10;
 
 				//gi.dprintf("%f %f\n",height,dist);
 
 				VectorCopy(targetview, start);
-				AngleVectors(ent->client->v_angle, forward, right, NULL);
-				VectorMA(start, dist, forward, end);
+				AngleVectors(ent->client->v_angle, fward, rightturn, NULL);
+				VectorMA(start, dist, fward, end);
 
 				tr = gi.trace(targetview, mins, maxs, end, ent, MASK_SOLID);
 				if (tr.fraction < 1.0)
@@ -2695,12 +2698,12 @@ void ClientEndServerFrame(edict_t* ent)
 					VectorSubtract(targetview, tr.endpos, distv);
 					dist = VectorLength(distv);
 					VectorSet(offset, dist - 10, 0, 0);
-					G_ProjectSource(targetview, offset, forward, right, targetview);
+					G_ProjectSource(targetview, offset, fward, rightturn, targetview);
 				}
 				else
 				{
 					VectorSet(offset, dist - 20, 0, 0);
-					G_ProjectSource(targetview, offset, forward, right, targetview);
+					G_ProjectSource(targetview, offset, fward, rightturn, targetview);
 				}
 
 				//	VectorSubtract (ent->client->chasetarget->s.origin, targetview,distv);
@@ -2769,13 +2772,13 @@ void ClientEndServerFrame(edict_t* ent)
 				ent->s.origin[2] += ent->client->chasetarget->viewheight - ent->viewheight;
 				if (ent->client->chasetarget->stanceflags == STANCE_CRAWL)
 				{
-					AngleVectors(ent->client->chasetarget->client->v_angle, forward, right, NULL);
+					AngleVectors(ent->client->chasetarget->client->v_angle, forward, rightturn, NULL);
 					if ((ent->client->aim && ent->client->chasetarget->client->aim) || ent->client->aim == 1 || ent->client->aim == 2)
 						VectorSet(offset, 30, 0, 0);
 					else
 						VectorSet(offset, -3, 0, 0);
 
-					G_ProjectSource(ent->s.origin, offset, forward, right, ent->s.origin);
+					G_ProjectSource(ent->s.origin, offset, forward, rightturn, ent->s.origin);
 					if ((ent->client->aim && ent->client->chasetarget->client->aim) || ent->client->aim == 1 || ent->client->aim == 2)
 					{
 					}
@@ -2783,7 +2786,7 @@ void ClientEndServerFrame(edict_t* ent)
 				}
 				else if (ent->client->chasetarget->stanceflags == STANCE_STAND)
 				{
-					AngleVectors(ent->client->chasetarget->client->v_angle, forward, right, NULL);
+					AngleVectors(ent->client->chasetarget->client->v_angle, forward, rightturn, NULL);
 					if ((ent->client->aim && ent->client->chasetarget->client->aim) || ent->client->aim == 1 || ent->client->aim == 2)
 					{
 						VectorSet(offset, 30, 0, 0);
@@ -2791,16 +2794,16 @@ void ClientEndServerFrame(edict_t* ent)
 					else
 						VectorSet(offset, -7, 0, 5);
 
-					G_ProjectSource(ent->s.origin, offset, forward, right, ent->s.origin);
+					G_ProjectSource(ent->s.origin, offset, forward, rightturn, ent->s.origin);
 				}
 				else//duck
 				{
-					AngleVectors(ent->client->chasetarget->client->v_angle, forward, right, NULL);
+					AngleVectors(ent->client->chasetarget->client->v_angle, forward, rightturn, NULL);
 					if ((ent->client->aim && ent->client->chasetarget->client->aim) || ent->client->aim == 1 || ent->client->aim == 3)
 						VectorSet(offset, 30, 0, 0);
 					else
 						VectorSet(offset, -7, 0, 7);
-					G_ProjectSource(ent->s.origin, offset, forward, right, ent->s.origin);
+					G_ProjectSource(ent->s.origin, offset, forward, rightturn, ent->s.origin);
 				}
 
 				ent->client->ps.gunindex = 0;

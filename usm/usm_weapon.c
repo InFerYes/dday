@@ -188,7 +188,7 @@ void Shotgun_Reload(edict_t* ent,
 
 	if (ent->client->ps.gunframe == 63)
 	{
-		if (*ammo_amount)
+		if (ammo_amount)/* MetalGod removed * */
 		{
 			ent->client->pers.inventory[ammo_index]--;
 			ent->client->mags[ent->client->pers.weapon->mag_index].shotgun_rnd++;

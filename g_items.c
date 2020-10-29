@@ -1759,7 +1759,7 @@ void Weapon_Sandbag_Fire(edict_t* ent)
 			return;
 		}
 	}
-	else /*if (ent->client->resp.team_on->index == 1) MetalGod unless we're adding more teams later, this is an unnecessary comparison! */
+	else if (ent->client->resp.team_on->index == 1)
 	{
 		if (axis_sandbags >= sandbaglimit->value)
 		{
@@ -1811,13 +1811,13 @@ void Weapon_Sandbag_Fire(edict_t* ent)
 
 	sandbag->spawnflags = 1;
 	if (ent->client->resp.team_on)
+	{
 		sandbag->obj_owner = ent->client->resp.team_on->index;
-
-	if (ent->client->resp.team_on->index == 0)
-		allied_sandbags++;
-	else if (ent->client->resp.team_on->index == 1)
-		axis_sandbags++;
-
+		if (ent->client->resp.team_on->index == 0)
+			allied_sandbags++;
+		else if (ent->client->resp.team_on->index == 1)
+			axis_sandbags++;
+	}
 	sandbag->obj_time = level.time;
 
 	gi.linkentity(sandbag);

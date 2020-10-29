@@ -392,16 +392,16 @@ spawn_t spawns[MAX_EDICTS] = {
 										{"timed_objective_touch",SP_timed_objective_touch},
 										{"func_explosive_objective", SP_func_explosive_objective}, //test
 										{"map_location", SP_map_location},//faf
-										{"spawn_protect", SP_spawn_protect},//faf
-										{"misc_airstrike", SP_airstrike},
-										{"spawn_toggle", SP_Spawn_Toggle},
-										//end of item modifications.
+			{"spawn_protect", SP_spawn_protect},//faf
+			{"misc_airstrike", SP_airstrike},
+			{"spawn_toggle", SP_Spawn_Toggle},
+			//end of item modifications.
 
-									   {"item_botroam", SP_item_botroam},	//JABot
+			{"item_botroam", SP_item_botroam},	//JABot
 
-									   {"briefcase", SP_briefcase},//faf:ctb code
+			{"briefcase", SP_briefcase},//faf:ctb code
 
-									   {NULL, NULL}
+			{NULL, NULL}
 };
 /*
 ===============
@@ -464,7 +464,7 @@ char* ED_NewString(char* string)
 
 	for (i = 0; i < l; i++)
 	{
-		if (string[i] == '\\' && i < l - 1)
+		if (string[i] == '\\' && l-1  > i)/* Metalgod was i < l - 1 Changed to ensure the limit check was made before checking the value of i! */
 		{
 			i++;
 			if (string[i] == 'n')
@@ -509,7 +509,7 @@ void ED_ParseField(char* key, char* value, edict_t* ent)
 				*(char**)(b + f->ofs) = ED_NewString(value);
 				break;
 			case F_VECTOR:
-				 /* MetalGod check the return of sscanf! */
+				/* MetalGod check the return of sscanf! */
 				if (sscanf(value, "%f %f %f", &vec[0], &vec[1], &vec[2])) {
 					((float*)(b + f->ofs))[0] = vec[0];
 					((float*)(b + f->ofs))[1] = vec[1];
@@ -772,7 +772,7 @@ char* ReadEntFile(char* filename)
 	long int	i = 0;
 	int			ch;
 
-	while (true)
+	for(;;)/* MetalGod shut up compiler */
 	{
 		fp = fopen(filename, "r");
 		if (!fp) break;
@@ -864,13 +864,13 @@ void LoadCampFile(void)
 	char	cmpfilename[MAX_QPATH] = "";
 	char* camplocs;
 	int		i, c;
-
 	char* s, * f;
-
 	vec3_t	loc;
-	int x, y, z;
-	int angle;
-	int team;
+	/* MetalGod initialized */
+	int x = 0, y = 0, z = 0;
+	int angle = 0;
+	int team = 0;
+	/* END */
 	int	stance;
 
 	if (level.botfiles)
@@ -893,7 +893,6 @@ void LoadCampFile(void)
 		c = 0;
 		f = strdup(camplocs);
 		s = strtok(f, "\n");
-		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
 		while (s != NULL)
 		{
 			if (s != NULL) {

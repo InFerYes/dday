@@ -232,7 +232,7 @@ void ThrowGib(edict_t* self, char* gibname, int damage, int type)
 	//	VectorSet (self->mins, -16, -16, 0);
 	//	VectorSet (self->maxs, 16, 16, 16);
 
-	gib->solid = SOLID_NOT;
+	/* gib->solid = SOLID_NOT; MetalGod Overwritten below */
 	gib->s.effects |= EF_GIB;
 	gib->flags |= FL_NO_KNOCKBACK;
 	gib->takedamage = DAMAGE_NO;//DAMAGE_YES;
@@ -2403,7 +2403,7 @@ void SP_func_clock(edict_t* self)
 	}
 
 	if ((self->spawnflags & 1) && (!self->count))
-		self->count = 60 * 60;;
+		self->count = 60 * 60;
 
 	func_clock_reset(self);
 
@@ -2438,7 +2438,7 @@ void teleporter_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t
 
 	total = 0;
 	t = NULL;
-	while ((t = G_Find(t, FOFS(targetname), self->target)))
+	while ((t = G_Find(t, FOFS(targetname), self->target)) != NULL) /* MetalGod != NULL*/
 	{
 		if (t->inuse)
 			total++;
@@ -2450,7 +2450,7 @@ void teleporter_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t
 
 	t = NULL;
 
-	while ((t = G_Find(t, FOFS(targetname), self->target)))
+	while ((t = G_Find(t, FOFS(targetname), self->target)) != NULL) /* MetalGod != NULL*/
 	{
 		if (t->inuse)
 			i++;

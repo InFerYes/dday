@@ -391,7 +391,7 @@ void SetupCampaign(qboolean restart)
 	for (i = 0; campaignfilename[i]; i++)
 		campaignfilename[i] = tolower(campaignfilename[i]);
 
-	if (restart == true || !(check = fopen(campaignfilename, "r")))//no current campaign
+	if (restart == true || (check = fopen(campaignfilename, "r")) == NULL)//no current campaign /* MetalGod made this a bit clearer */
 	{
 		sprintf(campaignfilename, "dday/campaigns/%s.cpgntemplate", campaign->string);
 	}
@@ -406,9 +406,7 @@ void SetupCampaign(qboolean restart)
 
 		c = 0;
 		f = strdup(campinfo);
-		s = strtok(f, "\n"); 
-		gi.TagFree(f); /* MetalGod a call to strdup requires a free! */
-
+		s = strtok(f, "\n");
 		if (s != NULL) {
 			alliedplatoons = atoi(s);
 			//gi.dprintf ("alliedplatoons: %s\n",s);
