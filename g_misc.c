@@ -80,9 +80,9 @@ void VelocityForDamage(int damage, vec3_t v)
 	v[2] = 200.0 + 100.0 * random();
 
 	if (damage < 50)
-		VectorScale(v, 0.7, v);
+		VectorScale(v, 0.7F, v); /* MetalGod made explicit float */
 	else
-		VectorScale(v, 1.2, v);
+		VectorScale(v, 1.2F, v); /* MetalGod made explicit float */
 }
 
 void ClipGibVelocity(edict_t* ent)

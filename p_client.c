@@ -61,10 +61,10 @@ void turret_off(edict_t* self);
 
 static void SP_FixCoopSpots(edict_t* self)
 {
-	edict_t* spot;
+	edict_t* spot = NULL; /* MetalGod moved initialization/assignment up here. */
 	vec3_t	d;
 
-	spot = NULL;
+	
 
 	while (1)
 	{
@@ -1265,7 +1265,7 @@ void player_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int damage
 		ThrowGib(self, "models/objects/gibs/skull/tris.md2", damage, GIB_ORGANIC);
 
 		// pbowens: fade quickly (hopefully reduces overflows)
-		self->client->resp.deathblend = 0.6;
+		self->client->resp.deathblend = 0.6F; /* MetalGod explicit float */
 
 		ThrowClientHead(self, damage);
 		self->takedamage = DAMAGE_NO;
@@ -3472,11 +3472,11 @@ void ClientThink(edict_t* ent, usercmd_t* ucmd)
 		{
 			nWoundFrame = level.framenum % 6;
 			if (nWoundFrame == 1)
-				ent->client->kick_angles[0] += .3;
+				ent->client->kick_angles[0] += .3F; /* MetalGod explicit float */
 			else if (nWoundFrame == 2)
-				ent->client->kick_angles[0] += .2;
+				ent->client->kick_angles[0] += .2F; /* MetalGod explicit float */
 			else if (nWoundFrame == 3)
-				ent->client->kick_angles[0] += .1;
+				ent->client->kick_angles[0] += .1F; /* MetalGod explicit float */
 
 			//faf			ucmd->forwardmove *= .9;
 			//faf			ucmd->sidemove *= .9;

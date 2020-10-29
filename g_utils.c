@@ -681,13 +681,13 @@ qboolean WeighPlayer(edict_t* ent)
 	ent->client->speedmod *= normweight / ((weight > normweight) ? weight : normweight);
 
 	if (ent->stanceflags == STANCE_DUCK)
-		ent->client->speedmod *= 0.60;
+		ent->client->speedmod *= 0.60F; /* MetalGod made explicit float */
 	if (ent->stanceflags == STANCE_CRAWL)
 	{
 		//	if (ent->waterlevel ==3)//swimming
 			//	ent->client->speedmod *= 1.1;
 			//else
-		ent->client->speedmod *= 0.45;
+		ent->client->speedmod *= 0.45F; /* MetalGod made explicit float */
 	}
 
 	if ((ent->wound_location & LEG_WOUND) /*&& (!ent->arty_time)*/)
@@ -696,12 +696,12 @@ qboolean WeighPlayer(edict_t* ent)
 	if (ent->waterlevel)
 	{
 		if (ent->waterlevel == 1)//feet are in the water
-			ent->client->speedmod *= 0.95;
+			ent->client->speedmod *= 0.95F; /* MetalGod made explicit float */
 		else if (ent->waterlevel == 2)//waist is in the water
-			ent->client->speedmod *= 0.80;
+			ent->client->speedmod *= 0.80F; /* MetalGod made explicit float */
 		else if (ent->waterlevel == 3)//whole body is in the water
 		{
-			ent->client->speedmod *= 0.55;
+			ent->client->speedmod *= 0.55F; /* MetalGod made explicit float */
 
 			if (ent->stanceflags == STANCE_CRAWL)
 			{

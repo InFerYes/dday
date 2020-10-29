@@ -154,7 +154,7 @@ void monster_footstep(edict_t* ent)
 
 	//		float volume = (float)(VectorLength(ent->velocity))/200;
 
-	volume = .4;
+	volume = .4F; /* MetalGod made explicit float */
 
 	VectorMA(ent->s.origin, 50, down, end);
 	tr = gi.trace(ent->s.origin, NULL, NULL, end, ent, CONTENTS_SOLID);

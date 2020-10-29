@@ -216,7 +216,7 @@ void SP_item_botroam(edict_t* ent)
 		if (weight >= 1000)
 			weight = 100;
 		else if (weight >= 100) //include 100, cause some q3 mappers use 100, 200, 300... etc
-			weight *= 0.1;
+			weight *= 0.1F; /* MetalGod explicit float */
 	}
 	else
 		weight = 30;	//default value

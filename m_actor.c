@@ -280,7 +280,7 @@ void actorMachineGun(edict_t* self)
 	{
 		if (self->enemy->health > 0)
 		{
-			VectorMA(self->enemy->s.origin, -0.2, self->enemy->velocity, target);
+			VectorMA(self->enemy->s.origin, -0.2F, self->enemy->velocity, target); /* MetalGod made explicit float */
 			target[2] += self->enemy->viewheight;
 		}
 		else

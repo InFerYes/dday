@@ -1461,7 +1461,7 @@ void BOT_DMclass_WeightPlayers(edict_t* self)
 		{
 		}
 		else
-			self->ai->status.playersWeights[i] = 0.3;
+			self->ai->status.playersWeights[i] = 0.3F; /* MetalGod explicit float */
 
 		/*		if( ctf->value )
 				{

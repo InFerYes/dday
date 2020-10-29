@@ -85,7 +85,7 @@ SMos_t ITA_MOS_List[NUM_CLASSES] =
 		MAX_OFFICERS,
 		STANDARD_NORMAL,
 		STANDARD_MAX,
-		(STANDARD_SPEED_MOD * 0.90),
+		(STANDARD_SPEED_MOD * 0.90F), /* MetalGod made explicit float */
 		STANDARD_MARKSMANSHIP,
 		"info_officer_start"
 	},
@@ -105,7 +105,7 @@ SMos_t ITA_MOS_List[NUM_CLASSES] =
 		MAX_L_GUNNER,
 		STANDARD_NORMAL,
 		STANDARD_MAX,
-		(STANDARD_SPEED_MOD * 0.90),
+		(STANDARD_SPEED_MOD * 0.90F), /* MetalGod made explicit float */
 		STANDARD_MARKSMANSHIP,
 		"info_lgunner_start"
 	},
@@ -125,8 +125,8 @@ SMos_t ITA_MOS_List[NUM_CLASSES] =
 		MAX_H_GUNNER,
 		STANDARD_NORMAL + 15,
 		STANDARD_MAX + 5,
-		(STANDARD_SPEED_MOD * 0.90),
-		0.55,
+		(STANDARD_SPEED_MOD * 0.90F), /* MetalGod made explicit float */
+		0.55F, /* MetalGod made explicit float */
 		"info_hgunner_start"
 	},
 
@@ -145,7 +145,7 @@ SMos_t ITA_MOS_List[NUM_CLASSES] =
 		MAX_SNIPER,
 		STANDARD_NORMAL - 10,
 		STANDARD_MAX - 10,
-		(STANDARD_SPEED_MOD * 1.10),
+		(STANDARD_SPEED_MOD * 1.10F), /* MetalGod made explicit float */
 		0,
 		"info_sniper_start"
 	},
@@ -165,8 +165,8 @@ SMos_t ITA_MOS_List[NUM_CLASSES] =
 		MAX_SPECIAL,
 		STANDARD_NORMAL + 10,
 		STANDARD_MAX + 5,
-		(STANDARD_SPEED_MOD * 1),
-		0.33,
+		(STANDARD_SPEED_MOD * 1.0F), /* MetalGod made explicit float */
+		0.33F, /* MetalGod made explicit float */
 		"info_special_start"
 	},
 
@@ -185,8 +185,8 @@ SMos_t ITA_MOS_List[NUM_CLASSES] =
 		MAX_ENGINEER,
 		STANDARD_NORMAL,
 		STANDARD_MAX,
-		(STANDARD_SPEED_MOD * 0.85),
-		0.60,
+		(STANDARD_SPEED_MOD * 0.85F), /* MetalGod made explicit float */
+		0.60F, /* MetalGod made explicit float */
 		"info_engineer_start"
 	},
 
@@ -205,8 +205,8 @@ SMos_t ITA_MOS_List[NUM_CLASSES] =
 		MAX_MEDIC,
 		STANDARD_NORMAL - 15,
 		STANDARD_MAX,
-		(STANDARD_SPEED_MOD * 1.10),
-		0.80,
+		(STANDARD_SPEED_MOD * 1.10F), /* MetalGod made explicit float */
+		0.80F, /* MetalGod made explicit float */
 		"info_medic_start"
 	},
 	{
@@ -224,8 +224,8 @@ SMos_t ITA_MOS_List[NUM_CLASSES] =
 		MAX_FLAMER,
 		STANDARD_NORMAL + 5,
 		STANDARD_MAX,
-		(STANDARD_SPEED_MOD * 0.85),
-		0.70,
+		(STANDARD_SPEED_MOD * 0.85F), /* MetalGod made explicit float */
+		0.70F, /* MetalGod made explicit float */
 		"info_flamethrower_start"
 	}
 };

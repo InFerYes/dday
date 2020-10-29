@@ -46,7 +46,7 @@ void Weapon_Flamethrower(edict_t* ent);
 void Weapon_Sandbag(edict_t* ent);
 
 //gitem_armor_t jacketarmor_info	= { 25,  50, .30, .00, ARMOR_JACKET};
-gitem_armor_t combatarmor_info = { 50, 100, .60, .30, ARMOR_COMBAT };
+gitem_armor_t combatarmor_info = { 50, 100, .60F, .30F, ARMOR_COMBAT }; /* MetalGod made explicit floats */
 //gitem_armor_t bodyarmor_info	= {100, 200, .80, .60, ARMOR_BODY};
 
 //static int	jacket_armor_index;
@@ -750,7 +750,7 @@ void Touch_Item(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* surf)
 				//knife ~1 lb  50cal ~50 lbs
 				vol = ((1000 + (-1 * ent->velocity[2])) / 2000) * ((ent->item->weight + 100) / 150);
 				if (vol > .9)
-					vol = .9;
+					vol = .9F; /* MetalGod made explicit float */
 
 				//				gi.dprintf("%f %f   %f\n", ent->velocity[2], ent->item->weight, vol);
 				//				gi.dprintf("%f %f   %f\n", ((1000+(-1 * ent->velocity[2]))/2000), (ent->item->weight+100)/150, vol);
@@ -1694,7 +1694,7 @@ void sandbag_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int damag
 	org[2] = self->s.origin[2] + crandom() * self->size[2];
 	ThrowDebris(self, "models/objects/debris1/tris.md2", 1, org);
 
-	gi.positioned_sound(self->s.origin, g_edicts, CHAN_AUTO, gi.soundindex("faf/woodbreak.wav"), .7, ATTN_NORM, 0);
+	gi.positioned_sound(self->s.origin, g_edicts, CHAN_AUTO, gi.soundindex("faf/woodbreak.wav"), .7F, ATTN_NORM, 0); /* MetalGod made explicit float */
 
 	if (self->obj_owner == 0)
 		allied_sandbags--;
@@ -1725,7 +1725,7 @@ void sandbag_think(edict_t* ent)
 		}*/
 	if (ent->groundentity)
 	{
-		gi.positioned_sound(ent->s.origin, g_edicts, CHAN_AUTO, gi.soundindex("weapons/tnt/wall.wav"), .7, ATTN_NORM, 0);
+		gi.positioned_sound(ent->s.origin, g_edicts, CHAN_AUTO, gi.soundindex("weapons/tnt/wall.wav"), .7F, ATTN_NORM, 0); /* MetalGod made explicit float */
 		return;
 	}
 	else if (ent->obj_time < level.time - 5)

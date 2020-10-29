@@ -55,8 +55,8 @@ implemented it yet? */
 
 #define STANDARD_NORMAL			30
 #define STANDARD_MAX			60
-#define STANDARD_SPEED_MOD		0.85
-#define STANDARD_MARKSMANSHIP	0.5
+#define STANDARD_SPEED_MOD		0.85F /* MetalGod made explicit float */
+#define STANDARD_MARKSMANSHIP	0.5F /* MetalGod made explicit float */
 
 // 99 is basically unlimited
 
@@ -160,7 +160,7 @@ implemented it yet? */
 #define JUMP_MINIMUM		60
 #define JUMP_TAKE			20
 #define JUMP_MAX			100
-#define JUMP_REGEN			0.09
+#define JUMP_REGEN			0.09F  /* MetalGod explicit float */
 
 // pbowens: P_ExplosionEffects
 #define SWAY_START			5

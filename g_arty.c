@@ -892,7 +892,7 @@ void airstrike_touch_i(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t
 	//		PlayerNoise(ent->owner, ent->s.origin, PNOISE_IMPACT);
 
 		// calculate position for the explosion entity
-	VectorMA(ent->s.origin, -0.02, ent->velocity, origin);
+	VectorMA(ent->s.origin, -0.02F, ent->velocity, origin); /* MetalGod made explicit float */
 
 	if (other->takedamage)
 	{
