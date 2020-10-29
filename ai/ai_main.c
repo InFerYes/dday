@@ -455,7 +455,7 @@ void AI_PickLongRangeGoal(edict_t* self)
 		{
 			rand_obj_num = 1 + rand() % obj_count;
 
-			nearest_distance = 999999999.0F; /* MetalGod explicit float */
+			nearest_distance = 999999999;
 
 			obj_count = 1;
 			for (i = 0; i < game.maxentities; i++)
