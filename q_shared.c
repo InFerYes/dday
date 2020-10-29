@@ -1046,48 +1046,67 @@ char* va(char* format, ...)
 	return string;
 }
 
+/* MetalGod Fix COM_Parse buffer overflow. TY QW
 char	com_token[MAX_TOKEN_CHARS];
-
+*/ 
+static char     com_token[4][MAX_TOKEN_CHARS];
+static int      com_tokidx;
 /*
 ==============
 COM_Parse
-
-Parse a token out of a string
+Parse a token out of a string.
+Handles C and C++ comments.
 ==============
 */
-char* COM_Parse(char** data_p)
+char* COM_Parse(const char** data_p)
 {
 	int		c;
 	int		len;
-	char* data;
+	const char* data;
+	char* s = com_token[com_tokidx++ & 3];
 
 	data = *data_p;
 	len = 0;
-	com_token[0] = 0;
+	s[0] = 0;
 
 	if (!data)
 	{
 		*data_p = NULL;
-		return "";
+		return s;
 	}
 
 	// skip whitespace
 skipwhite:
-	while ((c = *data) <= ' ')
+	while ((c = *data) <= ' ') 
 	{
-		if (c == 0)
+		if (c == 0) 
 		{
 			*data_p = NULL;
-			return "";
+			return s;
 		}
 		data++;
 	}
 
 	// skip // comments
-	if (c == '/' && data[1] == '/')
-	{
+	if (c == '/' && data[1] == '/') {
+		data += 2;
 		while (*data && *data != '\n')
 			data++;
+		goto skipwhite;
+	}
+
+	// skip /* */ comments
+	if (c == '/' && data[1] == '*') 
+	{
+		data += 2;
+		while (*data) {
+			if (data[0] == '*' && data[1] == '/') 
+			{
+				data += 2;
+				break;
+			}
+			data++;
+		}
 		goto skipwhite;
 	}
 
@@ -1098,43 +1117,34 @@ skipwhite:
 		while (1)
 		{
 			c = *data++;
-			if (c == '\"' || !c)
+
+			if (c == '\"' || !c) 
 			{
-				com_token[len] = 0;
-				*data_p = data;
-				return com_token;
+				goto finish;
 			}
-			if (len < MAX_TOKEN_CHARS)
-			{
-				com_token[len] = c;
-				len++;
+			
+			if (len < MAX_TOKEN_CHARS - 1) {
+				s[len++] = c;
 			}
 		}
 	}
 
 	// parse a regular word
-	do
-	{
-		if (len < MAX_TOKEN_CHARS)
+	do {
+		if (len < MAX_TOKEN_CHARS - 1) 
 		{
-			com_token[len] = c;
-			len++;
+			s[len++] = c;
 		}
 		data++;
 		c = *data;
 	} while (c > 32);
 
-	if (len == MAX_TOKEN_CHARS)
-	{
-		//		Com_Printf ("Token exceeded %i chars, discarded.\n", MAX_TOKEN_CHARS);
-		len = 0;
-	}
-	com_token[len] = 0;
-
+finish:
+	s[len] = 0;
 	*data_p = data;
-	return com_token;
+	return s;
 }
-
+/* MetalGod END */
 /*
 ===============
 Com_PageInMemory

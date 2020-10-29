@@ -32,12 +32,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma warning(disable : 4244)	// MIPS
 #pragma warning(disable : 4136)	// X86
 #pragma warning(disable : 4051)	// ALPHA
-
-
 #pragma warning(disable : 4996)	// deprecated functions
 #pragma warning(disable : 4100)	// unreferenced formal parameter
-
-
 /*
 #pragma warning(disable : 4305)	// truncation from const double to float
 #pragma warning(disable : 4018)	// signed/unsigned mismatch
@@ -250,8 +246,10 @@ void COM_StripExtension(char* in, char* out);
 void COM_FileBase(char* in, char* out);
 void COM_FilePath(char* in, char* out);
 void COM_DefaultExtension(char* path, char* extension);
-
+/* MetalGod MetalGod Fix COM_Parse buffer overflow. TY QW 
 char* COM_Parse(char** data_p);
+*/
+char* COM_Parse(const char** data_p);
 // data is an in/out parm, returns a parsed out token
 
 void Com_sprintf(char* dest, int size, char* fmt, ...);
