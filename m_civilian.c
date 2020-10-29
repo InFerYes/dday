@@ -300,7 +300,7 @@ void civilian_think(edict_t* self)
 	int i;
 	edict_t* e, * nearest = NULL; /* MetalGod initialized */
 	float temp_distance, nearest_distance;
-	nearest_distance = 9999999999;
+	nearest_distance = 999999999.0F;/* MetalGod 9999999999 was excesive and overflows a float! Made explicit float */
 
 	if (level.intermissiontime)
 	{
@@ -346,7 +346,7 @@ void civilian_think(edict_t* self)
 		float temp_distance,nearest_distance;
 		 */
 
-		nearest_distance = 9999999999;
+		nearest_distance = 999999999.0F;/* MetalGod 9999999999 was excesive and overflows a float! Made explicit float */
 		for (e = g_edicts; e < &g_edicts[globals.num_edicts]; e++)
 		{
 			if (!e->inuse)

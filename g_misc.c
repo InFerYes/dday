@@ -2956,7 +2956,7 @@ void spawn_toggle_use(edict_t* self, edict_t* other, edict_t* activator)
 		float temp_distance, nearest_distance;
 		vec3_t dist;
 
-		nearest_distance = 9999999999;
+		nearest_distance = 999999999.0F;/* MetalGod 9999999999 was excesive and overflows a float! Made explicit float */
 		for (e = g_edicts; e < &g_edicts[globals.num_edicts]; e++)
 		{
 			if (!e->inuse)
