@@ -251,7 +251,7 @@ void SP_info_Special_Start(edict_t *ent){SP_info_reinforcement_start(ent);}
 void SP_info_Officer_Start(edict_t *ent) {SP_info_reinforcement_start(ent);}
 */
 
-void SP_info_player_intermission(void) {}
+void SP_info_player_intermission(edict_t* ent); /* MetalGod make the prototype match the actual function */
 void SP_info_reinforcement_start(edict_t* ent);
 void SP_info_Infantry_Start(edict_t* ent)
 {
@@ -2457,6 +2457,10 @@ deathmatch mode, so clear everything out before starting them.
 */
 void ClientBeginDeathmatch(edict_t* ent)
 {
+	/* MetalGod sanity check */
+	if (!ent->client)
+		return;
+	
 	G_InitEdict(ent);
 
 	InitClientResp(ent->client);

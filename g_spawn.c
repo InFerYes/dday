@@ -705,6 +705,13 @@ void SpawnEntities(char* mapname, char* entities, char* spawnpoint)
 			ent = g_edicts;
 		else
 			ent = G_Spawn();
+
+		if (!ent)/* MetalGod sanitiy check*/
+		{
+			gi.error("%s failed parsing entities.\n", __func__);
+			return;	// never reached
+		}
+
 		entities = ED_ParseEdict(entities, ent);
 
 		// yet another map hack

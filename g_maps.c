@@ -111,7 +111,7 @@ int LoadMapList(char* filename)
 		// scan for [maplist] section
 		do
 		{
-			fscanf(fp, "%s", szLineIn);
+			if(fscanf(fp, "%s", szLineIn));/* MetalGod check */
 		} while (!feof(fp) && (Q_stricmp(szLineIn, "[maplist]") != 0));
 
 		if (feof(fp))
@@ -128,7 +128,7 @@ int LoadMapList(char* filename)
 			// read map names into array
 			while ((!feof(fp)) && (i < MAX_MAPS))
 			{
-				fscanf(fp, "%s", szLineIn);
+				if(fscanf(fp, "%s", szLineIn));/* MetalGod check */
 				
 				if (Q_stricmp(szLineIn, "###") == 0)  // terminator is "###"
 					break;
