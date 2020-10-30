@@ -79,7 +79,7 @@ void Weapon_Generic(edict_t* ent,
 	FRAME_IDLE_FIRST = (ent->client->aim) ? FRAME_AIDLE_FIRST : FRAME_LIDLE_FIRST;
 	FRAME_IDLE_LAST = (ent->client->aim) ? FRAME_AIDLE_LAST : FRAME_LIDLE_LAST;
 
-	if (ent->client->pers.weapon &&
+	if (/*ent->client->pers.weapon && MetalGod redundant check */
 		ent->client->pers.weapon->pickup_name &&
 		frame_output)
 		gi.dprintf("%i / %i - %s\n", ent->client->weaponstate, ent->client->ps.gunframe, ent->client->pers.weapon->pickup_name);

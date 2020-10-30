@@ -161,7 +161,7 @@ void ClientUserinfoChanged(edict_t* ent, char* userinfo);
 void ClientDisconnect(edict_t* ent);
 void ClientBegin(edict_t* ent);
 void ClientCommand(edict_t* ent);
-void RunEntity(edict_t* ent);
+/* void RunEntity(edict_t* ent); MetalGod ghost prototype for a function that no  longer exits */
 void WriteGame(char* filename, qboolean autosave);
 void ReadGame(char* filename);
 void WriteLevel(char* filename);
@@ -771,7 +771,7 @@ void EndDMLevel(void)
 				{
 					//restart maplist
 					sb = strdup(sv_maplist->string);
-					tb = strtok(sb, seps);/* MetalGod changed to sb from s */
+					tb = strtok(sb, seps);
 					if (MapExists(tb))
 					{
 						safe_bprintf(PRINT_HIGH, "Next map: %s \n", tb);

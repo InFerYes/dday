@@ -983,7 +983,7 @@ void weapon_grenade_prime(edict_t* ent, int team)
 void Weapon_Grenade(edict_t* ent)
 {
 	/* MetalGod sanity check */
-	if (!ent)
+	if (!ent||!ent->client)
 		return;
 
 	//	if(	(!ent->client->grenade_index && !ent->client->pers.inventory[ent->client->ammo_index]) ||
@@ -1006,7 +1006,7 @@ void Weapon_Grenade(edict_t* ent)
 		ent->client->grenade_index = 0;
 	}
 
-	if (ent->client->pers.weapon &&
+	if (/* ent->client->pers.weapon && MetalGOd redundant check */ 
 		ent->client->pers.weapon->pickup_name &&
 		frame_output)
 		gi.dprintf("%i / %i - %s\n", ent->client->weaponstate, ent->client->ps.gunframe, ent->client->pers.weapon->pickup_name);
@@ -1427,7 +1427,7 @@ void Blade_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* sur
 	if (other == self->owner)
 		return;
 
-	if (surf && (surf->flags & SURF_SKY))
+	if (/* surf && */(surf->flags & SURF_SKY))/* MetalGod redundant check */
 	{
 		//faf ??		Drop_Item (self, item);
 		G_FreeEdict(self);
@@ -1452,9 +1452,9 @@ void Blade_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* sur
 
 	self->dmg = 0;//faf so it only damages on initial throw
 
-	if (!other->client && other->inuse && (!(other->svflags & SVF_MONSTER))) //stick
+	if (!other->client && other->inuse && (!(other->svflags & SVF_MONSTER)) && surf) //stick /* MetalGod moved the check for surf up here */
 	{
-		if (surf && (Surface(surf->name, SURF_METAL) || Surface(surf->name, SURF_GLASS)))
+		if (/*(surf && */(Surface(surf->name, SURF_METAL) || Surface(surf->name, SURF_GLASS)))
 		{
 			Play_Bullet_Hit(self, surf->name, self->s.origin, other);
 			self->think = Knife_Drop;
@@ -1703,7 +1703,7 @@ void Weapon_Knife_Fire(edict_t* ent)
 	vec3_t g_offset;
 
 	/* MetalGod sanity check */
-	if (!ent)
+	if (!ent||!ent->client )
 		return;
 
 	qboolean armedfists = Q_stricmp(ent->client->pers.weapon->pickup_name, "Knife");

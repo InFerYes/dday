@@ -656,7 +656,7 @@ void SV_CalcGunOffset(edict_t* ent)
 	if (!ent)
 		return;
 
-	if (ent->client &&
+	if (/* ent->client && MetalGod redundant check */
 		ent->client->pers.weapon &&
 		ent->client->pers.weapon->classnameb == WEAPON_BINOCULARS)
 	{
@@ -2229,19 +2229,17 @@ void ClientEndServerFrame(edict_t* ent)
 	//	int oldframe, oldanimend, newframe, newanimend;//faf
 
 		/* MetalGod sanity check! */
-	if (!ent)
+	if (!ent||!ent->client)
 		return;
 
-	if (ent->client)
-	{
-		if (level.framenum - ent->client->resp.enterframe == 10)
-			Cmd_MOTD(ent);
+	if (level.framenum - ent->client->resp.enterframe == 10)
+		Cmd_MOTD(ent);
 
-		if (nohud->value && level.framenum - ent->client->resp.enterframe == 100)
-			safe_centerprintf(ent, "Server is running in \"No Hud\" mode.\nRealism!!!\n");
+	if (nohud->value && level.framenum - ent->client->resp.enterframe == 100)
+		safe_centerprintf(ent, "Server is running in \"No Hud\" mode.\nRealism!!!\n");
 
-		//		gi.dprintf ("%i frame\n", (level.framenum - ent->client->resp.enterframe) );
-	}
+	//		gi.dprintf ("%i frame\n", (level.framenum - ent->client->resp.enterframe) );
+	
 
 	if (ent->client->smoke_effect_goal <= .005F) /* MetalGod explicit float */
 		ent->client->smoke_effect_goal = 0;

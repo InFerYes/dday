@@ -84,7 +84,7 @@ void SwitchToObserver(edict_t* ent)
 void Chute_Think(edict_t* ent)
 {
 	/* MetalGod sanity check */
-	if (!ent || !ent->owner)
+	if (!ent)
 		return;
 
 	if (level.intermissiontime || ent->owner->deadflag)
@@ -110,7 +110,7 @@ void Chute_Think(edict_t* ent)
 	ent->nextthink = level.time + .1;
 	//	gi.dprintf("%f\n",ent->owner->client->jump_stamina);
 		//we've touched the ground
-	if (ent->owner->client &&
+	if (/*ent->owner->client && MetalGod redundant */
 		ent->owner->groundentity || ent->owner->velocity[2] > 0 ||
 		ent->owner->client->jump_stamina < 80 ||
 		ent->s.frame > 5)
@@ -1065,7 +1065,7 @@ void MainMenu(edict_t* ent)
 	{
 		client_menu(ent, 9, "Join The Game ", PMENU_ALIGN_CENTER, NULL, M_Team_Choose);
 
-		if (ent->client && ent->client->resp.team_on)
+		if (/*ent->client &&*/ ent->client->resp.team_on)/* MetalGod redundant check */
 		{
 			client_menu(ent, 9, "Choose a Team ", PMENU_ALIGN_CENTER, NULL, M_Team_Choose);
 

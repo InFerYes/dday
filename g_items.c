@@ -156,15 +156,18 @@ void DoRespawn(edict_t* ent)
 		int	count;
 		int choice;
 
-		master = ent->teammaster;
+		if (ent->teammaster != NULL)/* MetalGod sanity check */
+		{
+			master = ent->teammaster;
 
-		for (count = 0, ent = master; ent; ent = ent->chain, count++)
-			;
+			for (count = 0, ent = master; ent; ent = ent->chain, count++)
+				;
 
-		choice = rand() % count;
+			choice = rand() % count;
 
-		for (count = 0, ent = master; count < choice; ent = ent->chain, count++)
-			;
+			for (count = 0, ent = master; count < choice; ent = ent->chain, count++)
+				;
+		}
 	}
 
 	ent->svflags &= ~SVF_NOCLIENT;
@@ -1670,7 +1673,7 @@ void SP_item_armor_shard(edict_t* self)
 
 void SP_item_ammo_grenades(edict_t* self)
 {
-	SpawnItem(self, FindItemByClassname("ammo_grenades"));
+	//SpawnItem(self, FindItemByClassname("ammo_grenades"));/* MetalGod this might be the cause of the crash when changing to certain maps during mashup */
 }
 
 void sandbag_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int damage, vec3_t point)

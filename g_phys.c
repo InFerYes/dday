@@ -108,8 +108,11 @@ qboolean SV_RunThink(edict_t* ent)
 		return true;
 
 	ent->nextthink = 0;
-	if (!ent->think)
+	if (!ent->think)/* MetalGod clarifying brackets */
+	{
 		gi.error("NULL ent->think");
+	}
+	else
 	ent->think(ent);
 
 	return false;
@@ -408,6 +411,10 @@ qboolean SV_Push(edict_t* pusher, vec3_t move, vec3_t amove)
 	pushed_t* p;
 	vec3_t		org, org2, move2, forward, right, up;
 
+	/* MetalGod sanity check */
+	if (!pusher)
+		return false;
+	/* END */
 	// clamp the move to 1/8 units, so the position will
 	// be accurate for client side prediction
 	for (i = 0; i < 3; i++)

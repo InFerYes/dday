@@ -2613,6 +2613,9 @@ void ClientUserinfoChanged(edict_t* ent, char* userinfo)
 	char* s;
 	int		playernum;
 
+	/* MetalGod sanity check */
+	if (!ent)
+		return;
 	//gi.dprintf("+ %s->userinfo changed\n", ent->client->pers.netname);
 
 	// check for malformed or illegal info strings
@@ -2630,7 +2633,7 @@ void ClientUserinfoChanged(edict_t* ent, char* userinfo)
 
 	playernum = ent - g_edicts - 1;
 
-	if (ent)
+	/*if (ent) MetalGod redundant */
 	{
 		char skin[64];
 
@@ -2705,7 +2708,7 @@ void ClientUserinfoChanged(edict_t* ent, char* userinfo)
 
 			gi.configstring(CS_PLAYERSKINS + playernum, va("%s\\%s",
 				ent->client->pers.netname, skin));
-		}
+		} 
 		/*		if (ent->ai && !strcmp(ent->client->pers.netname, "Hitler"))
 				{
 					strcpy(skin, "grm/h");
@@ -2715,8 +2718,9 @@ void ClientUserinfoChanged(edict_t* ent, char* userinfo)
 	}
 
 	// combine name and skin into a configstring
+	/* MetalGod not sure this was every called 
 	else
-		gi.configstring(CS_PLAYERSKINS + playernum, va("%s\\%s", ent->client->pers.netname, s));
+		gi.configstring(CS_PLAYERSKINS + playernum, va("%s\\%s", ent->client->pers.netname, s)); */
 
 	// handedness
 	s = Info_ValueForKey(userinfo, "hand");

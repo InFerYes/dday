@@ -708,8 +708,9 @@ void SpawnEntities(char* mapname, char* entities, char* spawnpoint)
 		entities = ED_ParseEdict(entities, ent);
 
 		// yet another map hack
+		/* MetalGOd remove this Quake2 SP/coop crap!
 		if (!Q_stricmp(level.mapname, "command") && !Q_stricmp(ent->classname, "trigger_once") && !Q_stricmp(ent->model, "*27"))
-			ent->spawnflags &= ~SPAWNFLAG_NOT_HARD;
+			ent->spawnflags &= ~SPAWNFLAG_NOT_HARD; */
 
 		// remove things (except the world) from different skill levels or deathmatch
 		if (ent != g_edicts)
@@ -1008,6 +1009,8 @@ void SpawnEntities2(char* mapname, char* entities, char* spawnpoint)
 // parse ents
 	while (1)
 	{
+		if (!g_edicts)
+			return;
 		// parse the opening brace
 		com_token = COM_Parse(&entities);
 		if (!entities)

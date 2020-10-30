@@ -144,18 +144,18 @@ void SP_info_Mission_Results(edict_t* ent)
 /////////////////////////////////////////////////////////////////////////////////
 //The following functions keep track of who owns the entity
 /////////////////////////////////////////////////////////////////////////////////
-//dmg is points for owning objtive
+//dmg is points for owning objetive
 void target_objective_use(edict_t* self, edict_t* other, edict_t* activator)
 {
 	if (self->obj_owner == activator->client->resp.team_on->index)
 		return; // if team already in possesion, continue
 
-	if (team_list[self->obj_owner] != NULL)
-		team_list[self->obj_owner]->score -= self->dmg;
+	if (team_list[self->obj_owner] == NULL)/* MetalGod check to see if it's NULL, before doing anything else or risk dereferencing */
+		return;
+	
+	team_list[self->obj_owner]->score -= self->dmg;
 
-	safe_bprintf(PRINT_HIGH, "%s has captured an objective point for team %s!\n",
-		activator->client->pers.netname,
-		team_list[self->obj_owner]->teamname);
+	safe_bprintf(PRINT_HIGH, "%s has captured an objective point for team %s!\n", activator->client->pers.netname, team_list[self->obj_owner]->teamname);
 
 	self->obj_owner = activator->client->resp.team_on->index;
 	team_list[self->obj_owner]->score += self->dmg;

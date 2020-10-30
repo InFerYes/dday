@@ -486,25 +486,27 @@ void ShowLinks(edict_t* ent)
 			continue;
 
 		blaser = G_Spawn();
+		if (blaser != NULL) /* MetalGod sanity check*/
+		{
+			blaser->movetype = MOVETYPE_NONE;
+			blaser->solid = SOLID_NOT;
+			blaser->s.renderfx |= RF_BEAM | RF_TRANSLUCENT;
+			blaser->s.modelindex = 1;			// must be non-zero
+			blaser->s.frame = 4;
+			blaser->s.skinnum = 0xe0e1e2e3;
+			VectorSet(blaser->mins, -8, -8, -8);
+			VectorSet(blaser->maxs, 8, 8, 8);
+			blaser->spawnflags |= 0x80000001;
+			blaser->svflags &= ~SVF_NOCLIENT;
+			VectorCopy(e->s.origin, blaser->s.origin);
 
-		blaser->movetype = MOVETYPE_NONE;
-		blaser->solid = SOLID_NOT;
-		blaser->s.renderfx |= RF_BEAM | RF_TRANSLUCENT;
-		blaser->s.modelindex = 1;			// must be non-zero
-		blaser->s.frame = 4;
-		blaser->s.skinnum = 0xe0e1e2e3;
-		VectorSet(blaser->mins, -8, -8, -8);
-		VectorSet(blaser->maxs, 8, 8, 8);
-		blaser->spawnflags |= 0x80000001;
-		blaser->svflags &= ~SVF_NOCLIENT;
-		VectorCopy(e->s.origin, blaser->s.origin);
+			gi.linkentity(blaser);
 
-		gi.linkentity(blaser);
+			blaser->think = Bot_Laser_Think;
+			blaser->nextthink = level.time + .1;
 
-		blaser->think = Bot_Laser_Think;
-		blaser->nextthink = level.time + .1;
-
-		e->client->resp.laser = blaser;
-		blaser->owner = e;
+			e->client->resp.laser = blaser;
+			blaser->owner = e;
+		}
 	}
 }

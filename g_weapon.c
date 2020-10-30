@@ -1664,14 +1664,14 @@ void fire_grenade2(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int s
 		VectorSet(grenade->avelocity, 300, 300, 300);
 
 	//faf
-	if (self->client &&
+	if (/*self->client && MetalGod redundant check */
 		self->stanceflags == STANCE_CRAWL)
 	{
 		grenade->s.origin[2] += 10;
 	}
 
 	//faf:  play part of wave animation when throwing nade
-	if (self->client && self->stanceflags == STANCE_STAND)
+	if (/* self->client && */self->stanceflags == STANCE_STAND)/* MetalGod redundant check */
 	{
 		self->client->anim_priority = ANIM_WAVE;
 		self->s.frame = 116;//(FRAME_wave05);
@@ -2167,6 +2167,10 @@ void fire_gun(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick, 
 	float r, u;
 	vec3_t forward, right, up;
 
+	/* MetalGod sanity check */
+	if (!self ||!self->client)
+		return;
+
 	AngleVectors(aimdir, forward, right, up);
 
 	//	VectorMA (start, 8192, aimdir, end);
@@ -2219,7 +2223,7 @@ void fire_gun(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick, 
 	}
 
 	// add spread to hip shots
-	if (self->client && !self->client->aim)
+	if (/* self->client && */ !self->client->aim) /* MetalGod redundant check */
 	{
 		r = 300 - crandom() * 600;
 		u = crandom() * 600;
