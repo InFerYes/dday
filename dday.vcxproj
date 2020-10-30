@@ -65,7 +65,7 @@
       <OmitFramePointers>false</OmitFramePointers>
       <AssemblerOutput>All</AssemblerOutput>
       <CompileAs>CompileAsC</CompileAs>
-      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
+      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
     </ClCompile>
     <Link>
       <OutputFile>C:\games\quake2\dday\gamex86.dll</OutputFile>
