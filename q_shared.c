@@ -1210,6 +1210,7 @@ int Q_strcasecmp(char* s1, char* s2)
 	return Q_strncasecmp(s1, s2, 99999);
 }
 
+
 void Com_sprintf(char* dest, int size, char* fmt, ...)
 {
 	int		len;
@@ -1217,7 +1218,8 @@ void Com_sprintf(char* dest, int size, char* fmt, ...)
 	char	bigbuffer[0x10000];
 
 	va_start(argptr, fmt);
-	len = vsprintf(bigbuffer, fmt, argptr);
+	/*vsprintf (bigbuffer,fmt,argptr);MrG{DRGN} use vsnprintf */
+	len = vsnprintf(bigbuffer, sizeof(bigbuffer), fmt, argptr);
 	va_end(argptr);
 	if (len >= size)
 		Com_Printf("Com_sprintf: overflow of %i in %i\n", len, size);
