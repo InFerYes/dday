@@ -185,10 +185,11 @@ void AI_BotObituary (edict_t *self, edict_t *inflictor, edict_t *attacker)
 ///////////////////////////////////////////////////////////////////////
 
 /* MetalGod would we be better have not pounding the stack and moving data to the heap by using gi.Tag.malloc/gi.Tagfree? */
+static char	bigbuffer[0x8000];
 void debug_printf(char* fmt, ...)
 {
 	int     i;
-	char	bigbuffer[0x10000];
+	
 	int		len;
 	va_list	argptr;
 	edict_t* cl_ent;
@@ -215,7 +216,7 @@ void debug_printf(char* fmt, ...)
 ///////////////////////////////////////////////////////////////////////
 void safe_cprintf(edict_t* ent, int printlevel, char* fmt, ...)
 {
-	char	bigbuffer[0x10000];
+	//char	bigbuffer[0x10000];
 	va_list		argptr;
 	int len;
 
@@ -229,12 +230,13 @@ void safe_cprintf(edict_t* ent, int printlevel, char* fmt, ...)
 	gi.cprintf(ent, printlevel, bigbuffer);
 }
 
+
 ///////////////////////////////////////////////////////////////////////
 // botsafe centerprintf
 ///////////////////////////////////////////////////////////////////////
 void safe_centerprintf(edict_t* ent, char* fmt, ...)
 {
-	char	bigbuffer[0x10000];
+	
 	va_list		argptr;
 	int len;
 
@@ -254,7 +256,7 @@ void safe_centerprintf(edict_t* ent, char* fmt, ...)
 void safe_bprintf(int printlevel, char* fmt, ...)
 {
 	int i;
-	char	bigbuffer[0x10000];
+	//char	bigbuffer[0x10000];
 	int		len;
 	va_list		argptr;
 	edict_t* cl_ent;

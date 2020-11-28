@@ -2121,4 +2121,4 @@ int  botchat_self_count[MAX_TEAMS];
 
 char user_shouts[64][256];/* MetalGod was 20 100*/
 int user_shout_count;
-#define MAXSHOUTS 20 /* MetalGod */
+#define MAXSHOUTS 32 /* MetalGod */
