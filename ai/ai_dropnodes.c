@@ -121,9 +121,9 @@ void AI_UpdateNodeEdge(int from, int to)
 //==========================================
 void AI_DropLadderNodes(edict_t* self)
 {
-	vec3_t	torigin;
-	vec3_t	borigin;
-	vec3_t	droporigin;
+	vec3_t	torigin = {0};
+	vec3_t	borigin = {0};
+	vec3_t	droporigin = {0};
 	int		step;
 	trace_t trace;
 
@@ -210,7 +210,7 @@ qboolean AI_CheckForLadder(edict_t* self, qboolean force)
 void AI_WaterJumpNode(void)
 {
 	int			closest_node;
-	vec3_t		waterorigin;
+	vec3_t		waterorigin = {0};
 	trace_t		trace;
 	edict_t		ent;
 

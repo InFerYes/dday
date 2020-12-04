@@ -724,6 +724,9 @@ qboolean WeighPlayer(edict_t* ent)
 
 	return true;
 }
+/* MetalGod moved these here/to the heap */
+static char	buffer[0x8000];
+static char	print[0x8000];
 
 // based off of Com_sprintf
 void centerprintall(char* mesg, ...)
@@ -731,9 +734,7 @@ void centerprintall(char* mesg, ...)
 	int		i, len, size;
 	edict_t* ent;
 	va_list	argptr;
-	char	buffer[0x10000];
-	char	print[0x10000];
-
+	
 	size = sizeof(print);
 
 	va_start(argptr, mesg);

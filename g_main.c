@@ -377,7 +377,6 @@ void Write_Last_Maps(void)
 		fclose(fp);
 	}
 }
-
 void Read_Last_Maps()
 {
 	int		i, c;
@@ -396,7 +395,7 @@ void Read_Last_Maps()
 				last_maps_played[i] = s;
 				s = strtok(NULL, "\n");
 			}
-		}
+		}			
 	}
 }
 
@@ -412,8 +411,8 @@ char* Get_Next_MaplistTxt_Map()
 	int x;
 	int randnum;
 	int removed;
-	char* possible_maps[300];
-	char* maplisttxt[300];
+	char* possible_maps[300] = {0};;
+	char* maplisttxt[300] = {0};;
 
 	maps = ReadEntFile("dday/maplist.txt");
 
@@ -895,7 +894,7 @@ void CheckDMRules(void)
 	//faf: ctb code
 	if (level.ctb_time)
 	{
-		vec3_t		w; //faf
+		vec3_t		w = {0}; //faf
 		float		briefcase_range;//faf /* MetalGod was range. Changed to a name that doesn't shadow an outer function */
 		edict_t* check;
 		edict_t* usaflag = NULL; /* MetalGod initialized */

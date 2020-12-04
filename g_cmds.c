@@ -2253,10 +2253,10 @@ char* SeekBufEnd(char* buf)
 		buf++;
 	return buf;
 }
-
+   static char buf[0x8000], infobuf[0x8000]; /* MetalGod no need to be unsigned / moved here/to heap*/
 void ParseSayText(edict_t* ent, char* text)
 {
-	char buf[10240], infobuf[10240]; /* MetalGod no need to be unsigned */
+	
 	char* p, * pbuf;
 
 	p = text;

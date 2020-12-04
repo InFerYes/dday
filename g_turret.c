@@ -779,7 +779,7 @@ void turret_off(edict_t* self)
 }
 
 qboolean FindTarget(edict_t* self);
-
+ /* MetalGod unused! 
 void turret_driver_think(edict_t* self)
 {
 	vec3_t	target;
@@ -832,7 +832,7 @@ void turret_driver_think(edict_t* self)
 	self->monsterinfo.attack_finished = level.time + reaction_time + 1.0;
 	//FIXME how do we really want to pass this along?
 	self->target_ent->spawnflags |= 65536;
-}
+}  */
 void change_stance(edict_t* self, int stance);
 void turret_driver_link(edict_t* self)
 {

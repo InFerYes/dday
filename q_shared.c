@@ -1210,12 +1210,12 @@ int Q_strcasecmp(char* s1, char* s2)
 	return Q_strncasecmp(s1, s2, 99999);
 }
 
-
+   static char	bigbuffer[0x8000];	/* MetalGod */
 void Com_sprintf(char* dest, int size, char* fmt, ...)
 {
 	int		len;
 	va_list		argptr;
-	char	bigbuffer[0x10000];
+	
 
 	va_start(argptr, fmt);
 	/*vsprintf (bigbuffer,fmt,argptr);MrG{DRGN} use vsnprintf */

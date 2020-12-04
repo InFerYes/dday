@@ -188,18 +188,22 @@ void objective_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t*
 
 			self->obj_owner = other->client->resp.team_on->index;
 			if (self->obj_perm_owner % 2 != other->client->resp.team_on->index)
+			{
 				if (team_list[self->obj_owner])
 				{
 					team_list[self->obj_owner]->score += self->health;
 				}
+			}
 		}
 		else
 		{
 			if (team_list[self->obj_owner])
+			{
 				team_list[self->obj_owner]->score -= self->dmg;
 
-			self->obj_owner = other->client->resp.team_on->index;
-			team_list[self->obj_owner]->score += self->health;
+				self->obj_owner = other->client->resp.team_on->index;
+				team_list[self->obj_owner]->score += self->health;
+			}
 		}
 
 		otherteam = (self->obj_owner);
@@ -585,10 +589,7 @@ void func_explosive_objective_explode(edict_t* self, edict_t* inflictor, edict_t
 			attacker->client->pers.netname,
 			team_list[attacker->client->resp.team_on->index]->teamname);
 
-	centerprintall("%s destroyed by:\n\n%s\n%s",
-		self->obj_name,
-		attacker->client->pers.netname,
-		team_list[attacker->client->resp.team_on->index]->teamname);
+	centerprintall("%s destroyed by:\n\n%s\n%s", self->obj_name, attacker->client->pers.netname, team_list[attacker->client->resp.team_on->index]->teamname);
 
 	otherteam = (self->obj_owner + 1) % 2;
 	if (!team_list[otherteam]->kills_and_points && team_list[otherteam]->score < team_list[otherteam]->need_points ||

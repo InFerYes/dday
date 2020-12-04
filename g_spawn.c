@@ -872,7 +872,7 @@ void LoadCampFile(void)
 	char	cmpfilename[MAX_QPATH] = "";
 	char* camplocs;
 	int		i; 	
-	vec3_t	loc;	
+	vec3_t	loc = {0};
 	
 	if (level.botfiles)
 		sprintf(cmpfilename, "dday/navigation/%s.cmp", level.botfiles);
@@ -900,7 +900,7 @@ void LoadCampFile(void)
 		/* END */
 		//leave these dprints active they show up in the server init console section
 		gi.dprintf("%s.cmp Loaded\n", level.mapname);
-
+	   	
 		c = 0;
 		f = strdup(camplocs);
 		s = strtok(f, "\n");
@@ -964,7 +964,7 @@ void LoadCampFile(void)
 				camp_spots[c].type = CAMP_NORMAL;
 				c++;
 				total_camp_spots = c;
-			}
+			} 		
 			//
 		}
 	}

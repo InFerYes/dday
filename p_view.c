@@ -2424,7 +2424,7 @@ void ClientEndServerFrame(edict_t* ent)
 		bobtime *= 4;
 
 	bobcycle = (int)bobtime;
-	bobfracsin = fabs(sin(bobtime * M_PI));
+	bobfracsin = fabsf(sinf(bobtime * M_PI));  /* MetalGOd - it's all being truncated to a float, from a double so just use the float versions of fabs, and sin! */
 
 	// detect hitting the floor
 	P_FallingDamage(ent);
