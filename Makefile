@@ -31,7 +31,7 @@ ARCH := $(shell uname -m | sed -e s/i.86/i386/ -e s/sun4u/sparc64/ -e s/arm.*/ar
 #ARCH=x86_64
 
 CC=gcc
-BASE_CFLAGS=-Dstricmp=strcasecmp
+BASE_CFLAGS="-Dstricmp=strcasecmp" "-fcommon"
 
 #CFLAGS_RELEASE=$(BASE_CFLAGS) -S
 
