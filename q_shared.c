@@ -300,18 +300,17 @@ float	anglemod(float a)
 	a = (360.0 / 65536) * ((int)(a * (65536 / 360.0)) & 65535);
 	return a;
 }
-/* MetalGod no!
-int		i;
-vec3_t	corners[2];
-*/
+
+
 
 // this is the slow, general version
 int BoxOnPlaneSide2(vec3_t emins, vec3_t emaxs, struct cplane_s* p)
 {
 	int		i;
+	vec3_t	corners[2] = {0};
 	float	dist1, dist2;
 	int		sides;
-	vec3_t	corners[2];
+	
 
 	for (i = 0; i < 3; i++)
 	{

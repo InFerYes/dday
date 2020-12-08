@@ -84,7 +84,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define idaxp	0
 #endif
 
-/* MetalGod MS's replacement for POSIX non-standard C function name */
+/* MetalGod MS's replacement for POSIX non-standard C function name
+TODO: Replace all calls to this function with something that doesn't hide reserving memory and/or appropriate frees
+*/
 #ifdef _WIN32
 #define strdup _strdup
 #endif

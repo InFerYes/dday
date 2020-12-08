@@ -4244,7 +4244,7 @@ void Write_Player_Stats(edict_t* ent)
 	char* ip;
 	int		c;
 
-	char* s, * f;
+	char* s, * f= NULL;
 
 	char* statsc;
 
@@ -4491,6 +4491,12 @@ void Write_Player_Stats(edict_t* ent)
 		fprintf(fn, "%s\n", ent->client->pers.stat_chat);
 
 		fclose(fn);
+	}
+
+	if (f)
+	{
+		free(f);
+		f = NULL;
 	}
 }
 

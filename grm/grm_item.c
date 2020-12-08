@@ -482,9 +482,21 @@ gitem_t grmitems[] =
 							"grm",
 							NULL,
 							0
-						},
+		},
 
-					{
-						NULL
-					},
+		{
+			NULL
+		},
+		{
+			NULL
+		},
+		{
+			NULL
+		},
+		{
+			NULL
+		},
+		{
+			NULL
+		},
 };

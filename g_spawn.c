@@ -566,7 +566,7 @@ char* ED_ParseEdict(char* data, edict_t* ent)
 	while (1)
 	{
 		// parse key
-		com_token = COM_Parse(&data);
+		com_token = COM_Parse((const char**)&data);
 		if (com_token[0] == '}')
 			break;
 		if (!data)
@@ -575,7 +575,7 @@ char* ED_ParseEdict(char* data, edict_t* ent)
 		strncpy(keyname, com_token, sizeof(keyname) - 1);
 
 		// parse value
-		com_token = COM_Parse(&data);
+		com_token = COM_Parse((const char**)&data);
 		if (!data)
 			gi.error("ED_ParseEntity: EOF without closing brace");
 
@@ -695,7 +695,7 @@ void SpawnEntities(char* mapname, char* entities, char* spawnpoint)
 	while (1)
 	{
 		// parse the opening brace
-		com_token = COM_Parse(&entities);
+		com_token = COM_Parse((const char**)&entities);
 		if (!entities)
 			break;
 		if (com_token[0] != '{')
