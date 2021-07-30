@@ -2512,14 +2512,20 @@ void ClientEndServerFrame(edict_t* ent)
 		Cmd_Say_f(ent, ent->client->resp.chatsavetype, false, true);
 
 	//should be done with the gun instead of client, but it won't matter 99% of the time
-	if (ent->client->mg42_temperature > 0)
+	if (ent->client->mg42_temperature > 0.0F)
 	{
-		ent->client->mg42_temperature -= .15F; /* MetalGod explicit float */
-		//gi.dprintf("%f \n", ent->client->mg42_temperature);
+			// 2021-07-30/ed: MG42 cooldown
+			if (ent->client->mg42_temperature > 1.0F) {
+				ent->client->mg42_temperature -= 1.0F;	// Old: //ent->client->mg42_temperature -= .15F; /* MetalGod explicit float */
+			}
+			if (ent->client->mg42_temperature < 30.0F) {
+				ent->client->mg42_overheating_flag = false;			
+			}
+			//gi.dprintf("%f \n", ent->client->mg42_temperature);
 
 		if (ent->client->pers.weapon &&
 			ent->client->pers.weapon->classnameb == WEAPON_MG42 &&
-			ent->client->mg42_temperature > 33)
+			ent->client->mg42_temperature > 30.0F)
 		{
 			edict_t* smoke;
 			vec3_t pos, fward;
@@ -2544,6 +2550,8 @@ void ClientEndServerFrame(edict_t* ent)
 			smoke->think = G_FreeEdict;
 			VectorAdd(smoke->velocity, ent->velocity, smoke->velocity);
 			gi.linkentity(smoke);
+
+			gi.sound(ent, CHAN_BODY, gi.soundindex("world/steam2.wav"), 1, ATTN_NORM, 0);
 		}
 	}
 

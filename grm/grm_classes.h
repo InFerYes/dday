@@ -115,7 +115,9 @@ SMos_t GRM_MOS_List[NUM_CLASSES] =
 		"Heavy Gunner",//"Schwer Kanoier",
 		"class_hmg",
 		"MG42",
-		5,
+		2,		// 2021-07-30/ed: Due to mag size increase 100->250 and 1200 rpm firing speed, 
+				// decrease the mag amount from 1+5 (600 rounds) to just 1+2 (750 rounds). A bit higher but balanced out by other things
+
 		NULL,
 		0,
 		"M24 Grenade",

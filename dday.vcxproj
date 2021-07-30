@@ -116,7 +116,7 @@
       <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <Link>
-      <OutputFile>C:\games\quake2\dday\gamex86.dll</OutputFile>
+      <OutputFile>C:\ddaydev\gamex86.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ModuleDefinitionFile>.\game.def</ModuleDefinitionFile>
       <ProgramDatabaseFile>.\Release/gamex86.pdb</ProgramDatabaseFile>

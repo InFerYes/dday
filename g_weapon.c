@@ -3338,6 +3338,8 @@ void Weapon_MG42_Fire(edict_t* ent)
 	trace_t tr; //faf
 	vec3_t end; //faf
 	vec3_t g_offset; //faf
+	char temp_string[5];
+
 
 	if (ent->client->next_fire_frame > level.framenum)
 		return;
@@ -3384,6 +3386,25 @@ void Weapon_MG42_Fire(edict_t* ent)
 		ent->client->weaponstate = WEAPON_READY;
 
 		return;
+	}
+
+	if (ent->client->mg42_temperature > 45.0F){
+		ent->client->mg42_overheating_flag = true;
+		// 2021-07-30/ed: Cleaned up. Ammo and magazines are not immediately lost now
+		//safe_centerprintf(ent, "The MG42 is overheating!");
+		//return;
+		if (ent->client->mg42_temperature > 90.0F){
+			safe_centerprintf(ent, "The barrel has been damaged!");
+			// Damage the weapon only now
+			ent->client->mags[mag_index].hmg_rnd = 0;
+			ent->client->pers.inventory[ITEM_INDEX(FindItem(ent->client->pers.weapon->ammo))] = 0;
+			return;
+		}
+	}
+	// 2021-07-30/ed: Decrease accuracy when overheating
+	float overheated_shot_multiplier = 1.0f;
+	if (ent->client->mg42_overheating_flag == true) {
+		overheated_shot_multiplier = 1.0f + (ent->client->mg42_temperature / 30.0f);
 	}
 
 	/*
@@ -3439,20 +3460,7 @@ void Weapon_MG42_Fire(edict_t* ent)
 		return;
 	}
 
-	//	jamchance = rand() % 100;
-	if (ent->client->mg42_temperature > 45)
-	{
-		gi.sound(ent, CHAN_WEAPON, gi.soundindex("weapons/noammo.wav"), 1, ATTN_NORM, 0);
-		safe_centerprintf(ent, "The MG42 overheated! Fire that\nthing in bursts next time!\n");
-		ent->client->mags[mag_index].hmg_rnd = 0;
 
-		//ent->client->mg42_temperature =0;
-		ent->client->pers.inventory[ITEM_INDEX(FindItem(ent->client->pers.weapon->ammo))] = 0;
-
-		ent->client->mg42_temperature = 43;
-
-		return;
-	}
 
 	//ent->client->ps.gunframe++;
 
@@ -3482,8 +3490,8 @@ void Weapon_MG42_Fire(edict_t* ent)
 		for (i = 0; i < 3; i++)
 		{
 			//rezmoth - changed for new firing system
-			ent->client->kick_origin[i] = crandom() * 0.35;
-			ent->client->kick_angles[i] += crandom() * 0.7;
+			ent->client->kick_origin[i] = crandom() * 0.35 * overheated_shot_multiplier;
+			ent->client->kick_angles[i] += crandom() * 0.7 * overheated_shot_multiplier;
 		}
 		VectorAdd(ent->client->v_angle, ent->client->kick_angles, angles);
 		AngleVectors(angles, forward, right, up);
@@ -3526,6 +3534,9 @@ void Weapon_MG42_Fire(edict_t* ent)
 	//fire_bullet (ent, start, forward, damage, kick, DEFAULT_BULLET_HSPREAD, DEFAULT_BULLET_VSPREAD, mod, true);
 	++ent->numfired;
 
+
+
+
 	if (ent->numfired % TRACERSHOT == 1)
 	{
 		VectorNormalize(right);
@@ -3547,6 +3558,24 @@ void Weapon_MG42_Fire(edict_t* ent)
 
 		//	fire_gun(ent, start, forward, damage, kick, HMG_SPREAD, HMG_SPREAD, mod, false);  //mg42 fires twice as fast now
 	}
+
+
+	// 2021-07-30/ed: Fire the second shot every time to simulate 1200 rpm firing rate (similar to how Vickers and PPSh do it for 900 rpm)
+	for (i = 0; i < 3; i++)
+	{
+		//rezmoth - changed for new firing system
+		ent->client->kick_origin[i] = crandom() * 0.35 * overheated_shot_multiplier;
+		ent->client->kick_angles[i] += crandom() * 0.7 * overheated_shot_multiplier;
+	}
+
+	VectorAdd(ent->client->v_angle, ent->client->kick_angles, angles);
+	AngleVectors(angles, forward, right, up);
+
+	VectorSet(offset, 0, 0, ent->viewheight - 0);
+	P_ProjectSource(ent->client, ent->s.origin, offset, forward, right, start);
+
+	fire_gun(ent, start, forward, damage, kick, HMG_SPREAD, HMG_SPREAD, mod, false);
+
 
 	// rezmoth - changed to new firing code
 	//fire_bullet (ent, start, forward, damage, kick, DEFAULT_BULLET_HSPREAD, DEFAULT_BULLET_VSPREAD, mod, true);
@@ -3576,12 +3605,17 @@ void Weapon_MG42_Fire(edict_t* ent)
 
 		  //ent->client->mags[mag_index].hmg_rnd-= 2; //shots;
 
-	ent->client->mags[mag_index].hmg_rnd -= 1; //shots;
+	if (ent->client->mags[mag_index].hmg_rnd >= 2) {
+		ent->client->mags[mag_index].hmg_rnd -= 2; // 2021-07-30/ed: Two shots now
+	}else{
+		ent->client->mags[mag_index].hmg_rnd = 0; 
+	}
 
 //	if(ent->client->mags[mag_index].hmg_rnd==0 && auto_reload->value) Cmd_Reload_f(ent);
 	ent->client->next_fire_frame = level.framenum + guninfo->frame_delay;
 
-	//		ent->client->mg42_temperature++;
+	// 2021-07-30/ed: Increase the temperature
+	ent->client->mg42_temperature += 2.6F;	// 2021-07-30/ed: Quite calibrated lol
 }
 
 void Weapon_Rocket_Fire(edict_t* ent)

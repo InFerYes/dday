@@ -106,7 +106,7 @@ GunInfo_t grmguninfo[MAX_TEAM_GUNS] =
 			"grm/mg42/reload.wav",
 		{13,72},//{13,74},
 
-		"grm/mg42/fire.wav",
+		"grm/mg42/fire2.wav",	// 2021-07-30/ev: MG42 1200rpm firing rate upgrade: fire2.wav sounds faster than the original fire.wav
 		NULL,
 
 		MOD_HMG,

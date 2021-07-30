@@ -25,12 +25,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
 
+
 #define P38_MAG			8
 #define MP40_MAG		32
 #define MC_MAG			5
 #define MK_MAG			5
 #define MP43_MAG		30
-#define MG42_MAG		100//250//100
+#define MG42_MAG		250 // 2021-07-30/ed: Rounds increase 100->250 due to faster firing rate and overheating
 #define PSK_MAG			1
 
 #define P38_FRAME		0
@@ -45,7 +46,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define DAMAGE_M98K			100	// rezmoth - was 75
 #define DAMAGE_MP40			24 // wheaty: was 20
 #define DAMAGE_MP43			35
-#define DAMAGE_MG42			50
+#define DAMAGE_MG42			22 // 2021-07-30/ed: Due to other things related to the 1200rpm firing rate, balanced from 50 down to 22 (but 2 bullets are fired at the same time!)
 #define DAMAGE_PANZER_HIT	1250 //1000 // bridges default to 2000 with cast's maps =)
 #define DAMAGE_PANZER_RAD	500
 #define DAMAGE_M98KS		100

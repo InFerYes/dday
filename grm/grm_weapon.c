@@ -248,7 +248,7 @@ void Weapon_MG42(edict_t* ent)
 		79, 79, 82,
 		85, 87, 99,
 
-		pause_frames, fire_frames, Weapon_HMG_Fire);
+		pause_frames, fire_frames, Weapon_MG42_Fire);
 }
 
 /////////////////////////////////////////////////

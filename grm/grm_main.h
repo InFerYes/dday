@@ -33,7 +33,9 @@ void Weapon_Pistol_Fire(edict_t* ent);
 void Weapon_Rifle_Fire(edict_t* ent);
 void Weapon_Submachinegun_Fire(edict_t* ent);
 void Weapon_LMG_Fire(edict_t* ent);
-void Weapon_HMG_Fire(edict_t* ent);
+//void Weapon_HMG_Fire(edict_t* ent);
+void Weapon_MG42_Fire(edict_t* ent);
+
 void Weapon_Rocket_Fire(edict_t* ent);
 void Weapon_Sniper_Fire(edict_t* ent);
 

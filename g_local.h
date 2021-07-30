@@ -228,6 +228,8 @@ typedef enum
 #define PNOISE_WEAPON			1
 #define PNOISE_IMPACT			2
 
+#define SUPER_MG42	 // 2021-07-30/ed
+
 // edict->movetype values
 typedef enum
 {
@@ -1351,6 +1353,9 @@ struct gclient_s
 	gitem_t* newweapon;
 	gitem_t* oldweapon;
 
+	// 2021-07-30/ed
+	qboolean mg42_overheating_flag;
+
 	// sum up damage over an entire frame, so
 	// shotgun blasts give a single big kick
 	int			damage_armor;		// damage absorbed by armor
@@ -1700,6 +1705,7 @@ struct edict_s
 
 	vec3_t		move_origin;
 	vec3_t		move_angles;
+
 
 	// move this to clientinfo?
 	int			light_level;

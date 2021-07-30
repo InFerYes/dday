@@ -3672,6 +3672,8 @@ void ClientThink(edict_t* ent, usercmd_t* ucmd)
 
 	//ClientSetMaxSpeed(ent, true);
 
+
+
 	//END DDAY
 
 	pm_passent = ent;
@@ -4236,6 +4238,9 @@ void ClientBeginServerFrame(edict_t* ent)
 		//		else if	(!ent->client->display_info)
 		//			MainMenu(ent);
 	}
+
+
+	
 }
 
 void Write_Player_Stats(edict_t* ent)
