@@ -1130,6 +1130,8 @@ void PBM_FlameThrowerTouch
 	gi.linkentity(self);
 }
 
+
+
 /*------------------------------------------------------/ New Code /--------
 //  This animates the fireball/explosion.  The magic numbers in this
 //  function represent the frame numbers in id's r_explode md2.
@@ -1168,6 +1170,7 @@ void PBM_FlameThrowerThink(edict_t* self)
 		PBM_FireDrop(self->master, self->s.origin, self->pos1, self->pos2, self->dmg, self->velocity);
 }
 
+
 //faf:  flame starts invisible at players origin, then becomes visible here
 void Become_Flame(edict_t* fireball)
 {
@@ -1200,6 +1203,8 @@ void Become_Flame(edict_t* fireball)
 	fireball->nextthink = level.time + FRAMETIME * 2;
 	fireball->think = PBM_FlameThrowerThink;
 }
+
+
 
 /*------------------------------------------------------/ New Code /--------
 //  Create and launch a fat fireball.

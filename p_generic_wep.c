@@ -542,6 +542,7 @@ void Weapon_Generic(edict_t* ent,
 	{
 		if (((ent->client->buttons) & BUTTON_ATTACK))
 		{
+
 			//faf
 			if ((ent->waterlevel == 3 ||
 				(ent->waterlevel == 2 && ent->client->v_angle[0] > 0)) &&
@@ -553,6 +554,11 @@ void Weapon_Generic(edict_t* ent,
 				ent->client->ps.gunframe++;
 				goto no_fire;
 			}
+
+
+
+
+
 		}
 
 		for (n = 0; fire_frames[n]; n++)
@@ -577,6 +583,12 @@ void Weapon_Generic(edict_t* ent,
 				}
 				else
 				{
+
+
+					// 2021-08-05/ed: Something with Muzzle flash maybe (also) here 
+					// ...
+
+
 					fire(ent);
 					break;
 				}

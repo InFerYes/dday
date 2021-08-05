@@ -2511,11 +2511,52 @@ void ClientEndServerFrame(edict_t* ent)
 	if (ent->client->resp.chatsave[0] != '\0' && ent->client->resp.chatsavetime + 5 < level.framenum)
 		Cmd_Say_f(ent, ent->client->resp.chatsavetype, false, true);
 
+
+
+
+
+	// ==================================================================================================================================================
+	// WIP: 2021-08-05/ed: Muzzle flash tests
+	// 	    ToDo: Show in front of the gun
+	// 	    ToDo: Process in each weapon code with specifics. Not here in p_view (!) (?)
+	// 	    ToDo: Find or make nice flash sprites
+	// ==================================================================================================================================================
+	//if (ent->client->weaponstate == WEAPON_FIRING){
+	//if (ent->client->last_fire_time > level.time - .2){
+		edict_t* muzzle_flash;
+		
+		muzzle_flash = G_Spawn();
+
+		VectorClear(muzzle_flash->mins);
+		VectorClear(muzzle_flash->maxs);
+
+		vec3_t s, f;
+		VectorCopy(forward, f);
+		VectorCopy(ent->s.origin, s);
+		VectorCopy(s, muzzle_flash->s.origin);
+		vectoangles(f, muzzle_flash->s.angles);
+		// ToDo: What to do with the vectors to show in front of the gun properly each time ???
+
+		muzzle_flash->s.modelindex = gi.modelindex("sprites/s_explod.sp2");
+		muzzle_flash->s.frame = 0;
+		muzzle_flash->s.skinnum = 0;
+		muzzle_flash->touch = NULL;
+		muzzle_flash->solid = SOLID_NOT;
+		muzzle_flash->takedamage = DAMAGE_NO;
+		muzzle_flash->clipmask = MASK_SHOT;
+		muzzle_flash->s.effects = EF_GRENADE;
+		muzzle_flash->movetype = MOVETYPE_NONE;
+		muzzle_flash->classname = "fire";
+		muzzle_flash->nextthink = level.time + .2;
+		muzzle_flash->think = G_FreeEdict;
+		gi.linkentity(muzzle_flash);
+	//}
+	// ==================================================================================================================================================
+
 	//should be done with the gun instead of client, but it won't matter 99% of the time
 	// 
 	// 2021-08-05/ed: Check for server cvar
 	if (fast_mg42->value){
-
 
 		if (ent->client->mg42_temperature > 0.0F)
 		{

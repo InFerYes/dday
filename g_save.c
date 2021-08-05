@@ -265,7 +265,7 @@ void InitGame(void)
 	spawn_camp_time = gi.cvar("spawn_camp_time", "2", 0);//CVAR_SERVERINFO);
 //	teamgren			=	gi.cvar("teamgren",				"1",  CVAR_SERVERINFO | CVAR_LATCH);
 	death_msg = gi.cvar("death_msg", "3", CVAR_SERVERINFO);
-	level_wait = gi.cvar("level_wait", "20", CVAR_SERVERINFO);
+	level_wait = gi.cvar("level_wait", "0", CVAR_SERVERINFO);	// 2021-08-05/ed: DEBUG! default "20"
 	invuln_spawn = gi.cvar("invuln_spawn", "3", 0);//CVAR_SERVERINFO);
 
 	// artillary
