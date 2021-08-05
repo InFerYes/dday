@@ -31,7 +31,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define MC_MAG			5
 #define MK_MAG			5
 #define MP43_MAG		30
-#define MG42_MAG		250 // 2021-07-30/ed: Rounds increase 100->250 due to faster firing rate and overheating
+
+#define MG42_MAG_SLOW	100
+#define MG42_MAG_FAST	250
+#define MG42_MAG		MG42_MAG_FAST
+
 #define PSK_MAG			1
 
 #define P38_FRAME		0
@@ -46,7 +50,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define DAMAGE_M98K			100	// rezmoth - was 75
 #define DAMAGE_MP40			24 // wheaty: was 20
 #define DAMAGE_MP43			35
-#define DAMAGE_MG42			22 // 2021-07-30/ed: Due to other things related to the 1200rpm firing rate, balanced from 50 down to 22 (but 2 bullets are fired at the same time!)
+
+#define DAMAGE_MG42_FAST	22 // 2021-07-30/ed: Due to other things related to the 1200rpm firing rate, balanced from 50 down to 22 (but 2 bullets are fired at the same time!)
+#define DAMAGE_MG42_SLOW	50 // 2021-08-05/ed: This actually changes now between 22 (fast_mg42 == 1) and 50 (fast_mg42 == 0)
+#define DAMAGE_MG42			DAMAGE_MG42_FAST // 2021-08-05/ed: A placeholder value, changes in g_weapon.c
+
 #define DAMAGE_PANZER_HIT	1250 //1000 // bridges default to 2000 with cast's maps =)
 #define DAMAGE_PANZER_RAD	500
 #define DAMAGE_M98KS		100

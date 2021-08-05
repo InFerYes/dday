@@ -668,6 +668,8 @@ extern	cvar_t* bob_roll;
 extern	cvar_t* sv_cheats;
 extern	cvar_t* maxclients;
 
+extern cvar_t* fast_mg42;
+
 //Flyingnun Password
 
 extern  cvar_t* flyingnun_password;

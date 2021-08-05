@@ -296,6 +296,8 @@ void InitGame(void)
 
 	sv_maplist = gi.cvar("sv_maplist", "dday inland invade soviet desert poldday itadday", 0); //faf: from q2 code
 
+	fast_mg42 = gi.cvar("fast_mg42", "1", 0); // 2021-08-05/ed cvar'd
+	
 	maxclients = gi.cvar("maxclients", "32", CVAR_SERVERINFO | CVAR_LATCH); /* MetalGod default to 32, instead of 8*/
 	deathmatch = gi.cvar("deathmatch", "1", CVAR_LATCH);
 	coop = gi.cvar("coop", "0", CVAR_LATCH);

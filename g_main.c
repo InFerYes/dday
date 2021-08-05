@@ -101,6 +101,8 @@ cvar_t* flood_msgs;
 cvar_t* flood_persecond;
 cvar_t* flood_waitdelay;
 
+cvar_t* fast_mg42;
+
 //faf
 cvar_t* player_scores;
 cvar_t* max_gibs;

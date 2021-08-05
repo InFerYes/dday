@@ -32,6 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 void Weapon_B3842_Fire(edict_t* ent)
 {
+	int	i;
 	vec3_t		start;
 	vec3_t		forward, right;
 	vec3_t		angles;
@@ -54,10 +55,14 @@ void Weapon_B3842_Fire(edict_t* ent)
 
 	if (ent->client->aim)
 	{
-		if (ent->client->ps.gunframe == guninfo->LastAFire)
-			ent->client->ps.gunframe = guninfo->LastAFire - 1;
-		else
-			ent->client->ps.gunframe = guninfo->LastAFire;
+		// 2021-08-05/ed: Use what frames we can lol (2 firing frames). 
+		// Then don't need to update models on client side.
+		if (ent->client->ps.gunframe == 80) {
+			ent->client->ps.gunframe = 81;
+		}
+		else {
+			ent->client->ps.gunframe = 80;
+		}
 	}
 
 	else
@@ -81,30 +86,22 @@ void Weapon_B3842_Fire(edict_t* ent)
 		return;
 	}
 
-	// raise the gun as it is firing
-//	if (!deathmatch->value)
-//	{
-	ent->client->machinegun_shots++;
-	if (ent->client->machinegun_shots > 9)
-		ent->client->machinegun_shots = 9;
-	//	}
-
-	//	if (ent->client->pers.weapon->position == LOC_SUBMACHINEGUN)
-	VectorSet(offset, 0, 0, ent->viewheight - 0);	//10
-//	else
-//		gi.dprintf("*** Firing System Error\n");
+	//if (ent->client->pers.weapon->position == LOC_SUBMACHINEGUN)
+		VectorSet(offset, 0, 0, ent->viewheight - 0);	//10
+	//else
+	//	gi.dprintf("*** Firing System Error\n");
 
 	// rezmoth - cosmetic recoil
 	if (level.framenum % 3 == 0)
 	{
 		if (ent->client->aim)
-			ent->client->kick_angles[0] -= 1.5;
+			ent->client->kick_angles[0] -= .5;
 		else
-			ent->client->kick_angles[0] = -3;
+			ent->client->kick_angles[0] = -.5;
 	}
 
 	// pbowens: for darwin's 3.2 kick
-	//ent->client->kick_angles[0] = ent->client->machinegun_shots * -1;
+//	ent->client->kick_angles[0] = ent->client->machinegun_shots * -1;
 
 	// get start / end positions
 	VectorAdd(ent->client->v_angle, ent->client->kick_angles, angles);
@@ -114,11 +111,10 @@ void Weapon_B3842_Fire(edict_t* ent)
 
 	fire_gun(ent, start, forward, damage, kick, SMG_SPREAD, SMG_SPREAD, mod, false);
 
-	gi.sound(ent, CHAN_WEAPON, gi.soundindex(guninfo->FireSound), 1, ATTN_NORM, 0);
-
+	Play_WepSound(ent, guninfo->FireSound);//PlayerNoise(ent, start, PNOISE_WEAPON);
 	gi.WriteByte(svc_muzzleflash);
 	gi.WriteShort(ent - g_edicts);
-	gi.WriteByte(MZ_MACHINEGUN);// | is_silenced);
+	gi.WriteByte(MZ_MACHINEGUN);
 	gi.multicast(ent->s.origin, MULTICAST_PVS);
 
 	ent->client->mags[mag_index].submg2_rnd--;
@@ -302,7 +298,7 @@ void Weapon_B38(edict_t* ent)
 
 		pause_frames, fire_frames, Weapon_Submachinegun_Fire);
 }
-void Play_WepSound(edict_t* ent, char* sound);
+//void Play_WepSound(edict_t* ent, char* sound);
 void Weapon_K43_Fire(edict_t* ent)
 {
 	int	i;
@@ -516,6 +512,7 @@ void Weapon_B3842(edict_t* ent)
 		78, 80, 92,
 
 		pause_frames, fire_frames, Weapon_B3842_Fire);
+
 }
 
 /////////////////////////////////////////////////

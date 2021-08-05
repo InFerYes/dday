@@ -26,6 +26,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "g_local.h"
+#include "grm/grm_defines.h"	// 2021-08-05/ed: Added due to fast_mg42 flag
 
 void P_ProjectSource(gclient_t* client, vec3_t point, vec3_t distance, vec3_t forward, vec3_t right, vec3_t result);
 void NoAmmoWeaponChange(edict_t* ent);
@@ -3297,7 +3298,12 @@ void Weapon_HMG_Fire(edict_t* ent)
 
 //	}
 
-	Play_WepSound(ent, guninfo->FireSound);//PlayerNoise(ent, start, PNOISE_WEAPON);
+	// 2021-08-05/ed: If the cvar fast_mg42 == 0, play the very standard slow MG42 sound. Fast sound is played by default in MG42 special firing code, and this function is never called.
+	if ( Q_stricmp(ent->client->pers.weapon->guninfo->FireSound, "grm/mg42/fire2.wav")){
+		gi.sound(ent, CHAN_WEAPON, gi.soundindex("grm/mg42/fire.wav"), 1, ATTN_NORM, 0);//faf
+	}else{
+		Play_WepSound(ent, guninfo->FireSound);//PlayerNoise(ent, start, PNOISE_WEAPON);
+	}
 
 	// send muzzle flash
 	gi.WriteByte(svc_muzzleflash);
@@ -3322,8 +3328,19 @@ void Weapon_HMG_Fire(edict_t* ent)
 	ent->client->next_fire_frame = level.framenum + guninfo->frame_delay;
 }
 
+extern GunInfo_t grmguninfo[MAX_TEAM_GUNS];	// 2021-08-05/ed: Some params are modified based on fast_mg42 cvar flag
 void Weapon_MG42_Fire(edict_t* ent)
 {
+
+	// 2021-08-05/ed: If server cvar is NOT set, override with default HMG functionality
+	if (!fast_mg42->value) {
+		grmguninfo[4].damage_direct = DAMAGE_MG42_SLOW;
+		Weapon_HMG_Fire(ent);
+		return;
+	}else{
+		grmguninfo[4].damage_direct = DAMAGE_MG42_FAST;
+	}
+
 	int			i;
 	/*int			shots = 1; MetalGod initialized, but not referenced */
 	vec3_t		start;
@@ -3388,12 +3405,13 @@ void Weapon_MG42_Fire(edict_t* ent)
 		return;
 	}
 
-	if (ent->client->mg42_temperature > 45.0F){
+
+	if (ent->client->mg42_temperature > 45.0F) {
 		ent->client->mg42_overheating_flag = true;
 		// 2021-07-30/ed: Cleaned up. Ammo and magazines are not immediately lost now
 		//safe_centerprintf(ent, "The MG42 is overheating!");
 		//return;
-		if (ent->client->mg42_temperature > 90.0F){
+		if (ent->client->mg42_temperature > 90.0F) {
 			safe_centerprintf(ent, "The barrel has been damaged!");
 			// Damage the weapon only now
 			ent->client->mags[mag_index].hmg_rnd = 0;
@@ -3406,6 +3424,7 @@ void Weapon_MG42_Fire(edict_t* ent)
 	if (ent->client->mg42_overheating_flag == true) {
 		overheated_shot_multiplier = 1.0f + (ent->client->mg42_temperature / 30.0f);
 	}
+	
 
 	/*
 // if you are still firing, recycle back to first firing

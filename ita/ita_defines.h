@@ -25,13 +25,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
 
-#define B34_MAG				9
+#define B34_MAG				7	// 2021-08-05/ed: Real capacity of Beretta M1934 is only 7, not 9 rounds.
 #define B38_MAG				40
 #define MC_MAG				6
 #define CARC_MAG			6
 #define MK_MAG				6
 #define K43_MAG				10
-#define B3842_MAG			40
+#define B3842_MAG			30	// 2021-08-05/ed: B3842 given to light gunner. More damage but less rounds.
 #define PANZER_MAG			1
 #define BREDA_MAG			20
 

@@ -27,6 +27,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "g_local.h"
 #include "m_player.h"
+#include "grm/grm_defines.h"	// 2021-08-05/ed: fast_mg42 support
 
 //bcass start - flamer sound thing
 #define FLAMER1		0
@@ -828,21 +829,6 @@ void SV_CalcBlend(edict_t* ent)
 	if (ent->client->smoke_effect_actual)
 		SV_AddBlend(1.0, 1.0, 1.0, ent->client->smoke_effect_actual, ent->client->ps.blend);
 	*/
-
-	/*  better not to warn them
-   if (ent->client->pers.weapon && ent->client->pers.weapon->classnameb == WEAPON_MG42
-	   && ent->client->mg42_temperature > 40)
-   {
-	   float	hmgblend;
-
-	   hmgblend =  (0.02 * ent->client->mg42_temperature) - .8;
-	   if (hmgblend > .2)
-		   hmgblend = .2;
-
-		SV_AddBlend (1.0, 0.0, 0.0, hmgblend, ent->client->ps.blend);
-
-		gi.dprintf("%f\n", hmgblend);
-   }*/
 
 	if (ent->health > 0 &&
 		ent->client->enter_spawn_time &&
@@ -2181,12 +2167,26 @@ and right after spawning
 =================
 */
 
+extern gitem_t grmitems[MAX_TEAM_ITEMS]; // 2021-08-05/ed: fast_mg42 support
+extern SMos_t GRM_MOS_List[NUM_CLASSES]; // 2021-08-05/ed: fast_mg42 support
+
 edict_t* FindOverlap(edict_t* ent, edict_t* last_overlap)
 {
 	int i;
 	edict_t* other;
 	vec3_t diff;
 
+
+	// 2021-08-05/ed: fast_mg42 support
+	if (fast_mg42->value) {
+		grmitems[4].quantity = 2;
+		GRM_MOS_List[3].ammo1 = MG42_MAG_FAST;
+	}else{
+		grmitems[4].quantity = 5;
+		GRM_MOS_List[3].ammo1 = MG42_MAG_SLOW;
+	}
+
+	// Standard functionality
 	for (i = last_overlap ? last_overlap - g_edicts : 0; i < game.maxclients; i++)
 	{
 		other = &g_edicts[i + 1];
@@ -2512,49 +2512,54 @@ void ClientEndServerFrame(edict_t* ent)
 		Cmd_Say_f(ent, ent->client->resp.chatsavetype, false, true);
 
 	//should be done with the gun instead of client, but it won't matter 99% of the time
-	if (ent->client->mg42_temperature > 0.0F)
-	{
+	// 
+	// 2021-08-05/ed: Check for server cvar
+	if (fast_mg42->value){
+
+
+		if (ent->client->mg42_temperature > 0.0F)
+		{
 			// 2021-07-30/ed: MG42 cooldown
 			if (ent->client->mg42_temperature > 1.0F) {
 				ent->client->mg42_temperature -= 1.0F;	// Old: //ent->client->mg42_temperature -= .15F; /* MetalGod explicit float */
 			}
 			if (ent->client->mg42_temperature < 30.0F) {
-				ent->client->mg42_overheating_flag = false;			
+				ent->client->mg42_overheating_flag = false;
 			}
 			//gi.dprintf("%f \n", ent->client->mg42_temperature);
 
-		if (ent->client->pers.weapon &&
-			ent->client->pers.weapon->classnameb == WEAPON_MG42 &&
-			ent->client->mg42_temperature > 30.0F)
-		{
-			edict_t* smoke;
-			vec3_t pos, fward;
+			if (ent->client->pers.weapon &&
+				ent->client->pers.weapon->classnameb == WEAPON_MG42 &&
+				ent->client->mg42_temperature > 30.0F)
+			{
+				edict_t* smoke;
+				vec3_t pos, fward;
 
-			AngleVectors(ent->client->v_angle, forward, NULL, NULL);
-			VectorMA(ent->s.origin, 20, fward, pos);  //calculates the range vector  //faf: 10 = range
-			pos[2] += ent->viewheight;
+				AngleVectors(ent->client->v_angle, forward, NULL, NULL);
+				VectorMA(ent->s.origin, 20, fward, pos);  //calculates the range vector  //faf: 10 = range
+				pos[2] += ent->viewheight;
 
-			smoke = G_Spawn();
-			VectorCopy(pos, smoke->s.origin);
-			smoke->s.modelindex = gi.modelindex("sprites/null.sp2");
-			smoke->s.frame = 0;
-			smoke->s.skinnum = 0;
-			smoke->touch = NULL;
-			smoke->solid = SOLID_NOT;
-			smoke->takedamage = DAMAGE_NO;
-			smoke->clipmask = 0;
-			smoke->s.effects = EF_GRENADE;
-			smoke->movetype = MOVETYPE_FLY;
-			VectorSet(smoke->velocity, 0, 0, 400);
-			smoke->nextthink = level.time + .2;
-			smoke->think = G_FreeEdict;
-			VectorAdd(smoke->velocity, ent->velocity, smoke->velocity);
-			gi.linkentity(smoke);
+				smoke = G_Spawn();
+				VectorCopy(pos, smoke->s.origin);
+				smoke->s.modelindex = gi.modelindex("sprites/null.sp2");
+				smoke->s.frame = 0;
+				smoke->s.skinnum = 0;
+				smoke->touch = NULL;
+				smoke->solid = SOLID_NOT;
+				smoke->takedamage = DAMAGE_NO;
+				smoke->clipmask = 0;
+				smoke->s.effects = EF_GRENADE;
+				smoke->movetype = MOVETYPE_FLY;
+				VectorSet(smoke->velocity, 0, 0, 400);
+				smoke->nextthink = level.time + .2;
+				smoke->think = G_FreeEdict;
+				VectorAdd(smoke->velocity, ent->velocity, smoke->velocity);
+				gi.linkentity(smoke);
 
-			gi.sound(ent, CHAN_BODY, gi.soundindex("world/steam2.wav"), 1, ATTN_NORM, 0);
+				gi.sound(ent, CHAN_BODY, gi.soundindex("world/steam2.wav"), 1, ATTN_NORM, 0);
+			}
 		}
 	}
-
 	//we moved player to the void when first joining game, now move them to
 	//death view room
 	if (!ent->ai && ent->client->resp.enterframe == level.framenum - 2)
