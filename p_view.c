@@ -2516,41 +2516,60 @@ void ClientEndServerFrame(edict_t* ent)
 
 
 	// ==================================================================================================================================================
-	// WIP: 2021-08-05/ed: Muzzle flash tests
-	// 	    ToDo: Show in front of the gun
-	// 	    ToDo: Process in each weapon code with specifics. Not here in p_view (!) (?)
-	// 	    ToDo: Find or make nice flash sprites
+	// WIP: Ed: Muzzle flash tests
+	// 	    ToDo: Improve
 	// ==================================================================================================================================================
-	//if (ent->client->weaponstate == WEAPON_FIRING){
-	//if (ent->client->last_fire_time > level.time - .2){
-		edict_t* muzzle_flash;
-		
-		muzzle_flash = G_Spawn();
+	if (
+			(ent->client->weaponstate == WEAPON_FIRING) &&
+			(ent->health > 0)
+		){
+		if (((unsigned int)(level.time / 0.22) % 2) == 0) {
+			edict_t* muzzle_flash;
+			muzzle_flash = G_Spawn();
 
-		VectorClear(muzzle_flash->mins);
-		VectorClear(muzzle_flash->maxs);
+			//VectorCopy(start, muzzle_flash->s.origin);
+			vec3_t aimdir2;
+			vec3_t	right, start, offset, angles;
 
-		vec3_t s, f;
-		VectorCopy(forward, f);
-		VectorCopy(ent->s.origin, s);
-		VectorCopy(s, muzzle_flash->s.origin);
-		vectoangles(f, muzzle_flash->s.angles);
-		// ToDo: What to do with the vectors to show in front of the gun properly each time ???
 
-		muzzle_flash->s.modelindex = gi.modelindex("sprites/s_explod.sp2");
-		muzzle_flash->s.frame = 0;
-		muzzle_flash->s.skinnum = 0;
-		muzzle_flash->touch = NULL;
-		muzzle_flash->solid = SOLID_NOT;
-		muzzle_flash->takedamage = DAMAGE_NO;
-		muzzle_flash->clipmask = MASK_SHOT;
-		muzzle_flash->s.effects = EF_GRENADE;
-		muzzle_flash->movetype = MOVETYPE_NONE;
-		muzzle_flash->classname = "fire";
-		muzzle_flash->nextthink = level.time + .2;
-		muzzle_flash->think = G_FreeEdict;
-		gi.linkentity(muzzle_flash);
-	//}
+			// get start / end positions
+			VectorAdd(ent->client->v_angle, ent->client->kick_angles, angles);
+			AngleVectors(angles, aimdir2, right, NULL);
+			P_ProjectSource(ent->client, ent->s.origin, offset, aimdir2, right, start);
+			 
+			VectorScale(aimdir2, 1.4, aimdir2);
+			VectorMA(start, 30.0, aimdir2, muzzle_flash->s.origin);
+			muzzle_flash->s.origin[0] += 0.000;
+			muzzle_flash->s.origin[1] += 0.000;
+			muzzle_flash->s.origin[2] += ent->viewheight * 0.7;	// TS
+
+			muzzle_flash->s.modelindex = gi.modelindex("sprites/muzzle/muzzle01.sp2");
+
+			VectorClear(muzzle_flash->mins);
+			VectorClear(muzzle_flash->maxs);
+
+			muzzle_flash->s.frame = 0;
+			muzzle_flash->s.skinnum = 0;
+			muzzle_flash->touch = NULL;
+			muzzle_flash->solid = SOLID_NOT; // SOLID_BBOX
+
+			muzzle_flash->takedamage = DAMAGE_NO;
+			muzzle_flash->clipmask = NULL; // MASK_ALL MASK_SHOT
+			muzzle_flash->s.effects = NULL; // EF_ANIM_ALLFAST;
+			muzzle_flash->s.renderfx = RF_FULLBRIGHT; // |
+									  //RF_WEAPONMODEL |
+									  //RF_VIEWERMODEL |
+									  //RF_DEPTHHACK;
+
+			muzzle_flash->movetype = MOVETYPE_NOCLIP;
+			muzzle_flash->classname = "muzzle_flash";
+			muzzle_flash->spawnflags = NULL;
+			muzzle_flash->nextthink = level.time + FRAMETIME * 1.0f;
+			muzzle_flash->think = G_FreeEdict;
+
+			gi.linkentity(muzzle_flash);
+		}
+	}
 	// ==================================================================================================================================================
 
 	//should be done with the gun instead of client, but it won't matter 99% of the time

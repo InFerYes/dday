@@ -584,10 +584,60 @@ void Weapon_Generic(edict_t* ent,
 				else
 				{
 
+					//Debug: Show level time
+					//char buffer[64];
+					//int ret = snprintf(buffer, sizeof buffer, "%f", level.time);
+					//safe_centerprintf(ent, buffer);
 
-					// 2021-08-05/ed: Something with Muzzle flash maybe (also) here 
+					// 2021-08-05/ed: First person ONLY muzzle-flash 
 					// ...
+					/*if (((unsigned int)(level.time / 0.22) % 2) == 0) {
+						edict_t* muzzle_flash;
+						muzzle_flash = G_Spawn();
 
+						//VectorCopy(start, muzzle_flash->s.origin);
+						vec3_t aimdir2;
+						vec3_t	right, start, offset, angles;
+
+
+						// get start / end positions
+						VectorAdd(ent->client->v_angle, ent->client->kick_angles, angles);
+						AngleVectors(angles, aimdir2, right, NULL);
+						P_ProjectSource(ent->client, ent->s.origin, offset, aimdir2, right, start);
+						   
+						VectorScale(aimdir2, 1.4, aimdir2);
+						VectorMA(start, 30.0, aimdir2, muzzle_flash->s.origin);
+						muzzle_flash->s.origin[0] -= 2.000;
+						muzzle_flash->s.origin[1] += 0.000;
+						muzzle_flash->s.origin[2] += ent->viewheight * 0.7;	// TS
+						
+						muzzle_flash->s.modelindex = gi.modelindex("sprites/muzzle/muzzle01.sp2");
+						    
+						VectorClear(muzzle_flash->mins);
+						VectorClear(muzzle_flash->maxs);
+
+						muzzle_flash->s.frame = 0;
+						muzzle_flash->s.skinnum = 0;
+						muzzle_flash->touch = NULL;
+						muzzle_flash->solid = SOLID_NOT; // SOLID_BBOX
+
+						muzzle_flash->takedamage = DAMAGE_NO;
+						muzzle_flash->clipmask = NULL; // MASK_ALL MASK_SHOT
+						muzzle_flash->s.effects = NULL; // EF_ANIM_ALLFAST;
+						muzzle_flash->s.renderfx = RF_FULLBRIGHT; // |
+												  //RF_WEAPONMODEL |
+												  //RF_VIEWERMODEL |
+												  //RF_DEPTHHACK;
+						
+						muzzle_flash->movetype = MOVETYPE_NOCLIP;
+						muzzle_flash->classname = "muzzle_flash";
+						muzzle_flash->spawnflags = NULL;
+						muzzle_flash->nextthink = level.time + FRAMETIME * 1.0f;
+						muzzle_flash->think = G_FreeEdict;
+
+						//gi.linkentity(muzzle_flash);
+					}
+					*/
 
 					fire(ent);
 					break;

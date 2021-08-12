@@ -2333,6 +2333,64 @@ void fire_gun(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick, 
 	else
 		return;
 
+
+	// ----------------------------------------------------------------------------------------------------------------
+	// Ed: Muzzle flash attempt
+	// 	   Fire on every 2nd shot if automatic (Kingpin-style)
+	// 	   ToDo: On semi-auto, always show muzzle flash
+	// 	   ToDo: This still spawns in the world = BAD
+	// ----------------------------------------------------------------------------------------------------------------
+		/*if (self->numfired % 2 == 0) {
+			edict_t* muzzle_flash;
+			muzzle_flash = G_Spawn();
+
+			//VectorCopy(start, muzzle_flash->s.origin);
+			vec3_t aimdir2;
+			VectorScale(aimdir, 6.0, aimdir2);
+			VectorMA(start, 40.0, aimdir2, muzzle_flash->s.origin);
+			muzzle_flash->s.origin[2] -= 4 * self->viewheight;
+			//muzzle_flash->s.origin[2] -= ((10 * random()) - 5)*self->viewheight;
+			//VectorScale(aimdir, 4.0, muzzle_flash->s.origin);
+
+			//VectorCopy(aimdir, muzzle_flash->s.angles);
+
+			//vectoangles(aimdir, muzzle_flash->s.angles);
+
+			// ToDo: What to do with the vectors to show in front of the gun properly each time ???
+			muzzle_flash->s.modelindex = gi.modelindex("sprites/muzzle/muzzle01.sp2");
+			muzzle_flash->size[0] = .1;
+			muzzle_flash->size[1] = .1;
+			muzzle_flash->size[2] = .1;
+			muzzle_flash->absmin[0] = .1;
+			muzzle_flash->absmin[1] = .1;
+			muzzle_flash->absmin[2] = .1;
+			muzzle_flash->absmax[0] = .1;
+			muzzle_flash->absmax[1] = .1;
+			muzzle_flash->absmax[2] = .1;
+
+			//VectorClear(muzzle_flash->mins);
+			//VectorClear(muzzle_flash->maxs);
+			//VectorSet(muzzle_flash->mins, -4, -4, -4);
+			//VectorSet(muzzle_flash->maxs, -4, -4, -4);
+
+			muzzle_flash->s.frame = 0;
+			muzzle_flash->s.skinnum = 0;
+			muzzle_flash->touch = NULL;
+			muzzle_flash->solid = SOLID_NOT; // SOLID_BBOX
+
+			muzzle_flash->takedamage = DAMAGE_NO;
+			muzzle_flash->clipmask = NULL; // MASK_ALL MASK_SHOT
+			muzzle_flash->s.effects = 0;
+			muzzle_flash->movetype = MOVETYPE_NOCLIP;
+			muzzle_flash->classname = "muzzle_flash";
+			muzzle_flash->spawnflags = 1;
+			muzzle_flash->nextthink = level.time + FRAMETIME * 1;
+			muzzle_flash->think = G_FreeEdict;
+			gi.linkentity(muzzle_flash);
+		}*/
+		
+	// ----------------------------------------------------------------------------------------------------------------
+
 	//	gi.dprintf("a %f %f %f\n", aimdir[0],aimdir[1],aimdir[2]);
 	//	gi.dprintf("s %f %f %f\n", tr.plane.normal[0],tr.plane.normal[1],tr.plane.normal[2]);
 
@@ -2341,9 +2399,10 @@ void fire_gun(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick, 
 
 	ric_chance = random();
 
-	if (soundtype != SOUND_SAND && ric_chance < .4 && .4 - random() > fabs(dot)
+	// 2021-08-11/ed: Rudimentary ricochet back on
+	if (soundtype != SOUND_SAND && ric_chance < .2) // && .4 - random() > fabs(dot)
 		//&&		!(gi.pointcontents (tr.endpos) & MASK_WATER)
-		)
+		//)
 	{
 		vec3_t ricvec;
 		int randn;
@@ -2354,22 +2413,25 @@ void fire_gun(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick, 
 		gi.positioned_sound(tr.endpos, g_edicts, CHAN_AUTO, gi.soundindex(va("world/ric%i.wav", randn)), 1, ATTN_NORM, 0);
 
 		//r = a - 2<a, n> n
+		// Subtle probability that a new bullet is actually spawned!
+		/*if (random() < .1) {
+			ricvec[0] = aimdir[0] - 2 * (dot)*tr.plane.normal[0];
+			ricvec[1] = aimdir[1] - 2 * (dot)*tr.plane.normal[1];
+			ricvec[2] = aimdir[2] - 2 * (dot)*tr.plane.normal[2];
 
-		ricvec[0] = aimdir[0] - 2 * (dot)*tr.plane.normal[0];
-		ricvec[1] = aimdir[1] - 2 * (dot)*tr.plane.normal[1];
-		ricvec[2] = aimdir[2] - 2 * (dot)*tr.plane.normal[2];
-
-		ricochet = G_Spawn();
-		ricochet->owner = self;
-		VectorCopy(tr.endpos, ricochet->s.origin);
-		VectorCopy(ricvec, ricochet->s.angles);
-		ricochet->dmg = damage / 2;
-		ricochet->count = kick;
-		ricochet->style = mod;
-		ricochet->is_step = calcv;
-		ricochet->think = ricochetthink;
-		ricochet->nextthink = level.time + .1;
-		gi.linkentity(ricochet);
+			ricochet = G_Spawn();
+			ricochet->owner = self;
+			VectorCopy(tr.endpos, ricochet->s.origin);
+			VectorCopy(ricvec, ricochet->s.angles);
+			ricochet->dmg = damage / 2;
+			ricochet->count = kick;
+			ricochet->style = mod;
+			ricochet->is_step = calcv;
+			ricochet->think = ricochetthink;
+			ricochet->nextthink = level.time + .1;
+			gi.linkentity(ricochet);
+		}*/
+		
 	}
 
 	if (water)
@@ -3033,6 +3095,9 @@ void Weapon_LMG_Fire(edict_t* ent)
 
 		VectorAdd(ent->client->v_angle, ent->client->kick_angles, angles);
 		AngleVectors(angles, forward, right, up);
+
+
+
 	}
 	else
 	{
@@ -4802,6 +4867,202 @@ void Weapon_Sten_Fire(edict_t* ent)
 
 	ent->client->mags[mag_index].submg_rnd--;
 	ent->client->next_fire_frame = level.framenum + guninfo->frame_delay;
+}
+
+void Weapon_Type99_Fire(edict_t* ent)
+{
+	//	int	i;
+	vec3_t		start;
+	vec3_t		forward, right;
+	vec3_t		angles;
+	int			kick = 2;
+	vec3_t		offset;
+	GunInfo_t* guninfo = ent->client->pers.weapon->guninfo;
+	int mag_index = ent->client->pers.weapon->mag_index;
+	int mod = guninfo->MeansOfDeath;
+	int	damage = guninfo->damage_direct;
+
+	if (!(ent->client->buttons & BUTTON_ATTACK))
+	{
+		ent->client->machinegun_shots = 0;
+		ent->client->ps.gunframe++;
+		return;
+	}
+
+	if (ent->client->aim)
+	{
+		if (ent->client->ps.gunframe == guninfo->LastAFire)
+			ent->client->ps.gunframe = guninfo->LastAFire - 1;
+		else
+			ent->client->ps.gunframe = guninfo->LastAFire;
+	}
+
+	else
+	{
+		if (ent->client->ps.gunframe == guninfo->LastFire)
+			ent->client->ps.gunframe = guninfo->LastFire - 1;
+		else
+			ent->client->ps.gunframe = guninfo->LastFire;
+	}
+
+	if (!ent->client->mags[mag_index].lmg_rnd)
+	{
+		ent->client->ps.gunframe = (ent->client->aim) ? guninfo->LastAFire + 1 : guninfo->LastFire + 1;
+
+		if (level.time >= ent->pain_debounce_time)
+		{
+			gi.sound(ent, CHAN_VOICE, gi.soundindex("weapons/noammo.wav"), 1, ATTN_NORM, 0);
+			ent->pain_debounce_time = level.time + 1;
+		}
+
+		/*
+				if (auto_weapon_change->value)
+					NoAmmoWeaponChange (ent);
+		*/
+
+		return;
+	}
+
+	// raise the gun as it is firing
+//	if (!deathmatch->value)
+//	{
+	if (!ent->ai &&
+		((ent->stanceflags == STANCE_STAND) || (!ent->client->aim)))
+		ent->client->machinegun_shots++;
+
+	if (ent->client->machinegun_shots > 9)
+		ent->client->machinegun_shots = 9;
+
+	if ((!ent->stanceflags == STANCE_STAND) && (ent->client->aim))
+		ent->client->machinegun_shots = 0;
+	else
+	{
+		trace_t tr;
+		vec3_t end;
+
+		if (ent->stanceflags == STANCE_STAND && (ent->client->buttons & BUTTON_ATTACK))
+		{
+			AngleVectors(ent->client->v_angle, forward, right, NULL);
+			VectorSet(offset, 24, 8, ent->viewheight - 25);
+			P_ProjectSource(ent->client, ent->s.origin, offset, forward, right, start);
+			VectorScale(forward, -2, ent->client->kick_origin);
+			VectorMA(start, 15, forward, end);  //calculates the range vector  //faf: 10 = range
+			tr = gi.trace(ent->s.origin, NULL, NULL, end, ent, MASK_SHOT);// figures out what in front of the player up till "end"
+
+			if (!(ent->client->movement || tr.fraction >= 1.0 || ent->client->v_angle[0] > 40))
+			{
+				ent->client->machinegun_shots = 0;
+			}
+		}
+	}
+
+	//	}
+
+	++ent->numfired;
+
+		// vspread
+		//VectorSet(offset, 0, (ent->client->aim)?0:8, ent->viewheight-8 + (crandom() * 15));
+		// rezmoth - changed for new firing system
+		//VectorSet(offset, 0, (ent->client->aim)?0:8, (ent->client->aim)?ent->viewheight-8:crandom() * 15);
+	if (ent->client->pers.weapon->position == LOC_L_MACHINEGUN)
+		VectorSet(offset, 0, 0, ent->viewheight - 0);	//10
+	else
+		gi.dprintf("*** Firing System Error\n");
+
+	/* MetalGod this is just reassigned below
+	// rezmoth - cosmetic recoil
+	if (level.framenum % 3 == 0)
+	{
+		if (ent->client->aim)
+			ent->client->kick_angles[0] -= 1.5;
+		else
+			ent->client->kick_angles[0] = -3;
+	}*/
+
+	// pbowens: for darwin's 3.2 kick
+	ent->client->kick_angles[0] = ent->client->machinegun_shots * -1.5;
+
+	// get start / end positions
+	VectorAdd(ent->client->v_angle, ent->client->kick_angles, angles);
+	AngleVectors(angles, forward, right, NULL);
+
+	P_ProjectSource(ent->client, ent->s.origin, offset, forward, right, start);
+
+	/*
+	VectorAdd (ent->client->v_angle, ent->client->kick_angles, angles);
+	AngleVectors (angles, forward, right, NULL);
+	VectorSet(offset, 0, 8, ent->viewheight-8);
+	P_ProjectSource (ent->client, ent->s.origin, offset, forward, right, start);
+*/
+
+	fire_gun(ent, start, forward, damage, kick, LMG_SPREAD, LMG_SPREAD, mod, false);
+
+
+
+	//faf:  a second bullet comes out every other time.  This combined with the
+//		sound effects creates the illusion of a higher (consistant) firing rate
+	if (ent->numfired % 2 == 1)
+	{
+		int i;
+		for (i = 0; i < 3; i++)
+		{
+			//rezmoth - changed for new firing system
+			ent->client->kick_origin[i] = crandom() * 0.35;
+			ent->client->kick_angles[i] += crandom() * 0.7;
+		}
+
+		fire_gun(ent, start, forward, damage, kick, LMG_SPREAD, LMG_SPREAD, mod, false);
+	}
+
+	if (ent->client->mags[mag_index].lmg_rnd <= 1) //faf ==
+	{
+		//Hard coded for reload only.
+		ent->client->ps.gunframe = guninfo->LastReload + 1;
+		ent->client->weaponstate = WEAPON_END_MAG;
+		gi.sound(ent, CHAN_WEAPON, gi.soundindex(guninfo->FireSound), 1, ATTN_NORM, 0);//faf
+	}
+
+	//faf
+	if (ent->numfired % 2 == 1)
+	{
+		gi.sound(ent, CHAN_WEAPON, gi.soundindex("gbr/vickers/firea.wav"), 1, ATTN_NORM, 0);//faf
+	}
+	else
+	{
+		gi.sound(ent, CHAN_WEAPON, gi.soundindex("gbr/vickers/fireb.wav"), 1, ATTN_NORM, 0);//faf
+	}
+
+
+	// rezmoth - changed to new firing code
+	//fire_bullet (ent, start, forward, damage, kick, DEFAULT_BULLET_HSPREAD, DEFAULT_BULLET_VSPREAD, mod, false);
+/*
+		ent->client->anim_priority = ANIM_ATTACK;
+	if (ent->client->ps.pmove.pm_flags & PMF_DUCKED)
+	{
+		ent->s.frame = FRAME_crattak1 - 1 + (ent->client->ps.gunframe % 3);
+		ent->client->anim_end = FRAME_crattak9;
+	}
+	else
+	{
+		ent->s.frame = FRAME_attack1 - 1 + (ent->client->ps.gunframe % 3);
+		ent->client->anim_end = FRAME_attack8;
+	}
+*/
+//gi.sound(ent, CHAN_WEAPON, gi.soundindex("weapons/machgf2b.wav"), 1, ATTN_NORM, 0);
+
+//faf	Play_WepSound(ent,guninfo->FireSound);//PlayerNoise(ent, start, PNOISE_WEAPON);
+	//gi.sound(ent, CHAN_WEAPON, gi.soundindex(guninfo->FireSound), 1, ATTN_NORM, 0);//faf
+
+	gi.WriteByte(svc_muzzleflash);
+	gi.WriteShort(ent - g_edicts);
+	gi.WriteByte(MZ_MACHINEGUN);// | is_silenced);
+	gi.multicast(ent->s.origin, MULTICAST_PVS);
+
+	//faf
+	if (ent->numfired % 2 == 1)
+		ent->client->mags[mag_index].lmg_rnd -= 2;
+	else
+		ent->client->mags[mag_index].lmg_rnd--;
 }
 
 void Weapon_Bren_Fire(edict_t* ent)

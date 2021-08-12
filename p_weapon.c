@@ -605,6 +605,7 @@ void Think_Weapon(edict_t* ent)
 			is_silenced = MZ_SILENCED;
 		else
 			is_silenced = 0;
+
 		ent->client->pers.weapon->weaponthink(ent);
 	}
 }

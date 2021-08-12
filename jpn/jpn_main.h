@@ -34,7 +34,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 void Weapon_Pistol_Fire(edict_t* ent);
 void Weapon_Rifle_Fire(edict_t* ent);
 void Weapon_Submachinegun_Fire(edict_t* ent);
-void Weapon_Bren_Fire(edict_t* ent);
+//void Weapon_Bren_Fire(edict_t* ent);
+void Weapon_Type99_Fire(edict_t* ent);
 void Weapon_HMG_Fire(edict_t* ent);
 void Weapon_Rocket_Fire(edict_t* ent);
 void Weapon_Sniper_Fire(edict_t* ent);
