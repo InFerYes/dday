@@ -2214,6 +2214,9 @@ void Cmd_MOTD(edict_t* ent);
 void A_ScoreboardMessage(edict_t* ent);
 void A_ScoreboardMessage2(edict_t* ent);
 void change_stance(edict_t* self, int stance);
+
+unsigned int p_muzzle = 0;
+
 void ClientEndServerFrame(edict_t* ent)
 {
 	float	bobtime;
@@ -2523,7 +2526,7 @@ void ClientEndServerFrame(edict_t* ent)
 			(ent->client->weaponstate == WEAPON_FIRING) &&
 			(ent->health > 0)
 		){
-		if (((unsigned int)(level.time / 0.22) % 2) == 0) {
+		//if (((unsigned int)((level.time * 10.0f) + 0.5f) % 2) == 0) {
 			edict_t* muzzle_flash;
 			muzzle_flash = G_Spawn();
 
@@ -2531,20 +2534,29 @@ void ClientEndServerFrame(edict_t* ent)
 			vec3_t aimdir2;
 			vec3_t	right, start, offset, angles;
 
-
 			// get start / end positions
 			VectorAdd(ent->client->v_angle, ent->client->kick_angles, angles);
 			AngleVectors(angles, aimdir2, right, NULL);
+			start[0] -= 2.000;
 			P_ProjectSource(ent->client, ent->s.origin, offset, aimdir2, right, start);
 			 
 			VectorScale(aimdir2, 1.4, aimdir2);
 			VectorMA(start, 30.0, aimdir2, muzzle_flash->s.origin);
-			muzzle_flash->s.origin[0] += 0.000;
-			muzzle_flash->s.origin[1] += 0.000;
-			muzzle_flash->s.origin[2] += ent->viewheight * 0.7;	// TS
-
-			muzzle_flash->s.modelindex = gi.modelindex("sprites/muzzle/muzzle01.sp2");
-
+			//muzzle_flash->s.origin[0] += 0.000; 
+			//muzzle_flash->s.origin[1] += 0.000;
+			muzzle_flash->s.origin[2] += ent->viewheight * 0.8;	// TS
+			 
+			if (p_muzzle == 0){
+				muzzle_flash->s.modelindex = gi.modelindex("sprites/muzzle/muzzle01.sp2");
+				p_muzzle = 1;
+			} else if (p_muzzle == 1) {
+				muzzle_flash->s.modelindex = gi.modelindex("sprites/muzzle/muzzle02.sp2"); 
+				p_muzzle = 2;
+			}else if (p_muzzle == 2) {
+				muzzle_flash->s.modelindex = gi.modelindex("sprites/muzzle/muzzle03.sp2");
+				p_muzzle = 0;
+			}
+			 
 			VectorClear(muzzle_flash->mins);
 			VectorClear(muzzle_flash->maxs);
 
@@ -2555,20 +2567,21 @@ void ClientEndServerFrame(edict_t* ent)
 
 			muzzle_flash->takedamage = DAMAGE_NO;
 			muzzle_flash->clipmask = NULL; // MASK_ALL MASK_SHOT
-			muzzle_flash->s.effects = NULL; // EF_ANIM_ALLFAST;
-			muzzle_flash->s.renderfx = RF_FULLBRIGHT; // |
+			muzzle_flash->s.effects = EF_ANIM_ALLFAST;
+			muzzle_flash->s.renderfx = RF_FULLBRIGHT |
+									   RF_DEPTHHACK;
 									  //RF_WEAPONMODEL |
 									  //RF_VIEWERMODEL |
-									  //RF_DEPTHHACK;
+									  
 
 			muzzle_flash->movetype = MOVETYPE_NOCLIP;
 			muzzle_flash->classname = "muzzle_flash";
 			muzzle_flash->spawnflags = NULL;
-			muzzle_flash->nextthink = level.time + FRAMETIME * 1.0f;
+			muzzle_flash->nextthink = level.time + 0.05f; // FRAMETIME * 1.0f;
 			muzzle_flash->think = G_FreeEdict;
 
 			gi.linkentity(muzzle_flash);
-		}
+		//}
 	}
 	// ==================================================================================================================================================
 
