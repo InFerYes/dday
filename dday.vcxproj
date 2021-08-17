@@ -538,9 +538,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ChangeLog" />
+    <None Include="easymake" />
     <None Include="game.def" />
     <None Include="Makefile" />
     <None Include="makefile.ami" />
+    <None Include="Makefile.country" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="gnu.txt" />

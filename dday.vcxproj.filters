@@ -36,13 +36,13 @@
       <UniqueIdentifier>{3006869c-e3ba-4106-a2ff-c3e7febe3f71}</UniqueIdentifier>
       <Extensions>*.h</Extensions>
     </Filter>
-    <Filter Include="Misc">
-      <UniqueIdentifier>{3c65bf36-cdad-4a2b-9818-770267552ae6}</UniqueIdentifier>
+    <Filter Include="Docs &amp; makefiles">
+      <UniqueIdentifier>{2de4a8b1-0424-490e-a2ad-7c45887342fb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Misc\Linux">
+    <Filter Include="Docs &amp; makefiles\Linux">
       <UniqueIdentifier>{5341b65d-b6d5-4e6e-bcf7-da2e7ab42fe2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Misc\Amiga">
+    <Filter Include="Docs &amp; makefiles\Amiga">
       <UniqueIdentifier>{3af9f3a3-d071-4a1f-8f74-5d0d1b97b5fa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -209,43 +209,117 @@
     <ClCompile Include="ai\bot_spawn.c">
       <Filter>Source Files %28%2a.c%29\ai</Filter>
     </ClCompile>
-    <ClCompile Include="g_ai.c" />
-    <ClCompile Include="g_arty.c" />
-    <ClCompile Include="g_cmds.c" />
-    <ClCompile Include="g_combat.c" />
-    <ClCompile Include="g_ents.c" />
-    <ClCompile Include="g_func.c" />
-    <ClCompile Include="g_items.c" />
-    <ClCompile Include="g_main.c" />
-    <ClCompile Include="g_maps.c" />
-    <ClCompile Include="g_misc.c" />
-    <ClCompile Include="g_monster.c" />
-    <ClCompile Include="g_objectives.c" />
-    <ClCompile Include="g_phys.c" />
-    <ClCompile Include="g_save.c" />
-    <ClCompile Include="g_spawn.c" />
-    <ClCompile Include="g_svcmds.c" />
-    <ClCompile Include="g_target.c" />
-    <ClCompile Include="g_trigger.c" />
-    <ClCompile Include="g_turret.c" />
-    <ClCompile Include="g_utils.c" />
-    <ClCompile Include="g_weapon.c" />
-    <ClCompile Include="m_actor.c" />
-    <ClCompile Include="m_flash.c" />
-    <ClCompile Include="m_insane.c" />
-    <ClCompile Include="m_move.c" />
-    <ClCompile Include="p_classes.c" />
-    <ClCompile Include="p_client.c" />
-    <ClCompile Include="p_generic_wep.c" />
-    <ClCompile Include="p_hud.c" />
-    <ClCompile Include="p_menu.c" />
-    <ClCompile Include="p_observer.c" />
-    <ClCompile Include="p_trail.c" />
-    <ClCompile Include="p_view.c" />
-    <ClCompile Include="p_weapon.c" />
-    <ClCompile Include="q_shared.c" />
-    <ClCompile Include="u_entmgr.c" />
-    <ClCompile Include="x_fire.c" />
+    <ClCompile Include="g_ai.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="g_arty.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="g_cmds.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="g_combat.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="g_ents.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="g_func.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="g_items.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="g_main.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="g_maps.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="g_misc.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="g_monster.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="g_objectives.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="g_phys.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="g_save.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="g_spawn.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="g_svcmds.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="g_target.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="g_trigger.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="g_turret.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="g_utils.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="g_weapon.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="m_actor.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="m_flash.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="m_insane.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="m_move.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="p_classes.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="p_client.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="p_generic_wep.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="p_hud.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="p_menu.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="p_trail.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="p_view.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="p_weapon.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="q_shared.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="u_entmgr.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="x_fire.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="p_observer.c">
+      <Filter>Source Files %28%2a.c%29</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Usa\usa_classes.h">
@@ -341,31 +415,79 @@
     <ClInclude Include="g_cmds.h">
       <Filter>Header Files %28%2a.h%29</Filter>
     </ClInclude>
-    <ClInclude Include="game.h" />
-    <ClInclude Include="g_defines.h" />
-    <ClInclude Include="g_local.h" />
-    <ClInclude Include="g_maps.h" />
-    <ClInclude Include="m_actor.h" />
-    <ClInclude Include="m_insane.h" />
-    <ClInclude Include="m_player.h" />
-    <ClInclude Include="p_classes.h" />
-    <ClInclude Include="p_menu.h" />
-    <ClInclude Include="p_menus.h" />
-    <ClInclude Include="p_observer.h" />
-    <ClInclude Include="q_shared.h" />
-    <ClInclude Include="x_fire.h" />
+    <ClInclude Include="g_defines.h">
+      <Filter>Header Files %28%2a.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="g_local.h">
+      <Filter>Header Files %28%2a.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="g_maps.h">
+      <Filter>Header Files %28%2a.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
+      <Filter>Header Files %28%2a.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="m_actor.h">
+      <Filter>Header Files %28%2a.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="m_insane.h">
+      <Filter>Header Files %28%2a.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="m_player.h">
+      <Filter>Header Files %28%2a.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="p_classes.h">
+      <Filter>Header Files %28%2a.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="p_menu.h">
+      <Filter>Header Files %28%2a.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="p_menus.h">
+      <Filter>Header Files %28%2a.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="p_observer.h">
+      <Filter>Header Files %28%2a.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="q_shared.h">
+      <Filter>Header Files %28%2a.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="x_fire.h">
+      <Filter>Header Files %28%2a.h%29</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="makefile.ami">
+      <Filter>Docs &amp; makefiles\Amiga</Filter>
+    </None>
+    <None Include="Makefile">
+      <Filter>Docs &amp; makefiles\Linux</Filter>
+    </None>
+    <None Include="Makefile.country">
+      <Filter>Docs &amp; makefiles</Filter>
+    </None>
+    <None Include="easymake">
+      <Filter>Docs &amp; makefiles</Filter>
+    </None>
+    <None Include="game.def">
+      <Filter>Header Files %28%2a.h%29</Filter>
+    </None>
     <None Include="ChangeLog" />
-    <None Include="game.def" />
-    <None Include="Makefile" />
-    <None Include="makefile.ami" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="gnu.txt" />
-    <Text Include="license.txt" />
-    <Text Include="readme.amiga.txt" />
-    <Text Include="readme.linux.txt" />
-    <Text Include="readme.txt" />
+    <Text Include="readme.amiga.txt">
+      <Filter>Docs &amp; makefiles\Amiga</Filter>
+    </Text>
+    <Text Include="readme.linux.txt">
+      <Filter>Docs &amp; makefiles\Linux</Filter>
+    </Text>
+    <Text Include="gnu.txt">
+      <Filter>Docs &amp; makefiles</Filter>
+    </Text>
+    <Text Include="license.txt">
+      <Filter>Docs &amp; makefiles</Filter>
+    </Text>
+    <Text Include="readme.txt">
+      <Filter>Docs &amp; makefiles\Amiga</Filter>
+    </Text>
   </ItemGroup>
 </Project>

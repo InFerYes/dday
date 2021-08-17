@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/g_combat.c,v $
  *   $Revision: 1.53 $
@@ -145,7 +145,10 @@ void Killed(edict_t* targ, edict_t* inflictor, edict_t* attacker, int damage, ve
 		targ->die(targ, inflictor, attacker, damage, point);
 		return;
 	}
-
+	if (NULL == targ)   /* MetalGod Safety check */
+	{
+		return;
+	}
 	/*	if ((targ->svflags & SVF_MONSTER) && (targ->deadflag != DEAD_DEAD))
 		{
 			targ->touch = NULL;
@@ -1515,7 +1518,7 @@ void SprayBlood(edict_t* self, vec3_t point, vec3_t angle, int damage, int mod)
 	case MOD_SNIPER:
 		speed = 1600;//800;
 		break;/*
-	case 69:  MetalGod Magic number 69, What  is it? I can't find it. 
+	case 69:  MetalGod Magic number 69, What  is it? I can't find it.
 		speed = 2000; */
 	default:
 		speed = 1600;//500;
