@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/g_maps.c,v $
  *   $Revision: 1.6 $
@@ -111,7 +111,7 @@ int LoadMapList(char* filename)
 		// scan for [maplist] section
 		do
 		{
-			if(fscanf(fp, "%s", szLineIn));/* MetalGod check */
+			if (fscanf(fp, "%79s", szLineIn));	   /* MetalGod checked at 79 to ensure NULL termination */
 		} while (!feof(fp) && (Q_stricmp(szLineIn, "[maplist]") != 0));
 
 		if (feof(fp))
@@ -128,8 +128,8 @@ int LoadMapList(char* filename)
 			// read map names into array
 			while ((!feof(fp)) && (i < MAX_MAPS))
 			{
-				if(fscanf(fp, "%s", szLineIn));/* MetalGod check */
-				
+				if (fscanf(fp, "%79s", szLineIn));/* MetalGod checked at 79 to ensure NULL termination */
+
 				if (Q_stricmp(szLineIn, "###") == 0)  // terminator is "###"
 					break;
 
