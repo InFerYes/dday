@@ -190,7 +190,7 @@ void Cmd_Arty_f(edict_t* ent)
 		turret_off(ent);
 		return;
 	}
-	if (ent->client &&
+	if (/* ent->client && MetalGod redundant */
 		ent->client->pers.weapon &&
 		ent->client->pers.weapon->classnameb == WEAPON_ARISAKA)
 	{

@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/g_items.c,v $
  *   $Revision: 1.21 $
@@ -776,7 +776,7 @@ void Touch_Item(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* surf)
 	if (other->client->resp.autopickup == false && ent->item->classnameb != HGRENADE)
 		return;
 
-	if (other->client && other->client->resp.mos == MEDIC)
+	if (/* other->client && MetalGod redundant */ other->client->resp.mos == MEDIC)
 	{
 		if (!((/* ent->item->tag && */ent->item->tag == AMMO_TYPE_PISTOL) || (/*ent->item->position && */ ent->item->position == LOC_PISTOL) /* redundant if the 2nd cases were true */
 			|| (ent->item->pickup_name && !Q_stricmp(ent->item->pickup_name, "Knife")) || (ent->item->pickup_name && !Q_stricmp(ent->item->pickup_name, "Helmet"))))

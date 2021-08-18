@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/g_turret.c,v $
  *   $Revision: 1.5 $
@@ -173,7 +173,8 @@ void explo_think(edict_t* ent)
 	if (ent->s.frame > -1)
 	{
 		ent->s.frame++;
-		if (ent->s.frame % 2 == 3)
+		/* 	if (ent->s.frame % 2 == 3)MetalGod this always evaluates to false! */
+		if (ent->s.frame % 2 == 0)/* fix */
 			ent->s.skinnum++;
 		if (ent->s.frame == 14)
 		{
@@ -779,7 +780,7 @@ void turret_off(edict_t* self)
 }
 
 qboolean FindTarget(edict_t* self);
- /* MetalGod unused! 
+/* MetalGod unused!
 void turret_driver_think(edict_t* self)
 {
 	vec3_t	target;

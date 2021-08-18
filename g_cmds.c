@@ -528,7 +528,7 @@ qboolean Cmd_Scope_f(edict_t* ent)
 	}
 
 	//faf:  turret stuff
-	if (ent->client->pers.weapon && ent->client->pers.weapon->classnameb == WEAPON_FISTS
+	if (/* ent->client->pers.weapon && */ent->client->pers.weapon->classnameb == WEAPON_FISTS /* MetalGod removed redundant check */
 		&& !ent->client->aim)
 	{
 		if (ent->client->turret)
@@ -561,7 +561,7 @@ qboolean Cmd_Scope_f(edict_t* ent)
 	}
 
 	//faf
-	if (ent->client->pers.weapon &&
+	if (/* ent->client->pers.weapon && MetalGod removed redundant check */
 		(ent->client->pers.weapon->classnameb == WEAPON_MAUSER98K ||
 			ent->client->pers.weapon->classnameb == WEAPON_ARISAKA ||
 			ent->client->pers.weapon->classnameb == WEAPON_CARCANO ||
@@ -571,7 +571,7 @@ qboolean Cmd_Scope_f(edict_t* ent)
 		return false;
 
 	// do not let a sniper reload bolt if there is no ammo
-	if (ent->client->pers.weapon &&
+	if (/* ent->client->pers.weapon && MetalGod removed redundant check */
 		ent->client->pers.weapon->position == LOC_SNIPER &&
 		ent->client->p_rnd &&
 		*ent->client->p_rnd == 0)
