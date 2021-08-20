@@ -338,7 +338,15 @@ void ClientObituary(edict_t* self, edict_t* inflictor, edict_t* attacker)
 
 	qboolean	ff;
 	edict_t* Tent;
-
+	
+	
+	/* MetalGod Sanity check */
+	if (!self || !self->client)
+	{
+		return;
+	}
+	/* MetalGod */
+	
 	/*-----/ PM /-----/ MODIFIED:  Condition split up for portability. /-----*/
 	if (coop->value)
 		if (attacker->client)
@@ -409,7 +417,7 @@ void ClientObituary(edict_t* self, edict_t* inflictor, edict_t* attacker)
 
 		if (message) //already have message = killed self somehow
 		{
-			if (self->ai && self->client && self->client->resp.team_on)
+			if (self->ai && self->client->resp.team_on)
 			{
 				int teamnum = self->client->resp.team_on->index;
 
@@ -423,7 +431,7 @@ void ClientObituary(edict_t* self, edict_t* inflictor, edict_t* attacker)
 		}
 		if (attacker == self)
 		{
-			if (self->ai && self->client && self->client->resp.team_on)
+			if (self->ai && self->client->resp.team_on)
 			{
 				int teamnum = self->client->resp.team_on->index;
 

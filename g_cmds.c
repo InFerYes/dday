@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/g_cmds.c,v $
  *   $Revision: 1.62 $
@@ -306,16 +306,16 @@ void Cmd_Spot(edict_t* ent)
 	}
 }
 
-void Cmd_RemoveDoors(edict_t* end)//for help with adding bot support
+void Cmd_RemoveDoors(edict_t* ent)//for help with adding bot support /* MetalGod typo(edict_t* end) corrected to ent */
 {
 	edict_t* check;
-	
+
 
 	check = g_edicts + 1;
 	if (sv_cheats->value != 0)
 	{
 		int e;/* MetalGod moved to reduce variable scope */
-		
+
 		for (e = 1; e < globals.num_edicts; e++, check++)
 		{
 			if (!check->inuse)
@@ -786,7 +786,7 @@ void Cmd_Give_f(edict_t* ent)
 	int			index;
 	int			i;
 	qboolean	give_all;
-	
+
 
 	if (deathmatch->value && !sv_cheats->value)
 	{
@@ -898,7 +898,7 @@ void Cmd_Give_f(edict_t* ent)
 	{
 		/* MetalGod moved to reduce variable scope */
 		edict_t* it_ent;
-		
+
 		it_ent = G_Spawn();
 		it_ent->classname = it->classname;
 		SpawnItem(it_ent, it);
@@ -2253,10 +2253,10 @@ char* SeekBufEnd(char* buf)
 		buf++;
 	return buf;
 }
-   static char buf[0x8000], infobuf[0x8000]; /* MetalGod no need to be unsigned / moved here/to heap*/
+static char buf[0x8000], infobuf[0x8000]; /* MetalGod no need to be unsigned / moved here/to heap*/
 void ParseSayText(edict_t* ent, char* text)
 {
-	
+
 	char* p, * pbuf;
 
 	p = text;
@@ -2951,17 +2951,18 @@ qboolean Cmd_Reload(edict_t* ent)
 			(mags_left == 1)
 			/*(ent->client->pers.inventory[ent->client->ammo_index] < rds_left)*/)
 		{
-			/* eh don't even need this			if (ent->client->pers.weapon->position == LOC_RIFLE)
-							safe_cprintf(ent, PRINT_HIGH, "Last Clip!\n");
-						else if (ent->client->pers.weapon->position == LOC_ROCKET)
-							safe_cprintf(ent, PRINT_HIGH, "Last Rocket!\n");
-						else if (ent->client->pers.weapon->position == LOC_PISTOL)
-							safe_cprintf(ent, PRINT_HIGH, "Last Clip!\n");
-						else if (ent->client->pers.weapon->position == LOC_FLAME) //Wheaty: Flamethrower
-							safe_cprintf(ent, PRINT_HIGH, "Last Fuel Tank!\n");
-						else
-							safe_cprintf(ent, PRINT_HIGH, "Last Magazine!\n");
-			*/
+			/* eh don't even need this	.. MetalGod No, we don't need it, but it's helpful */
+			if (ent->client->pers.weapon->position == LOC_RIFLE)
+				safe_cprintf(ent, PRINT_HIGH, "Last Clip!\n");
+			else if (ent->client->pers.weapon->position == LOC_ROCKET)
+				safe_cprintf(ent, PRINT_HIGH, "Last Rocket!\n");
+			else if (ent->client->pers.weapon->position == LOC_PISTOL)
+				safe_cprintf(ent, PRINT_HIGH, "Last Clip!\n");
+			else if (ent->client->pers.weapon->position == LOC_FLAME) //Wheaty: Flamethrower
+				safe_cprintf(ent, PRINT_HIGH, "Low Fuel Tank!\n");
+			else
+				safe_cprintf(ent, PRINT_HIGH, "Last Magazine!\n");
+			/* MetalGod */
 
 			ent->client->weaponstate = WEAPON_RELOADING;
 			//bcass start - truesite speed after reload

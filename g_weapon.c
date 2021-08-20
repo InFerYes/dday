@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/g_weapon.c,v $
  *   $Revision: 1.49 $
@@ -1570,7 +1570,7 @@ void grenade_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int damag
 }
 void fire_grenade2(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int speed, float time, float damage_radius, int team)
 {
-	edict_t* grenade;
+	edict_t* grenade = NULL;
 	vec3_t	dir;
 	vec3_t	forward, right, up;
 
@@ -1604,6 +1604,11 @@ void fire_grenade2(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int s
 //              if (grenade->item && grenade->item->world_model)
 //                      grenade->s.modelindex =  gi.modelindex(grenade->item->world_model);
 //              else
+		/* MetalGod Sanity check for NULL */
+		if (NULL == grenade)
+			return;
+		/* MetalGod */
+
 		if (grenade->item)
 		{
 			// team = Q_stricmp(grenade->item->ammo , "Mk 2 Grenade");  //faf: team dll support, replaced with below
@@ -2005,7 +2010,7 @@ void fire_rocket_piat(edict_t* self, vec3_t start, vec3_t dir, int damage, int s
 	rocket->touch = rocket_touch;
 
 	rocket->gravity = gravity;//1;//.9; //faf
-	
+
 	/* Metalgod reassigend in either of the conditionals below
 	rocket->nextthink = level.time + 8000 / speed;
 	rocket->think = G_FreeEdict;
@@ -2168,7 +2173,7 @@ void fire_gun(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick, 
 	vec3_t forward, right, up;
 
 	/* MetalGod sanity check */
-	if (!self ||!self->client)
+	if (!self || !self->client)
 		return;
 
 	AngleVectors(aimdir, forward, right, up);
@@ -4617,7 +4622,7 @@ void Weapon_Sten_Fire(edict_t* ent)
 
 		return;
 	}
-	
+
 	/* MetalGod this is horseshit... if you comment out all the innards, why not just comment the whole damn thing!?!?
 	if (!ent->client->aim)
 	{
@@ -4647,7 +4652,7 @@ void Weapon_Sten_Fire(edict_t* ent)
 		//ent->client->kick_angles[0] = ent->client->machinegun_shots * -1.5;
 	}
 */
-	// raise the gun as it is firing
+// raise the gun as it is firing
 //	if (!deathmatch->value)
 //	{
 	if (!ent->ai)
@@ -4678,7 +4683,7 @@ void Weapon_Sten_Fire(edict_t* ent)
 		ent->client->mags[mag_index].submg_rnd = 0;
 		return;
 	}
-	
+
 	/* MetalGod overwritten below
 	// rezmoth - cosmetic recoil
 	if (level.framenum % 3 == 0)
@@ -4689,7 +4694,7 @@ void Weapon_Sten_Fire(edict_t* ent)
 			ent->client->kick_angles[0] = -3;
 	}
 	*/
-	
+
 	// pbowens: for darwin's 3.2 kick
 	ent->client->kick_angles[0] = ent->client->machinegun_shots * -1;
 	ent->client->kick_angles[1] = ent->client->machinegun_shots * .3;
@@ -5734,7 +5739,7 @@ void Weapon_Pps43_Fire(edict_t* ent)
 		VectorSet(offset, 0, 0, ent->viewheight - 0);	//10
 	else
 		gi.dprintf("*** Firing System Error\n");
-	
+
 	/* MetalGod overwritten below
 	// rezmoth - cosmetic recoil
 	if (level.framenum % 3 == 0)
@@ -5745,7 +5750,7 @@ void Weapon_Pps43_Fire(edict_t* ent)
 			ent->client->kick_angles[0] = -3;
 	}
 	*/
-	
+
 	// pbowens: for darwin's 3.2 kick
 	ent->client->kick_angles[0] = ent->client->machinegun_shots * -1;
 

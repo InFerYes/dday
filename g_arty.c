@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/g_arty.c,v $
  *   $Revision: 1.11 $
@@ -125,18 +125,12 @@ void Cmd_Arty_f(edict_t* ent)
 
 	int i;
 
-	/* MetalGod sanity check */
-	if (!ent || !ent->client)
-		return;
-
 	if (!IsValidPlayer(ent))
 		return;
 
 	if (ent->deadflag)
 		return;
 
-	if (!ent->client->resp.team_on)
-		return;
 
 	for (i = 0; i < game.maxentities; i++)
 	{
@@ -205,7 +199,7 @@ void Cmd_Arty_f(edict_t* ent)
 		return;
 	}
 
-	if (ent->client &&
+	if (/* ent->client && MetalGod redundant */
 		ent->client->pers.weapon &&
 		ent->client->pers.weapon->classnameb == WEAPON_CARCANO)
 	{
@@ -220,7 +214,7 @@ void Cmd_Arty_f(edict_t* ent)
 		return;
 	}
 
-	if (ent->client &&
+	if (/* ent->client && MetalGod redundant */
 		ent->client->pers.weapon &&
 		ent->client->pers.weapon->classnameb == WEAPON_ENFIELD)
 	{
@@ -236,7 +230,7 @@ void Cmd_Arty_f(edict_t* ent)
 		return;
 	}
 
-	if (ent->client &&
+	if (/* ent->client && MetalGod redundant */
 		ent->client->pers.weapon &&
 		ent->client->pers.weapon->classnameb == WEAPON_SVT)
 	{
@@ -539,8 +533,7 @@ void Plane_Fly_Off(edict_t* ent)
 
 void Plane_Fire(edict_t* ent)
 {
-	ent->nextthink = level.time +.2;
-	
+
 	if (ent->leave_limbo_time < level.time - 20)
 	{
 		ent->nextthink = level.time + .1;
@@ -552,12 +545,11 @@ void Plane_Fire(edict_t* ent)
 		ent->think = Plane_Fly_Off;
 		ent->nextthink = level.time + .1;
 	}
-	/* Metalgod assign the default above the exceptions 
 	else
 	{
 		ent->nextthink = level.time + .2;
 	}
-	*/
+
 
 	if (ent->count == 0 && ent->owner->client)
 		safe_cprintf(ent->owner, PRINT_HIGH, "Airstrike confirmed, sir!\n");
@@ -956,7 +948,7 @@ void Drop_Bomb_i(edict_t* ent)
 void Plane_Fire_i(edict_t* ent)
 {
 	ent->nextthink = level.time + .2;
-	
+
 	if (ent->leave_limbo_time < level.time - 20)
 	{
 		ent->nextthink = level.time + .1;

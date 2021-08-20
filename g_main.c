@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/g_main.c,v $
  *   $Revision: 1.15 $
@@ -395,7 +395,7 @@ void Read_Last_Maps()
 				last_maps_played[i] = s;
 				s = strtok(NULL, "\n");
 			}
-		}			
+		}
 	}
 }
 
@@ -411,8 +411,8 @@ char* Get_Next_MaplistTxt_Map()
 	int x;
 	int randnum;
 	int removed;
-	char* possible_maps[300] = {0};;
-	char* maplisttxt[300] = {0};;
+	char* possible_maps[300] = { 0 };;
+	char* maplisttxt[300] = { 0 };;
 
 	maps = ReadEntFile("dday/maplist.txt");
 
@@ -707,13 +707,13 @@ void EndDMLevel(void)
 							{
 								check = t;
 								strcat(check, "1");
-							
-							if (MapExists(check))
+
+								if (MapExists(check))
 								{
 									safe_bprintf(PRINT_HIGH, "Next map: %s \n", check);
 									BeginIntermission(CreateTargetChangeLevel(check));
 									return;
-								}	
+								}
 							}
 						}
 					}
@@ -760,7 +760,7 @@ void EndDMLevel(void)
 			if (t == NULL) //faf:  happens when running a map thats not on maplist and map is to change
 			{
 				//let it stay off maplist until a map on the maplist is changed to
-				if (team_list[0]->nextmap && MapExists(team_list[0]->nextmap))
+				if ((team_list[0] != NULL) && team_list[0]->nextmap && MapExists(team_list[0]->nextmap))
 				{
 					safe_bprintf(PRINT_HIGH, "Next map: %s \n", team_list[0]->nextmap);
 					BeginIntermission(CreateTargetChangeLevel(team_list[0]->nextmap));
@@ -894,7 +894,7 @@ void CheckDMRules(void)
 	//faf: ctb code
 	if (level.ctb_time)
 	{
-		vec3_t		w = {0}; //faf
+		vec3_t		w = { 0 }; //faf
 		float		briefcase_range;//faf /* MetalGod was range. Changed to a name that doesn't shadow an outer function */
 		edict_t* check;
 		edict_t* usaflag = NULL; /* MetalGod initialized */

@@ -91,7 +91,7 @@ void		BOT_Respawn(edict_t* ent);
 
 // ai_main.c
 //----------------------------------------------------------
-void		AI_Think(edict_t* ent);
+void		AI_Think(edict_t* self); /* MetalGod fixed prototype */
 void		AI_PickLongRangeGoal(edict_t* ent);
 void		AI_Frame(edict_t* self, usercmd_t* ucmd);
 void		AI_SetUpMoveWander(edict_t* ent);

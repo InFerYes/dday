@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (C) 1997-2001 Id Software, Inc.
 
 This program is free software; you can redistribute it and/or
@@ -297,6 +297,7 @@ void Show_Nodes_Think(edict_t* ent)
 		ent->think = G_FreeEdict;
 		ent->nextthink = level.time + .1;
 		gi.dprintf("No nodes!\n");
+		return;	 /* MetalGod Avoid opperation on a negative array below if neartest were somehow  == -1 */
 	}
 
 	if (ent->mass >= pLinks[nearest].numLinks)

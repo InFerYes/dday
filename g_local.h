@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/g_local.h,v $
  *   $Revision: 1.34 $
@@ -46,7 +46,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // the "gameversion" client command will print this plus compile date
 #define	GAMEVERSION	"dday"
 //#define DEVVERSION	"4.1"
-#define DEVVERSION "5.0"//faf
+#define DEVVERSION "5.5 Metal!nfy"//faf
 //#define	DEBUG		1
 
 // protocol bytes that can be directly added to messages
@@ -871,7 +871,7 @@ void	G_SetMovedir(vec3_t angles, vec3_t movedir);
 
 void	G_InitEdict(edict_t* e);
 edict_t* G_Spawn(void);
-void	G_FreeEdict(edict_t* e);
+void	G_FreeEdict(edict_t* ed);/* MetalGod  wrongly prototyped as edict_t* e */
 
 void	G_TouchTriggers(edict_t* ent);
 void	G_TouchSolids(edict_t* ent);
@@ -882,7 +882,7 @@ float* tv(float x, float y, float z);
 char* vtos(vec3_t v);
 
 float vectoyaw(vec3_t vec);
-void vectoangles(vec3_t vec, vec3_t angles);
+void vectoangles(vec3_t value1, vec3_t angles);/* MetalGod  wrongly prototyped as vec3_t vec, vec3_t angles */
 
 qboolean WeighPlayer(edict_t* ent);
 void reinforcement_think(edict_t* ent);
@@ -1028,7 +1028,7 @@ edict_t* PlayerTrail_LastSpot(void);
 // g_client.c
 //
 
-void respawn(edict_t* ent);
+void respawn(edict_t* self); /* MetalGod  wrongly prototyped as edict_t* self */
 void BeginIntermission(edict_t* targ);
 void PutClientInServer(edict_t* ent);
 void InitClientPersistant(gclient_t* client);
@@ -2085,7 +2085,7 @@ void VIP_think(edict_t* self);
 void Set_VIP_Defense_Bot(edict_t* ent);
 int Surface2(char* name);
 void Find_Mission_Start_Point(edict_t* ent, vec3_t origin, vec3_t angles);
-void SP_objective_flag(edict_t* self);
+void SP_objective_flag(edict_t* ent);		 /* MetalGod mismatched prototype was edict_t* self, corrected to edict_t* ent */
 void briefcase_warn(edict_t* ent);//faf;  ctb code
 qboolean Pickup_Briefcase(edict_t* ent, edict_t* other);
 void Drop_Briefcase(edict_t* ent, gitem_t* item);
