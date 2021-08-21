@@ -1,4 +1,4 @@
-#include "../g_local.h"
+﻿#include "../g_local.h"
 #include "ai_local.h"
 
 //==========================================
@@ -251,7 +251,7 @@ static int AStar_FillLists(void)
 	return (currentNode != -1);	//if -1 path is bloqued
 }
 
-static int AStar_ResolvePath(int n1, int n2, int movetypes)
+static int AStar_ResolvePath(int origin, int goal, int movetypes)
 {
 	ValidLinksMask = movetypes;
 	if (!ValidLinksMask)
@@ -259,8 +259,8 @@ static int AStar_ResolvePath(int n1, int n2, int movetypes)
 
 	AStar_InitLists();
 
-	originNode = n1;
-	goalNode = n2;
+	originNode = origin;
+	goalNode = goal;
 	currentNode = originNode;
 
 	while (!AStar_nodeIsInOpen(goalNode))

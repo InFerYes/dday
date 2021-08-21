@@ -561,12 +561,19 @@ void turret_breach_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int
 
 	t = NULL;
 
+	/* MetalGod Sanity check*/
+	if (!self || !inflictor || !attacker)
+	{
+		return;
+	}
+	/* MetalGod */
+
 	if (self->owner)
 	{
 		if (self->owner->solid == SOLID_NOT)
 		{
 			turret_off(self->owner);
-			//crash			T_Damage (self->owner, attacker, attacker, vec3_origin, self->owner->s.origin, vec3_origin, 300, 0, DAMAGE_NO_PROTECTION, MOD_R_SPLASH);
+			T_Damage(self->owner, attacker, attacker, vec3_origin, self->owner->s.origin, vec3_origin, 300, 0, DAMAGE_NO_PROTECTION, MOD_R_SPLASH);
 		}
 		else
 			turret_off(self->owner);

@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/p_generic_wep.c,v $
  *   $Revision: 1.23 $
@@ -812,9 +812,9 @@ void Weapon_Generic(edict_t* ent,
 		}
 	}
 }
-
+/*	  MetalGod Unused
 void ifchangewep(edict_t* ent)
 {
 	//	if(auto_weapon_change->value) NoAmmoWeaponChange (ent);
 	return;
-}
+}	 */

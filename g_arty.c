@@ -125,6 +125,13 @@ void Cmd_Arty_f(edict_t* ent)
 
 	int i;
 
+	/* MetalGod sanity check*/
+	if (!ent)
+	{
+		return;
+	}
+	/* MetalGod */
+
 	if (!IsValidPlayer(ent))
 		return;
 

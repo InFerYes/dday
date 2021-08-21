@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/g_spawn.c,v $
  *   $Revision: 1.14 $
@@ -107,7 +107,7 @@ void SP_trigger_monsterjump(edict_t* ent);
 //added by kmm
 void SP_info_team_start(edict_t* ent);
 void SP_info_reinforcement_start(edict_t* ent);
-void SP_info_reinforcements_nearest(edict_t* ent);
+/*void SP_info_reinforcements_nearest(edict_t* ent); MetalGod prototype for missing function */
 void SP_trigger_enough_troops(edict_t* ent);
 void SP_target_objective(edict_t* ent);
 //void SP_info_Max_MOS(edict_t *ent);
@@ -464,7 +464,7 @@ char* ED_NewString(char* string)
 
 	for (i = 0; i < l; i++)
 	{
-		if (string[i] == '\\' && l-1  > i)/* Metalgod was i < l - 1 Changed to ensure the limit check was made before checking the value of i! */
+		if (string[i] == '\\' && l - 1 > i)/* MetalGod was i < l - 1 Changed to ensure the limit check was made before checking the value of i! */
 		{
 			i++;
 			if (string[i] == 'n')
@@ -719,7 +719,7 @@ void SpawnEntities(char* mapname, char* entities, char* spawnpoint)
 		if (!Q_stricmp(level.mapname, "command") && !Q_stricmp(ent->classname, "trigger_once") && !Q_stricmp(ent->model, "*27"))
 			ent->spawnflags &= ~SPAWNFLAG_NOT_HARD; */
 
-		// remove things (except the world) from different skill levels or deathmatch
+			// remove things (except the world) from different skill levels or deathmatch
 		if (ent != g_edicts)
 		{
 			if (deathmatch->value)
@@ -780,7 +780,7 @@ char* ReadEntFile(char* filename)
 	long int	i = 0;
 	int			ch;
 
-	for(;;)/* MetalGod shut up compiler */
+	for (;;)/* MetalGod shut up compiler */
 	{
 		fp = fopen(filename, "r");
 		if (!fp) break;
@@ -871,12 +871,12 @@ void LoadCampFile(void)
 {
 	char	cmpfilename[MAX_QPATH] = "";
 	char* camplocs;
-	int		i; 	
-	vec3_t	loc = {0};
-	
-	if (level.botfiles)
+	int		i;
+	vec3_t	loc = { 0 };
+
+	if (level.botfiles && (strlen("dday/navigation/% s.cmp") < 48))		 /* MetalGod overwrite check*/
 		sprintf(cmpfilename, "dday/navigation/%s.cmp", level.botfiles);
-	else
+	else if (strlen("dday/navigation/% s.cmp") < 64)   /* MetalGod overwrite check*/
 		sprintf(cmpfilename, "dday/navigation/%s.cmp", level.mapname);
 
 	//gi.dprintf("sdfl %s\n", cmpfilename);
@@ -888,7 +888,7 @@ void LoadCampFile(void)
 	camplocs = ReadEntFile(cmpfilename);
 
 	if (camplocs)
-	{   
+	{
 		/* MetalGod moved to reduce variable scope */
 		int	c;
 		char* s, * f;
@@ -900,7 +900,7 @@ void LoadCampFile(void)
 		/* END */
 		//leave these dprints active they show up in the server init console section
 		gi.dprintf("%s.cmp Loaded\n", level.mapname);
-	   	
+
 		c = 0;
 		f = strdup(camplocs);
 		s = strtok(f, "\n");
@@ -964,7 +964,7 @@ void LoadCampFile(void)
 				camp_spots[c].type = CAMP_NORMAL;
 				c++;
 				total_camp_spots = c;
-			} 		
+			}
 			//
 		}
 	}
@@ -1019,7 +1019,7 @@ void SpawnEntities2(char* mapname, char* entities, char* spawnpoint)
 		if (!g_edicts)
 			return;
 		// parse the opening brace
-		com_token = COM_Parse(&entities);
+		com_token = COM_Parse((char**)&entities);
 		if (!entities)
 			break;
 		if (com_token[0] != '{')

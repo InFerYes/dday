@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/g_target.c,v $
  *   $Revision: 1.5 $
@@ -105,7 +105,7 @@ void SP_target_speaker(edict_t* ent)
 	if (!strstr(st.noise, ".wav"))
 		Com_sprintf(buffer, sizeof(buffer), "%s.wav", st.noise);
 	else
-		strncpy(buffer, st.noise, sizeof(buffer));
+		strncpy(buffer, st.noise, sizeof(buffer - 1)); /* MetalGod added -1 to ensure NULL termination */
 	ent->noise_index = gi.soundindex(buffer);
 
 	if (!ent->volume)

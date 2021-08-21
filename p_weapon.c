@@ -47,7 +47,7 @@ void weapon_grenade_fire(edict_t* ent);
 //bcass start - TNT
 void weapon_tnt_fire(edict_t* ent);
 //bcass end
-void ifchangewep(edict_t* ent);
+/* void ifchangewep(edict_t* ent);	MetalGod Unused*/
 edict_t* ApplyFirstAid(edict_t* ent);
 void Play_WepSound(edict_t* ent, char* sound);
 void Use_Weapon(edict_t* ent, gitem_t* item);
@@ -881,10 +881,10 @@ void weapon_grenade_fire(edict_t* ent)
 	// unused
 	float	time = 0;
 	int		team = 0;
-	if (!ent || !ent->client || !ent->client->grenade)
+	if (!ent || !ent->client)
 		return;
 	//faf
-	if (ent->client && ent->client->grenade) // disable the grenade from triggering self, but still leave timers on
+	if (ent->client->grenade) // disable the grenade from triggering self, but still leave timers on
 	{
 		VectorCopy(ent->s.origin, ent->client->grenade->s.origin);
 		ent->client->grenade->s.modelindex = 0; // set model to null
@@ -1350,7 +1350,7 @@ void fire_Knife(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick
 					Play_Bullet_Hit(self, tr.surface->name, tr.endpos, tr.ent);
 					if ((!tr.ent->obj_owner || tr.ent->obj_owner != self->client->resp.team_on->index) && (rand() % 100) < 20)
 					{
-						if (tr.ent->classnameb != OBJECTIVE_VIP && (!tr.ent->svflags) & SVF_DEADMONSTER)
+						if (tr.ent->classnameb != OBJECTIVE_VIP && !(tr.ent->svflags & SVF_DEADMONSTER))
 							ThrowDebris(self, "models/objects/debris2/tris.md2", 1, tr.endpos);
 					}
 				}

@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/g_ents.c,v $
  *   $Revision: 1.8 $
@@ -152,7 +152,7 @@ void target_objective_use(edict_t* self, edict_t* other, edict_t* activator)
 
 	if (team_list[self->obj_owner] == NULL)/* MetalGod check to see if it's NULL, before doing anything else or risk dereferencing */
 		return;
-	
+
 	team_list[self->obj_owner]->score -= self->dmg;
 
 	safe_bprintf(PRINT_HIGH, "%s has captured an objective point for team %s!\n", activator->client->pers.netname, team_list[self->obj_owner]->teamname);
@@ -677,7 +677,7 @@ void SP_info_team_start(edict_t* ent)
 
 	G_FreeEdict(ent);	//clean up entity now that it's not needed.
 }
-
+/*	 MetalGod unused
 void SP_info_Max_MOS(edict_t* ent)
 {
-}
+} */

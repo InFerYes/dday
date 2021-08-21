@@ -280,7 +280,7 @@ LerpAngle
 
 ===============
 */
-float LerpAngle(float a2, float a1, float frac)
+float LerpAngle(float a1, float a2, float frac)
 {
 	if (a1 - a2 > 180)
 		a1 -= 360;
@@ -344,7 +344,7 @@ Returns 1, 2, or 1 + 2
 ==================
 */
 #if !id386 || defined __linux__ || defined(AMIGA)
-int BoxOnPlaneSide(vec3_t emins, vec3_t emaxs, struct cplane_s* p)
+int BoxOnPlaneSide(vec3_t emins, vec3_t emaxs, struct cplane_s* plane)
 {
 	float	dist1, dist2;
 	int		sides;

@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/q_shared.h,v $
  *   $Revision: 1.8 $
@@ -30,9 +30,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifdef _WIN32
 // unknown pragmas are SUPPOSED to be ignored, but....
 #pragma warning(disable : 4244)	// MIPS
-#pragma warning(disable : 4136)	// X86
-#pragma warning(disable : 4051)	// ALPHA
-#pragma warning(disable : 4996)	// deprecated functions
+//#pragma warning(disable : 4136)	// X86
+//#pragma warning(disable : 4051)	// ALPHA
+#pragma warning(disable : 4996)		// Shut up MSVS	 about deppreciated/unsafe functions
 #pragma warning(disable : 4100)	// unreferenced formal parameter
 /*
 #pragma warning(disable : 4305)	// truncation from const double to float
@@ -49,7 +49,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma warning(disable : 4255)	// no function prototype given: converting to void
 
 */
-#pragma warning(disable : 4996)		// Shut up MSVS
+
 #endif
 
 #include <assert.h>
@@ -248,7 +248,7 @@ void COM_StripExtension(char* in, char* out);
 void COM_FileBase(char* in, char* out);
 void COM_FilePath(char* in, char* out);
 void COM_DefaultExtension(char* path, char* extension);
-/* MetalGod MetalGod Fix COM_Parse buffer overflow. TY QW 
+/* MetalGod MetalGod Fix COM_Parse buffer overflow. TY QW
 char* COM_Parse(char** data_p);
 */
 char* COM_Parse(const char** data_p);

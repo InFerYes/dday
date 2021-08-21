@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/p_hud.c,v $
  *   $Revision: 1.27 $
@@ -580,7 +580,7 @@ void A_ScoreboardMessage(edict_t* ent)//, edict_t *killer)
 	char scoretopleftpic[256];
 	char scoretoprightpic[256];  //faf: end
 
-	char        string2[1400], string[1400];//, damage[50];
+	char        string2[1400], string[1400] = { 0 }/* MetalGod initialized here */;//, damage[50];
 	gclient_t* cl;
 	edict_t* cl_ent;
 	int         maxsize = 1000, i, j, k;
@@ -666,7 +666,7 @@ void A_ScoreboardMessage(edict_t* ent)//, edict_t *killer)
 		strcat(scoretoprightpic, team_list[1]->teamid);
 		strcat(scoretoprightpic, "_score_top  ");
 
-		sprintf(string, scoretopleftpic); //team 0 /* MetalGod Note sprintf*/
+		strcat(string, scoretopleftpic); //team 0 /* MetalGod Note was sprintf*/
 		strcat(string, scoretoprightpic); // team 1
 		strcat(string, scoreleftpic); //background left list pic
 		strcat(string, scorerightpic); // background right list pic
@@ -892,7 +892,7 @@ void A_ScoreboardMessage2(edict_t* ent)//, edict_t *killer)
 	char scoretopleftpic[256];
 	char scoretoprightpic[256];  //faf: end
 
-	char        string2[1400], string[1400];//, damage[50];
+	char        string2[1400], string[1400] = { 0 }/* MetalGod initialized here */;//, damage[50];
 	gclient_t* cl;
 	edict_t* cl_ent;
 	int         maxsize = 1000, i, j, k;
@@ -974,7 +974,7 @@ void A_ScoreboardMessage2(edict_t* ent)//, edict_t *killer)
 		strcat(scoretoprightpic, team_list[1]->teamid);
 		strcat(scoretoprightpic, "_score_top  ");
 
-		sprintf(string, scoretopleftpic); //team 0 /* MetalGod Note sprintf! */
+		strcat(string, scoretopleftpic); //team 0 /* MetalGod Note was sprintf! */
 		strcat(string, scoretoprightpic); // team 1
 		strcat(string, scoreleftpic); //background left list pic
 		strcat(string, scorerightpic); // background right list pic

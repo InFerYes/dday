@@ -40,7 +40,7 @@ void check_unscope(edict_t* ent)
 	if (!ent || !ent->client)
 		return;
 
-	if (ent->client && ent->client->pers.weapon && ent->client->pers.weapon->position != LOC_SNIPER)
+	if (ent->client->pers.weapon && ent->client->pers.weapon->position != LOC_SNIPER)
 		return;
 
 	if (ent->client->ps.fov == SCOPE_FOV)
@@ -1269,10 +1269,14 @@ void Shrapnel_Explode(edict_t* ent)
 		G_FreeEdict(ent);
 		return;
 	}
+	/* MetalGod Sanity check */
+	if (!ent)
+	{
+		return;
+	}
 
-	if (ent->owner->client &&
-		(!ent->owner->client->resp.team_on ||
-			ent->owner->client->resp.team_on->index != ent->obj_owner))
+	if ((!ent->owner->client->resp.team_on ||
+		ent->owner->client->resp.team_on->index != ent->obj_owner))
 	{
 		G_FreeEdict(ent);
 		return;
@@ -1302,7 +1306,7 @@ void Shrapnel_Explode(edict_t* ent)
 		}
 	}
 
-	if (ent->owner && ent->owner->client)
+	if (ent->owner->client)
 		PlayerNoise(ent->owner, ent->s.origin, PNOISE_IMPACT);
 
 	//pbowens: quick hack to make only USA Grenade fire fragments

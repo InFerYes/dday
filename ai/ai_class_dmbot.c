@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (C) 1997-2001 Id Software, Inc.
 
 This program is free software; you can redistribute it and/or
@@ -183,7 +183,7 @@ void BOT_DMclass_Move(edict_t* self, usercmd_t* ucmd)
 			VectorCopy(vec3_origin, g_offset);
 
 			AngleVectors(self->client->v_angle, forward, right, NULL);
-			VectorSet(offset, 24, 8, self->viewheight - 25);
+			VectorSet(offset, 24.00f, 8.0f, self->viewheight - 25.0f);
 			VectorAdd(offset, g_offset, offset);
 			P_ProjectSource(self->client, self->s.origin, offset, forward, right, start);
 			VectorScale(forward, -2, self->client->kick_origin);
@@ -246,7 +246,7 @@ void BOT_DMclass_Wander(edict_t* self, usercmd_t* ucmd)
 			self->velocity[0] = 0;
 			self->velocity[1] = 0;
 			self->velocity[2] = 0;
-			self->ai->next_move_time = level.time + 0.5;
+			self->ai->next_move_time = level.time + 0.5f;
 			return;
 		}
 	}
@@ -600,7 +600,7 @@ qboolean BOT_DMclass_FindEnemy(edict_t* self)
 			weight = VectorLength(dist);
 
 			//modify weight based on precomputed player weights
-			weight *= (1.0 - self->ai->status.playersWeights[i]);
+			weight *= (1.0f - self->ai->status.playersWeights[i]);
 
 			//gi.dprintf ("%f\n",weight);
 
@@ -670,7 +670,7 @@ qboolean BOT_DMClass_ChangeWeapon(edict_t* ent, gitem_t* item)
 
 	// Change to this weapon
 	ent->client->newweapon = item;
-	ent->ai->changeweapon_timeout = level.time + 6.0;
+	ent->ai->changeweapon_timeout = level.time + 6.0f;
 
 	return true;
 }
@@ -1102,7 +1102,7 @@ void BOT_CheckFireWeapon(edict_t* self, usercmd_t* ucmd)
 
 	if (self->enemy)
 	{
-		float rnum = random() * 2.25 + .75;
+		float rnum = random() * 2.25f + .75f;
 
 		if (self->enemy->client && rnum / 2 > skill->value)  //aim with lots of lag
 		{
@@ -1333,8 +1333,8 @@ void BOT_CheckFireWeapon(edict_t* self, usercmd_t* ucmd)
 	}
 	//stay accurate with objectives/sandbags/ etc
 	{
-		target[0] += 4 * (random() - 0.5);
-		target[1] += 4 * (random() - 0.5);
+		target[0] += 4 * (random() - 0.5f);
+		target[1] += 4 * (random() - 0.5f);
 	}
 
 	// Set direction
@@ -1351,7 +1351,7 @@ void BOT_CheckFireWeapon(edict_t* self, usercmd_t* ucmd)
 		else
 			skilldelay = 0;
 	*/
-	skilldelay = ((-.5) * skill->value) + 1.5;
+	skilldelay = ((-.5f) * skill->value) + 1.5f;
 	if (skilldelay < 0)
 		skilldelay = 0;
 	else if (skilldelay > 1.5)
@@ -1409,7 +1409,7 @@ void BOT_CheckFireWeapon(edict_t* self, usercmd_t* ucmd)
 	}
 
 	// Set the attack
-	firedelay = random() * (MAX_BOT_SKILL * 1.8);
+	firedelay = random() * (MAX_BOT_SKILL * 1.8f);
 	if (firedelay > (MAX_BOT_SKILL - self->ai->pers.skillLevel) &&
 		BOT_DMclass_CheckShot(self, target))
 		//|| self->client->pers.weapon->classnameb == WEAPON_PIAT))
@@ -1705,14 +1705,14 @@ void BOT_DMClass_BloquedTimeout(edict_t* self)
 {
 	if (self->client->limbo_mode)
 	{
-		self->ai->bloqued_timeout = level.time + 15.0;
+		self->ai->bloqued_timeout = level.time + 15.0f;
 		return;
 	}
 
 	if (level.intermissiontime)
 		return;
 	self->health = 0;
-	self->ai->bloqued_timeout = level.time + 15.0;
+	self->ai->bloqued_timeout = level.time + 15.0f;
 	self->die(self, self, self, 100000, vec3_origin);
 	self->nextthink = level.time + FRAMETIME;
 }
@@ -1782,12 +1782,12 @@ void BOT_DMclass_RunFrame(edict_t* self)
 		{
 			if (!toright(self, self->ai->teammatedodge->s.origin) && AI_CanMove(self, BOT_MOVE_RIGHT))
 			{
-				ucmd.sidemove = 400; ucmd.forwardmove = ucmd.forwardmove * .6666;
+				ucmd.sidemove = 400; ucmd.forwardmove = ucmd.forwardmove * .6666f;
 				//gi.dprintf("right!\n");
 			}
 			else// if(AI_CanMove(self, BOT_MOVE_LEFT))
 			{
-				ucmd.sidemove = -400; ucmd.forwardmove = ucmd.forwardmove * .6666;
+				ucmd.sidemove = -400; ucmd.forwardmove = ucmd.forwardmove * .6666f;
 				//gi.dprintf("left!\n");
 			}
 		}
@@ -1800,7 +1800,7 @@ void BOT_DMclass_RunFrame(edict_t* self)
 	ucmd.angles[ROLL] = ANGLE2SHORT(self->s.angles[ROLL]);
 
 	// set approximate ping and show values
-	ucmd.msec = 75 + floorf(random() * 25.0F) + 1;/* MetalGod changed to floorf and made explicitly a float */
+	ucmd.msec = 75.0f + floorf(random() * 25.0F) + 1.0f;/* MetalGod changed to floorf and made explicitly a float */
 	self->client->ping = ucmd.msec;/*
 	self->client->ping = 0; Metalgod not sure why it was set, then reset to 0 here? */
 

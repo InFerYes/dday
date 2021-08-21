@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (C) 1997-2001 Id Software, Inc.
 
 This program is free software; you can redistribute it and/or
@@ -363,7 +363,7 @@ qboolean AI_MoveToGoalEntity(edict_t* self, usercmd_t* ucmd)
 		//			G_PrintMsg (AIDevel.chaseguy, PRINT_HIGH, "%s: Oh crap a rocket!\n",self->ai->pers.netname);
 
 				// strafe left/right
-		if (rand() % 1 && AI_CanMove(self, BOT_MOVE_LEFT))
+		if (rand() % 2 && AI_CanMove(self, BOT_MOVE_LEFT))/* MetalGod changed to Modulo 2, since Modulo 1 always evaluates to 0. */
 			ucmd->sidemove = -400;
 		else if (AI_CanMove(self, BOT_MOVE_RIGHT))
 			ucmd->sidemove = 400;

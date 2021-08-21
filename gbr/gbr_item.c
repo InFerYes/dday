@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/gbr/gbr_item.c,v $
  *   $Revision: 1.8 $
@@ -510,9 +510,17 @@ gitem_t gbritems[] =
 							"gbr",
 							0,
 							0
-						},
-
-					{
-						NULL
-					},
+		},
+		{
+			NULL
+		},
+		{
+			NULL
+		},
+		{
+			NULL
+		},
+		{
+			NULL
+		},
 };

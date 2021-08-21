@@ -32,7 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //#include "p_classes.h"
 
 void EndObserverMode(edict_t* ent);
-void Show_Mos(edict_t* ent);
+/* void Show_Mos(edict_t* ent);  MetalGod unused empty function	*/
 qboolean Cmd_Scope_f(edict_t* ent);
 void ClientUserinfoChanged(edict_t* ent, char* userinfo);
 void SwitchToObserver(edict_t* ent);

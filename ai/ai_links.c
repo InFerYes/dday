@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (C) 1997-2001 Id Software, Inc.
 
 This program is free software; you can redistribute it and/or
@@ -169,7 +169,7 @@ qboolean AI_AddLink(int n1, int n2, int linkType)
 		return false;
 
 	//add the link
-	if (pLinks[n1].numLinks > NODES_MAX_PLINKS)
+	if (pLinks[n1].numLinks > NODES_MAX_PLINKS - 1)	 /* MetalGod the range is 0 to 15 added -1 to prevent a potential buffer overrun*/
 	{
 		//		G_Printf("MaxPlinks Reached! node:%i numPlinks:%i\n", n1, pLinks[n1].numLinks);
 		return false;
@@ -749,12 +749,12 @@ int AI_IsLadderLink(int n1, int n2)
 		eorg[j] = nodes[n2].origin[j] - nodes[n1].origin[j];
 	eorg[2] = 0; //ignore height
 
-	
+
 	xzdist = VectorLength(eorg);
 
 	if (xzdist < 0)
 		xzdist = -xzdist;
-	
+
 
 	//if both are ladder nodes
 	if (nodes[n1].flags & NODEFLAGS_LADDER && nodes[n2].flags & NODEFLAGS_LADDER)

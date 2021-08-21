@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/g_objectives.c,v $
  *   $Revision: 1.8 $
@@ -207,6 +207,12 @@ void objective_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t*
 		}
 
 		otherteam = (self->obj_owner);
+
+		/* MetalGod sanity check */
+		if (NULL == team_list[otherteam])
+			return;
+		/* MetalGod */
+
 		if (!team_list[otherteam]->need_points ||
 			(!team_list[otherteam]->kills_and_points && team_list[otherteam]->score < team_list[otherteam]->need_points) ||
 			(team_list[otherteam]->kills_and_points &&

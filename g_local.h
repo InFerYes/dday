@@ -1000,9 +1000,9 @@ void fire_bullet(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kic
 
 //void fire_shotgun (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int kick, int hspread, int vspread, int count, int mod);
 
-void fire_blaster(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int speed, int effect, qboolean hyper);
+void fire_blaster(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, int effect, qboolean hyper);/* MetalGod Prototype fix */
 
-void fire_tracer(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int mod);
+void fire_tracer(edict_t* self, vec3_t start, vec3_t dir, int damage, int mod);/* MetalGod Prototype fix */
 //void fire_grenade (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int speed, float timer, float damage_radius);
 void fire_grenade2(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int speed, float time, float damage_radius, int team);
 //bcass start - TNT
@@ -1057,7 +1057,7 @@ void ClientEndServerFrame(edict_t* ent);
 //
 // p_hud.c
 //
-void MoveClientToIntermission(edict_t* client);
+void MoveClientToIntermission(edict_t* ent);/* MetalGod fixed prototype */
 
 void G_SetStats(edict_t* ent);
 void ValidateSelectedItem(edict_t* ent);

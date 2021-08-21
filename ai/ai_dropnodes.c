@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (C) 1997-2001 Id Software, Inc.
 
 This program is free software; you can redistribute it and/or
@@ -121,9 +121,9 @@ void AI_UpdateNodeEdge(int from, int to)
 //==========================================
 void AI_DropLadderNodes(edict_t* self)
 {
-	vec3_t	torigin = {0};
-	vec3_t	borigin = {0};
-	vec3_t	droporigin = {0};
+	vec3_t	torigin = { 0 };
+	vec3_t	borigin = { 0 };
+	vec3_t	droporigin = { 0 };
 	int		step;
 	trace_t trace;
 
@@ -168,7 +168,7 @@ void AI_DropLadderNodes(edict_t* self)
 		return;
 
 	//make subdivisions and add nodes in between
-	step = NODE_DENSITY * 0.8;
+	step = NODE_DENSITY * 0.8f;
 	VectorCopy(borigin, droporigin);
 	droporigin[2] += step;
 	while (droporigin[2] < torigin[2] - 32)
@@ -210,7 +210,7 @@ qboolean AI_CheckForLadder(edict_t* self, qboolean force)
 void AI_WaterJumpNode(void)
 {
 	int			closest_node;
-	vec3_t		waterorigin = {0};
+	vec3_t		waterorigin = { 0 };
 	trace_t		trace;
 	edict_t		ent;
 
@@ -294,7 +294,7 @@ void AI_WaterJumpNode(void)
 // the current node if valid.
 //==========================================
 static float last_update = 0;
-#define NODE_UPDATE_DELAY	0.10;
+#define NODE_UPDATE_DELAY	0.10f;
 void AI_PathMap(qboolean force)
 {
 	int			 closest_node;

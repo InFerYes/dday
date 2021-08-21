@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/p_classes.c,v $
  *   $Revision: 1.10 $
@@ -155,7 +155,7 @@ void Give_Class_Weapon(edict_t* ent)
 	else
 		item = FindItem(client->resp.team_on->mos[client->resp.mos]->weapon1);
 
-	
+
 
 	if (!item) { //pbowens: prevents from crashing the game
 		safe_cprintf(ent, PRINT_HIGH, "weapon1 item not found!\n");
@@ -233,10 +233,10 @@ void Give_Class_Ammo(edict_t* ent)
 		Add_Ammo(ent, item2, ent->client->resp.team_on->mos[ent->client->resp.mos]->ammo2);
 	}
 }
-
+/*	 MetalGod unused
 void Show_Mos(edict_t* ent)
 {
-	/*	int i;
+		int i;
 
 		if(!ent->client->resp.team_on || !ent->client->resp.mos)
 		{
@@ -255,8 +255,8 @@ void Show_Mos(edict_t* ent)
 				ent->client->resp.team_on->mos[i]->name,
 				ent->client->resp.team_on->mos[i]->available);
 			}
-		} */
-}
+		}
+}	*/
 
 void InitMOS_List(TeamS_t* team, SMos_t* mos_list)
 {
