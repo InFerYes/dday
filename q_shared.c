@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/q_shared.c,v $
  *   $Revision: 1.6 $
@@ -307,10 +307,10 @@ float	anglemod(float a)
 int BoxOnPlaneSide2(vec3_t emins, vec3_t emaxs, struct cplane_s* p)
 {
 	int		i;
-	vec3_t	corners[2] = {0};
+	vec3_t	corners[2] = { 0 };
 	float	dist1, dist2;
 	int		sides;
-	
+
 
 	for (i = 0; i < 3; i++)
 	{
@@ -344,7 +344,7 @@ Returns 1, 2, or 1 + 2
 ==================
 */
 #if !id386 || defined __linux__ || defined(AMIGA)
-int BoxOnPlaneSide(vec3_t emins, vec3_t emaxs, struct cplane_s* plane)
+int BoxOnPlaneSide(vec3_t emins, vec3_t emaxs, struct cplane_s* p)
 {
 	float	dist1, dist2;
 	int		sides;
@@ -1047,7 +1047,7 @@ char* va(char* format, ...)
 
 /* MetalGod Fix COM_Parse buffer overflow. TY QW
 char	com_token[MAX_TOKEN_CHARS];
-*/ 
+*/
 static char     com_token[4][MAX_TOKEN_CHARS];
 static int      com_tokidx;
 /*
@@ -1076,9 +1076,9 @@ char* COM_Parse(const char** data_p)
 
 	// skip whitespace
 skipwhite:
-	while ((c = *data) <= ' ') 
+	while ((c = *data) <= ' ')
 	{
-		if (c == 0) 
+		if (c == 0)
 		{
 			*data_p = NULL;
 			return s;
@@ -1095,11 +1095,11 @@ skipwhite:
 	}
 
 	// skip /* */ comments
-	if (c == '/' && data[1] == '*') 
+	if (c == '/' && data[1] == '*')
 	{
 		data += 2;
 		while (*data) {
-			if (data[0] == '*' && data[1] == '/') 
+			if (data[0] == '*' && data[1] == '/')
 			{
 				data += 2;
 				break;
@@ -1117,11 +1117,11 @@ skipwhite:
 		{
 			c = *data++;
 
-			if (c == '\"' || !c) 
+			if (c == '\"' || !c)
 			{
 				goto finish;
 			}
-			
+
 			if (len < MAX_TOKEN_CHARS - 1) {
 				s[len++] = c;
 			}
@@ -1130,7 +1130,7 @@ skipwhite:
 
 	// parse a regular word
 	do {
-		if (len < MAX_TOKEN_CHARS - 1) 
+		if (len < MAX_TOKEN_CHARS - 1)
 		{
 			s[len++] = c;
 		}
@@ -1209,12 +1209,12 @@ int Q_strcasecmp(char* s1, char* s2)
 	return Q_strncasecmp(s1, s2, 99999);
 }
 
-   static char	bigbuffer[0x8000];	/* MetalGod */
+static char	bigbuffer[0x8000];	/* MetalGod */
 void Com_sprintf(char* dest, int size, char* fmt, ...)
 {
 	int		len;
 	va_list		argptr;
-	
+
 
 	va_start(argptr, fmt);
 	/*vsprintf (bigbuffer,fmt,argptr);MrG{DRGN} use vsnprintf */
