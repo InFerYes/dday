@@ -334,7 +334,7 @@ void PBM_BurnDamage
 
 	/* Check if entity will catch on fire. */
 	//	if ((rand() % 100) < chance)
-	if (fire->master != fire);
+	if (fire->master != fire)/* ;	MetalGod  commented the semicolon at the end of this line since it's unlikely this was intentional */
 	PBM_Ignite(victim, fire->master, point);
 
 	/* Inflict some burn damage. */

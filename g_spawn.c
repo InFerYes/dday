@@ -874,9 +874,9 @@ void LoadCampFile(void)
 	int		i;
 	vec3_t	loc = { 0 };
 
-	if (level.botfiles && (strlen("dday/navigation/% s.cmp") < 48))		 /* MetalGod overwrite check*/
-		sprintf(cmpfilename, "dday/navigation/%s.cmp", level.botfiles);
-	else if (strlen("dday/navigation/% s.cmp") < 64)   /* MetalGod overwrite check*/
+	if (level.botfiles)
+		sprintf(cmpfilename	, "dday/navigation/%s.cmp", level.botfiles);
+	else
 		sprintf(cmpfilename, "dday/navigation/%s.cmp", level.mapname);
 
 	//gi.dprintf("sdfl %s\n", cmpfilename);

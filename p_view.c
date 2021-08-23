@@ -1852,7 +1852,7 @@ void G_SetClientFrame(edict_t* ent)
 				ent->s.frame == 180 ||
 				ent->s.frame == 186 ||
 				ent->s.frame == 194 ||
-				ent->s.frame == 180 ||
+			/*	ent->s.frame == 180 ||  Metalgod duplicate removed case */
 				ent->s.frame == 237))
 		{
 			//ent->groundentity screws up on slopes, see if there's ground beneath, if so, finish death anim
@@ -2375,7 +2375,7 @@ void ClientEndServerFrame(edict_t* ent)
 			gi.unicast(ent, true);
 		}
 		if (level.time == delay + 1)
-			safe_cprintf(ent, PRINT_HIGH, "Please report bugs @ http://www.ddaydev.com/bugtracker\n");
+			safe_cprintf(ent, PRINT_HIGH, "Please report bugs @ https://www.ddaydev.com/bugtracker\n");/* MetalGod changed to https */
 
 		return;
 	}

@@ -30,7 +30,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "rus_defines.h"
 #include "../g_local.h"
 #include "../g_cmds.h"
-int rus_index;
+/* int rus_index; MetalGod - already defined in g_local.h */
 
 void Weapon_Pistol_Fire(edict_t* ent);
 void Weapon_Rifle_Fire(edict_t* ent);

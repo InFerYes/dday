@@ -230,10 +230,12 @@ void Killed(edict_t* targ, edict_t* inflictor, edict_t* attacker, int damage, ve
 
 				if (targ->client)
 					//targ->client->resp.plus_minus--;
+				{/* MetalGod explicitbraces for clarity */
 					if (attacker->ai)
 						targ->client->resp.stat_bot_minus++;
 					else
 						targ->client->resp.stat_human_minus++;
+				}
 			}
 			targ->client->resp.team_on->losses++;
 
@@ -406,9 +408,9 @@ qboolean In_Vector_Range(vec3_t point, vec3_t origin,
 
 	VectorSubtract(point, origin, temp);
 
-	if ((abs(temp[0]) > x_range)) return false;
-	if ((abs(temp[1]) > y_range)) return false;
-	if ((abs(temp[2]) > z_range)) return false;
+	if ((fabs(temp[0]) > x_range)) return false; /*MetalGOd changedthese to fabs from abs, given they're all floats */
+	if ((fabs(temp[1]) > y_range)) return false;
+	if ((fabs(temp[2]) > z_range)) return false;
 	return true;
 }
 
@@ -807,7 +809,7 @@ void T_Damage(edict_t* targ, edict_t* inflictor, edict_t* attacker, vec3_t dir, 
 	//END JABOT
 
 	wound_location = die_time = 0;
-	height = abs(targ->mins[2]) + targ->maxs[2];
+	height = fabs(targ->mins[2]) + targ->maxs[2];/* MetalGod Changed to fabs, given these are floats */
 
 	if (targ->client && ((mod == MOD_PISTOL) ||
 		(mod == MOD_SHOTGUN) ||

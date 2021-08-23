@@ -3281,9 +3281,11 @@ qboolean Setup_Map_Vote(void)
 	}
 
 	//if nextmap was played in last 10 maps, list it 4th
+	/* MetalGod do nothing?
 	if (level.nextmap)
 	{
 	}
+	*/
 	return true;
 }
 

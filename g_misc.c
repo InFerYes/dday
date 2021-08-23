@@ -122,7 +122,7 @@ void head_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf
 {
 	//	vec3_t	normal_angles, right;
 
-	float speed = abs(self->velocity[0]) + abs(self->velocity[1]) + abs(self->velocity[2]);
+	float speed = fabs(self->velocity[0]) + fabs(self->velocity[1]) + fabs(self->velocity[2]);/*MetalGod these are floats, so we used fabs, not abs */
 	if (speed > 350)
 		speed = 350;
 
@@ -141,7 +141,7 @@ void gib_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
 	//	vec3_t	normal_angles, right;
 
-	float speed = abs(self->velocity[0]) + abs(self->velocity[1]) + abs(self->velocity[2]);
+	float speed = fabs(self->velocity[0]) + fabs(self->velocity[1]) + fabs(self->velocity[2]);/*MetalGod these are floats, so we used fabs, not abs */
 
 	if (speed > 350)
 		speed = 350;

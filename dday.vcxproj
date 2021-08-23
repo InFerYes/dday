@@ -549,6 +549,7 @@
     <None Include="Makefile.country" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="ai\ACEBOT and GPL.txt" />
     <Text Include="gnu.txt" />
     <Text Include="license.txt" />
     <Text Include="readme.amiga.txt" />

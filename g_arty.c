@@ -660,8 +660,7 @@ void Spawn_Plane(edict_t* ent)
 
 	edict_t* plane;
 
-	if (IsValidPlayer(ent) &&
-		ent->client && ent->client->arty_entry)
+	if (IsValidPlayer(ent) && ent->client->arty_entry) /* MetalGod removed redundant check for ent->client */
 	{
 		VectorCopy(ent->client->arty_entry, start);
 	}

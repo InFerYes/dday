@@ -468,10 +468,8 @@
     <None Include="easymake">
       <Filter>Docs &amp; makefiles</Filter>
     </None>
-    <None Include="game.def">
-      <Filter>Header Files %28%2a.h%29</Filter>
-    </None>
     <None Include="ChangeLog" />
+    <None Include="game.def" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.amiga.txt">
@@ -488,6 +486,9 @@
     </Text>
     <Text Include="readme.txt">
       <Filter>Docs &amp; makefiles\Amiga</Filter>
+    </Text>
+    <Text Include="ai\ACEBOT and GPL.txt">
+      <Filter>Docs &amp; makefiles</Filter>
     </Text>
   </ItemGroup>
 </Project>
