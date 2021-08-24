@@ -361,7 +361,7 @@ void fire_gun_old(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int ki
 	tr = gi.trace(self->s.origin, NULL, NULL, start, self, MASK_SHOT);
 
 	// if the trace hit anything before distance termination
-	if (!(tr.fraction < 1.0))
+	if (tr.fraction >= 1.0) /* MetalGod simplified */
 	{
 		// seperate the aimdir into three parts
 		vectoangles(aimdir, dir);
@@ -633,7 +633,7 @@ static void fire_lead(edict_t* self, vec3_t start, vec3_t aimdir, int damage, in
 	int			content_mask = MASK_SHOT | MASK_WATER;
 
 	tr = gi.trace(self->s.origin, NULL, NULL, start, self, MASK_SHOT);
-	if (!(tr.fraction < 1.0))
+	if (tr.fraction >= 1.0) /* MetalGod simplified */
 	{
 		vectoangles(aimdir, dir);
 		AngleVectors(dir, forward, right, up);
@@ -4946,7 +4946,7 @@ void fire_shotgun(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int ki
 	VectorSubtract(self->s.origin, disttr.endpos, dist);
 	tr = gi.trace(self->s.origin, NULL, NULL, start, self, MASK_SHOT);
 
-	if (!(tr.fraction < 1.0))
+	if (tr.fraction >= 1.0) /* MetalGod simplified */
 	{
 		vectoangles(aimdir, dir);
 		AngleVectors(dir, forward, right, up);

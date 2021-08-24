@@ -2097,8 +2097,7 @@ void GetNearestMedic(edict_t* self, char* buf)
 			continue;
 		if (!OnSameTeam(e, self))
 			continue;
-		if (e->client->resp.mos &&
-			!(e->client->resp.mos == MEDIC))
+		if (e->client->resp.mos && (e->client->resp.mos != MEDIC)) /* MetalGod simplified */
 			continue;
 		if (e == self)
 			continue;

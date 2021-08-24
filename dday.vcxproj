@@ -48,7 +48,7 @@
     <OutDir>.\Release\</OutDir>
     <IntDir>.\Release\</IntDir>
     <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
+	</PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -156,16 +156,16 @@
     <ClCompile Include="ai\AStar.c" />
     <ClCompile Include="ai\bot_common.c" />
     <ClCompile Include="ai\bot_spawn.c" />
-    <ClCompile Include="Gbr\gbr_guninfo.c" />
-    <ClCompile Include="Gbr\Gbr_item.c" />
-    <ClCompile Include="Gbr\Gbr_main.c" />
-    <ClCompile Include="Gbr\gbr_spawn.c" />
-    <ClCompile Include="Gbr\gbr_weapon.c" />
-    <ClCompile Include="Grm\grm_guninfo.c" />
-    <ClCompile Include="Grm\Grm_item.c" />
-    <ClCompile Include="Grm\Grm_main.c" />
-    <ClCompile Include="Grm\grm_spawn.c" />
-    <ClCompile Include="Grm\grm_weapon.c" />
+    <ClCompile Include="gbr\gbr_guninfo.c" />
+    <ClCompile Include="gbr\gbr_item.c" />
+    <ClCompile Include="gbr\gbr_main.c" />
+    <ClCompile Include="gbr\gbr_spawn.c" />
+    <ClCompile Include="gbr\gbr_weapon.c" />
+    <ClCompile Include="grm\grm_guninfo.c" />
+    <ClCompile Include="grm\grm_item.c" />
+    <ClCompile Include="grm\grm_main.c" />
+    <ClCompile Include="grm\grm_spawn.c" />
+    <ClCompile Include="grm\grm_weapon.c" />
     <ClCompile Include="g_ai.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_WINDOWS</PreprocessorDefinitions>
@@ -334,16 +334,16 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_WINDOWS</PreprocessorDefinitions>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="Ita\ita_guninfo.c" />
-    <ClCompile Include="Ita\Ita_item.c" />
-    <ClCompile Include="Ita\Ita_main.c" />
-    <ClCompile Include="Ita\ita_spawn.c" />
-    <ClCompile Include="Ita\ita_weapon.c" />
-    <ClCompile Include="Jpn\jpn_guninfo.c" />
-    <ClCompile Include="Jpn\Jpn_item.c" />
-    <ClCompile Include="Jpn\Jpn_main.c" />
-    <ClCompile Include="Jpn\jpn_spawn.c" />
-    <ClCompile Include="Jpn\jpn_weapon.c" />
+    <ClCompile Include="ita\ita_guninfo.c" />
+    <ClCompile Include="ita\ita_item.c" />
+    <ClCompile Include="ita\ita_main.c" />
+    <ClCompile Include="ita\ita_spawn.c" />
+    <ClCompile Include="ita\ita_weapon.c" />
+    <ClCompile Include="jpn\jpn_guninfo.c" />
+    <ClCompile Include="jpn\jpn_item.c" />
+    <ClCompile Include="jpn\jpn_main.c" />
+    <ClCompile Include="jpn\jpn_spawn.c" />
+    <ClCompile Include="jpn\jpn_weapon.c" />
     <ClCompile Include="m_actor.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_WINDOWS</PreprocessorDefinitions>
@@ -377,11 +377,11 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_WINDOWS</PreprocessorDefinitions>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="Pol\pol_guninfo.c" />
-    <ClCompile Include="Pol\Pol_item.c" />
-    <ClCompile Include="Pol\Pol_main.c" />
-    <ClCompile Include="Pol\pol_spawn.c" />
-    <ClCompile Include="Pol\pol_weapon.c" />
+    <ClCompile Include="pol\pol_guninfo.c" />
+    <ClCompile Include="pol\pol_item.c" />
+    <ClCompile Include="pol\pol_main.c" />
+    <ClCompile Include="pol\pol_spawn.c" />
+    <ClCompile Include="pol\pol_weapon.c" />
     <ClCompile Include="p_classes.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_WINDOWS</PreprocessorDefinitions>
@@ -462,21 +462,21 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_WINDOWS</PreprocessorDefinitions>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="Rus\rus_guninfo.c" />
-    <ClCompile Include="Rus\Rus_item.c" />
-    <ClCompile Include="Rus\Rus_main.c" />
-    <ClCompile Include="Rus\rus_spawn.c" />
-    <ClCompile Include="Rus\rus_weapon.c" />
-    <ClCompile Include="Usa\usa_guninfo.c" />
-    <ClCompile Include="Usa\Usa_item.c" />
-    <ClCompile Include="Usa\Usa_main.c" />
-    <ClCompile Include="Usa\usa_spawn.c" />
-    <ClCompile Include="Usa\usa_weapon.c" />
-    <ClCompile Include="Usm\usm_guninfo.c" />
-    <ClCompile Include="Usm\Usm_item.c" />
-    <ClCompile Include="Usm\Usm_main.c" />
-    <ClCompile Include="Usm\usm_spawn.c" />
-    <ClCompile Include="Usm\usm_weapon.c" />
+    <ClCompile Include="rus\rus_guninfo.c" />
+    <ClCompile Include="rus\rus_item.c" />
+    <ClCompile Include="rus\rus_main.c" />
+    <ClCompile Include="rus\rus_spawn.c" />
+    <ClCompile Include="rus\rus_weapon.c" />
+    <ClCompile Include="usa\usa_guninfo.c" />
+    <ClCompile Include="usa\usa_item.c" />
+    <ClCompile Include="usa\usa_main.c" />
+    <ClCompile Include="usa\usa_spawn.c" />
+    <ClCompile Include="usa\usa_weapon.c" />
+    <ClCompile Include="usm\usm_guninfo.c" />
+    <ClCompile Include="usm\usm_item.c" />
+    <ClCompile Include="usm\usm_main.c" />
+    <ClCompile Include="usm\usm_spawn.c" />
+    <ClCompile Include="usm\usm_weapon.c" />
     <ClCompile Include="u_entmgr.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_WINDOWS</PreprocessorDefinitions>
@@ -502,45 +502,46 @@
     <ClInclude Include="ai\ai_weapons.h" />
     <ClInclude Include="ai\AStar.h" />
     <ClInclude Include="game.h" />
-    <ClInclude Include="Gbr\gbr_classes.h" />
-    <ClInclude Include="Gbr\gbr_defines.h" />
-    <ClInclude Include="Gbr\Gbr_main.h" />
-    <ClInclude Include="Grm\grm_classes.h" />
-    <ClInclude Include="Grm\grm_defines.h" />
-    <ClInclude Include="Grm\Grm_main.h" />
+    <ClInclude Include="gbr\gbr_classes.h" />
+    <ClInclude Include="gbr\gbr_defines.h" />
+    <ClInclude Include="gbr\gbr_main.h" />
+    <ClInclude Include="grm\grm_classes.h" />
+    <ClInclude Include="grm\grm_defines.h" />
+    <ClInclude Include="grm\grm_main.h" />
     <ClInclude Include="g_cmds.h" />
     <ClInclude Include="g_defines.h" />
     <ClInclude Include="g_local.h" />
     <ClInclude Include="g_maps.h" />
-    <ClInclude Include="Ita\ita_classes.h" />
-    <ClInclude Include="Ita\ita_defines.h" />
-    <ClInclude Include="Ita\Ita_main.h" />
-    <ClInclude Include="Jpn\jpn_classes.h" />
-    <ClInclude Include="Jpn\jpn_defines.h" />
-    <ClInclude Include="Jpn\Jpn_main.h" />
+    <ClInclude Include="ita\ita_classes.h" />
+    <ClInclude Include="ita\ita_defines.h" />
+    <ClInclude Include="ita\ita_main.h" />
+    <ClInclude Include="jpn\jpn_classes.h" />
+    <ClInclude Include="jpn\jpn_defines.h" />
+    <ClInclude Include="jpn\jpn_main.h" />
     <ClInclude Include="m_actor.h" />
     <ClInclude Include="m_insane.h" />
     <ClInclude Include="m_player.h" />
-    <ClInclude Include="Pol\pol_classes.h" />
-    <ClInclude Include="Pol\pol_defines.h" />
-    <ClInclude Include="Pol\Pol_main.h" />
+    <ClInclude Include="pol\pol_classes.h" />
+    <ClInclude Include="pol\pol_defines.h" />
+    <ClInclude Include="pol\pol_main.h" />
     <ClInclude Include="p_classes.h" />
     <ClInclude Include="p_menu.h" />
     <ClInclude Include="p_menus.h" />
     <ClInclude Include="p_observer.h" />
     <ClInclude Include="q_shared.h" />
-    <ClInclude Include="Rus\rus_classes.h" />
-    <ClInclude Include="Rus\rus_defines.h" />
-    <ClInclude Include="Rus\Rus_main.h" />
-    <ClInclude Include="Usa\usa_classes.h" />
-    <ClInclude Include="Usa\usa_defines.h" />
-    <ClInclude Include="Usa\Usa_main.h" />
-    <ClInclude Include="Usm\usm_classes.h" />
-    <ClInclude Include="Usm\usm_defines.h" />
-    <ClInclude Include="Usm\Usm_main.h" />
+    <ClInclude Include="rus\rus_classes.h" />
+    <ClInclude Include="rus\rus_defines.h" />
+    <ClInclude Include="rus\rus_main.h" />
+    <ClInclude Include="usa\usa_classes.h" />
+    <ClInclude Include="usa\usa_defines.h" />
+    <ClInclude Include="usa\usa_main.h" />
+    <ClInclude Include="usm\usm_classes.h" />
+    <ClInclude Include="usm\usm_defines.h" />
+    <ClInclude Include="usm\usm_main.h" />
     <ClInclude Include="x_fire.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ai\Makefile" />
     <None Include="ChangeLog" />
     <None Include="easymake" />
     <None Include="game.def" />

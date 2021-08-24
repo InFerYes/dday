@@ -139,11 +139,11 @@ void Give_Class_Weapon(edict_t* ent)
 	client->pers.inventory[ITEM_INDEX(item)] = 1;
 
 	// faf rifle-only code  //ddaylife
-	if ((mauser_only->value == 1) && !(client->resp.mos == MEDIC))
+	if ((mauser_only->value == 1) && (client->resp.mos != MEDIC))/* MetalGod simplified */
 	{
 		item = FindTeamItem(team_list[1]->teamid, LOC_RIFLE);
 	}
-	else if ((sniper_only->value == 1) && !(client->resp.mos == MEDIC))
+	else if ((sniper_only->value == 1) && (client->resp.mos != MEDIC))	/* MetalGod simplified */
 	{
 		item = FindTeamItem(team_list[(client->resp.team_on->index)]->teamid, LOC_SNIPER);
 	}
@@ -215,9 +215,9 @@ void Give_Class_Ammo(edict_t* ent)
 
 	if (ent->client->resp.team_on->mos[ent->client->resp.mos]->ammo1)
 	{
-		if ((mauser_only->value == 1) && !(ent->client->resp.mos == MEDIC))
+		if ((mauser_only->value == 1) && (ent->client->resp.mos != MEDIC)) /* MetalGod simplified */
 			item = FindTeamItem(team_list[1]->teamid, LOC_RIFLE);
-		else if ((sniper_only->value == 1) && !(ent->client->resp.mos == MEDIC))
+		else if ((sniper_only->value == 1) && (ent->client->resp.mos != MEDIC)) /* MetalGod simplified */
 			item = FindTeamItem(team_list[(ent->client->resp.team_on->index)]->teamid, LOC_SNIPER);
 		else
 			item = FindItem(ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon1);

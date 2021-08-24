@@ -50,124 +50,124 @@
     <ClCompile Include="m_civilian.c">
       <Filter>Source Files %28%2a.c%29</Filter>
     </ClCompile>
-    <ClCompile Include="Usa\usa_guninfo.c">
+    <ClCompile Include="usa\usa_guninfo.c">
       <Filter>Source Files %28%2a.c%29\usa</Filter>
     </ClCompile>
-    <ClCompile Include="Usa\Usa_item.c">
+    <ClCompile Include="usa\usa_item.c">
       <Filter>Source Files %28%2a.c%29\usa</Filter>
     </ClCompile>
-    <ClCompile Include="Usa\Usa_main.c">
+    <ClCompile Include="usa\usa_main.c">
       <Filter>Source Files %28%2a.c%29\usa</Filter>
     </ClCompile>
-    <ClCompile Include="Usa\usa_spawn.c">
+    <ClCompile Include="usa\usa_spawn.c">
       <Filter>Source Files %28%2a.c%29\usa</Filter>
     </ClCompile>
-    <ClCompile Include="Usa\usa_weapon.c">
+    <ClCompile Include="usa\usa_weapon.c">
       <Filter>Source Files %28%2a.c%29\usa</Filter>
     </ClCompile>
-    <ClCompile Include="Grm\grm_guninfo.c">
+    <ClCompile Include="grm\grm_guninfo.c">
       <Filter>Source Files %28%2a.c%29\grm</Filter>
     </ClCompile>
-    <ClCompile Include="Grm\Grm_item.c">
+    <ClCompile Include="grm\grm_item.c">
       <Filter>Source Files %28%2a.c%29\grm</Filter>
     </ClCompile>
-    <ClCompile Include="Grm\Grm_main.c">
+    <ClCompile Include="grm\grm_main.c">
       <Filter>Source Files %28%2a.c%29\grm</Filter>
     </ClCompile>
-    <ClCompile Include="Grm\grm_spawn.c">
+    <ClCompile Include="grm\grm_spawn.c">
       <Filter>Source Files %28%2a.c%29\grm</Filter>
     </ClCompile>
-    <ClCompile Include="Grm\grm_weapon.c">
+    <ClCompile Include="grm\grm_weapon.c">
       <Filter>Source Files %28%2a.c%29\grm</Filter>
     </ClCompile>
-    <ClCompile Include="Rus\rus_guninfo.c">
+    <ClCompile Include="rus\rus_guninfo.c">
       <Filter>Source Files %28%2a.c%29\rus</Filter>
     </ClCompile>
-    <ClCompile Include="Rus\Rus_item.c">
+    <ClCompile Include="rus\rus_item.c">
       <Filter>Source Files %28%2a.c%29\rus</Filter>
     </ClCompile>
-    <ClCompile Include="Rus\Rus_main.c">
+    <ClCompile Include="rus\rus_main.c">
       <Filter>Source Files %28%2a.c%29\rus</Filter>
     </ClCompile>
-    <ClCompile Include="Rus\rus_spawn.c">
+    <ClCompile Include="rus\rus_spawn.c">
       <Filter>Source Files %28%2a.c%29\rus</Filter>
     </ClCompile>
-    <ClCompile Include="Rus\rus_weapon.c">
+    <ClCompile Include="rus\rus_weapon.c">
       <Filter>Source Files %28%2a.c%29\rus</Filter>
     </ClCompile>
-    <ClCompile Include="Gbr\gbr_guninfo.c">
+    <ClCompile Include="gbr\gbr_guninfo.c">
       <Filter>Source Files %28%2a.c%29\gbr</Filter>
     </ClCompile>
-    <ClCompile Include="Gbr\Gbr_item.c">
+    <ClCompile Include="gbr\gbr_item.c">
       <Filter>Source Files %28%2a.c%29\gbr</Filter>
     </ClCompile>
-    <ClCompile Include="Gbr\Gbr_main.c">
+    <ClCompile Include="gbr\gbr_main.c">
       <Filter>Source Files %28%2a.c%29\gbr</Filter>
     </ClCompile>
-    <ClCompile Include="Gbr\gbr_spawn.c">
+    <ClCompile Include="gbr\gbr_spawn.c">
       <Filter>Source Files %28%2a.c%29\gbr</Filter>
     </ClCompile>
-    <ClCompile Include="Gbr\gbr_weapon.c">
+    <ClCompile Include="gbr\gbr_weapon.c">
       <Filter>Source Files %28%2a.c%29\gbr</Filter>
     </ClCompile>
-    <ClCompile Include="Pol\pol_guninfo.c">
+    <ClCompile Include="pol\pol_guninfo.c">
       <Filter>Source Files %28%2a.c%29\pol</Filter>
     </ClCompile>
-    <ClCompile Include="Pol\Pol_item.c">
+    <ClCompile Include="pol\pol_item.c">
       <Filter>Source Files %28%2a.c%29\pol</Filter>
     </ClCompile>
-    <ClCompile Include="Pol\Pol_main.c">
+    <ClCompile Include="pol\pol_main.c">
       <Filter>Source Files %28%2a.c%29\pol</Filter>
     </ClCompile>
-    <ClCompile Include="Pol\pol_spawn.c">
+    <ClCompile Include="pol\pol_spawn.c">
       <Filter>Source Files %28%2a.c%29\pol</Filter>
     </ClCompile>
-    <ClCompile Include="Pol\pol_weapon.c">
+    <ClCompile Include="pol\pol_weapon.c">
       <Filter>Source Files %28%2a.c%29\pol</Filter>
     </ClCompile>
-    <ClCompile Include="Ita\ita_guninfo.c">
+    <ClCompile Include="ita\ita_guninfo.c">
       <Filter>Source Files %28%2a.c%29\ita</Filter>
     </ClCompile>
-    <ClCompile Include="Ita\Ita_item.c">
+    <ClCompile Include="ita\ita_item.c">
       <Filter>Source Files %28%2a.c%29\ita</Filter>
     </ClCompile>
-    <ClCompile Include="Ita\Ita_main.c">
+    <ClCompile Include="ita\ita_main.c">
       <Filter>Source Files %28%2a.c%29\ita</Filter>
     </ClCompile>
-    <ClCompile Include="Ita\ita_spawn.c">
+    <ClCompile Include="ita\ita_spawn.c">
       <Filter>Source Files %28%2a.c%29\ita</Filter>
     </ClCompile>
-    <ClCompile Include="Ita\ita_weapon.c">
+    <ClCompile Include="ita\ita_weapon.c">
       <Filter>Source Files %28%2a.c%29\ita</Filter>
     </ClCompile>
-    <ClCompile Include="Jpn\jpn_guninfo.c">
+    <ClCompile Include="jpn\jpn_guninfo.c">
       <Filter>Source Files %28%2a.c%29\jpn</Filter>
     </ClCompile>
-    <ClCompile Include="Jpn\Jpn_item.c">
+    <ClCompile Include="jpn\jpn_item.c">
       <Filter>Source Files %28%2a.c%29\jpn</Filter>
     </ClCompile>
-    <ClCompile Include="Jpn\Jpn_main.c">
+    <ClCompile Include="jpn\jpn_main.c">
       <Filter>Source Files %28%2a.c%29\jpn</Filter>
     </ClCompile>
-    <ClCompile Include="Jpn\jpn_spawn.c">
+    <ClCompile Include="jpn\jpn_spawn.c">
       <Filter>Source Files %28%2a.c%29\jpn</Filter>
     </ClCompile>
-    <ClCompile Include="Jpn\jpn_weapon.c">
+    <ClCompile Include="jpn\jpn_weapon.c">
       <Filter>Source Files %28%2a.c%29\jpn</Filter>
     </ClCompile>
-    <ClCompile Include="Usm\usm_guninfo.c">
+    <ClCompile Include="usm\usm_guninfo.c">
       <Filter>Source Files %28%2a.c%29\usm</Filter>
     </ClCompile>
-    <ClCompile Include="Usm\Usm_item.c">
+    <ClCompile Include="usm\usm_item.c">
       <Filter>Source Files %28%2a.c%29\usm</Filter>
     </ClCompile>
-    <ClCompile Include="Usm\Usm_main.c">
+    <ClCompile Include="usm\usm_main.c">
       <Filter>Source Files %28%2a.c%29\usm</Filter>
     </ClCompile>
-    <ClCompile Include="Usm\usm_spawn.c">
+    <ClCompile Include="usm\usm_spawn.c">
       <Filter>Source Files %28%2a.c%29\usm</Filter>
     </ClCompile>
-    <ClCompile Include="Usm\usm_weapon.c">
+    <ClCompile Include="usm\usm_weapon.c">
       <Filter>Source Files %28%2a.c%29\usm</Filter>
     </ClCompile>
     <ClCompile Include="ai\ai_class_dmbot.c">
@@ -322,76 +322,76 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Usa\usa_classes.h">
+    <ClInclude Include="usa\usa_classes.h">
       <Filter>Source Files %28%2a.c%29\usa</Filter>
     </ClInclude>
-    <ClInclude Include="Usa\usa_defines.h">
+    <ClInclude Include="usa\usa_defines.h">
       <Filter>Source Files %28%2a.c%29\usa</Filter>
     </ClInclude>
-    <ClInclude Include="Usa\Usa_main.h">
+    <ClInclude Include="usa\usa_main.h">
       <Filter>Source Files %28%2a.c%29\usa</Filter>
     </ClInclude>
-    <ClInclude Include="Grm\grm_classes.h">
+    <ClInclude Include="grm\grm_classes.h">
       <Filter>Source Files %28%2a.c%29\grm</Filter>
     </ClInclude>
-    <ClInclude Include="Grm\grm_defines.h">
+    <ClInclude Include="grm\grm_defines.h">
       <Filter>Source Files %28%2a.c%29\grm</Filter>
     </ClInclude>
-    <ClInclude Include="Grm\Grm_main.h">
+    <ClInclude Include="grm\grm_main.h">
       <Filter>Source Files %28%2a.c%29\grm</Filter>
     </ClInclude>
-    <ClInclude Include="Rus\rus_classes.h">
+    <ClInclude Include="rus\rus_classes.h">
       <Filter>Source Files %28%2a.c%29\rus</Filter>
     </ClInclude>
-    <ClInclude Include="Rus\rus_defines.h">
+    <ClInclude Include="rus\rus_defines.h">
       <Filter>Source Files %28%2a.c%29\rus</Filter>
     </ClInclude>
-    <ClInclude Include="Rus\Rus_main.h">
+    <ClInclude Include="rus\rus_main.h">
       <Filter>Source Files %28%2a.c%29\rus</Filter>
     </ClInclude>
-    <ClInclude Include="Gbr\gbr_classes.h">
+    <ClInclude Include="gbr\gbr_classes.h">
       <Filter>Source Files %28%2a.c%29\gbr</Filter>
     </ClInclude>
-    <ClInclude Include="Gbr\gbr_defines.h">
+    <ClInclude Include="gbr\gbr_defines.h">
       <Filter>Source Files %28%2a.c%29\gbr</Filter>
     </ClInclude>
-    <ClInclude Include="Gbr\Gbr_main.h">
+    <ClInclude Include="gbr\gbr_main.h">
       <Filter>Source Files %28%2a.c%29\gbr</Filter>
     </ClInclude>
-    <ClInclude Include="Pol\pol_classes.h">
+    <ClInclude Include="pol\pol_classes.h">
       <Filter>Source Files %28%2a.c%29\pol</Filter>
     </ClInclude>
-    <ClInclude Include="Pol\pol_defines.h">
+    <ClInclude Include="pol\pol_defines.h">
       <Filter>Source Files %28%2a.c%29\pol</Filter>
     </ClInclude>
-    <ClInclude Include="Pol\Pol_main.h">
+    <ClInclude Include="pol\pol_main.h">
       <Filter>Source Files %28%2a.c%29\pol</Filter>
     </ClInclude>
-    <ClInclude Include="Ita\ita_classes.h">
+    <ClInclude Include="ita\ita_classes.h">
       <Filter>Source Files %28%2a.c%29\ita</Filter>
     </ClInclude>
-    <ClInclude Include="Ita\ita_defines.h">
+    <ClInclude Include="ita\ita_defines.h">
       <Filter>Source Files %28%2a.c%29\ita</Filter>
     </ClInclude>
-    <ClInclude Include="Ita\Ita_main.h">
+    <ClInclude Include="ita\ita_main.h">
       <Filter>Source Files %28%2a.c%29\ita</Filter>
     </ClInclude>
-    <ClInclude Include="Jpn\jpn_classes.h">
+    <ClInclude Include="jpn\jpn_classes.h">
       <Filter>Source Files %28%2a.c%29\jpn</Filter>
     </ClInclude>
-    <ClInclude Include="Jpn\jpn_defines.h">
+    <ClInclude Include="jpn\jpn_defines.h">
       <Filter>Source Files %28%2a.c%29\jpn</Filter>
     </ClInclude>
-    <ClInclude Include="Jpn\Jpn_main.h">
+    <ClInclude Include="jpn\jpn_main.h">
       <Filter>Source Files %28%2a.c%29\jpn</Filter>
     </ClInclude>
-    <ClInclude Include="Usm\usm_classes.h">
+    <ClInclude Include="usm\usm_classes.h">
       <Filter>Source Files %28%2a.c%29\usm</Filter>
     </ClInclude>
-    <ClInclude Include="Usm\usm_defines.h">
+    <ClInclude Include="usm\usm_defines.h">
       <Filter>Source Files %28%2a.c%29\usm</Filter>
     </ClInclude>
-    <ClInclude Include="Usm\Usm_main.h">
+    <ClInclude Include="usm\usm_main.h">
       <Filter>Source Files %28%2a.c%29\usm</Filter>
     </ClInclude>
     <ClInclude Include="ai\ai.h">
@@ -470,6 +470,9 @@
     </None>
     <None Include="ChangeLog" />
     <None Include="game.def" />
+    <None Include="ai\Makefile">
+      <Filter>Docs &amp; makefiles</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.amiga.txt">

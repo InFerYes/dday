@@ -411,8 +411,8 @@ char* Get_Next_MaplistTxt_Map()
 	int x;
 	int randnum;
 	int removed;
-	char* possible_maps[300] = { 0 };;
-	char* maplisttxt[300] = { 0 };;
+	char* possible_maps[300] = { 0 };/* MetalGod there was an extra ; here */
+	char* maplisttxt[300] = { 0 };/* MetalGod there was an extra ; here */
 
 	maps = ReadEntFile("dday/maplist.txt");
 
