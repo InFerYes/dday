@@ -1442,7 +1442,7 @@ void Blade_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* sur
 	if (other == self->owner)
 		return;
 
-	if (/* surf && */(surf->flags & SURF_SKY))/* MetalGod redundant check */
+	if (surf && (surf->flags & SURF_SKY))
 	{
 		//faf ??		Drop_Item (self, item);
 		G_FreeEdict(self);
