@@ -2522,6 +2522,7 @@ void ClientEndServerFrame(edict_t* ent)
 	// WIP: Ed: Muzzle flash tests
 	// 	    ToDo: Improve
 	// ==================================================================================================================================================
+#ifdef MUZZLE_FLASH_ENABLED
 	if (
 			(ent->client->weaponstate == WEAPON_FIRING) &&
 			(ent->health > 0)
@@ -2583,6 +2584,7 @@ void ClientEndServerFrame(edict_t* ent)
 			gi.linkentity(muzzle_flash);
 		//}
 	}
+#endif
 	// ==================================================================================================================================================
 
 	//should be done with the gun instead of client, but it won't matter 99% of the time

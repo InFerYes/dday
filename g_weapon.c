@@ -3393,17 +3393,14 @@ void Weapon_HMG_Fire(edict_t* ent)
 	ent->client->next_fire_frame = level.framenum + guninfo->frame_delay;
 }
 
-extern GunInfo_t grmguninfo[MAX_TEAM_GUNS];	// 2021-08-05/ed: Some params are modified based on fast_mg42 cvar flag
+
 void Weapon_MG42_Fire(edict_t* ent)
 {
 
 	// 2021-08-05/ed: If server cvar is NOT set, override with default HMG functionality
 	if (!fast_mg42->value) {
-		grmguninfo[4].damage_direct = DAMAGE_MG42_SLOW;
 		Weapon_HMG_Fire(ent);
 		return;
-	}else{
-		grmguninfo[4].damage_direct = DAMAGE_MG42_FAST;
 	}
 
 	int			i;

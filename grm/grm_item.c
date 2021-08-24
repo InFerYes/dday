@@ -194,7 +194,7 @@ gitem_t grmitems[] =
 				50,
 				5000,
 				250,
-				/* precache */ "grm/mg42/fire.wav grm/mg42/reload.wav grm/mg42/unload.wav",
+				/* precache */ "grm/mg42/fire.wav grm/mg42/fire2.wav grm/mg42/reload.wav grm/mg42/unload.wav",
 						"grm",
 						&grmguninfo[MG42_FRAME],
 						0

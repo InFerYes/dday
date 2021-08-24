@@ -222,6 +222,9 @@ void Weapon_MP43(edict_t* ent)
 /////////////////////////////////////////////////
 // MG42
 /////////////////////////////////////////////////
+extern GunInfo_t grmguninfo[MAX_TEAM_GUNS];	// 2021-08-05/ed: Some params are modified based on fast_mg42 cvar flag
+extern SMos_t GRM_MOS_List[NUM_CLASSES];	// 2021-08-24/ed: Added more fast_mg42 cvar handling
+extern gitem_t grmitems[];					// 2021-08-24/ed: Added more fast_mg42 cvar handling
 
 void Weapon_MG42(edict_t* ent)
 {
@@ -233,6 +236,20 @@ void Weapon_MG42(edict_t* ent)
 	fire_frames[1] = (ent->client->aim) ? 87 : 22;
 
 	ent->client->p_rnd = &ent->client->mags[grm_index].hmg_rnd;
+
+	// 2021-08-05/ed: If server cvar is NOT set, override with default HMG functionality
+	if (!fast_mg42->value) {
+		grmguninfo[4].damage_direct = DAMAGE_MG42_SLOW;
+		GRM_MOS_List[3].ammo1 = 2;
+		grmitems[12].quantity = MG42_MAG_SLOW;
+		//strcpy(grmguninfo[4].FireSound, "grm/mg42/fire.wav");
+	}
+	else {
+		grmguninfo[4].damage_direct = DAMAGE_MG42_FAST;
+		GRM_MOS_List[3].ammo1 = 5;
+		grmitems[12].quantity = MG42_MAG_FAST;
+		//strcpy(grmguninfo[4].FireSound, "grm/mg42/fire2.wav");
+	}
 
 	ent->client->crosshair = false;
 	/*	if (ent->client->weaponstate == WEAPON_RELOADING)
