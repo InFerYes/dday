@@ -1,15 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Docs &amp; makefiles">
-      <UniqueIdentifier>{2de4a8b1-0424-490e-a2ad-7c45887342fb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Docs &amp; makefiles\Linux">
-      <UniqueIdentifier>{5341b65d-b6d5-4e6e-bcf7-da2e7ab42fe2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Docs &amp; makefiles\Amiga">
-      <UniqueIdentifier>{3af9f3a3-d071-4a1f-8f74-5d0d1b97b5fa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Code">
       <UniqueIdentifier>{b067bd9d-e172-4eca-96d5-2a49afb7a937}</UniqueIdentifier>
     </Filter>
@@ -22,33 +13,6 @@
     <Filter Include="Code\ai\Header Files">
       <UniqueIdentifier>{35ad0ea0-8579-4fef-9f94-8896da7c91f5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Code\Teams">
-      <UniqueIdentifier>{ea437749-74b8-458c-bf87-a50419ba7690}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Code\Teams\gbr">
-      <UniqueIdentifier>{78acd043-5871-4e46-85f3-9a6d5832725c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Code\Teams\grm">
-      <UniqueIdentifier>{f90f8ffa-17ab-415d-be45-789bc189f9b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Code\Teams\ita">
-      <UniqueIdentifier>{d317f851-8889-48cd-9817-cb726c72a7b4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Code\Teams\jpn">
-      <UniqueIdentifier>{40f50368-ef32-4d18-b42f-f0ba23546f4e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Code\Teams\pol">
-      <UniqueIdentifier>{96f5cba7-72ef-429a-8f3b-d28fc383c1f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Code\Teams\rus">
-      <UniqueIdentifier>{7006b10a-fb50-42f9-8436-853031a1333b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Code\Teams\usa">
-      <UniqueIdentifier>{54613f78-38e3-4b9e-a621-70cc01c9c70e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Code\Teams\usm">
-      <UniqueIdentifier>{57cd06c8-436a-432e-bcc2-e1bb935acc26}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Code\Main">
       <UniqueIdentifier>{c642e1dc-8edf-4d76-8c9d-c74d3af18cd9}</UniqueIdentifier>
     </Filter>
@@ -60,130 +24,166 @@
       <UniqueIdentifier>{3006869c-e3ba-4106-a2ff-c3e7febe3f71}</UniqueIdentifier>
       <Extensions>*.h</Extensions>
     </Filter>
+    <Filter Include="Code\Contries">
+      <UniqueIdentifier>{ea437749-74b8-458c-bf87-a50419ba7690}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Contries\gbr">
+      <UniqueIdentifier>{78acd043-5871-4e46-85f3-9a6d5832725c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Contries\grm">
+      <UniqueIdentifier>{f90f8ffa-17ab-415d-be45-789bc189f9b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Contries\ita">
+      <UniqueIdentifier>{d317f851-8889-48cd-9817-cb726c72a7b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Contries\jpn">
+      <UniqueIdentifier>{40f50368-ef32-4d18-b42f-f0ba23546f4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Contries\pol">
+      <UniqueIdentifier>{96f5cba7-72ef-429a-8f3b-d28fc383c1f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Contries\rus">
+      <UniqueIdentifier>{7006b10a-fb50-42f9-8436-853031a1333b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Contries\usa">
+      <UniqueIdentifier>{54613f78-38e3-4b9e-a621-70cc01c9c70e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Contries\usm">
+      <UniqueIdentifier>{57cd06c8-436a-432e-bcc2-e1bb935acc26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Docs">
+      <UniqueIdentifier>{2de4a8b1-0424-490e-a2ad-7c45887342fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Docs\Linux">
+      <UniqueIdentifier>{5341b65d-b6d5-4e6e-bcf7-da2e7ab42fe2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Docs\Amiga">
+      <UniqueIdentifier>{3af9f3a3-d071-4a1f-8f74-5d0d1b97b5fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="m_civilian.c">
       <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="usa\usa_guninfo.c">
-      <Filter>Code\Teams\usa</Filter>
+      <Filter>Code\Contries\usa</Filter>
     </ClCompile>
     <ClCompile Include="usa\usa_item.c">
-      <Filter>Code\Teams\usa</Filter>
+      <Filter>Code\Contries\usa</Filter>
     </ClCompile>
     <ClCompile Include="usa\usa_main.c">
-      <Filter>Code\Teams\usa</Filter>
+      <Filter>Code\Contries\usa</Filter>
     </ClCompile>
     <ClCompile Include="usa\usa_spawn.c">
-      <Filter>Code\Teams\usa</Filter>
+      <Filter>Code\Contries\usa</Filter>
     </ClCompile>
     <ClCompile Include="usa\usa_weapon.c">
-      <Filter>Code\Teams\usa</Filter>
+      <Filter>Code\Contries\usa</Filter>
     </ClCompile>
     <ClCompile Include="grm\grm_guninfo.c">
-      <Filter>Code\Teams\grm</Filter>
+      <Filter>Code\Contries\grm</Filter>
     </ClCompile>
     <ClCompile Include="grm\grm_item.c">
-      <Filter>Code\Teams\grm</Filter>
+      <Filter>Code\Contries\grm</Filter>
     </ClCompile>
     <ClCompile Include="grm\grm_main.c">
-      <Filter>Code\Teams\grm</Filter>
+      <Filter>Code\Contries\grm</Filter>
     </ClCompile>
     <ClCompile Include="grm\grm_spawn.c">
-      <Filter>Code\Teams\grm</Filter>
+      <Filter>Code\Contries\grm</Filter>
     </ClCompile>
     <ClCompile Include="grm\grm_weapon.c">
-      <Filter>Code\Teams\grm</Filter>
+      <Filter>Code\Contries\grm</Filter>
     </ClCompile>
     <ClCompile Include="rus\rus_guninfo.c">
-      <Filter>Code\Teams\rus</Filter>
+      <Filter>Code\Contries\rus</Filter>
     </ClCompile>
     <ClCompile Include="rus\rus_item.c">
-      <Filter>Code\Teams\rus</Filter>
+      <Filter>Code\Contries\rus</Filter>
     </ClCompile>
     <ClCompile Include="rus\rus_main.c">
-      <Filter>Code\Teams\rus</Filter>
+      <Filter>Code\Contries\rus</Filter>
     </ClCompile>
     <ClCompile Include="rus\rus_spawn.c">
-      <Filter>Code\Teams\rus</Filter>
+      <Filter>Code\Contries\rus</Filter>
     </ClCompile>
     <ClCompile Include="rus\rus_weapon.c">
-      <Filter>Code\Teams\rus</Filter>
+      <Filter>Code\Contries\rus</Filter>
     </ClCompile>
     <ClCompile Include="gbr\gbr_guninfo.c">
-      <Filter>Code\Teams\gbr</Filter>
+      <Filter>Code\Contries\gbr</Filter>
     </ClCompile>
     <ClCompile Include="gbr\gbr_item.c">
-      <Filter>Code\Teams\gbr</Filter>
+      <Filter>Code\Contries\gbr</Filter>
     </ClCompile>
     <ClCompile Include="gbr\gbr_main.c">
-      <Filter>Code\Teams\gbr</Filter>
+      <Filter>Code\Contries\gbr</Filter>
     </ClCompile>
     <ClCompile Include="gbr\gbr_spawn.c">
-      <Filter>Code\Teams\gbr</Filter>
+      <Filter>Code\Contries\gbr</Filter>
     </ClCompile>
     <ClCompile Include="gbr\gbr_weapon.c">
-      <Filter>Code\Teams\gbr</Filter>
+      <Filter>Code\Contries\gbr</Filter>
     </ClCompile>
     <ClCompile Include="pol\pol_guninfo.c">
-      <Filter>Code\Teams\pol</Filter>
+      <Filter>Code\Contries\pol</Filter>
     </ClCompile>
     <ClCompile Include="pol\pol_item.c">
-      <Filter>Code\Teams\pol</Filter>
+      <Filter>Code\Contries\pol</Filter>
     </ClCompile>
     <ClCompile Include="pol\pol_main.c">
-      <Filter>Code\Teams\pol</Filter>
+      <Filter>Code\Contries\pol</Filter>
     </ClCompile>
     <ClCompile Include="pol\pol_spawn.c">
-      <Filter>Code\Teams\pol</Filter>
+      <Filter>Code\Contries\pol</Filter>
     </ClCompile>
     <ClCompile Include="pol\pol_weapon.c">
-      <Filter>Code\Teams\pol</Filter>
+      <Filter>Code\Contries\pol</Filter>
     </ClCompile>
     <ClCompile Include="ita\ita_guninfo.c">
-      <Filter>Code\Teams\ita</Filter>
+      <Filter>Code\Contries\ita</Filter>
     </ClCompile>
     <ClCompile Include="ita\ita_item.c">
-      <Filter>Code\Teams\ita</Filter>
+      <Filter>Code\Contries\ita</Filter>
     </ClCompile>
     <ClCompile Include="ita\ita_main.c">
-      <Filter>Code\Teams\ita</Filter>
+      <Filter>Code\Contries\ita</Filter>
     </ClCompile>
     <ClCompile Include="ita\ita_spawn.c">
-      <Filter>Code\Teams\ita</Filter>
+      <Filter>Code\Contries\ita</Filter>
     </ClCompile>
     <ClCompile Include="ita\ita_weapon.c">
-      <Filter>Code\Teams\ita</Filter>
+      <Filter>Code\Contries\ita</Filter>
     </ClCompile>
     <ClCompile Include="jpn\jpn_guninfo.c">
-      <Filter>Code\Teams\jpn</Filter>
+      <Filter>Code\Contries\jpn</Filter>
     </ClCompile>
     <ClCompile Include="jpn\jpn_item.c">
-      <Filter>Code\Teams\jpn</Filter>
+      <Filter>Code\Contries\jpn</Filter>
     </ClCompile>
     <ClCompile Include="jpn\jpn_main.c">
-      <Filter>Code\Teams\jpn</Filter>
+      <Filter>Code\Contries\jpn</Filter>
     </ClCompile>
     <ClCompile Include="jpn\jpn_spawn.c">
-      <Filter>Code\Teams\jpn</Filter>
+      <Filter>Code\Contries\jpn</Filter>
     </ClCompile>
     <ClCompile Include="jpn\jpn_weapon.c">
-      <Filter>Code\Teams\jpn</Filter>
+      <Filter>Code\Contries\jpn</Filter>
     </ClCompile>
     <ClCompile Include="usm\usm_guninfo.c">
-      <Filter>Code\Teams\usm</Filter>
+      <Filter>Code\Contries\usm</Filter>
     </ClCompile>
     <ClCompile Include="usm\usm_item.c">
-      <Filter>Code\Teams\usm</Filter>
+      <Filter>Code\Contries\usm</Filter>
     </ClCompile>
     <ClCompile Include="usm\usm_main.c">
-      <Filter>Code\Teams\usm</Filter>
+      <Filter>Code\Contries\usm</Filter>
     </ClCompile>
     <ClCompile Include="usm\usm_spawn.c">
-      <Filter>Code\Teams\usm</Filter>
+      <Filter>Code\Contries\usm</Filter>
     </ClCompile>
     <ClCompile Include="usm\usm_weapon.c">
-      <Filter>Code\Teams\usm</Filter>
+      <Filter>Code\Contries\usm</Filter>
     </ClCompile>
     <ClCompile Include="g_ai.c">
       <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
@@ -338,76 +338,76 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="usa\usa_classes.h">
-      <Filter>Code\Teams\usa</Filter>
+      <Filter>Code\Contries\usa</Filter>
     </ClInclude>
     <ClInclude Include="usa\usa_defines.h">
-      <Filter>Code\Teams\usa</Filter>
+      <Filter>Code\Contries\usa</Filter>
     </ClInclude>
     <ClInclude Include="usa\usa_main.h">
-      <Filter>Code\Teams\usa</Filter>
+      <Filter>Code\Contries\usa</Filter>
     </ClInclude>
     <ClInclude Include="grm\grm_classes.h">
-      <Filter>Code\Teams\grm</Filter>
+      <Filter>Code\Contries\grm</Filter>
     </ClInclude>
     <ClInclude Include="grm\grm_defines.h">
-      <Filter>Code\Teams\grm</Filter>
+      <Filter>Code\Contries\grm</Filter>
     </ClInclude>
     <ClInclude Include="grm\grm_main.h">
-      <Filter>Code\Teams\grm</Filter>
+      <Filter>Code\Contries\grm</Filter>
     </ClInclude>
     <ClInclude Include="rus\rus_classes.h">
-      <Filter>Code\Teams\rus</Filter>
+      <Filter>Code\Contries\rus</Filter>
     </ClInclude>
     <ClInclude Include="rus\rus_defines.h">
-      <Filter>Code\Teams\rus</Filter>
+      <Filter>Code\Contries\rus</Filter>
     </ClInclude>
     <ClInclude Include="rus\rus_main.h">
-      <Filter>Code\Teams\rus</Filter>
+      <Filter>Code\Contries\rus</Filter>
     </ClInclude>
     <ClInclude Include="gbr\gbr_classes.h">
-      <Filter>Code\Teams\gbr</Filter>
+      <Filter>Code\Contries\gbr</Filter>
     </ClInclude>
     <ClInclude Include="gbr\gbr_defines.h">
-      <Filter>Code\Teams\gbr</Filter>
+      <Filter>Code\Contries\gbr</Filter>
     </ClInclude>
     <ClInclude Include="gbr\gbr_main.h">
-      <Filter>Code\Teams\gbr</Filter>
+      <Filter>Code\Contries\gbr</Filter>
     </ClInclude>
     <ClInclude Include="pol\pol_classes.h">
-      <Filter>Code\Teams\pol</Filter>
+      <Filter>Code\Contries\pol</Filter>
     </ClInclude>
     <ClInclude Include="pol\pol_defines.h">
-      <Filter>Code\Teams\pol</Filter>
+      <Filter>Code\Contries\pol</Filter>
     </ClInclude>
     <ClInclude Include="pol\pol_main.h">
-      <Filter>Code\Teams\pol</Filter>
+      <Filter>Code\Contries\pol</Filter>
     </ClInclude>
     <ClInclude Include="ita\ita_classes.h">
-      <Filter>Code\Teams\ita</Filter>
+      <Filter>Code\Contries\ita</Filter>
     </ClInclude>
     <ClInclude Include="ita\ita_defines.h">
-      <Filter>Code\Teams\ita</Filter>
+      <Filter>Code\Contries\ita</Filter>
     </ClInclude>
     <ClInclude Include="ita\ita_main.h">
-      <Filter>Code\Teams\ita</Filter>
+      <Filter>Code\Contries\ita</Filter>
     </ClInclude>
     <ClInclude Include="jpn\jpn_classes.h">
-      <Filter>Code\Teams\jpn</Filter>
+      <Filter>Code\Contries\jpn</Filter>
     </ClInclude>
     <ClInclude Include="jpn\jpn_defines.h">
-      <Filter>Code\Teams\jpn</Filter>
+      <Filter>Code\Contries\jpn</Filter>
     </ClInclude>
     <ClInclude Include="jpn\jpn_main.h">
-      <Filter>Code\Teams\jpn</Filter>
+      <Filter>Code\Contries\jpn</Filter>
     </ClInclude>
     <ClInclude Include="usm\usm_classes.h">
-      <Filter>Code\Teams\usm</Filter>
+      <Filter>Code\Contries\usm</Filter>
     </ClInclude>
     <ClInclude Include="usm\usm_defines.h">
-      <Filter>Code\Teams\usm</Filter>
+      <Filter>Code\Contries\usm</Filter>
     </ClInclude>
     <ClInclude Include="usm\usm_main.h">
-      <Filter>Code\Teams\usm</Filter>
+      <Filter>Code\Contries\usm</Filter>
     </ClInclude>
     <ClInclude Include="g_cmds.h">
       <Filter>Code\Main\Header Files %28%2a.h%29</Filter>
@@ -469,46 +469,52 @@
     <ClInclude Include="ai\astar.h">
       <Filter>Code\ai\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="x_fbomb.h">
+      <Filter>Code\Main\Header Files %28%2a.h%29</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="makefile.ami">
-      <Filter>Docs &amp; makefiles\Amiga</Filter>
+      <Filter>Docs\Amiga</Filter>
     </None>
     <None Include="Makefile">
-      <Filter>Docs &amp; makefiles\Linux</Filter>
-    </None>
-    <None Include="Makefile.country">
-      <Filter>Docs &amp; makefiles</Filter>
-    </None>
-    <None Include="easymake">
-      <Filter>Docs &amp; makefiles</Filter>
+      <Filter>Docs\Linux</Filter>
     </None>
     <None Include="ChangeLog" />
-    <None Include="ai\Makefile">
-      <Filter>Docs &amp; makefiles</Filter>
-    </None>
     <None Include="game.def">
       <Filter>Code</Filter>
+    </None>
+    <None Include="Makefile.country">
+      <Filter>Code\Contries</Filter>
+    </None>
+    <None Include="easymake">
+      <Filter>Code\Main</Filter>
+    </None>
+    <None Include="ai\Makefile">
+      <Filter>Code\ai</Filter>
+    </None>
+    <None Include="..\..\inFerYes\Makefile">
+      <Filter>Code\Main</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.amiga.txt">
-      <Filter>Docs &amp; makefiles\Amiga</Filter>
+      <Filter>Docs\Amiga</Filter>
     </Text>
     <Text Include="readme.linux.txt">
-      <Filter>Docs &amp; makefiles\Linux</Filter>
+      <Filter>Docs\Linux</Filter>
     </Text>
     <Text Include="gnu.txt">
-      <Filter>Docs &amp; makefiles</Filter>
+      <Filter>Docs</Filter>
     </Text>
     <Text Include="license.txt">
-      <Filter>Docs &amp; makefiles</Filter>
+      <Filter>Docs</Filter>
     </Text>
     <Text Include="readme.txt">
-      <Filter>Docs &amp; makefiles\Amiga</Filter>
+      <Filter>Docs\Amiga</Filter>
     </Text>
     <Text Include="ai\ACEBOT and GPL.txt">
-      <Filter>Docs &amp; makefiles</Filter>
+      <Filter>Docs</Filter>
     </Text>
   </ItemGroup>
 </Project>

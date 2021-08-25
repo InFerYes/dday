@@ -538,9 +538,11 @@
     <ClInclude Include="usm\usm_classes.h" />
     <ClInclude Include="usm\usm_defines.h" />
     <ClInclude Include="usm\usm_main.h" />
+    <ClInclude Include="x_fbomb.h" />
     <ClInclude Include="x_fire.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\inFerYes\Makefile" />
     <None Include="ai\Makefile" />
     <None Include="ChangeLog" />
     <None Include="easymake" />
