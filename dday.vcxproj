@@ -153,7 +153,7 @@
     <ClCompile Include="ai\ai_nodes.c" />
     <ClCompile Include="ai\ai_tools.c" />
     <ClCompile Include="ai\ai_weapons.c" />
-    <ClCompile Include="ai\AStar.c" />
+    <ClCompile Include="ai\astar.c" />
     <ClCompile Include="ai\bot_common.c" />
     <ClCompile Include="ai\bot_spawn.c" />
     <ClCompile Include="gbr\gbr_guninfo.c" />
@@ -500,7 +500,7 @@
     <ClInclude Include="ai\ai_nodes_local.h" />
     <ClInclude Include="ai\ai_nodes_shared.h" />
     <ClInclude Include="ai\ai_weapons.h" />
-    <ClInclude Include="ai\AStar.h" />
+    <ClInclude Include="ai\astar.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gbr\gbr_classes.h" />
     <ClInclude Include="gbr\gbr_defines.h" />

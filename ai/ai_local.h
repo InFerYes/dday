@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (C) 1997-2001 Id Software, Inc.
 
 This program is free software; you can redistribute it and/or
@@ -28,7 +28,7 @@ in NO WAY supported by Steve Yeager.
 
 #include "ai_nodes_local.h"
 #include "ai_weapons.h"
-//#include "AStar.h" //jabot092
+//#include "astar.h" //jabot092
 
 //----------------------------------------------------------
 

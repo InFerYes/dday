@@ -1,41 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files %28%2a.c%29">
-      <UniqueIdentifier>{ee731ed2-bc3b-4ea5-878d-623fd85e826c}</UniqueIdentifier>
-      <Extensions>*.c</Extensions>
-    </Filter>
-    <Filter Include="Source Files %28%2a.c%29\usa">
-      <UniqueIdentifier>{54613f78-38e3-4b9e-a621-70cc01c9c70e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files %28%2a.c%29\grm">
-      <UniqueIdentifier>{f90f8ffa-17ab-415d-be45-789bc189f9b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files %28%2a.c%29\rus">
-      <UniqueIdentifier>{7006b10a-fb50-42f9-8436-853031a1333b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files %28%2a.c%29\gbr">
-      <UniqueIdentifier>{78acd043-5871-4e46-85f3-9a6d5832725c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files %28%2a.c%29\pol">
-      <UniqueIdentifier>{96f5cba7-72ef-429a-8f3b-d28fc383c1f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files %28%2a.c%29\ita">
-      <UniqueIdentifier>{d317f851-8889-48cd-9817-cb726c72a7b4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files %28%2a.c%29\jpn">
-      <UniqueIdentifier>{40f50368-ef32-4d18-b42f-f0ba23546f4e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files %28%2a.c%29\usm">
-      <UniqueIdentifier>{57cd06c8-436a-432e-bcc2-e1bb935acc26}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files %28%2a.c%29\ai">
-      <UniqueIdentifier>{60536b7b-f42d-46f5-8c14-46dfe959a49d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files %28%2a.h%29">
-      <UniqueIdentifier>{3006869c-e3ba-4106-a2ff-c3e7febe3f71}</UniqueIdentifier>
-      <Extensions>*.h</Extensions>
-    </Filter>
     <Filter Include="Docs &amp; makefiles">
       <UniqueIdentifier>{2de4a8b1-0424-490e-a2ad-7c45887342fb}</UniqueIdentifier>
     </Filter>
@@ -45,414 +10,464 @@
     <Filter Include="Docs &amp; makefiles\Amiga">
       <UniqueIdentifier>{3af9f3a3-d071-4a1f-8f74-5d0d1b97b5fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Code">
+      <UniqueIdentifier>{b067bd9d-e172-4eca-96d5-2a49afb7a937}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\ai">
+      <UniqueIdentifier>{60536b7b-f42d-46f5-8c14-46dfe959a49d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\ai\Source Files">
+      <UniqueIdentifier>{c455d05c-11f7-4708-8042-4625541eadbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\ai\Header Files">
+      <UniqueIdentifier>{35ad0ea0-8579-4fef-9f94-8896da7c91f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Teams">
+      <UniqueIdentifier>{ea437749-74b8-458c-bf87-a50419ba7690}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Teams\gbr">
+      <UniqueIdentifier>{78acd043-5871-4e46-85f3-9a6d5832725c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Teams\grm">
+      <UniqueIdentifier>{f90f8ffa-17ab-415d-be45-789bc189f9b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Teams\ita">
+      <UniqueIdentifier>{d317f851-8889-48cd-9817-cb726c72a7b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Teams\jpn">
+      <UniqueIdentifier>{40f50368-ef32-4d18-b42f-f0ba23546f4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Teams\pol">
+      <UniqueIdentifier>{96f5cba7-72ef-429a-8f3b-d28fc383c1f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Teams\rus">
+      <UniqueIdentifier>{7006b10a-fb50-42f9-8436-853031a1333b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Teams\usa">
+      <UniqueIdentifier>{54613f78-38e3-4b9e-a621-70cc01c9c70e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Teams\usm">
+      <UniqueIdentifier>{57cd06c8-436a-432e-bcc2-e1bb935acc26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Main">
+      <UniqueIdentifier>{c642e1dc-8edf-4d76-8c9d-c74d3af18cd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Main\Source Files %28%2a.c%29">
+      <UniqueIdentifier>{ee731ed2-bc3b-4ea5-878d-623fd85e826c}</UniqueIdentifier>
+      <Extensions>*.c</Extensions>
+    </Filter>
+    <Filter Include="Code\Main\Header Files %28%2a.h%29">
+      <UniqueIdentifier>{3006869c-e3ba-4106-a2ff-c3e7febe3f71}</UniqueIdentifier>
+      <Extensions>*.h</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="m_civilian.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="usa\usa_guninfo.c">
-      <Filter>Source Files %28%2a.c%29\usa</Filter>
+      <Filter>Code\Teams\usa</Filter>
     </ClCompile>
     <ClCompile Include="usa\usa_item.c">
-      <Filter>Source Files %28%2a.c%29\usa</Filter>
+      <Filter>Code\Teams\usa</Filter>
     </ClCompile>
     <ClCompile Include="usa\usa_main.c">
-      <Filter>Source Files %28%2a.c%29\usa</Filter>
+      <Filter>Code\Teams\usa</Filter>
     </ClCompile>
     <ClCompile Include="usa\usa_spawn.c">
-      <Filter>Source Files %28%2a.c%29\usa</Filter>
+      <Filter>Code\Teams\usa</Filter>
     </ClCompile>
     <ClCompile Include="usa\usa_weapon.c">
-      <Filter>Source Files %28%2a.c%29\usa</Filter>
+      <Filter>Code\Teams\usa</Filter>
     </ClCompile>
     <ClCompile Include="grm\grm_guninfo.c">
-      <Filter>Source Files %28%2a.c%29\grm</Filter>
+      <Filter>Code\Teams\grm</Filter>
     </ClCompile>
     <ClCompile Include="grm\grm_item.c">
-      <Filter>Source Files %28%2a.c%29\grm</Filter>
+      <Filter>Code\Teams\grm</Filter>
     </ClCompile>
     <ClCompile Include="grm\grm_main.c">
-      <Filter>Source Files %28%2a.c%29\grm</Filter>
+      <Filter>Code\Teams\grm</Filter>
     </ClCompile>
     <ClCompile Include="grm\grm_spawn.c">
-      <Filter>Source Files %28%2a.c%29\grm</Filter>
+      <Filter>Code\Teams\grm</Filter>
     </ClCompile>
     <ClCompile Include="grm\grm_weapon.c">
-      <Filter>Source Files %28%2a.c%29\grm</Filter>
+      <Filter>Code\Teams\grm</Filter>
     </ClCompile>
     <ClCompile Include="rus\rus_guninfo.c">
-      <Filter>Source Files %28%2a.c%29\rus</Filter>
+      <Filter>Code\Teams\rus</Filter>
     </ClCompile>
     <ClCompile Include="rus\rus_item.c">
-      <Filter>Source Files %28%2a.c%29\rus</Filter>
+      <Filter>Code\Teams\rus</Filter>
     </ClCompile>
     <ClCompile Include="rus\rus_main.c">
-      <Filter>Source Files %28%2a.c%29\rus</Filter>
+      <Filter>Code\Teams\rus</Filter>
     </ClCompile>
     <ClCompile Include="rus\rus_spawn.c">
-      <Filter>Source Files %28%2a.c%29\rus</Filter>
+      <Filter>Code\Teams\rus</Filter>
     </ClCompile>
     <ClCompile Include="rus\rus_weapon.c">
-      <Filter>Source Files %28%2a.c%29\rus</Filter>
+      <Filter>Code\Teams\rus</Filter>
     </ClCompile>
     <ClCompile Include="gbr\gbr_guninfo.c">
-      <Filter>Source Files %28%2a.c%29\gbr</Filter>
+      <Filter>Code\Teams\gbr</Filter>
     </ClCompile>
     <ClCompile Include="gbr\gbr_item.c">
-      <Filter>Source Files %28%2a.c%29\gbr</Filter>
+      <Filter>Code\Teams\gbr</Filter>
     </ClCompile>
     <ClCompile Include="gbr\gbr_main.c">
-      <Filter>Source Files %28%2a.c%29\gbr</Filter>
+      <Filter>Code\Teams\gbr</Filter>
     </ClCompile>
     <ClCompile Include="gbr\gbr_spawn.c">
-      <Filter>Source Files %28%2a.c%29\gbr</Filter>
+      <Filter>Code\Teams\gbr</Filter>
     </ClCompile>
     <ClCompile Include="gbr\gbr_weapon.c">
-      <Filter>Source Files %28%2a.c%29\gbr</Filter>
+      <Filter>Code\Teams\gbr</Filter>
     </ClCompile>
     <ClCompile Include="pol\pol_guninfo.c">
-      <Filter>Source Files %28%2a.c%29\pol</Filter>
+      <Filter>Code\Teams\pol</Filter>
     </ClCompile>
     <ClCompile Include="pol\pol_item.c">
-      <Filter>Source Files %28%2a.c%29\pol</Filter>
+      <Filter>Code\Teams\pol</Filter>
     </ClCompile>
     <ClCompile Include="pol\pol_main.c">
-      <Filter>Source Files %28%2a.c%29\pol</Filter>
+      <Filter>Code\Teams\pol</Filter>
     </ClCompile>
     <ClCompile Include="pol\pol_spawn.c">
-      <Filter>Source Files %28%2a.c%29\pol</Filter>
+      <Filter>Code\Teams\pol</Filter>
     </ClCompile>
     <ClCompile Include="pol\pol_weapon.c">
-      <Filter>Source Files %28%2a.c%29\pol</Filter>
+      <Filter>Code\Teams\pol</Filter>
     </ClCompile>
     <ClCompile Include="ita\ita_guninfo.c">
-      <Filter>Source Files %28%2a.c%29\ita</Filter>
+      <Filter>Code\Teams\ita</Filter>
     </ClCompile>
     <ClCompile Include="ita\ita_item.c">
-      <Filter>Source Files %28%2a.c%29\ita</Filter>
+      <Filter>Code\Teams\ita</Filter>
     </ClCompile>
     <ClCompile Include="ita\ita_main.c">
-      <Filter>Source Files %28%2a.c%29\ita</Filter>
+      <Filter>Code\Teams\ita</Filter>
     </ClCompile>
     <ClCompile Include="ita\ita_spawn.c">
-      <Filter>Source Files %28%2a.c%29\ita</Filter>
+      <Filter>Code\Teams\ita</Filter>
     </ClCompile>
     <ClCompile Include="ita\ita_weapon.c">
-      <Filter>Source Files %28%2a.c%29\ita</Filter>
+      <Filter>Code\Teams\ita</Filter>
     </ClCompile>
     <ClCompile Include="jpn\jpn_guninfo.c">
-      <Filter>Source Files %28%2a.c%29\jpn</Filter>
+      <Filter>Code\Teams\jpn</Filter>
     </ClCompile>
     <ClCompile Include="jpn\jpn_item.c">
-      <Filter>Source Files %28%2a.c%29\jpn</Filter>
+      <Filter>Code\Teams\jpn</Filter>
     </ClCompile>
     <ClCompile Include="jpn\jpn_main.c">
-      <Filter>Source Files %28%2a.c%29\jpn</Filter>
+      <Filter>Code\Teams\jpn</Filter>
     </ClCompile>
     <ClCompile Include="jpn\jpn_spawn.c">
-      <Filter>Source Files %28%2a.c%29\jpn</Filter>
+      <Filter>Code\Teams\jpn</Filter>
     </ClCompile>
     <ClCompile Include="jpn\jpn_weapon.c">
-      <Filter>Source Files %28%2a.c%29\jpn</Filter>
+      <Filter>Code\Teams\jpn</Filter>
     </ClCompile>
     <ClCompile Include="usm\usm_guninfo.c">
-      <Filter>Source Files %28%2a.c%29\usm</Filter>
+      <Filter>Code\Teams\usm</Filter>
     </ClCompile>
     <ClCompile Include="usm\usm_item.c">
-      <Filter>Source Files %28%2a.c%29\usm</Filter>
+      <Filter>Code\Teams\usm</Filter>
     </ClCompile>
     <ClCompile Include="usm\usm_main.c">
-      <Filter>Source Files %28%2a.c%29\usm</Filter>
+      <Filter>Code\Teams\usm</Filter>
     </ClCompile>
     <ClCompile Include="usm\usm_spawn.c">
-      <Filter>Source Files %28%2a.c%29\usm</Filter>
+      <Filter>Code\Teams\usm</Filter>
     </ClCompile>
     <ClCompile Include="usm\usm_weapon.c">
-      <Filter>Source Files %28%2a.c%29\usm</Filter>
-    </ClCompile>
-    <ClCompile Include="ai\ai_class_dmbot.c">
-      <Filter>Source Files %28%2a.c%29\ai</Filter>
-    </ClCompile>
-    <ClCompile Include="ai\ai_dropnodes.c">
-      <Filter>Source Files %28%2a.c%29\ai</Filter>
-    </ClCompile>
-    <ClCompile Include="ai\ai_items.c">
-      <Filter>Source Files %28%2a.c%29\ai</Filter>
-    </ClCompile>
-    <ClCompile Include="ai\ai_links.c">
-      <Filter>Source Files %28%2a.c%29\ai</Filter>
-    </ClCompile>
-    <ClCompile Include="ai\ai_main.c">
-      <Filter>Source Files %28%2a.c%29\ai</Filter>
-    </ClCompile>
-    <ClCompile Include="ai\ai_movement.c">
-      <Filter>Source Files %28%2a.c%29\ai</Filter>
-    </ClCompile>
-    <ClCompile Include="ai\ai_navigation.c">
-      <Filter>Source Files %28%2a.c%29\ai</Filter>
-    </ClCompile>
-    <ClCompile Include="ai\ai_nodes.c">
-      <Filter>Source Files %28%2a.c%29\ai</Filter>
-    </ClCompile>
-    <ClCompile Include="ai\ai_tools.c">
-      <Filter>Source Files %28%2a.c%29\ai</Filter>
-    </ClCompile>
-    <ClCompile Include="ai\ai_weapons.c">
-      <Filter>Source Files %28%2a.c%29\ai</Filter>
-    </ClCompile>
-    <ClCompile Include="ai\AStar.c">
-      <Filter>Source Files %28%2a.c%29\ai</Filter>
-    </ClCompile>
-    <ClCompile Include="ai\bot_common.c">
-      <Filter>Source Files %28%2a.c%29\ai</Filter>
-    </ClCompile>
-    <ClCompile Include="ai\bot_spawn.c">
-      <Filter>Source Files %28%2a.c%29\ai</Filter>
+      <Filter>Code\Teams\usm</Filter>
     </ClCompile>
     <ClCompile Include="g_ai.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="g_arty.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="g_cmds.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="g_combat.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="g_ents.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="g_func.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="g_items.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="g_main.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="g_maps.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="g_misc.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="g_monster.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="g_objectives.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="g_phys.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="g_save.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="g_spawn.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="g_svcmds.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="g_target.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="g_trigger.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="g_turret.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="g_utils.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="g_weapon.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="m_actor.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="m_flash.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="m_insane.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="m_move.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="p_classes.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="p_client.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="p_generic_wep.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="p_hud.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="p_menu.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="p_trail.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="p_view.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="p_weapon.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="q_shared.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="u_entmgr.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="x_fire.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
     </ClCompile>
     <ClCompile Include="p_observer.c">
-      <Filter>Source Files %28%2a.c%29</Filter>
+      <Filter>Code\Main\Source Files %28%2a.c%29</Filter>
+    </ClCompile>
+    <ClCompile Include="ai\ai_class_dmbot.c">
+      <Filter>Code\ai\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ai\ai_dropnodes.c">
+      <Filter>Code\ai\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ai\ai_items.c">
+      <Filter>Code\ai\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ai\ai_links.c">
+      <Filter>Code\ai\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ai\ai_main.c">
+      <Filter>Code\ai\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ai\ai_movement.c">
+      <Filter>Code\ai\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ai\ai_tools.c">
+      <Filter>Code\ai\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ai\ai_weapons.c">
+      <Filter>Code\ai\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ai\astar.c">
+      <Filter>Code\ai\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ai\bot_common.c">
+      <Filter>Code\ai\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ai\bot_spawn.c">
+      <Filter>Code\ai\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ai\ai_nodes.c">
+      <Filter>Code\ai\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ai\ai_navigation.c">
+      <Filter>Code\ai\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="usa\usa_classes.h">
-      <Filter>Source Files %28%2a.c%29\usa</Filter>
+      <Filter>Code\Teams\usa</Filter>
     </ClInclude>
     <ClInclude Include="usa\usa_defines.h">
-      <Filter>Source Files %28%2a.c%29\usa</Filter>
+      <Filter>Code\Teams\usa</Filter>
     </ClInclude>
     <ClInclude Include="usa\usa_main.h">
-      <Filter>Source Files %28%2a.c%29\usa</Filter>
+      <Filter>Code\Teams\usa</Filter>
     </ClInclude>
     <ClInclude Include="grm\grm_classes.h">
-      <Filter>Source Files %28%2a.c%29\grm</Filter>
+      <Filter>Code\Teams\grm</Filter>
     </ClInclude>
     <ClInclude Include="grm\grm_defines.h">
-      <Filter>Source Files %28%2a.c%29\grm</Filter>
+      <Filter>Code\Teams\grm</Filter>
     </ClInclude>
     <ClInclude Include="grm\grm_main.h">
-      <Filter>Source Files %28%2a.c%29\grm</Filter>
+      <Filter>Code\Teams\grm</Filter>
     </ClInclude>
     <ClInclude Include="rus\rus_classes.h">
-      <Filter>Source Files %28%2a.c%29\rus</Filter>
+      <Filter>Code\Teams\rus</Filter>
     </ClInclude>
     <ClInclude Include="rus\rus_defines.h">
-      <Filter>Source Files %28%2a.c%29\rus</Filter>
+      <Filter>Code\Teams\rus</Filter>
     </ClInclude>
     <ClInclude Include="rus\rus_main.h">
-      <Filter>Source Files %28%2a.c%29\rus</Filter>
+      <Filter>Code\Teams\rus</Filter>
     </ClInclude>
     <ClInclude Include="gbr\gbr_classes.h">
-      <Filter>Source Files %28%2a.c%29\gbr</Filter>
+      <Filter>Code\Teams\gbr</Filter>
     </ClInclude>
     <ClInclude Include="gbr\gbr_defines.h">
-      <Filter>Source Files %28%2a.c%29\gbr</Filter>
+      <Filter>Code\Teams\gbr</Filter>
     </ClInclude>
     <ClInclude Include="gbr\gbr_main.h">
-      <Filter>Source Files %28%2a.c%29\gbr</Filter>
+      <Filter>Code\Teams\gbr</Filter>
     </ClInclude>
     <ClInclude Include="pol\pol_classes.h">
-      <Filter>Source Files %28%2a.c%29\pol</Filter>
+      <Filter>Code\Teams\pol</Filter>
     </ClInclude>
     <ClInclude Include="pol\pol_defines.h">
-      <Filter>Source Files %28%2a.c%29\pol</Filter>
+      <Filter>Code\Teams\pol</Filter>
     </ClInclude>
     <ClInclude Include="pol\pol_main.h">
-      <Filter>Source Files %28%2a.c%29\pol</Filter>
+      <Filter>Code\Teams\pol</Filter>
     </ClInclude>
     <ClInclude Include="ita\ita_classes.h">
-      <Filter>Source Files %28%2a.c%29\ita</Filter>
+      <Filter>Code\Teams\ita</Filter>
     </ClInclude>
     <ClInclude Include="ita\ita_defines.h">
-      <Filter>Source Files %28%2a.c%29\ita</Filter>
+      <Filter>Code\Teams\ita</Filter>
     </ClInclude>
     <ClInclude Include="ita\ita_main.h">
-      <Filter>Source Files %28%2a.c%29\ita</Filter>
+      <Filter>Code\Teams\ita</Filter>
     </ClInclude>
     <ClInclude Include="jpn\jpn_classes.h">
-      <Filter>Source Files %28%2a.c%29\jpn</Filter>
+      <Filter>Code\Teams\jpn</Filter>
     </ClInclude>
     <ClInclude Include="jpn\jpn_defines.h">
-      <Filter>Source Files %28%2a.c%29\jpn</Filter>
+      <Filter>Code\Teams\jpn</Filter>
     </ClInclude>
     <ClInclude Include="jpn\jpn_main.h">
-      <Filter>Source Files %28%2a.c%29\jpn</Filter>
+      <Filter>Code\Teams\jpn</Filter>
     </ClInclude>
     <ClInclude Include="usm\usm_classes.h">
-      <Filter>Source Files %28%2a.c%29\usm</Filter>
+      <Filter>Code\Teams\usm</Filter>
     </ClInclude>
     <ClInclude Include="usm\usm_defines.h">
-      <Filter>Source Files %28%2a.c%29\usm</Filter>
+      <Filter>Code\Teams\usm</Filter>
     </ClInclude>
     <ClInclude Include="usm\usm_main.h">
-      <Filter>Source Files %28%2a.c%29\usm</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\ai.h">
-      <Filter>Source Files %28%2a.c%29\ai</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\ai_local.h">
-      <Filter>Source Files %28%2a.c%29\ai</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\ai_nodes_local.h">
-      <Filter>Source Files %28%2a.c%29\ai</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\ai_nodes_shared.h">
-      <Filter>Source Files %28%2a.c%29\ai</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\ai_weapons.h">
-      <Filter>Source Files %28%2a.c%29\ai</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\AStar.h">
-      <Filter>Source Files %28%2a.c%29\ai</Filter>
+      <Filter>Code\Teams\usm</Filter>
     </ClInclude>
     <ClInclude Include="g_cmds.h">
-      <Filter>Header Files %28%2a.h%29</Filter>
+      <Filter>Code\Main\Header Files %28%2a.h%29</Filter>
     </ClInclude>
     <ClInclude Include="g_defines.h">
-      <Filter>Header Files %28%2a.h%29</Filter>
+      <Filter>Code\Main\Header Files %28%2a.h%29</Filter>
     </ClInclude>
     <ClInclude Include="g_local.h">
-      <Filter>Header Files %28%2a.h%29</Filter>
+      <Filter>Code\Main\Header Files %28%2a.h%29</Filter>
     </ClInclude>
     <ClInclude Include="g_maps.h">
-      <Filter>Header Files %28%2a.h%29</Filter>
+      <Filter>Code\Main\Header Files %28%2a.h%29</Filter>
     </ClInclude>
     <ClInclude Include="game.h">
-      <Filter>Header Files %28%2a.h%29</Filter>
+      <Filter>Code\Main\Header Files %28%2a.h%29</Filter>
     </ClInclude>
     <ClInclude Include="m_actor.h">
-      <Filter>Header Files %28%2a.h%29</Filter>
+      <Filter>Code\Main\Header Files %28%2a.h%29</Filter>
     </ClInclude>
     <ClInclude Include="m_insane.h">
-      <Filter>Header Files %28%2a.h%29</Filter>
+      <Filter>Code\Main\Header Files %28%2a.h%29</Filter>
     </ClInclude>
     <ClInclude Include="m_player.h">
-      <Filter>Header Files %28%2a.h%29</Filter>
+      <Filter>Code\Main\Header Files %28%2a.h%29</Filter>
     </ClInclude>
     <ClInclude Include="p_classes.h">
-      <Filter>Header Files %28%2a.h%29</Filter>
+      <Filter>Code\Main\Header Files %28%2a.h%29</Filter>
     </ClInclude>
     <ClInclude Include="p_menu.h">
-      <Filter>Header Files %28%2a.h%29</Filter>
+      <Filter>Code\Main\Header Files %28%2a.h%29</Filter>
     </ClInclude>
     <ClInclude Include="p_menus.h">
-      <Filter>Header Files %28%2a.h%29</Filter>
+      <Filter>Code\Main\Header Files %28%2a.h%29</Filter>
     </ClInclude>
     <ClInclude Include="p_observer.h">
-      <Filter>Header Files %28%2a.h%29</Filter>
+      <Filter>Code\Main\Header Files %28%2a.h%29</Filter>
     </ClInclude>
     <ClInclude Include="q_shared.h">
-      <Filter>Header Files %28%2a.h%29</Filter>
+      <Filter>Code\Main\Header Files %28%2a.h%29</Filter>
     </ClInclude>
     <ClInclude Include="x_fire.h">
-      <Filter>Header Files %28%2a.h%29</Filter>
+      <Filter>Code\Main\Header Files %28%2a.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="ai\ai.h">
+      <Filter>Code\ai\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ai\ai_local.h">
+      <Filter>Code\ai\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ai\ai_nodes_local.h">
+      <Filter>Code\ai\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ai\ai_nodes_shared.h">
+      <Filter>Code\ai\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ai\ai_weapons.h">
+      <Filter>Code\ai\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ai\astar.h">
+      <Filter>Code\ai\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -469,9 +484,11 @@
       <Filter>Docs &amp; makefiles</Filter>
     </None>
     <None Include="ChangeLog" />
-    <None Include="game.def" />
     <None Include="ai\Makefile">
       <Filter>Docs &amp; makefiles</Filter>
+    </None>
+    <None Include="game.def">
+      <Filter>Code</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

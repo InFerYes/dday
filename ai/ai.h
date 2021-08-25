@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (C) 1997-2001 Id Software, Inc.
 
 This program is free software; you can redistribute it and/or
@@ -22,7 +22,7 @@ the ACE Bot homepage, at http://www.axionfx.com/ace.
 This program is a modification of the ACE Bot, and is therefore
 in NO WAY supported by Steve Yeager.
 */
-#include "AStar.h"
+#include "astar.h"
 
 //	declaration of botedict for the game
 //----------------------------------------------------------
