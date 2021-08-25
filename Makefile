@@ -119,7 +119,7 @@ GAME_OBJS =	\
  	ai/bot_common.o ai/bot_spawn.o ai/ai_weapons.o ai/ai_tools.o \
 	ai/ai_nodes.o ai/ai_navigation.o ai/ai_movement.o ai/ai_links.o  \
 	ai/ai_items.o ai/ai_dropnodes.o ai/ai_class_dmbot.o \
-	ai/ai_class_monster_default.o ai/AStar.o ai/ai_main.o
+	ai/ai_class_monster_default.o ai/astar.o ai/ai_main.o
 
 game$(ARCH).real.$(SHLIBEXT) : $(GAME_OBJS)
 	$(MAKE) gbr$(ARCH).$(SHLIBEXT) -C gbr -f ../Makefile.country COUNTRY_CODE=gbr
@@ -233,5 +233,5 @@ x_fbomb.o: x_fbomb.c g_local.h g_defines.h q_shared.h game.h p_menu.h \
  g_maps.h x_fbomb.h x_fire.h
 x_fire.o: x_fire.c g_local.h g_defines.h q_shared.h game.h p_menu.h \
  g_maps.h x_fire.h
-AStar.o: AStar.c ai_items.c ai_items.c ai_navigation.c bot_common.c ai_class_dmbot.c ai_links.c ai_nodes.c bot_spawn.c ai_class_monster_default.c ai_main.c ai_tools.c ai_dropnodes.c ai_movement.c ai_weapons.c
+astar.o: astar.c ai_items.c ai_items.c ai_navigation.c bot_common.c ai_class_dmbot.c ai_links.c ai_nodes.c bot_spawn.c ai_class_monster_default.c ai_main.c ai_tools.c ai_dropnodes.c ai_movement.c ai_weapons.c
 
