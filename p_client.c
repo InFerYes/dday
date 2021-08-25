@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/p_client.c,v $
  *   $Revision: 1.63 $
@@ -64,7 +64,7 @@ static void SP_FixCoopSpots(edict_t* self)
 	edict_t* spot = NULL; /* MetalGod moved initialization/assignment up here. */
 	vec3_t	d;
 
-	
+
 
 	while (1)
 	{
@@ -251,7 +251,7 @@ void SP_info_Special_Start(edict_t *ent){SP_info_reinforcement_start(ent);}
 void SP_info_Officer_Start(edict_t *ent) {SP_info_reinforcement_start(ent);}
 */
 
-void SP_info_player_intermission(edict_t* ent){} /*  MetalGod make the prototype match the actual function */
+void SP_info_player_intermission(edict_t* ent) {} /*  MetalGod make the prototype match the actual function */
 void SP_info_reinforcement_start(edict_t* ent);
 void SP_info_Infantry_Start(edict_t* ent)
 {
@@ -338,15 +338,15 @@ void ClientObituary(edict_t* self, edict_t* inflictor, edict_t* attacker)
 
 	qboolean	ff;
 	edict_t* Tent;
-	
-	
+
+
 	/* MetalGod Sanity check */
 	if (!self || !self->client)
 	{
 		return;
 	}
 	/* MetalGod */
-	
+
 	/*-----/ PM /-----/ MODIFIED:  Condition split up for portability. /-----*/
 	if (coop->value)
 		if (attacker->client)
@@ -2468,7 +2468,7 @@ void ClientBeginDeathmatch(edict_t* ent)
 	/* MetalGod sanity check */
 	if (!ent->client)
 		return;
-	
+
 	G_InitEdict(ent);
 
 	InitClientResp(ent->client);
@@ -2649,7 +2649,7 @@ void ClientUserinfoChanged(edict_t* ent, char* userinfo)
 	{
 		char skin[64];
 
-		if ((ent->client->resp.team_on !=NULL) && ent->client->resp.mos)
+		if ((ent->client->resp.team_on != NULL) && ent->client->resp.mos)
 		{
 			//faf:  has the mapper set a custom skin?
 /*			if (team_list[ent->client->resp.team_on->index]->skin)
@@ -2720,7 +2720,7 @@ void ClientUserinfoChanged(edict_t* ent, char* userinfo)
 
 			gi.configstring(CS_PLAYERSKINS + playernum, va("%s\\%s",
 				ent->client->pers.netname, skin));
-		} 
+		}
 		/*		if (ent->ai && !strcmp(ent->client->pers.netname, "Hitler"))
 				{
 					strcpy(skin, "grm/h");
@@ -2730,11 +2730,11 @@ void ClientUserinfoChanged(edict_t* ent, char* userinfo)
 	}
 
 	// combine name and skin into a configstring
-	/* MetalGod not sure this was every called 
+	/* MetalGod not sure this was every called
 	else
 		gi.configstring(CS_PLAYERSKINS + playernum, va("%s\\%s", ent->client->pers.netname, s)); */
 
-	// handedness
+		// handedness
 	s = Info_ValueForKey(userinfo, "hand");
 
 	if (strlen(s))
@@ -3226,7 +3226,10 @@ qboolean Setup_Map_Vote(void)
 	changefirstmap = false;
 	for (i = 0; i < 4; i++)
 	{
+		/*  MetalGod Simplify expression
 		if (i == 0 && level.nextmap)
+		*/
+		if (i == 0)
 		{
 			//if nextmap is same as current map or one played recently, list that last instead of 4th
 			if (!strcmp(level.nextmap, level.mapname))
@@ -4254,7 +4257,7 @@ void Write_Player_Stats(edict_t* ent)
 	char* ip;
 	int		c;
 
-	char* s, * f= NULL;
+	char* s, * f = NULL;
 
 	char* statsc;
 

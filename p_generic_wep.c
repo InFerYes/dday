@@ -270,7 +270,7 @@ void Weapon_Generic(edict_t* ent,
 						*ent->client->p_rnd = *ent->client->p_fract;
 				}
 			}
-
+			/* MetalGod Duplicated as default below so... why bother?
 			else if (ent->client->pers.weapon->topoff == 2)//for beltfed
 			{
 				if (*ammo_amount)
@@ -279,8 +279,7 @@ void Weapon_Generic(edict_t* ent,
 						ent->client->pers.inventory[ammo_index]--;
 					*ent->client->p_rnd = ammo_item->quantity;
 				}
-			}
-
+			}*/
 			else
 			{
 				if (*ammo_amount) //feeder clips (not topoffable

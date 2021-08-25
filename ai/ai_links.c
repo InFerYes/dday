@@ -35,6 +35,7 @@ char* AI_LinkString(int linktype)
 {
 	char* s = NULL; /*MetalGod initialized */
 
+	/* MetalGod This sort of thing is faster with a switch (For long lists of if else)
 	if (linktype == LINK_MOVE)
 		s = "LINK_MOVE";
 	else if (linktype == LINK_STAIRS)
@@ -64,6 +65,41 @@ char* AI_LinkString(int linktype)
 		s = "LINK_JUMP";
 	else if (linktype)
 		s = "UNKNOWN";
+	   */
+	switch (linktype)
+	{
+	case LINK_MOVE:
+		s = "LINK_MOVE";
+	case LINK_STAIRS:
+		s = "LINK_STAIRS";
+	case LINK_FALL:
+		s = "LINK_FALL";
+	case LINK_CLIMB:
+		s = "LINK_CLIMB";
+	case LINK_TELEPORT:
+		s = "LINK_TELEPORT";
+	case LINK_PLATFORM:
+		s = "LINK_PLATFORM";
+	case LINK_JUMPPAD:
+		s = "LINK_JUMPAD";
+	case LINK_WATER:
+		s = "LINK_WATER";
+	case LINK_WATERJUMP:
+		s = "LINK_WATERJUMP";
+	case LINK_LADDER:
+		s = "LINK_LADDER";
+	case LINK_JUMP:
+		s = "LINK_JUMP";
+	case LINK_INVALID:
+	{
+		gi.positioned_sound(vec3_origin, g_edicts, CHAN_AUTO, gi.soundindex("misc/talk1.wav"), 1, ATTN_NONE, 0);
+		s = "LINK_INVALID";
+	}
+	default:
+		s = "UNKNOWN";
+	}  /* MetalGod END*/
+
+
 
 	return s;
 }

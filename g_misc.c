@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/g_misc.c,v $
  *   $Revision: 1.26 $
@@ -2509,12 +2509,17 @@ void teleporter_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t
 	//faf:  this fixes getting stuck in other players when teleporting:
 	other->solid = SOLID_TRIGGER;
 	//it works just like when spawning
-
+	/*	  MetalGod always true, so let's just simplify it.
 	if (1)//other->client->resp.mos == SPECIAL || other->client->resp.team_on->chute == true)
 	{
 		other->client->landed = false;
 		Spawn_Chute(other);
 	}
+	*/
+
+	other->client->landed = false;
+	Spawn_Chute(other);
+	/* MetalGod END */
 
 	gi.linkentity(other);
 }

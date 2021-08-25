@@ -792,6 +792,7 @@ pistols, rifles, etc....
 */
 void fire_bullet(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick, int hspread, int vspread, int mod, qboolean tracers_on)
 {
+	/* MetalGod so much of this was commented out...  eliminated duplicate condition
 	//the next line is for monsters who don't like to shoot tracers...
 	if (!tracers_on)
 		fire_lead(self, start, aimdir, damage, kick, TE_GUNSHOT, hspread, vspread, mod, true);
@@ -803,6 +804,8 @@ void fire_bullet(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kic
 		//		else
 		fire_lead(self, start, aimdir, damage, kick, TE_GUNSHOT, hspread, vspread, mod, true);
 	}
+	*/
+	fire_lead(self, start, aimdir, damage, kick, TE_GUNSHOT, hspread, vspread, mod, true);
 }
 
 /*
@@ -1358,9 +1361,10 @@ void Shrapnel_Explode(edict_t* ent)
 		T_Damage(ent->owner, ent->owner, ent->owner, ent->maxs, ent->s.origin, vec3_origin, 100, 0, 0, MOD_HELD_GRENADE);
 	}
 
-	if (1)
+	/* MetalGOd always true, so simplify
+	if (1)		  */
 	{
-		/* MetalGod declariation of i removed, as it hid the prior local declaration */
+
 		edict_t* cl_ent;
 
 		for (i = 0; i < maxclients->value; i++)

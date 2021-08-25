@@ -1063,7 +1063,8 @@ void Weapon_Grenade(edict_t* ent)
 			*/
 
 			ent->client->latched_buttons &= ~BUTTON_ATTACK;
-			if (1)//ent->client->pers.inventory[ent->client->ammo_index])
+			/* MetalGod always true so simplify!
+			if (1)//ent->client->pers.inventory[ent->client->ammo_index]) */
 			{
 				// You don't pull a pin from a live grenade
 				if (ent->client->pers.weapon->classnameb == AMMO_GRENADES_GBR)
@@ -1073,7 +1074,7 @@ void Weapon_Grenade(edict_t* ent)
 				ent->client->weaponstate = WEAPON_FIRING;
 				//				if (!ent->client->grenade)
 				//					ent->client->grenade_time = 0;
-			}
+			} /*
 			else
 			{
 				if (level.time >= ent->pain_debounce_time)
@@ -1081,9 +1082,11 @@ void Weapon_Grenade(edict_t* ent)
 					gi.sound(ent, CHAN_VOICE, gi.soundindex("weapons/noammo.wav"), 1, ATTN_NORM, 0);
 					ent->pain_debounce_time = level.time + 1;
 				}
-				/*if(auto_weapon_change->value)*/
+				if(auto_weapon_change->value)
 					//NoAmmoWeaponChange (ent);
 			}
+			 MetalGod END */
+
 			return;
 		}
 
