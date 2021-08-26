@@ -43,6 +43,10 @@
     <OutDir>.\Debug\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <EnableMicrosoftCodeAnalysis>true</EnableMicrosoftCodeAnalysis>
+    <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>.\Release\</OutDir>
@@ -68,6 +72,7 @@
       <CompileAs>CompileAsC</CompileAs>
       <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <EnablePREfast>true</EnablePREfast>
     </ClCompile>
     <Link>
       <OutputFile>.\Debug\gamex86.dll</OutputFile>
@@ -524,9 +529,7 @@
     <ClInclude Include="pol\pol_classes.h" />
     <ClInclude Include="pol\pol_defines.h" />
     <ClInclude Include="pol\pol_main.h" />
-    <ClInclude Include="p_classes.h" />
     <ClInclude Include="p_menu.h" />
-    <ClInclude Include="p_menus.h" />
     <ClInclude Include="p_observer.h" />
     <ClInclude Include="q_shared.h" />
     <ClInclude Include="rus\rus_classes.h" />
@@ -538,11 +541,9 @@
     <ClInclude Include="usm\usm_classes.h" />
     <ClInclude Include="usm\usm_defines.h" />
     <ClInclude Include="usm\usm_main.h" />
-    <ClInclude Include="x_fbomb.h" />
     <ClInclude Include="x_fire.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\inFerYes\Makefile" />
     <None Include="ai\Makefile" />
     <None Include="ChangeLog" />
     <None Include="easymake" />

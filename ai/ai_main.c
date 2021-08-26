@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (C) 1997-2001 Id Software, Inc.
 
 This program is free software; you can redistribute it and/or
@@ -20,7 +20,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "../g_local.h"
 #include "ai_local.h"
-#include "stddef.h"
+/* MetalGod included in q_shared.h
+#include "stddef.h" */
 int AI_ClosestNodeToSpotx(vec3_t origin);
 int AI_ClosestNodeToSpot(vec3_t origin, edict_t* passent, qboolean visible);
 
@@ -106,7 +107,7 @@ void Set_Up_CampSpots_For_Ents(void)
 				}
 				if (obj_camp > -1)
 				{
-					camp_spots[obj_camp].type = CAMP_OBJECTIVE;
+					camp_spots[obj_camp].type = (qboolean)CAMP_OBJECTIVE;
 
 					if (e->classnameb == OBJECTIVE_VIP || e->classnameb == FUNC_EXPLOSIVE_OBJECTIVE || e->classnameb == FUNC_TRAIN)
 						allset = true;
@@ -192,12 +193,14 @@ void AI_SetUpMoveWander(edict_t* ent)
 // AI_ResetWeights
 // Init bot weights from bot-class weights.
 //==========================================
+
+/* MetalGod Husk of a function commented out
 void AI_ResetWeights(edict_t* ent)
 {
 	//restore defaults from bot persistant
 //	memset(ent->ai->status.inventoryWeights, 0, sizeof (ent->ai->status.inventoryWeights));
 //	memcpy(ent->ai->status.inventoryWeights, ent->ai->pers.inventoryWeights, sizeof(ent->ai->pers.inventoryWeights));
-}
+}	  */
 
 //==========================================
 // AI_ResetNavigation
@@ -841,7 +844,8 @@ void AI_CategorizePosition(edict_t* ent)
 	ent->is_ladder = AI_IsLadder(ent->s.origin, ent->s.angles, ent->mins, ent->maxs, ent);
 
 	M_CatagorizePosition(ent);
-	if (ent->waterlevel > 2 || ent->waterlevel && !stepping) {
+	if (ent->waterlevel > 2 || (ent->waterlevel && !stepping))  /* MetalGod parentheses for clarity */
+	{
 		ent->is_swim = true;
 		ent->is_step = false;
 		return;
@@ -912,7 +916,7 @@ void ParseBotChat(char* text, edict_t* attacker)
 	*pbuf = 0;
 
 	strncpy(text, buf, 150);
-		text[150] = 0; // in case it's 150
+	text[150] = 0; // in case it's 150
 }
 
 float infrontdegree(edict_t* self, edict_t* other);
@@ -937,7 +941,7 @@ void AI_Think(edict_t* self)
 	edict_t* teammatedodge = NULL;
 	float dist;
 
-	if (!self->ai)	//jabot092(2)
+	if (NULL == self->ai)	//jabot092(2)  /* MetalGod prefer like this */
 		return;
 
 	if (self->ai->chatdelay)

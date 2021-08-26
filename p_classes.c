@@ -26,7 +26,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "g_local.h"
-#include "p_classes.h"
+/* #include "p_classes.h" MetalGod  unused! */
 
 // g_classes.c
 // D-Day: Normandy Player Classes
@@ -62,11 +62,11 @@ void Load_Weapon(edict_t* ent, gitem_t* item)
 			ent->client->mags[1].hmg_rnd = ammo_item->quantity;
 		else if (item->position == LOC_ROCKET)
 			ent->client->mags[1].antitank_rnd = ammo_item->quantity;
-		else if ((item->position == LOC_RIFLE))
+		else if (item->position == LOC_RIFLE)						/* MetalGod eliminated extra parentheses */
 			ent->client->mags[1].rifle_rnd = ammo_item->quantity;
-		else if ((item->position == LOC_SNIPER))
+		else if (item->position == LOC_SNIPER)						/* MetalGod eliminated extra parentheses */
 			ent->client->mags[1].sniper_rnd = ammo_item->quantity;
-		else if ((item->position == LOC_SHOTGUN))
+		else if (item->position == LOC_SHOTGUN)						/* MetalGod eliminated extra parentheses */
 			ent->client->mags[1].shotgun_rnd = ammo_item->quantity;
 		else if (item->position == LOC_SUBMACHINEGUN2)
 			ent->client->mags[1].submg2_rnd = ammo_item->quantity;

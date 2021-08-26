@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/game.h,v $
  *   $Revision: 1.5 $
@@ -238,5 +238,5 @@ typedef struct
 } game_export_t;
 
 #ifndef USER_EXCLUDE_FUNCTIONS
-game_export_t* GetGameApi(game_import_t* import);
+game_export_t* GetGameAPI(game_import_t* import); /* MetalGod Corrected to GetGameAPI */
 #endif

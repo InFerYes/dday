@@ -805,11 +805,12 @@ extern	gitem_t	itemlist[];
 #ifndef USER_EXCLUDE_FUNCTIONS
 
 byte		is_silenced;
-
+/*	MetalGod Function Prototypes for functions that no longer exists.
 void Feed_Ammo(edict_t* ent);
 void Fire_Arty(edict_t* battary, edict_t* ent);
 void Cmd_Artillery_f(edict_t* ent);
 void Cmd_Airstrike_f(edict_t* ent);
+*/
 //
 // g_cmds.c
 //
@@ -837,9 +838,10 @@ void Think_Weapon(edict_t* ent);
 
 // CCH: new prototype for function called when airstrike arrives
 
+/*	MetalGod Function Prototype for a function that no longer exists.
 void Think_Airstrike(edict_t* ent);
-
-// KMM: prototype for artillery
+ */
+ // KMM: prototype for artillery
 
 void Think_Arty(edict_t* ent);
 
@@ -852,8 +854,9 @@ int PowerArmorType(edict_t* ent);
 gitem_t* GetItemByIndex(int index);
 qboolean Add_Ammo(edict_t* ent, gitem_t* item, int count);
 
+/*	MetalGod Function Prototype for a function that no longer exists.
 qboolean Add_Class_Ammo(gclient_t* client, gitem_t* item, int count);
-
+*/
 void Touch_Item(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* surf);
 
 //
@@ -1011,7 +1014,9 @@ void fire_tnt(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int speed,
 void fire_rocket(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, float damage_radius, int radius_damage);
 
 void fire_shell(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, float damage_radius, int radius_damage);
+/*	MetalGod Function Prototype for a function that no longer exists.
 void fire_rifle(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick, int hspread, int vspread, int mod, qboolean calcv);
+*/
 //void fire_bfg (edict_t *self, vec3_t start, vec3_t dir, int damage, int speed, float damage_radius);
 
 //
@@ -2074,7 +2079,8 @@ void SelectSpawnPoint(edict_t* ent, vec3_t origin, vec3_t angles);
 void ShowServerImg(edict_t* ent);
 void M_ChooseMOS(edict_t* ent);
 void AI_PickLongRangeGoal(edict_t* self);
-void AI_ResetWeights(edict_t* ent);
+/* MetalGod Function Prototype for a function that no longer exists.
+void AI_ResetWeights(edict_t* ent); */
 void AI_ResetNavigation(edict_t* ent);
 void Write_Player_Stats(edict_t* ent);
 void SetPlayerRating(edict_t* ent);

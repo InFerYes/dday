@@ -2645,7 +2645,7 @@ void ClientUserinfoChanged(edict_t* ent, char* userinfo)
 
 	playernum = ent - g_edicts - 1;
 
-	/*if (ent) MetalGod redundant */
+	if (ent)
 	{
 		char skin[64];
 
@@ -2730,11 +2730,10 @@ void ClientUserinfoChanged(edict_t* ent, char* userinfo)
 	}
 
 	// combine name and skin into a configstring
-	/* MetalGod not sure this was every called
 	else
-		gi.configstring(CS_PLAYERSKINS + playernum, va("%s\\%s", ent->client->pers.netname, s)); */
+		gi.configstring(CS_PLAYERSKINS + playernum, va("%s\\%s", ent->client->pers.netname, s));
 
-		// handedness
+	// handedness
 	s = Info_ValueForKey(userinfo, "hand");
 
 	if (strlen(s))

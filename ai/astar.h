@@ -15,9 +15,10 @@ typedef struct astarpath_s
 //===========================================
 int	AStar_nodeIsInClosed(int node);
 int	AStar_nodeIsInOpen(int node);
-/* MetalGod  Orphaned prototype
+/* MetalGod  Function Prototype for a function that no longer exists.
 int	AStar_nodeIsInPath(int node);
-*/
+Unneeded prototype
 static int	AStar_ResolvePath(int origin, int goal, int movetypes);
+*/
 //===========================================
 int AStar_GetPath(int origin, int goal, int movetypes, struct astarpath_s* path);

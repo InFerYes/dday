@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/p_observer.c,v $
  *   $Revision: 1.20 $
@@ -26,7 +26,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "g_local.h"
-#include "p_menus.h"
+/* #include "p_menus.h"	MetalGod  removed from project as entire file was commented out */
 void Cmd_Objectives(edict_t* ent);
 void M_ChooseMOS(edict_t* ent);
 void Killed(edict_t* targ, edict_t* inflictor, edict_t* attacker, int damage, vec3_t point);
@@ -239,8 +239,8 @@ void Spawn_Chute_Special(edict_t* ent)
 	VectorCopy(ent->s.origin, start);
 	VectorSet(world_up, 0, 0, 1);
 	VectorMA(start, 8192, world_up, end);
-	
-	/* MetalGod reassigned before use below 
+
+	/* MetalGod reassigned before use below
 	tr = gi.trace(start, NULL, NULL, end, ent, MASK_SHOT | CONTENTS_SLIME | CONTENTS_LAVA);
 	*/
 	//	if ( tr.surface && !(tr.surface->flags & SURF_SKY))  //under a roof
@@ -911,11 +911,11 @@ void M_Team_Join(edict_t* ent, pmenu_t* p, int choice)
 		safe_bprintf(PRINT_HIGH, "%s has joined team %s.\n", ent->client->pers.netname, ent->client->resp.team_on->teamname);
 		ent->client->pers.afk_check_time = level.framenum;
 	}
-	
+
 	/* MetalGod maybe, but this is reassigned on the next line and has zero effect!
 	ent->client->resp.mos = NONE; // reset MOS
 	*/
-	
+
 	ent->client->resp.mos = INFANTRY;
 	ent->client->resp.changeteam = true;
 	ent->client->forcespawn = level.time + .5;//faf: fixes standing corpse bug

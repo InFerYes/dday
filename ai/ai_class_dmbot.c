@@ -28,8 +28,10 @@ void AI_MoveToCampSpot(edict_t* self, usercmd_t* ucmd);
 //==========================================
 // Some CTF stuff
 //==========================================
+/* MetalGod No CTF so no flags
 static gitem_t* redflag;
 static gitem_t* blueflag;
+*/
 
 //==========================================
 // BOT_DMclass_Move
@@ -37,12 +39,13 @@ static gitem_t* blueflag;
 //==========================================
 void BOT_DMclass_Move(edict_t* self, usercmd_t* ucmd)
 {
-	int current_node_flags = 0;
+	/* MetalGod  unused
+	int current_node_flags = 0;	 */
 	int next_node_flags = 0;
 	int	current_link_type = 0;
 	int i;
-
-	current_node_flags = nodes[self->ai->current_node].flags;
+	/* MetalGod  unused
+	current_node_flags = nodes[self->ai->current_node].flags; */
 	next_node_flags = nodes[self->ai->next_node].flags;
 	if (AI_PlinkExists(self->ai->current_node, self->ai->next_node))
 	{
@@ -485,7 +488,8 @@ qboolean BOT_DMclass_FindEnemy(edict_t* self)
 				self->goalentity = NULL;
 				self->enemy = NULL;
 				AI_PickLongRangeGoal(self);
-				AI_ResetWeights(self);
+				/* MetalGod Function no longer exists.
+				AI_ResetWeights(self); */
 				AI_ResetNavigation(self);
 
 				it = FindNextPickup(self, LOC_PISTOL);

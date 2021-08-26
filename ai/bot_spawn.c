@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (C) 1997-2001 Id Software, Inc.
 
 This program is free software; you can redistribute it and/or
@@ -155,8 +155,8 @@ void BOT_Respawn(edict_t* self)
 	self->client->ps.pmove.pm_time = 14;
 
 	self->client->respawn_time = level.time;
-
-	AI_ResetWeights(self);
+	/* MetalGod Husk of a function commented out
+	AI_ResetWeights(self); */
 	AI_ResetNavigation(self);
 
 	change_stance(self, STANCE_STAND);
@@ -723,7 +723,8 @@ void BOT_SpawnBot(int team, char* name, char* skin, char* userinfo)
 		bot->ai->pers.skillLevel = 0;
 
 	BOT_DMclass_InitPersistant(bot);
-	AI_ResetWeights(bot);
+	/* MetalGod Husk of a function commented out
+	AI_ResetWeights(bot); */
 	AI_ResetNavigation(bot);
 
 	bot->client->resp.team_on = team_list[team];

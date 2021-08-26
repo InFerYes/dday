@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/p_observer.h,v $
  *   $Revision: 1.5 $
@@ -24,11 +24,12 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
-
-void ChooseMOS(edict_t* ent, qboolean smos);
+/* MetalGod  Function Prototype for a function that no longer exists.
+void ChooseMOS(edict_t* ent, qboolean smos);   */
 void ChooseTeam(edict_t* ent);
 void SyncUserInfo(edict_t* ent, qboolean pers);
-void ClearShow(edict_t* ent);
+/* MetalGod  Function Prototype for a function that no longer exists.
+void ClearShow(edict_t* ent);	*/
 
 void stuffcmd(edict_t* ent, char* s);
 void DoEndOM(edict_t* ent);
@@ -44,7 +45,8 @@ void M_View_Credits_Vipersoft(edict_t* ent, pmenu_t* p, int choice);
 void M_View_Credits_GBR(edict_t* ent, pmenu_t* p, int choice);
 void M_View_Credits_ITA(edict_t* ent, pmenu_t* p, int choice);
 void M_View_Credits_JPN(edict_t* ent, pmenu_t* p, int choice);
-void M_View_Credits_etc(edict_t* ent, pmenu_t* p, int choice);
+/* MetalGod  Function Prototype for a function that no longer exists.
+void M_View_Credits_etc(edict_t* ent, pmenu_t* p, int choice);	*/
 void M_Class_Choose(edict_t* ent, pmenu_t* p, int choice);
 void Cmd_FlyingNunMode_f(edict_t* ent);
 void Cmd_DDHelp_f(edict_t* ent);

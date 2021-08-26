@@ -55,6 +55,12 @@ int Last_Team_Winner = 99;
 void trigger_enough_troops_use(edict_t* self, edict_t* other, edict_t* activator)
 {
 	int i;
+	/* MetalGod sanity check */
+	if (!self || !activator)
+	{
+		return;
+	}
+	/* MetalGod End */
 
 	gi.dprintf("trigger_enough_troops_use called\n");
 

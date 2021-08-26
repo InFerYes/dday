@@ -31,7 +31,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "m_player.h"
 
 /*-----/ PM /-----/ NEW:  Include new header files. /-----*/
-#include "x_fbomb.h"
+/* #include "x_fbomb.h" MetalGod no prototypes from this file used, so it has been removed from the source */
 #include "x_fire.h"
 /*--------------------------------------------------------*/
 
@@ -720,8 +720,7 @@ void Drop_Weapon(edict_t* ent, gitem_t* item)
 	index = ITEM_INDEX(item);
 
 	// pbowens: fix in not drop weapon/while prone
-	if (!item ||
-		((item == ent->client->newweapon)) && (ent->client->pers.inventory[index] == 1))// && (ent->stanceflags != STANCE_STAND))
+	if (!item || (item == ent->client->newweapon && ent->client->pers.inventory[index] == 1))// && (ent->stanceflags != STANCE_STAND))
 	{
 		//safe_cprintf (ent, PRINT_HIGH, "Can't drop current weapon\n");
 		return;
@@ -2179,7 +2178,8 @@ void Weapon_Morphine_Use(edict_t* ent)
 				ent->goalentity = NULL;
 				ent->enemy = NULL;
 				AI_PickLongRangeGoal(ent);
-				AI_ResetWeights(ent);
+				/* MetalGod Function Prototype for a function that no longer exists.
+				AI_ResetWeights(ent); */
 				AI_ResetNavigation(ent);
 			}
 		}
@@ -2217,7 +2217,8 @@ void Weapon_Morphine_Use(edict_t* ent)
 					ent->movetarget = NULL;
 					ent->goalentity = NULL;
 					ent->enemy = NULL;
-					AI_ResetWeights(ent);
+					/* MetalGod Function Prototype for a function that no longer exists.
+					AI_ResetWeights(ent);  */
 					AI_ResetNavigation(ent);
 					AI_PickLongRangeGoal(ent);
 				}

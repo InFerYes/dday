@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/x_fire.h,v $
  *   $Revision: 1.5 $
@@ -108,7 +108,8 @@ void     PBM_BecomeSmallExplosion(edict_t* self);
 void     PBM_KillAllFires(void);
 qboolean PBM_InWater(edict_t* ent);
 qboolean PBM_Inflammable(edict_t* ent);
-qboolean PBM_ActivePowerArmor(edict_t* ent, vec3_t point);
+/* MetalGod  Function Prototype for a function that no longer exists.
+qboolean PBM_ActivePowerArmor(edict_t* ent, vec3_t point);	*/
 qboolean PBM_FireResistant(edict_t* ent, vec3_t point);
 void     PBM_BurnDamage
 (edict_t* victim, edict_t* fire, vec3_t point, vec3_t damage, int dflags,

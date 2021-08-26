@@ -93,14 +93,17 @@ void		BOT_Respawn(edict_t* ent);
 //----------------------------------------------------------
 void		AI_Think(edict_t* self); /* MetalGod fixed prototype */
 void		AI_PickLongRangeGoal(edict_t* ent);
-void		AI_Frame(edict_t* self, usercmd_t* ucmd);
+/* MetalGod Function Prototype for a function that no longer exists.
+void		AI_Frame(edict_t* self, usercmd_t* ucmd); */
 void		AI_SetUpMoveWander(edict_t* ent);
 void		AI_ResetNavigation(edict_t* ent);
-void		AI_ResetWeights(edict_t* ent);
+/* MetalGod Function Prototype for a function that no longer exists.
+void		AI_ResetWeights(edict_t* ent);	 */
 
 // ai_items.c
 //----------------------------------------------------------
-float		AI_ItemWeight(edict_t* ent, edict_t* item);
+/* MetalGod Function Prototype for a function that no longer exists.
+float		AI_ItemWeight(edict_t* ent, edict_t* item);	*/
 qboolean	AI_ItemIsReachable(edict_t* self, vec3_t goal);
 
 // ai_movement.c
@@ -154,12 +157,14 @@ int			AI_GravityBoxToLink(int n1, int n2);
 //----------------------------------------------------------
 qboolean	AI_CanPick_Ammo(edict_t* ent, gitem_t* item);
 qboolean	AI_CanUseArmor(gitem_t* item, edict_t* other);
-void		AI_BotRoamFinishTimeouts(edict_t* self);
+/* MetalGod Function Prototype for a function that no longer exists.
+void	AI_BotRoamFinishTimeouts(edict_t* self);	*/
 
 //bot_classes
 //----------------------------------------------------------
 void		BOT_DMclass_InitPersistant(edict_t* self);
-qboolean	BOT_ChangeWeapon(edict_t* ent, gitem_t* item);
+/* MetalGod Function Prototype for a function that no longer exists.
+qboolean	BOT_ChangeWeapon(edict_t* ent, gitem_t* item);	*/
 void		M_default_Spawn(void);
 
 //ai_weapons.c

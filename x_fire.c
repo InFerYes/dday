@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/x_fire.c,v $
  *   $Revision: 1.13 $
@@ -335,7 +335,7 @@ void PBM_BurnDamage
 	/* Check if entity will catch on fire. */
 	//	if ((rand() % 100) < chance)
 	if (fire->master != fire)/* ;	MetalGod  commented the semicolon at the end of this line since it's unlikely this was intentional */
-	PBM_Ignite(victim, fire->master, point);
+		PBM_Ignite(victim, fire->master, point);
 
 	/* Inflict some burn damage. */
 
