@@ -27,9 +27,6 @@
 # This nice line comes from the linux kernel makefile
 ARCH := $(shell uname -m | sed -e s/i.86/i386/ -e s/sun4u/sparc64/ -e s/arm.*/arm/ -e s/sa110/arm/ -e s/alpha/axp/)
 
-#ARCH=i386
-#ARCH=x86_64
-
 CC=gcc
 BASE_CFLAGS = -Dstricmp=strcasecmp -fcommon
 
@@ -106,7 +103,7 @@ GAME_OBJS =	\
 	p_weapon.o \
 	q_shared.o \
 	u_entmgr.o \
-	#x_fbomb.o
+	#x_fbomb.o \
 	x_fire.o \
 	usa/usa_item.o  usa/usa_spawn.o usa/usa_guninfo.o usa/usa_weapon.o usa/usa_main.o \
 	grm/grm_item.o  grm/grm_spawn.o grm/grm_guninfo.o grm/grm_weapon.o grm/grm_main.o \
@@ -119,7 +116,7 @@ GAME_OBJS =	\
 	ai/bot_common.o ai/bot_spawn.o ai/ai_weapons.o ai/ai_tools.o \
 	ai/ai_nodes.o ai/ai_navigation.o ai/ai_movement.o ai/ai_links.o  \
 	ai/ai_items.o ai/ai_dropnodes.o ai/ai_class_dmbot.o \
-	#ai/ai_class_monster_default.o  MetalGod unused and removed from project
+	#ai/ai_class_monster_default.o  MetalGod unused and removed from project \
 	ai/astar.o ai/ai_main.o
 
 game$(ARCH).real.$(SHLIBEXT) : $(GAME_OBJS)
@@ -227,7 +224,7 @@ p_view.o: p_view.c g_local.h g_defines.h q_shared.h game.h p_menu.h \
  g_maps.h m_player.h
 p_weapon.o: p_weapon.c g_local.h g_defines.h q_shared.h game.h \
  p_menu.h g_maps.h m_player.h  x_fire.h #x_fbomb.h
-q_shared.o: q_shared.c q_shared.h \
+q_shared.o: q_shared.c q_shared.h
 u_entmgr.o: u_entmgr.c g_local.h g_defines.h q_shared.h game.h \
  p_menu.h g_maps.h
 #x_fbomb.o: x_fbomb.c g_local.h g_defines.h q_shared.h game.h p_menu.h \
