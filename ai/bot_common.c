@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (C) 1997-2001 Id Software, Inc.
 
 This program is free software; you can redistribute it and/or
@@ -184,22 +184,26 @@ void AI_BotObituary (edict_t *self, edict_t *inflictor, edict_t *attacker)
 // Debug print, could add a "logging" feature to print to a file
 ///////////////////////////////////////////////////////////////////////
 
-/* MetalGod would we be better have not pounding the stack and moving data to the heap by using gi.Tag.malloc/gi.Tagfree? */
-static char	bigbuffer[0x8000];
+/* MetalGod give each print function it's own buffer and use vsnprintf */
+
+static char DebPrintBuff[0x8000]; /*  MetalGod move this here and reduce the size */
 void debug_printf(char* fmt, ...)
 {
 	int     i;
-	
+	/*  MetalGod unused!
+	char	bigbuffer[0x10000];
 	int		len;
+	*/
 	va_list	argptr;
 	edict_t* cl_ent;
 
 	va_start(argptr, fmt);
-	len = vsprintf(bigbuffer, fmt, argptr);
+	/*len = vsprintf (bigbuffer,fmt,argptr); MetalGod use vsnprintf */
+	vsnprintf(DebPrintBuff, sizeof(DebPrintBuff), fmt, argptr);
 	va_end(argptr);
 
 	if (dedicated->value)
-		gi.cprintf(NULL, PRINT_MEDIUM, bigbuffer);
+		gi.cprintf(NULL, PRINT_MEDIUM, DebPrintBuff);
 
 	for (i = 0; i < maxclients->value; i++)
 	{
@@ -207,66 +211,79 @@ void debug_printf(char* fmt, ...)
 		if (!cl_ent->inuse || cl_ent->ai)
 			continue;
 
-		gi.cprintf(cl_ent, PRINT_MEDIUM, bigbuffer);
+		gi.cprintf(cl_ent, PRINT_MEDIUM, DebPrintBuff);
 	}
 }
 
 ///////////////////////////////////////////////////////////////////////
 // botsafe cprintf
 ///////////////////////////////////////////////////////////////////////
+static char CPrintBuff[0x8000]; /*  MetalGod move this here and reduce the size */
 void safe_cprintf(edict_t* ent, int printlevel, char* fmt, ...)
 {
-	//char	bigbuffer[0x10000];
 	va_list		argptr;
-	int len;
+	/*  MetalGod unused!
+	char	bigbuffer[0x10000];
+	int		len;
+	*/
 
 	if (ent && (!ent->inuse || ent->ai))
 		return;
 
 	va_start(argptr, fmt);
-	len = vsprintf(bigbuffer, fmt, argptr);
+	/*len = vsprintf (bigbuffer,fmt,argptr); MetalGod use vsnprintf */
+	vsnprintf(CPrintBuff, sizeof(CPrintBuff), fmt, argptr);
 	va_end(argptr);
 
-	gi.cprintf(ent, printlevel, bigbuffer);
+	gi.cprintf(ent, printlevel, CPrintBuff);
 }
 
 
 ///////////////////////////////////////////////////////////////////////
 // botsafe centerprintf
 ///////////////////////////////////////////////////////////////////////
+static char CenPrintBuff[0x8000]; /*  MetalGod move this here and reduce the size */
 void safe_centerprintf(edict_t* ent, char* fmt, ...)
 {
-	
+
 	va_list		argptr;
-	int len;
+	/*  MetalGod unused!
+	char	bigbuffer[0x10000];
+	int		len;
+	*/
 
 	if (!ent->inuse || ent->ai)
 		return;
 
 	va_start(argptr, fmt);
-	len = vsprintf(bigbuffer, fmt, argptr);
+	/*len = vsprintf (bigbuffer,fmt,argptr); MetalGod use vsnprintf */
+	vsnprintf(CenPrintBuff, sizeof(CenPrintBuff), fmt, argptr);
 	va_end(argptr);
 
-	gi.centerprintf(ent, bigbuffer);
+	gi.centerprintf(ent, CenPrintBuff);
 }
 
 ///////////////////////////////////////////////////////////////////////
 // botsafe bprintf
 ///////////////////////////////////////////////////////////////////////
+static char BPrintBuff[0x8000]; /*  MetalGod move this here and reduce the size */
 void safe_bprintf(int printlevel, char* fmt, ...)
 {
 	int i;
-	//char	bigbuffer[0x10000];
+	/*  MetalGod unused!
+	char	bigbuffer[0x10000];
 	int		len;
+	*/
 	va_list		argptr;
 	edict_t* cl_ent;
 
 	va_start(argptr, fmt);
-	len = vsprintf(bigbuffer, fmt, argptr);
+	/*len = vsprintf (bigbuffer,fmt,argptr); MetalGod use vsnprintf */
+	vsnprintf(BPrintBuff, sizeof(BPrintBuff), fmt, argptr);
 	va_end(argptr);
 
 	if (dedicated->value)
-		gi.cprintf(NULL, printlevel, bigbuffer);
+		gi.cprintf(NULL, printlevel, BPrintBuff);
 
 	for (i = 0; i < maxclients->value; i++)
 	{
@@ -274,7 +291,7 @@ void safe_bprintf(int printlevel, char* fmt, ...)
 		if (!cl_ent->inuse || cl_ent->ai)
 			continue;
 
-		gi.cprintf(cl_ent, printlevel, bigbuffer);
+		gi.cprintf(cl_ent, printlevel, BPrintBuff);
 	}
 }
 

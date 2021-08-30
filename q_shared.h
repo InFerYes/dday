@@ -93,10 +93,18 @@ TODO: Replace all calls to this function with something that doesn't hide reserv
 
 typedef unsigned char 		byte;
 typedef enum { false, true }      qboolean;
+#ifdef _WIN32
+#ifndef __func__	// C++11 mandated identifier
+#define __func__ __FUNCTION__ // else use the ANSI C (C9x)
+#endif
+#endif
 
 #ifndef NULL
 #define NULL ((void *)0)
 #endif
+
+size_t Q_strncpyz(char* dst, size_t dstSize, const char* src);
+size_t Q_strncatz(char* dst, size_t dstSize, const char* src);
 
 // angle indexes
 #define	PITCH				0		// up / down
@@ -261,7 +269,7 @@ void Com_PageInMemory(byte* buffer, int size);
 //=============================================
 
 // portable case insensitive compare
-int Q_stricmp(char* s1, char* s2);
+int Q_stricmp(const char* s1, const char* s2); /* MetalGod Const*/
 int Q_strcasecmp(char* s1, char* s2);
 int Q_strncasecmp(char* s1, char* s2, int n);
 
