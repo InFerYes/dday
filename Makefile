@@ -103,7 +103,6 @@ GAME_OBJS =	\
 	p_weapon.o \
 	q_shared.o \
 	u_entmgr.o \
-	#x_fbomb.o \
 	x_fire.o \
 	usa/usa_item.o  usa/usa_spawn.o usa/usa_guninfo.o usa/usa_weapon.o usa/usa_main.o \
 	grm/grm_item.o  grm/grm_spawn.o grm/grm_guninfo.o grm/grm_weapon.o grm/grm_main.o \
@@ -116,8 +115,7 @@ GAME_OBJS =	\
 	ai/bot_common.o ai/bot_spawn.o ai/ai_weapons.o ai/ai_tools.o \
 	ai/ai_nodes.o ai/ai_navigation.o ai/ai_movement.o ai/ai_links.o  \
 	ai/ai_items.o ai/ai_dropnodes.o ai/ai_class_dmbot.o \
-	#ai/ai_class_monster_default.o  MetalGod unused and removed from project \
-	ai/astar.o ai/ai_main.o
+
 
 game$(ARCH).real.$(SHLIBEXT) : $(GAME_OBJS)
 	$(MAKE) gbr$(ARCH).$(SHLIBEXT) -C gbr -f ../Makefile.country COUNTRY_CODE=gbr
@@ -161,12 +159,8 @@ g_cmds.o: g_cmds.c g_local.h g_defines.h q_shared.h game.h p_menu.h \
  g_maps.h m_player.h g_cmds.h
 g_combat.o: g_combat.c g_local.h g_defines.h q_shared.h game.h \
  p_menu.h g_maps.h
-g_dll.linux.o: g_dll.linux.c g_local.h g_defines.h q_shared.h game.h p_menu.h \
- g_maps.h u_findfunc.h
 g_ents.o: g_ents.c g_local.h g_defines.h q_shared.h game.h p_menu.h \
  g_maps.h
-g_feeder.o: g_feeder.c g_local.h g_defines.h q_shared.h game.h \
- p_menu.h g_maps.h
 g_func.o: g_func.c g_local.h g_defines.h q_shared.h game.h p_menu.h \
  g_maps.h
 g_items.o: g_items.c g_local.h g_defines.h q_shared.h game.h p_menu.h \
@@ -207,7 +201,7 @@ m_insane.o: m_insane.c g_local.h g_defines.h q_shared.h game.h \
 m_move.o: m_move.c g_local.h g_defines.h q_shared.h game.h p_menu.h \
  g_maps.h
 p_classes.o: p_classes.c g_local.h g_defines.h q_shared.h game.h \
- p_menu.h g_maps.h # MetalGod unused! p_classes.h
+ p_menu.h g_maps.h
 p_client.o: p_client.c g_local.h g_defines.h q_shared.h game.h \
  p_menu.h g_maps.h m_player.h g_cmds.h x_fire.h
 p_generic_wep.o: p_generic_wep.c g_local.h g_defines.h q_shared.h \
@@ -223,13 +217,10 @@ p_trail.o: p_trail.c g_local.h g_defines.h q_shared.h game.h p_menu.h \
 p_view.o: p_view.c g_local.h g_defines.h q_shared.h game.h p_menu.h \
  g_maps.h m_player.h
 p_weapon.o: p_weapon.c g_local.h g_defines.h q_shared.h game.h \
- p_menu.h g_maps.h m_player.h  x_fire.h #x_fbomb.h
+ p_menu.h g_maps.h m_player.h x_fire.h
 q_shared.o: q_shared.c q_shared.h
 u_entmgr.o: u_entmgr.c g_local.h g_defines.h q_shared.h game.h \
  p_menu.h g_maps.h
-#x_fbomb.o: x_fbomb.c g_local.h g_defines.h q_shared.h game.h p_menu.h \
- g_maps.h x_fbomb.h x_fire.h
 x_fire.o: x_fire.c g_local.h g_defines.h q_shared.h game.h p_menu.h \
  g_maps.h x_fire.h
-astar.o: astar.c ai_items.c ai_items.c ai_navigation.c bot_common.c ai_class_dmbot.c ai_links.c ai_nodes.c bot_spawn.c ai_main.c ai_tools.c ai_dropnodes.c ai_movement.c ai_weapons.c #ai_class_monster_default.c
-
+astar.o: astar.c ai_items.c ai_items.c ai_navigation.c bot_common.c ai_class_dmbot.c ai_links.c ai_nodes.c bot_spawn.c ai_main.c ai_tools.c ai_dropnodes.c ai_movement.c ai_weapons.c
