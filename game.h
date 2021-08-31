@@ -238,5 +238,5 @@ typedef struct
 } game_export_t;
 
 #ifndef USER_EXCLUDE_FUNCTIONS
-game_export_t* GetGameApi(game_import_t* import); /* MetalGod Corrected to GetGameAPI */
+game_export_t* GetGameAPI(game_import_t* import); /* MetalGod Corrected to GetGameAPI */
 #endif
