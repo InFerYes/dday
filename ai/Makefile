@@ -89,8 +89,8 @@ depend:
 	gcc -MM $(GAME_OBJS:.o=.c)
 
 
-#MetalGod this is Duplicated below
-#bot_common.o: bot_common.c ../g_local.h ../g_defines.h ../q_shared.h \
+
+bot_common.o: bot_common.c ../g_local.h ../g_defines.h ../q_shared.h \
   ../game.h ../ai/ai.h ../ai/astar.h ../p_menu.h ../g_maps.h \
   ../p_observer.h ai_local.h ai_nodes_local.h ai_nodes_shared.h \
   ai_weapons.h
