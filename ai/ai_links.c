@@ -70,33 +70,45 @@ char* AI_LinkString(int linktype)
 	{
 	case LINK_MOVE:
 		s = "LINK_MOVE";
+		break;
 	case LINK_STAIRS:
 		s = "LINK_STAIRS";
+		break;
 	case LINK_FALL:
 		s = "LINK_FALL";
+		break;
 	case LINK_CLIMB:
 		s = "LINK_CLIMB";
+		break;
 	case LINK_TELEPORT:
 		s = "LINK_TELEPORT";
+		break;
 	case LINK_PLATFORM:
 		s = "LINK_PLATFORM";
+		break;
 	case LINK_JUMPPAD:
 		s = "LINK_JUMPAD";
+		break;
 	case LINK_WATER:
 		s = "LINK_WATER";
+		break;
 	case LINK_WATERJUMP:
 		s = "LINK_WATERJUMP";
+		break;
 	case LINK_LADDER:
 		s = "LINK_LADDER";
+		break;
 	case LINK_JUMP:
 		s = "LINK_JUMP";
+		break;
 	case LINK_INVALID:
 	{
 		gi.positioned_sound(vec3_origin, g_edicts, CHAN_AUTO, gi.soundindex("misc/talk1.wav"), 1, ATTN_NONE, 0);
 		s = "LINK_INVALID";
-	}
+	}break;
 	default:
 		s = "UNKNOWN";
+		break;
 	}  /* MetalGod END*/
 
 

@@ -1311,7 +1311,7 @@ Draw help computer.
 */
 void ShowCampaign(edict_t* ent)
 {
-	char	string[1024];
+	char	string[1024], dest[1024];
 	int i, curx = 0, cury = 0;
 
 	//JABot[start]
@@ -1335,30 +1335,32 @@ void ShowCampaign(edict_t* ent)
 	// send the layout
 	Com_sprintf(string, sizeof(string), "");
 	//	sprintf (string, "%sxv -16 yv 10 picn %s ", string, campaign->string);
-	sprintf(string, "%sxv 7 yv 7 picn %s ", string, level.campaign);
+	sprintf(dest, "%sxv 7 yv 7 picn %s ", string, level.campaign);
 
 	if (curx && cury)
-		sprintf(string, "%sxv %i yv %i picn o ", string, curx, cury);
+		sprintf(dest, "%sxv %i yv %i picn o ", string, curx, cury);
 
 	for (i = 0; campaign_spots[i].bspname; i++)
 	{
-		sprintf(string, "%sxv %i yv %i picn ", string, campaign_spots[i].xpos, campaign_spots[i].ypos);
+		sprintf(dest, "%sxv %i yv %i picn ", string, campaign_spots[i].xpos, campaign_spots[i].ypos);
 
 		if (campaign_spots[i].owner == 0)
-			sprintf(string, "%su ", string);
+			sprintf(dest, "%su ", string);
 		else if (campaign_spots[i].owner == 1)
-			sprintf(string, "%sg ", string);
+			sprintf(dest, "%sg ", string);
 		else
 			strcat(string, "q ");
 	}
 
 	strcat(string, "xv 22 yv 36 picn u ");
 	strcat(string, "xv 37 yv 38 string \"");
-	sprintf(string, "%s%i", string, alliedplatoons);
+	/* sprintf(dest, "%s%i", string, alliedplatoons);  MetalGod */
+	strcat(string, va("%i", alliedplatoons));
 	strcat(string, "\" ");
 	strcat(string, "xv 22 yv 56 picn g ");
 	strcat(string, "xv 37 yv 58 string \"");
-	sprintf(string, "%s%i", string, axisplatoons);
+	/* sprintf(dest, "%s%i", string, axisplatoons);	 MetalGod */
+	strcat(string, va("%i", axisplatoons));
 	strcat(string, "\" ");
 
 	gi.WriteByte(svc_layout);
@@ -1370,7 +1372,7 @@ void ShowCampaign(edict_t* ent)
 
 void ShowServerImg(edict_t* ent)
 {
-	char	string[1024];
+	char	string[1024], dest[1024];
 
 	//JABot[start]
 	if (ent->ai || !ent->inuse)
@@ -1383,10 +1385,10 @@ void ShowServerImg(edict_t* ent)
 	// send the layout
 	Com_sprintf(string, sizeof(string), "");
 	//	sprintf (string, "%sxv -16 yv 10 picn %s ", string, campaign->string);
-	sprintf(string, "%sxv 7 yv 7 picn %s ", string, serverimg->string);
+	sprintf(dest, "%sxv 7 yv 7 picn %s ", string, serverimg->string);
 
 	gi.WriteByte(svc_layout);
-	gi.WriteString(string);
+	gi.WriteString(dest);
 	gi.unicast(ent, true);
 }
 

@@ -1547,7 +1547,7 @@ edict_t* SelectRandomDeathmatchSpawnPoint(void)
 	edict_t* spot, * spot1, * spot2;
 	int		count = 0;
 	int		selection;
-	float	range, range1, range2;
+	static float	range, range1, range2;	/* MetalGod to avoid Shadow declaration */
 
 	spot = NULL;
 	range1 = range2 = 99999;

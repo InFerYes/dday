@@ -597,7 +597,7 @@ void Weapon_Generic(edict_t* ent,
 				goto skip_anim;
 
 			ent->client->anim_priority = ANIM_ATTACK;
-			if (!(ent->client->pers.weapon && ent->client->pers.weapon->classnameb == WEAPON_FISTS))
+			if (ent->client->pers.weapon->classnameb != WEAPON_FISTS) /* MetalGod simplified */
 			{
 				if (ent->stanceflags == STANCE_DUCK)
 				{

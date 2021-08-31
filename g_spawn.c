@@ -771,7 +771,7 @@ char* ReadEntFile(char* filename)
 {
 	FILE* fp;
 	char* filestring = NULL;
-	long int	i = 0;
+	int	i;
 	int			ch;
 
 	for (;;)/* MetalGod shut up compiler */
