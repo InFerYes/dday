@@ -209,7 +209,7 @@ m_insane.o: m_insane.c g_local.h g_defines.h q_shared.h game.h \
 m_move.o: m_move.c g_local.h g_defines.h q_shared.h game.h p_menu.h \
  g_maps.h
 p_classes.o: p_classes.c g_local.h g_defines.h q_shared.h game.h \
- p_menu.h g_maps.h p_classes.h
+ p_menu.h g_maps.h
 p_client.o: p_client.c g_local.h g_defines.h q_shared.h game.h \
  p_menu.h g_maps.h m_player.h g_cmds.h x_fire.h
 p_generic_wep.o: p_generic_wep.c g_local.h g_defines.h q_shared.h \
@@ -229,8 +229,6 @@ p_weapon.o: p_weapon.c g_local.h g_defines.h q_shared.h game.h \
 q_shared.o: q_shared.c q_shared.h
 u_entmgr.o: u_entmgr.c g_local.h g_defines.h q_shared.h game.h \
  p_menu.h g_maps.h
-x_fbomb.o: x_fbomb.c g_local.h g_defines.h q_shared.h game.h p_menu.h \
- g_maps.h x_fbomb.h x_fire.h
 x_fire.o: x_fire.c g_local.h g_defines.h q_shared.h game.h p_menu.h \
  g_maps.h x_fire.h
 astar.o: astar.c ai_items.c ai_items.c ai_navigation.c bot_common.c ai_class_dmbot.c ai_links.c ai_nodes.c bot_spawn.c ai_class_monster_default.c ai_main.c ai_tools.c ai_dropnodes.c ai_movement.c ai_weapons.c
