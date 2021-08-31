@@ -67,7 +67,7 @@ build_release:
 
 GAME_OBJS = bot_common.o bot_spawn.o ai_weapons.o ai_tools.o ai_nodes.o \
  ai_navigation.o ai_movement.o ai_links.o ai_items.o ai_dropnodes.o \
- ai_class_dmbot.o astar.o ai_main.o
+ ai_class_dmbot.o ai_class_monster_default.o astar.o ai_main.o
 
 
 #ai_item.o ai_spawn.o ai_guninfo.o ai_weapon.o ai_main.o
@@ -89,7 +89,6 @@ depend:
 	gcc -MM $(GAME_OBJS:.o=.c)
 
 
-
 bot_common.o: bot_common.c ../g_local.h ../g_defines.h ../q_shared.h \
   ../game.h ../ai/ai.h ../ai/astar.h ../p_menu.h ../g_maps.h \
   ../p_observer.h ai_local.h ai_nodes_local.h ai_nodes_shared.h \
@@ -101,6 +100,10 @@ ai_class_dmbot.o: ai_class_dmbot.c ../g_local.h ../g_defines.h \
 astar.o: astar.h astar.c ../g_local.h ../g_defines.h ../q_shared.h ../game.h \
   ../ai/ai.h ../ai/astar.h ../p_menu.h ../g_maps.h ../p_observer.h \
   ai_local.h ai_nodes_local.h ai_nodes_shared.h ai_weapons.h
+ai_class_monster_default.o: ai_class_monster_default.c ../g_local.h \
+  ../g_defines.h ../q_shared.h ../game.h ../ai/ai.h ../ai/astar.h \
+  ../p_menu.h ../g_maps.h ../p_observer.h ai_local.h ai_nodes_local.h \
+  ai_nodes_shared.h ai_weapons.h
 ai_dropnodes.o: ai_dropnodes.c ../g_local.h ../g_defines.h ../q_shared.h \
   ../game.h ../ai/ai.h ../ai/astar.h ../p_menu.h ../g_maps.h \
   ../p_observer.h ai_local.h ai_nodes_local.h ai_nodes_shared.h \

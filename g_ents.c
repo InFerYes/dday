@@ -502,7 +502,7 @@ void LoadBotChat(int teamnum, char* teamid)
 void SP_info_team_start(edict_t* ent)
 {
 	int i, k;
-	char* temp_var; /* MetalGod to avoid caclulation in sizeof! */
+	char* temp_var; /* MetalGod to avoid calculation in sizeof! */
 	i = ent->obj_owner;
 
 	//mapper set fullbright to 1 in info_team_start
