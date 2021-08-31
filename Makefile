@@ -226,4 +226,4 @@ u_entmgr.o: u_entmgr.c g_local.h g_defines.h q_shared.h game.h \
  p_menu.h g_maps.h
 x_fire.o: x_fire.c g_local.h g_defines.h q_shared.h game.h p_menu.h \
  g_maps.h x_fire.h
-astar.o: astar.c ai_items.c ai_items.c ai_navigation.c bot_common.c ai_class_dmbot.c ai_links.c ai_nodes.c bot_spawn.c ai_main.c ai_tools.c ai_dropnodes.c ai_movement.c ai_weapons.c
+astar.o: astar.c ai_items.c ai_navigation.c bot_common.c ai_class_dmbot.c ai_links.c ai_nodes.c bot_spawn.c ai_main.c ai_tools.c ai_dropnodes.c ai_movement.c ai_weapons.c
