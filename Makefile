@@ -164,8 +164,6 @@ g_combat.o: g_combat.c g_local.h g_defines.h q_shared.h game.h \
  p_menu.h g_maps.h
 g_ents.o: g_ents.c g_local.h g_defines.h q_shared.h game.h p_menu.h \
  g_maps.h
-g_feeder.o: g_feeder.c g_local.h g_defines.h q_shared.h game.h \
- p_menu.h g_maps.h
 g_func.o: g_func.c g_local.h g_defines.h q_shared.h game.h p_menu.h \
  g_maps.h
 g_items.o: g_items.c g_local.h g_defines.h q_shared.h game.h p_menu.h \

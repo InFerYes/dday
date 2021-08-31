@@ -295,7 +295,7 @@ void InitGame(void)
 	gi.cvar("gamename", GAMEVERSION, CVAR_SERVERINFO | CVAR_LATCH);
 	gi.cvar("gamedate", __DATE__, CVAR_SERVERINFO | CVAR_LATCH);
 
-	gi.cvar("dll_version", "MetalGod's DDay .04b "__DATE__, CVAR_SERVERINFO | CVAR_LATCH); //faf //InFerNo_/*MetalGod*/
+	gi.cvar("dll_version", "Metal!nfy's DDay 5.99b "__DATE__, CVAR_SERVERINFO | CVAR_LATCH); //faf //InFerNo_/* MetalGod */
 
 	gi.cvar("website", "https://www.DdayDev.com", CVAR_SERVERINFO | CVAR_LATCH); //faf	 /* MetalGod changed  to https */
 
