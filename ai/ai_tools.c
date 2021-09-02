@@ -219,7 +219,7 @@ void SV_Remove_Node(edict_t* ent)
 	if (sv_cheats->value == 0)
 		return;
 
-	nearest_distance = 999999999.0F;/* MetalGod 9999999999 was excesive and overflows a float! Made explicit float */
+	nearest_distance = 9999999999.0F;/* MetalGod 9Made explicit float */
 	nearest = -1;
 	for (i = 1; i < MAX_NODES; i++)
 	{

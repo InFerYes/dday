@@ -70,7 +70,7 @@ void Set_Up_CampSpots_For_Ents(void)
 		allset = false;
 		for (tm = 0; tm < 2; tm++)
 		{
-			nearest_distance = 999999999.0F;/* MetalGod 99999999999 was excesive and overflows a float! Made explicit float */
+			nearest_distance = 99999999999.0F;/* MetalGod Made explicit float */
 			obj_camp = -1;
 			if (allset)
 				break;
@@ -300,7 +300,7 @@ int Closest_CMP_to_Ent(edict_t* self, edict_t* obj)
 	vec3_t distv;
 	int obj_camp = -1;
 
-	nearest_distance = 999999999.0F; /* MetalGod 99999999999 was excesive and overflows a float! Made explicit float */
+	nearest_distance = 99999999999.0F;/* MetalGod Made explicit float */
 	for (j = 0; j < total_camp_spots; j++)
 	{
 		if (!camp_spots[j].type)
@@ -519,7 +519,7 @@ void AI_PickLongRangeGoal(edict_t* self)
 	// select camping spot
 	if (!self->ai->objective)
 	{
-		nearest_distance = 999999999.0F; /* MetalGod 9999999999 was excesive and overflows a float! Made explicit float */
+		nearest_distance = 9999999999.0F; /* MetalGod Made explicit float */
 		randseed = (int)rand() % total_camp_spots;
 
 		//hacky stuff: if ai->camp_targ == -2, that means they want to find another camp spot,

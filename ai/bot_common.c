@@ -184,7 +184,7 @@ void AI_BotObituary (edict_t *self, edict_t *inflictor, edict_t *attacker)
 // Debug print, could add a "logging" feature to print to a file
 ///////////////////////////////////////////////////////////////////////
 
-/* MetalGod give each print function it's own buffer and use vsnprintf */
+/* MetalGod give each print function it's own buffer and use Q_vsnprintf */
 
 static char DebPrintBuff[0x8000]; /*  MetalGod move this here and reduce the size */
 void debug_printf(char* fmt, ...)
@@ -198,8 +198,8 @@ void debug_printf(char* fmt, ...)
 	edict_t* cl_ent;
 
 	va_start(argptr, fmt);
-	/*len = vsprintf (bigbuffer,fmt,argptr); MetalGod use vsnprintf */
-	vsnprintf(DebPrintBuff, sizeof(DebPrintBuff), fmt, argptr);
+	/*len = vsprintf (bigbuffer,fmt,argptr); MetalGod use Q_vsnprintf */
+	Q_vsnprintf(DebPrintBuff, sizeof(DebPrintBuff), fmt, argptr);
 	va_end(argptr);
 
 	if (dedicated->value)
@@ -231,8 +231,8 @@ void safe_cprintf(edict_t* ent, int printlevel, char* fmt, ...)
 		return;
 
 	va_start(argptr, fmt);
-	/*len = vsprintf (bigbuffer,fmt,argptr); MetalGod use vsnprintf */
-	vsnprintf(CPrintBuff, sizeof(CPrintBuff), fmt, argptr);
+	/*len = vsprintf (bigbuffer,fmt,argptr); MetalGod use Q_vsnprintf */
+	Q_vsnprintf(CPrintBuff, sizeof(CPrintBuff), fmt, argptr);
 	va_end(argptr);
 
 	gi.cprintf(ent, printlevel, CPrintBuff);
@@ -256,8 +256,8 @@ void safe_centerprintf(edict_t* ent, char* fmt, ...)
 		return;
 
 	va_start(argptr, fmt);
-	/*len = vsprintf (bigbuffer,fmt,argptr); MetalGod use vsnprintf */
-	vsnprintf(CenPrintBuff, sizeof(CenPrintBuff), fmt, argptr);
+	/*len = vsprintf (bigbuffer,fmt,argptr); MetalGod use Q_vsnprintf */
+	Q_vsnprintf(CenPrintBuff, sizeof(CenPrintBuff), fmt, argptr);
 	va_end(argptr);
 
 	gi.centerprintf(ent, CenPrintBuff);
@@ -278,8 +278,8 @@ void safe_bprintf(int printlevel, char* fmt, ...)
 	edict_t* cl_ent;
 
 	va_start(argptr, fmt);
-	/*len = vsprintf (bigbuffer,fmt,argptr); MetalGod use vsnprintf */
-	vsnprintf(BPrintBuff, sizeof(BPrintBuff), fmt, argptr);
+	/*len = vsprintf (bigbuffer,fmt,argptr); MetalGod use Q_vsnprintf */
+	Q_vsnprintf(BPrintBuff, sizeof(BPrintBuff), fmt, argptr);
 	va_end(argptr);
 
 	if (dedicated->value)

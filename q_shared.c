@@ -1039,9 +1039,8 @@ char* va(char* format, ...)
 	static char		string[1024];
 
 	va_start(argptr, format);
-	/* MetalGod use vsnprintf
-	vsprintf(string, format, argptr); */
-	vsnprintf(string, sizeof string, format, argptr);
+	//	vsprintf (string, format, argptr);
+	Q_vsnprintf(string, sizeof(string), format, argptr);	/* MetalGod added Knightmare's- buffer overflow fix	 */
 	va_end(argptr);
 
 	return string;
@@ -1245,6 +1244,7 @@ size_t Q_strncpyz(char* dst, size_t dstSize, const char* src)
 		return (s - src - 1);    // returned count excludes NULL terminator
 }
 
+
 size_t Q_strncatz(char* dst, size_t dstSize, const char* src)
 {
 	char* d = dst;
@@ -1283,14 +1283,14 @@ static char	bigbuffer[0x10000];  //QW// For Com_sprintf
  exceeds the size expected by the calling function.
  This way we can see if this was a bug or possibly
  malicious input.
-*/
+
 void Com_sprintf(char* dest, int size, char* fmt, ...)
 {
 	int		len;
 	va_list		argptr;
 
 	va_start(argptr, fmt);
-	len = vsnprintf(bigbuffer, sizeof bigbuffer, fmt, argptr);
+	len = Q_vsnprintf(bigbuffer, sizeof bigbuffer, fmt, argptr);
 	va_end(argptr);
 	if (len < size)
 		Q_strncpyz(dest, (size_t)size - 1, bigbuffer);
@@ -1299,6 +1299,23 @@ void Com_sprintf(char* dest, int size, char* fmt, ...)
 		Com_Printf("ERROR! %s: destination buffer overflow of len %i, size %i\n"
 			"Input was: %s\n", __func__, len, size, bigbuffer);
 	}
+}  */
+
+void Com_sprintf(char* dest, int size, char* fmt, ...)
+{
+	int		len;
+	va_list		argptr;
+
+	va_start(argptr, fmt);
+	//	len = vsprintf (bigbuffer, fmt, argptr);
+	len = Q_vsnprintf(bigbuffer, sizeof(bigbuffer), fmt, argptr);	// Knightmare- buffer overflow fix
+	va_end(argptr);
+	if (len < 0)
+		Com_Printf("Com_sprintf: overflow in temp buffer of size %i\n", sizeof(bigbuffer));
+	else if (len >= size)
+		Com_Printf("Com_sprintf: overflow of %i in %i\n", len, size);
+	strncpy(dest, bigbuffer, size - 1);
+	dest[size - 1] = 0;	// Knightmare- null terminate
 }
 
 /* MetalGod END */

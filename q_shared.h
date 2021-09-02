@@ -103,6 +103,28 @@ typedef enum { false, true }      qboolean;
 #define NULL ((void *)0)
 #endif
 
+// Knightmare added
+#ifndef min
+#define min(a,b)        (((a) < (b)) ? (a) : (b))
+#endif
+#ifndef max
+#define max(a,b)        (((a) > (b)) ? (a) : (b))
+#endif
+
+/* MetalGod from Quake3 source */
+#ifdef _MSC_VER	// _WIN32
+//#define Q_vsnprintf _vsnprintf
+__inline int Q_vsnprintf(char* Dest, size_t Count, const char* Format, va_list Args) {
+	int ret = _vsnprintf(Dest, Count, Format, Args);
+	Dest[Count - 1] = 0;	// null terminate
+	return ret;
+}
+#else
+// TODO: do we need Mac define?
+#define Q_vsnprintf vsnprintf
+#endif
+/* MetalGod END */
+
 size_t Q_strncpyz(char* dst, size_t dstSize, const char* src);
 size_t Q_strncatz(char* dst, size_t dstSize, const char* src);
 

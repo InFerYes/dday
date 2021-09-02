@@ -76,7 +76,7 @@ static void SP_FixCoopSpots(edict_t* self)
 		VectorSubtract(self->s.origin, spot->s.origin, d);
 		if (VectorLength(d) < 384)
 		{
-			if ((!self->targetname) || stricmp(self->targetname, spot->targetname) != 0)
+			if ((!self->targetname) || Q_stricmp(self->targetname, spot->targetname) != 0)
 			{
 				//				gi.dprintf("FixCoopSpots changed %s at %s targetname from %s to %s\n", self->classname, vtos(self->s.origin), self->targetname, spot->targetname);
 				self->targetname = spot->targetname;
@@ -94,7 +94,7 @@ static void SP_CreateCoopSpots(edict_t* self)
 {
 	edict_t* spot;
 
-	if (stricmp(level.mapname, "security") == 0)
+	if (Q_stricmp(level.mapname, "security") == 0)
 	{
 		spot = G_Spawn();
 		spot->classname = "info_player_coop";
@@ -178,7 +178,7 @@ void SP_info_player_start(edict_t* self)
 
 	if (!coop->value)
 		return;
-	if (stricmp(level.mapname, "security") == 0)
+	if (Q_stricmp(level.mapname, "security") == 0)
 	{
 		// invoke one of our gross, ugly, disgusting hacks
 		self->think = SP_CreateCoopSpots;
@@ -212,20 +212,20 @@ void SP_info_player_coop(edict_t* self)
 		return;
 	}
 
-	if ((stricmp(level.mapname, "jail2") == 0) ||
-		(stricmp(level.mapname, "jail4") == 0) ||
-		(stricmp(level.mapname, "mine1") == 0) ||
-		(stricmp(level.mapname, "mine2") == 0) ||
-		(stricmp(level.mapname, "mine3") == 0) ||
-		(stricmp(level.mapname, "mine4") == 0) ||
-		(stricmp(level.mapname, "lab") == 0) ||
-		(stricmp(level.mapname, "boss1") == 0) ||
-		(stricmp(level.mapname, "fact3") == 0) ||
-		(stricmp(level.mapname, "biggun") == 0) ||
-		(stricmp(level.mapname, "space") == 0) ||
-		(stricmp(level.mapname, "command") == 0) ||
-		(stricmp(level.mapname, "power2") == 0) ||
-		(stricmp(level.mapname, "strike") == 0))
+	if ((Q_stricmp(level.mapname, "jail2") == 0) ||
+		(Q_stricmp(level.mapname, "jail4") == 0) ||
+		(Q_stricmp(level.mapname, "mine1") == 0) ||
+		(Q_stricmp(level.mapname, "mine2") == 0) ||
+		(Q_stricmp(level.mapname, "mine3") == 0) ||
+		(Q_stricmp(level.mapname, "mine4") == 0) ||
+		(Q_stricmp(level.mapname, "lab") == 0) ||
+		(Q_stricmp(level.mapname, "boss1") == 0) ||
+		(Q_stricmp(level.mapname, "fact3") == 0) ||
+		(Q_stricmp(level.mapname, "biggun") == 0) ||
+		(Q_stricmp(level.mapname, "space") == 0) ||
+		(Q_stricmp(level.mapname, "command") == 0) ||
+		(Q_stricmp(level.mapname, "power2") == 0) ||
+		(Q_stricmp(level.mapname, "strike") == 0))
 	{
 		// invoke one of our gross, ugly, disgusting hacks
 		self->think = SP_FixCoopSpots;
@@ -2453,6 +2453,9 @@ void PutClientInServer(edict_t* ent)
 	ent->client->last_fire_time = 0;
 
 	stuffcmd(ent, "crosshair 0;");
+	/* MetalGod - added Paril's fix for this getting reset after map changes  */
+	if (!ent->client->pers.connected)
+		ent->client->pers.connected = true;
 }
 
 /*
@@ -4020,7 +4023,7 @@ if (client->grenade) // disable the grenade from triggering self, but still leav
 */
 
 //END DDAY
-}
+	}
 
 edict_t* Nearest_Player(edict_t* ent)
 {
