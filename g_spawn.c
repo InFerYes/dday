@@ -869,7 +869,7 @@ void LoadCampFile(void)
 	vec3_t	loc = { 0 };
 
 	if (level.botfiles)
-		sprintf(cmpfilename	, "dday/navigation/%s.cmp", level.botfiles);
+		sprintf(cmpfilename, "dday/navigation/%s.cmp", level.botfiles);
 	else
 		sprintf(cmpfilename, "dday/navigation/%s.cmp", level.mapname);
 
@@ -1013,7 +1013,7 @@ void SpawnEntities2(char* mapname, char* entities, char* spawnpoint)
 		if (!g_edicts)
 			return;
 		// parse the opening brace
-		com_token = COM_Parse((char**)&entities);
+		com_token = COM_Parse((const char**)&entities);
 		if (!entities)
 			break;
 		if (com_token[0] != '{')
