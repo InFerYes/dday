@@ -410,7 +410,9 @@ int AI_GravityBoxStep(vec3_t origin, float scale, vec3_t destvec, vec3_t neworig
 		for (; v1[2] < origin[2] + AI_JUMPABLE_HEIGHT; v1[2] += scale, v2[2] += scale)
 		{
 			//gi.dprintf("hi\n");
-			trace = gi.trace(v1, mins, maxs, v2, LINKS_PASSENT, MASK_NODESOLID | MASK_AISOLID);
+			/*		MetalGod equivalent nested operands
+			trace = gi.trace(v1, mins, maxs, v2, LINKS_PASSENT, MASK_NODESOLID | MASK_AISOLID);	 */
+			trace = gi.trace(v1, mins, maxs, v2, LINKS_PASSENT, MASK_AISOLID);	/* MetalGod END */
 			if (!trace.startsolid && trace.fraction == 1.0)
 			{
 				VectorCopy(v2, neworigin);

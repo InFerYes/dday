@@ -1,4 +1,4 @@
-/*       D-Day: Normandy by Vipersoft
+﻿/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/g_utils.c,v $
  *   $Revision: 1.14 $
@@ -734,11 +734,13 @@ void centerprintall(char* mesg, ...)
 	int		i, len, size;
 	edict_t* ent;
 	va_list	argptr;
-	
+
 	size = sizeof(print);
 
 	va_start(argptr, mesg);
-	len = vsprintf(buffer, mesg, argptr);
+	/* MetalGod  Buffersafe vnsprintf
+	len = vsprintf(buffer, mesg, argptr); */
+	len = Q_vsnprintf(buffer, sizeof buffer, mesg, argptr);
 	va_end(argptr);
 
 	// erm this should never happen at all but it's here incase

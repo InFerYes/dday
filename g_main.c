@@ -259,7 +259,9 @@ void Sys_Error(char* error, ...)
 	char		text[1024];
 
 	va_start(argptr, error);
-	vsprintf(text, error, argptr);
+	/* MetalGod  Buffersafe vsnprintf
+	vsprintf(text, error, argptr);	*/
+	Q_vsnprintf(text, sizeof text, error, argptr);
 	va_end(argptr);
 
 	gi.error(ERR_FATAL, "%s", text);
@@ -271,7 +273,9 @@ void Com_Printf(char* msg, ...)
 	char		text[1024];
 
 	va_start(argptr, msg);
-	vsprintf(text, msg, argptr);
+	/* MetalGod  Buffersafe vnsprintf
+	vsprintf(text, msg, argptr);	*/
+	vsnprintf(text, sizeof text, msg, argptr);
 	va_end(argptr);
 
 	gi.dprintf("%s", text);
