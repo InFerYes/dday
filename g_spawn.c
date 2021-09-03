@@ -54,7 +54,7 @@ void SP_item_ammo_napalm(edict_t* self)
 {
 	SpawnItem(self, FindItemByClassname("ammo_napalm"));
 }
-
+/*	    MetalGod Normal QUake 2 items, unused in dday.
 void SP_item_powerup_silencer(edict_t* self);
 
 void SP_item_powerup_breather(edict_t* self);
@@ -62,8 +62,8 @@ void SP_item_powerup_breather(edict_t* self);
 void SP_item_powerup_enviro(edict_t* self);
 void SP_item_powerup_adrenaline(edict_t* self);
 void SP_item_powerup_pack(edict_t* self);
-
-//end of added item spawn functions
+ */
+ //end of added item spawn functions
 
 void SP_item_health(edict_t* self);
 void SP_item_health_small(edict_t* self);
