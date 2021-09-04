@@ -1547,7 +1547,7 @@ edict_t* SelectRandomDeathmatchSpawnPoint(void)
 	edict_t* spot, * spot1, * spot2;
 	int		count = 0;
 	int		selection;
-	static float	range, range1, range2;	/* MetalGod to avoid Shadow declaration */
+	float	rnge, range1, range2;	/* MetalGod to avoid Shadow declaration */
 
 	spot = NULL;
 	range1 = range2 = 99999;
@@ -1556,15 +1556,15 @@ edict_t* SelectRandomDeathmatchSpawnPoint(void)
 	while ((spot = G_Find(spot, FOFS(classname), "info_player_deathmatch")) != NULL)
 	{
 		count++;
-		range = PlayersRangeFromSpot(spot->s.origin);
-		if (range < range1)
+		rnge = PlayersRangeFromSpot(spot->s.origin);
+		if (rnge < range1)
 		{
-			range1 = range;
+			range1 = rnge;
 			spot1 = spot;
 		}
-		else if (range < range2)
+		else if (rnge < range2)
 		{
-			range2 = range;
+			range2 = rnge;
 			spot2 = spot;
 		}
 	}
@@ -4023,7 +4023,7 @@ if (client->grenade) // disable the grenade from triggering self, but still leav
 */
 
 //END DDAY
-	}
+}
 
 edict_t* Nearest_Player(edict_t* ent)
 {

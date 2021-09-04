@@ -97,4 +97,4 @@ $(COUNTRY_CODE)_guninfo.o: $(COUNTRY_CODE)_guninfo.c $(COUNTRY_CODE)_main.h $(CO
 $(COUNTRY_CODE)_weapon.o: $(COUNTRY_CODE)_weapon.c $(COUNTRY_CODE)_main.h $(COUNTRY_CODE)_defines.h ../g_local.h ../g_defines.h \
  ../q_shared.h ../game.h ../p_menu.h ../g_cmds.h
 $(COUNTRY_CODE)_main.o: $(COUNTRY_CODE)_main.c $(COUNTRY_CODE)_main.h $(COUNTRY_CODE)_defines.h ../g_local.h ../g_defines.h ../q_shared.h \
- ../game.h ../p_menu.h ../g_cmds.h  # MetalGod unused !../p_classes.h
+ ../game.h ../p_menu.h ../g_cmds.h  
