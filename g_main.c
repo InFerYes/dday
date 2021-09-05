@@ -333,7 +333,7 @@ qboolean MapExists(char* map)
 	strcat(filename, map);
 	strcat(filename, ".bsp");
 
-	if ((check = fopen(filename, "r")) != NULL) /* MetalGod != NULL*/
+	if ((check = fopen(filename, "r")) != NULL) /* MetalGod check the return value of fopen */
 	{
 		fclose(check);
 		return true;
@@ -342,7 +342,7 @@ qboolean MapExists(char* map)
 	strcpy(filename, "baseq2/maps/");
 	strcat(filename, map);
 	strcat(filename, ".bsp");
-	if ((check = fopen(filename, "r")) != NULL) /* MetalGod != NULL*/
+	if ((check = fopen(filename, "r")) != NULL) /* MetalGod check the return value of fopen */
 	{
 		fclose(check);
 		return true;
@@ -366,13 +366,15 @@ void Write_Last_Maps(void)
 	FILE* fp;
 	int i;
 
+	/* MetalGod check the return value of fopen
 	fp = fopen("dday/lastmaps.txt", "w");
-	/* MetalGod reformatted for clarity and checking return values */
-	if (!fp)
+	*/
+
+	if ((fp = fopen("dday/lastmaps.txt", "w")) == NULL)
 	{
 		gi.error("Couldn't open dday/lastmaps.txt");
+		return;
 	}
-	else
 	{
 		for (i = 0; i < 20 && last_maps_played[i]; i++)
 		{

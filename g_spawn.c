@@ -776,9 +776,14 @@ char* ReadEntFile(char* filename)
 
 	for (;;)/* MetalGod shut up compiler */
 	{
+		/* MetalGod check the return value of fopen
 		fp = fopen(filename, "r");
 		if (!fp) break;
-
+		*/
+		if ((fp = fopen(filename, "r")) == NULL)
+		{
+			break;
+		}
 		for (i = 0; (ch = fgetc(fp)) != EOF; i++)
 			;
 

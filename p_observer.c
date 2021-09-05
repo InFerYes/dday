@@ -1346,9 +1346,11 @@ void MapVote(edict_t* ent)
 		if (bots->value)
 		{
 			sprintf(filename, "dday/navigation/%s.cmp", votemaps[i]);
+			/* MetalGod check the return value of fopen
 			f = fopen(filename, "rb");
-
-			if (f) {
+			*/
+			if ((f = fopen(filename, "rb")) != NULL)
+			{
 				fclose(f);
 				add = "*";
 				botmap = true;
