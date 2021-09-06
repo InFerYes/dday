@@ -52,16 +52,15 @@ int Last_Team_Winner = 99;
 //delay is the time to win before the game is won
 
 /////////////////////
-/*			MetalGod no longer used, apparently!
 void trigger_enough_troops_use(edict_t* self, edict_t* other, edict_t* activator)
 {
 	int i;
-	MetalGod sanity check
+	/* MetalGod sanity check */
 	if (!self || !activator)
 	{
 		return;
 	}
-	// MetalGod End
+	/* MetalGod End */
 
 	gi.dprintf("trigger_enough_troops_use called\n");
 
@@ -134,7 +133,7 @@ void SP_trigger_enough_troops(edict_t* self)
 	self->who_touched = gi.TagMalloc((sizeof(edict_t) * MAX_TEAM_MATES), TAG_LEVEL);
 	self->use = trigger_enough_troops_use;
 }
-   MetalGod END */
+
 void SP_info_Mission_Results(edict_t* ent)
 {
 	//put next map info here.

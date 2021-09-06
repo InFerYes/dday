@@ -108,7 +108,7 @@ void SP_trigger_monsterjump(edict_t* ent);
 void SP_info_team_start(edict_t* ent);
 void SP_info_reinforcement_start(edict_t* ent);
 /*void SP_info_reinforcements_nearest(edict_t* ent); MetalGod prototype for missing function */
-/* void SP_trigger_enough_troops(edict_t* ent); MetalGod prototype for unused function */
+void SP_trigger_enough_troops(edict_t* ent);
 void SP_target_objective(edict_t* ent);
 //void SP_info_Max_MOS(edict_t *ent);
 //void SP_info_Skin(edict_t *ent);
