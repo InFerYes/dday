@@ -1,4 +1,4 @@
-﻿/*       D-Day: Normandy by Vipersoft
+/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/g_svcmds.c,v $
  *   $Revision: 1.6 $
@@ -65,8 +65,7 @@ void Svcmd_Teamswitch_f(void)
 	ent->client->resp.team_on = team_list[team];
 	safe_bprintf(PRINT_HIGH, "%s has been switched to team %s.\n", ent->client->pers.netname, ent->client->resp.team_on->teamname);
 
-	/* MetalGod this is immediately overwritten!
-	ent->client->resp.mos = NONE; // reset MOS	 */
+	ent->client->resp.mos = NONE; // reset MOS
 
 	ent->client->resp.mos = INFANTRY;
 	ent->client->resp.changeteam = true;
@@ -334,36 +333,35 @@ void WriteCampaignTxt(void)
 		return;
 
 	sprintf(campaignfilename, "dday/campaigns/%s.campaign", campaign->string);
-
-	/* MetalGod check the return value of fopen
 	fp = fopen(campaignfilename, "wb");
-	*/
-	if ((fp = fopen(campaignfilename, "wb")) == NULL)
+
+	if (!fp)
 	{
 		gi.error("Couldn't open %s", campaignfilename);
-		return;
 	}
-
-	fprintf(fp, "%i\n", alliedplatoons);
-	fprintf(fp, "%i\n", axisplatoons);
-	fprintf(fp, "%i\n", alliedneedspots);
-	fprintf(fp, "%i\n", axisneedspots);
-
-	for (i = 0; campaign_spots[i].bspname; i++)
+	else
 	{
-		fprintf(fp, "%s\n", campaign_spots[i].bspname);
-		fprintf(fp, "%s\n", campaign_spots[i].exita);
-		fprintf(fp, "%s\n", campaign_spots[i].exitb);
-		fprintf(fp, "%s\n", campaign_spots[i].exitc);
-		fprintf(fp, "%i\n", campaign_spots[i].owner);
-		fprintf(fp, "%i\n", campaign_spots[i].xpos);
-		fprintf(fp, "%i\n", campaign_spots[i].ypos);
-		fprintf(fp, "%i\n", campaign_spots[i].alliedstart);
-		fprintf(fp, "%i\n", campaign_spots[i].axisstart);
+		{
+			fprintf(fp, "%i\n", alliedplatoons);
+			fprintf(fp, "%i\n", axisplatoons);
+			fprintf(fp, "%i\n", alliedneedspots);
+			fprintf(fp, "%i\n", axisneedspots);
+
+			for (i = 0; campaign_spots[i].bspname; i++)
+			{
+				fprintf(fp, "%s\n", campaign_spots[i].bspname);
+				fprintf(fp, "%s\n", campaign_spots[i].exita);
+				fprintf(fp, "%s\n", campaign_spots[i].exitb);
+				fprintf(fp, "%s\n", campaign_spots[i].exitc);
+				fprintf(fp, "%i\n", campaign_spots[i].owner);
+				fprintf(fp, "%i\n", campaign_spots[i].xpos);
+				fprintf(fp, "%i\n", campaign_spots[i].ypos);
+				fprintf(fp, "%i\n", campaign_spots[i].alliedstart);
+				fprintf(fp, "%i\n", campaign_spots[i].axisstart);
+			}
+		}
+		fclose(fp);
 	}
-
-	fclose(fp);
-
 }
 
 //called when first creating campaign, or at map start.  Creates new [campaign].campaign file if needed or loads existing one

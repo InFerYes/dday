@@ -546,7 +546,8 @@ void Plane_Fire(edict_t* ent)
 		ent->nextthink = level.time + .1;
 		ent->think = G_FreeEdict;
 	}
-	else if (ent->count >= 4)
+
+	if (ent->count >= 4)
 	{
 		ent->think = Plane_Fly_Off;
 		ent->nextthink = level.time + .1;

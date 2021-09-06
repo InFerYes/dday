@@ -3220,7 +3220,7 @@ void Cmd_MOTD(edict_t* ent)
 	char motd[1000];
 	char line[100];
 
-	if ((motd_file = fopen(GAMEVERSION "/motd.txt", "r")) != NULL)/* MetalGod check the return value of fopen */
+	if ((motd_file = fopen(GAMEVERSION "/motd.txt", "r")) != NULL)/* MetalGod !=NULL */
 	{
 		// we successfully opened the file "motd.txt"
 		if (fgets(motd, 900, motd_file))
