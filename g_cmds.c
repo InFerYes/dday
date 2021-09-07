@@ -1960,10 +1960,14 @@ void Cmd_Players_f(edict_t* ent)
 			game.clients[index[i]].pers.netname);
 		if (strlen(small) + strlen(large) > sizeof(large) - 100)
 		{	// can't print all of them in one packet
-			strcat(large, "...\n");
+			/* MetalGod Let's use a destination size checking function
+			strcat(large, "...\n");	*/
+			Q_strncatz(large, sizeof(large), "...\n");
 			break;
 		}
-		strcat(large, small);
+		/* MetalGod NOPE! Let's use a destination size checking function
+		strcat(large, small);	   */
+		Q_strncatz(large, sizeof(large), small);
 	}
 
 	safe_cprintf(ent, PRINT_HIGH, "%s\n%i players\n", large, count);
@@ -2061,20 +2065,31 @@ void GetNearbyTeammates(edict_t* self, char* buf)
 		{
 			if (nearby_teammates_num == 2)
 			{
+
+				/* MetalGod Let's use a destination size checking function
 				strcat(buf, " and ");
-				strcat(buf, nearby_teammates[l]);
+				strcat(buf, nearby_teammates[l]); */
+				Q_strncatz(buf, sizeof(buf), " and ");
+				Q_strncatz(buf, sizeof(buf), nearby_teammates[1]);
+
 			}
 			else
 			{
 				if (l == (nearby_teammates_num - 1))
 				{
-					strcat(buf, ", and ");
-					strcat(buf, nearby_teammates[l]);
+					/* MetalGod Let's use a destination size checking function
+				strcat(buf, " and ");
+				strcat(buf, nearby_teammates[l]); */
+					Q_strncatz(buf, sizeof(buf), ", and ");
+					Q_strncatz(buf, sizeof(buf), nearby_teammates[1]);
 				}
 				else
 				{
-					strcat(buf, ", ");
-					strcat(buf, nearby_teammates[l]);
+					/* MetalGod Let's use a destination size checking function
+					strcat(buf, " and ");
+					strcat(buf, nearby_teammates[l]); */
+					Q_strncatz(buf, sizeof(buf), ", ");
+					Q_strncatz(buf, sizeof(buf), nearby_teammates[1]);;
 				}
 			}
 		}
@@ -2366,8 +2381,10 @@ void Cmd_Say_f(edict_t* ent, qboolean team, qboolean arg0, qboolean saved)
 			p++;
 			p[strlen(p) - 1] = 0;
 		}
-		strcat(text, p);
 
+		/* MetalGod Let's use a destination size checking function
+		strcat(text, p);*/
+		Q_strncatz(text, sizeof(text), p);
 		//Wheaty: Avoid the 'null spamming'...
 		if (!team) {
 			if (2 == strlen(text) - strlen(ent->client->pers.netname)) {
@@ -2388,8 +2405,9 @@ void Cmd_Say_f(edict_t* ent, qboolean team, qboolean arg0, qboolean saved)
 		if (ent->solid != SOLID_NOT && ent->deadflag != DEAD_DEAD)
 			ParseSayText(ent, text + offset_of_text);  //FB 5/31/99 - offset change
 							// this will parse the % variables,
-
-		strcat(text, "\n");
+		/* MetalGod Let's use a destination size checking function
+		strcat(text, "\n");*/
+		Q_strncatz(text, sizeof(text), "\n");
 
 		if (flood_msgs->value) {
 			cl = ent->client;
@@ -3144,10 +3162,14 @@ void Cmd_Shout_f(edict_t* ent)
 	for (i = 0; filename[i]; i++)
 		filename[i] = tolower(filename[i]);
 
+	/* MetalGod Let's use a destination size checking function
 	strcat(filename, ".wav\0");
-
 	strcpy(soundfile, va("%s/shout/", ent->client->resp.team_on->teamid));
-	strcat(soundfile, filename);
+	strcat(soundfile, filename);  */
+
+	Q_strncatz(filename, sizeof(filename), ".wav\0");
+	Q_strncatz(soundfile, sizeof(soundfile), va("%s/shout/", ent->client->resp.team_on->teamid));
+	Q_strncatz(soundfile, sizeof(soundfile), filename);
 
 	if (newshout)
 	{
@@ -3231,7 +3253,9 @@ void Cmd_MOTD(edict_t* ent)
 			{
 				// add each new line to motd, to create a BIG message string.
 				// we are using strcat: STRing conCATenation function here.
-				strcat(motd, line);
+				/* MetalGod NOPE! Let's use a destination size checking function
+				strcat(motd, line); */
+				Q_strncatz(motd, sizeof(motd), line);
 			}
 
 			// print our message.
