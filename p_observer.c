@@ -771,10 +771,10 @@ void M_ChooseMOS(edict_t* ent)
 		theText = gi.TagMalloc(sizeof("123456789012 [00/00]"), TAG_GAME);
 		if (maxSlots == 0)
 		{
-			strcpy(theText, "                    ");
+			Com_strcpy(theText, sizeof(theText), "                    "); /* MetalGod */
 		}
 		else
-			strcpy(theText, va("%12s [%i/%i]", ent->client->resp.team_on->mos[i]->name, taken, maxSlots));
+			Com_strcpy(theText, sizeof(theText), va("%12s [%i/%i]", ent->client->resp.team_on->mos[i]->name, taken, maxSlots));	/* MetalGod */
 
 		ent->client->menu_cur[i + 6].text = (class_limits->value) ? (char*)theText : ent->client->resp.team_on->mos[i]->name;
 
@@ -1002,7 +1002,7 @@ void ChooseTeam(edict_t* ent) {
 			max_clients = maxclients->value;
 			// Make the text look good
 			theText = gi.TagMalloc(sizeof("123456789012 [00/00]"), TAG_GAME);
-			strcat(theText, va("%12s [%i/%i]", team_list[i]->teamname, PlayerCountForTeam(i, true), max_clients));//faf: removed "team_list[i]->total,"
+			Com_strcat(theText, sizeof(theText), va("%12s [%i/%i]", team_list[i]->teamname, PlayerCountForTeam(i, true), max_clients)); //faf: removed "team_list[i]->total," /* MetalGod  Com_strcat */
 
 			// Put it on the menu
 			client_menu(ent, (i + 11), theText, PMENU_ALIGN_LEFT, NULL, M_Team_Join);
@@ -1346,9 +1346,10 @@ void MapVote(edict_t* ent)
 		if (bots->value)
 		{
 			sprintf(filename, "dday/navigation/%s.cmp", votemaps[i]);
-			f = fopen(filename, "rb");
+			
 
-			if (f) {
+			if (f = fopen(filename, "rb") != NULL) /* MetalGod*/
+			{
 				fclose(f);
 				add = "*";
 				botmap = true;
@@ -1360,7 +1361,7 @@ void MapVote(edict_t* ent)
 			add = "";
 
 		theText = gi.TagMalloc(sizeof("1234567890123456789012345"), TAG_GAME);
-		strcat(theText, va("      %s %s", add, votemaps[i]));
+		Com_strcat(theText, sizeof(theText), va("      %s %s", add, votemaps[i])); /* MetalGod */
 
 		client_menu(ent, 7 + (i * 2), theText, PMENU_ALIGN_LEFT, NULL, VoteMap);
 	}

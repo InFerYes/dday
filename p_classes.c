@@ -276,22 +276,22 @@ void InitMOS_List(TeamS_t* team, SMos_t* mos_list)
 		MOS[i]->special = gi.TagMalloc(MAX_MOS_NAME_CHAR, TAG_LEVEL);
 		MOS[i]->MOS_Spaw_Point = gi.TagMalloc(sizeof(mos_list[i].MOS_Spaw_Point), TAG_LEVEL);
 
-		strcpy(MOS[i]->name, mos_list[i].name);
+		Com_strcpy(MOS[i]->name, sizeof(MOS[i]->name), mos_list[i].name);
 
 		if (mos_list[i].weapon1)
-			strcpy(MOS[i]->weapon1, mos_list[i].weapon1);
+			Com_strcpy(MOS[i]->weapon1, sizeof(MOS[i]->weapon1), mos_list[i].weapon1);
 		MOS[i]->ammo1 = mos_list[i].ammo1;
 
 		if (mos_list[i].weapon2)
-			strcpy(MOS[i]->weapon2, mos_list[i].weapon2);
+			Com_strcpy(MOS[i]->weapon2, sizeof(MOS[i]->weapon2), mos_list[i].weapon2);
 		MOS[i]->ammo2 = mos_list[i].ammo2;
 
 		if (mos_list[i].grenades)
-			strcpy(MOS[i]->grenades, mos_list[i].grenades);
+			Com_strcpy(MOS[i]->grenades, sizeof(MOS[i]->grenades), mos_list[i].grenades);
 		MOS[i]->grenadenum = mos_list[i].grenadenum;
 
 		if (mos_list[i].special)
-			strcpy(MOS[i]->special, mos_list[i].special);
+			Com_strcpy(MOS[i]->special, sizeof(MOS[i]->special), mos_list[i].special);
 
 		MOS[i]->specnum = mos_list[i].specnum;
 		MOS[i]->mos = mos_list[i].mos;

@@ -650,32 +650,33 @@ void A_ScoreboardMessage(edict_t* ent)//, edict_t *killer)
 	else
 		// if teams are anything else or grm|usa, display the split graphics:
 	{
-		strcpy(scoreleftpic, "yv 80 xv   0 picn ");
-		strcat(scoreleftpic, team_list[0]->teamid);
-		strcat(scoreleftpic, "_score  ");
+		
+		Com_strcpy(scoreleftpic, sizeof(scoreleftpic), "yv 80 xv   0 picn ");
+		Com_strcat(scoreleftpic, sizeof(scoreleftpic), team_list[0]->teamid);
+		Com_strcat(scoreleftpic, sizeof(scoreleftpic), "_score  ");
 
-		strcpy(scorerightpic, "      xv 160 picn ");
-		strcat(scorerightpic, team_list[1]->teamid);
-		strcat(scorerightpic, "_score  ");
+		Com_strcpy(scorerightpic, sizeof(scorerightpic), "      xv 160 picn ");
+		Com_strcat(scorerightpic, sizeof(scorerightpic), team_list[1]->teamid);
+		Com_strcat(scorerightpic, sizeof(scorerightpic), "_score  ");
 
-		strcpy(scoretopleftpic, "xv 0  yv   0 picn ");
-		strcat(scoretopleftpic, team_list[0]->teamid);
-		strcat(scoretopleftpic, "_score_top  ");
+		Com_strcpy(scoretopleftpic, sizeof(scoretopleftpic), "xv 0  yv   0 picn ");
+		Com_strcat(scoretopleftpic, sizeof(scoretopleftpic), team_list[0]->teamid);
+		Com_strcat(scoretopleftpic, sizeof(scoretopleftpic), "_score_top  ");
 
-		strcpy(scoretoprightpic, "xv 0  xv 160 picn ");
-		strcat(scoretoprightpic, team_list[1]->teamid);
-		strcat(scoretoprightpic, "_score_top  ");
+		Com_strcpy(scoretoprightpic, sizeof(scoretoprightpic), "xv 0  xv 160 picn ");
+		Com_strcat(scoretoprightpic, sizeof(scoretoprightpic), team_list[1]->teamid);
+		Com_strcat(scoretoprightpic, sizeof(scoretoprightpic), "_score_top  ");
 
-		strcat(string, scoretopleftpic); //team 0 /* MetalGod Note was sprintf*/
-		strcat(string, scoretoprightpic); // team 1
-		strcat(string, scoreleftpic); //background left list pic
-		strcat(string, scorerightpic); // background right list pic
+		Com_strcat(string, sizeof(string), scoretopleftpic); //team 0 /* MetalGod Note was sprintf*/
+		Com_strcat(string, sizeof(string), scoretoprightpic); // team 1
+		Com_strcat(string, sizeof(string), scoreleftpic); //background left list pic
+		Com_strcat(string, sizeof(string), scorerightpic); // background right list pic
 	}
 	if (team_list[0]->kills_and_points)
-		strcat(string, "xv 90 yv 20 string \"&\" ");
+		Com_strcat(string, sizeof(string), "xv 90 yv 20 string \"&\" ");
 
 	if (team_list[1]->kills_and_points)
-		strcat(string, "xv 245 yv 20 string \"&\" ");
+		Com_strcat(string, sizeof(string), "xv 245 yv 20 string \"&\" ");
 
 	sprintf(string2,
 		// TEAM1
@@ -688,17 +689,17 @@ void A_ScoreboardMessage(edict_t* ent)//, edict_t *killer)
 		team_list[TEAM1]->kills, team_list[TEAM1]->need_kills, team_list[TEAM1]->score, team_list[TEAM1]->need_points,// name_pos[TEAM1], team_list[TEAM1]->teamname,
 		team_list[TEAM2]->kills, team_list[TEAM2]->need_kills, team_list[TEAM2]->score, team_list[TEAM2]->need_points);//, name_pos[TEAM2] + 160, team_list[TEAM2]->teamname);
 
-	strcat(string, string2);
+	Com_strcat(string, sizeof(string), string2);
 
 	if (player_scores->value)
 	{
-		strcat(string, "xv 4   yv 67 string  \"Ping  Player  Score\" ");//faf
-		strcat(string, "xv 164   yv 67 string  \"Ping  Player  Score\" ");//faf
+		Com_strcat(string, sizeof(string), "xv 4   yv 67 string  \"Ping  Player  Score\" ");//faf
+		Com_strcat(string, sizeof(string), "xv 164   yv 67 string  \"Ping  Player  Score\" ");//faf
 	}
 	else
 	{
-		strcat(string, "xv 4   yv 67 string  \"Ping  Player\" ");//faf
-		strcat(string, "xv 164   yv 67 string  \"Ping  Player\" ");//faf
+		Com_strcat(string, sizeof(string), "xv 4   yv 67 string  \"Ping  Player\" ");//faf
+		Com_strcat(string, sizeof(string), "xv 164   yv 67 string  \"Ping  Player\" ");//faf
 	}
 
 	//strcat (string,		"xv 0   yv 67 string  \" Ping Player         Ping Player\" "
@@ -708,13 +709,13 @@ void A_ScoreboardMessage(edict_t* ent)//, edict_t *killer)
 		Last_Team_Winner != -1)
 	{
 		if (campaign_winner == 0) {
-			strcat(string, va("xv 0 yv -80 picn allies_campaign "));
+			Com_strcat(string, sizeof(string), va("xv 0 yv -80 picn allies_campaign "));
 		}
 		else if (campaign_winner == 1) {
-			strcat(string, va("xv 0 yv -80 picn axis_campaign "));
+			Com_strcat(string, sizeof(string), va("xv 0 yv -80 picn axis_campaign "));
 		}
 		else {
-			strcat(string, va("xv 0 yv -80 picn victory_%s ",
+			Com_strcat(string, sizeof(string), va("xv 0 yv -80 picn victory_%s ",
 				team_list[Last_Team_Winner]->teamid));
 		}
 	}
@@ -958,26 +959,26 @@ void A_ScoreboardMessage2(edict_t* ent)//, edict_t *killer)
 	else
 		// if teams are anything else or grm|usa, display the split graphics:
 	{
-		strcpy(scoreleftpic, "yv 80 xv   0 picn ");
-		strcat(scoreleftpic, team_list[0]->teamid);
-		strcat(scoreleftpic, "_score  ");
+		Com_strcpy(scoreleftpic, sizeof(scoreleftpic), "yv 80 xv   0 picn ");
+		Com_strcat(scoreleftpic, sizeof(scoreleftpic), team_list[0]->teamid);
+		Com_strcat(scoreleftpic, sizeof(scoreleftpic), "_score  ");
 
-		strcpy(scorerightpic, "      xv 160 picn ");
-		strcat(scorerightpic, team_list[1]->teamid);
-		strcat(scorerightpic, "_score  ");
+		Com_strcpy(scorerightpic, sizeof(scorerightpic),  "      xv 160 picn ");
+		Com_strcat(scorerightpic, sizeof(scorerightpic), team_list[1]->teamid);
+		Com_strcat(scorerightpic, sizeof(scorerightpic), "_score  ");
 
-		strcpy(scoretopleftpic, "xv 0  yv   0 picn ");
-		strcat(scoretopleftpic, team_list[0]->teamid);
-		strcat(scoretopleftpic, "_score_top  ");
+		Com_strcpy(scoretopleftpic, sizeof(scoretopleftpic), "xv 0  yv   0 picn ");
+		Com_strcat(scoretopleftpic, sizeof(scoretopleftpic), team_list[0]->teamid);
+		Com_strcat(scoretopleftpic, sizeof(scoretopleftpic), "_score_top  ");
 
-		strcpy(scoretoprightpic, "xv 0  xv 160 picn ");
-		strcat(scoretoprightpic, team_list[1]->teamid);
-		strcat(scoretoprightpic, "_score_top  ");
+		Com_strcpy(scoretoprightpic, sizeof(scoretoprightpic), "xv 0  xv 160 picn ");
+		Com_strcat(string, sizeof(scoretoprightpic), team_list[1]->teamid);
+		Com_strcat(string, sizeof(scoretoprightpic), "_score_top  ");
 
-		strcat(string, scoretopleftpic); //team 0 /* MetalGod Note was sprintf! */
-		strcat(string, scoretoprightpic); // team 1
-		strcat(string, scoreleftpic); //background left list pic
-		strcat(string, scorerightpic); // background right list pic
+		Com_strcat(string, sizeof(scoretopleftpic), scoretopleftpic); //team 0 /* MetalGod Note was sprintf! */
+		Com_strcat(string, sizeof(scoretoprightpic), scoretoprightpic); // team 1
+		Com_strcat(string, sizeof(scoreleftpic), scoreleftpic); //background left list pic
+		Com_strcat(string, sizeof(scorerightpic), scorerightpic); // background right list pic
 	}
 
 	sprintf(string2,
@@ -990,17 +991,17 @@ void A_ScoreboardMessage2(edict_t* ent)//, edict_t *killer)
 		team_list[TEAM1]->kills, team_list[TEAM1]->need_kills, team_list[TEAM1]->score, team_list[TEAM1]->need_points,// name_pos[TEAM1], team_list[TEAM1]->teamname,
 		team_list[TEAM2]->kills, team_list[TEAM2]->need_kills, team_list[TEAM2]->score, team_list[TEAM2]->need_points);//, name_pos[TEAM2] + 160, team_list[TEAM2]->teamname);
 
-	strcat(string, string2);
+	Com_strcat(string, sizeof(string), string2);
 
 	if (stats->value)
 	{
-		strcat(string, "xv 4   yv 67 string  \"Player   Rating +/-\" ");//faf
-		strcat(string, "xv 164   yv 67 string  \"Player   Rating +/-\" ");//faf
+		Com_strcat(string, sizeof(string), "xv 4   yv 67 string  \"Player   Rating +/-\" ");//faf
+		Com_strcat(string, sizeof(string),  "xv 164   yv 67 string  \"Player   Rating +/-\" ");//faf
 	}
 	else
 	{
-		strcat(string, "xv 4   yv 67 string  \"Player   Acrcy% +/-\" ");//faf
-		strcat(string, "xv 164   yv 67 string  \"Player   Acrcy% +/-\" ");//faf
+		Com_strcat(string, sizeof(string),  "xv 4   yv 67 string  \"Player   Acrcy% +/-\" ");//faf
+		Com_strcat(string, sizeof(string),  "xv 164   yv 67 string  \"Player   Acrcy% +/-\" ");//faf
 	}
 
 	// pbowens: team victory pix
@@ -1008,13 +1009,13 @@ void A_ScoreboardMessage2(edict_t* ent)//, edict_t *killer)
 		Last_Team_Winner != -1)
 	{
 		if (campaign_winner == 0) {
-			strcat(string, va("xv 0 yv -80 picn allies_campaign "));
+			Com_strcat(string, sizeof(string),  va("xv 0 yv -80 picn allies_campaign "));
 		}
 		else if (campaign_winner == 1) {
-			strcat(string, va("xv 0 yv -80 picn axis_campaign "));
+			Com_strcat(string, sizeof(string),  va("xv 0 yv -80 picn axis_campaign "));
 		}
 		else {
-			strcat(string, va("xv 0 yv -80 picn victory_%s ",
+			Com_strcat(string, sizeof(string),  va("xv 0 yv -80 picn victory_%s ",
 				team_list[Last_Team_Winner]->teamid));
 		}
 	}
@@ -1349,19 +1350,19 @@ void ShowCampaign(edict_t* ent)
 		else if (campaign_spots[i].owner == 1)
 			sprintf(dest, "%sg ", string);
 		else
-			strcat(string, "q ");
+			Com_strcat(string, sizeof(string),  "q ");
 	}
 
-	strcat(string, "xv 22 yv 36 picn u ");
-	strcat(string, "xv 37 yv 38 string \"");
+	Com_strcat(string, sizeof(string),  "xv 22 yv 36 picn u ");
+	Com_strcat(string, sizeof(string),  "xv 37 yv 38 string \"");
 	/* sprintf(dest, "%s%i", string, alliedplatoons);  MetalGod */
-	strcat(string, va("%i", alliedplatoons));
-	strcat(string, "\" ");
-	strcat(string, "xv 22 yv 56 picn g ");
-	strcat(string, "xv 37 yv 58 string \"");
+	Com_strcat(string, sizeof(string),  va("%i", alliedplatoons));
+	Com_strcat(string, sizeof(string),  "\" ");
+	Com_strcat(string, sizeof(string),  "xv 22 yv 56 picn g ");
+	Com_strcat(string, sizeof(string),  "xv 37 yv 58 string \"");
 	/* sprintf(dest, "%s%i", string, axisplatoons);	 MetalGod */
-	strcat(string, va("%i", axisplatoons));
-	strcat(string, "\" ");
+	Com_strcat(string, sizeof(string),  va("%i", axisplatoons));
+	Com_strcat(string, sizeof(string), "\" ");
 
 	gi.WriteByte(svc_layout);
 	gi.WriteString(string);
@@ -1631,8 +1632,8 @@ void G_SetStats(edict_t* ent)
 	if (level.objectivepic && ent->client->display_info)
 	{
 		char pic[26];
-		strcpy(pic, "objectives\\");
-		strcat(pic, level.mapname);
+		Com_strcpy(pic, sizeof(pic), "objectives\\");
+		Com_strcat(pic, sizeof(pic),level.mapname);
 
 		ent->client->ps.stats[STAT_OBJECTIVE] = gi.imageindex(pic);
 	}

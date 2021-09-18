@@ -610,14 +610,15 @@ struct cmd_list_t* GlobalCommandList = NULL;
 char* ClientTeam(edict_t* ent)
 {
 	char* p;
-	static char	value[512];
+	static char	value[512] = { 0 };
 
 	value[0] = 0;
 
 	if (!ent->client)
 		return value;
 
-	strcpy(value, Info_ValueForKey(ent->client->pers.userinfo, "skin"));
+	/*	MetalGod*/
+	Com_strcpy(value, sizeof value, Info_ValueForKey(ent->client->pers.userinfo, "skin"));
 	p = strchr(value, '/');
 	if (!p)
 		return value;
@@ -1184,15 +1185,15 @@ void Cmd_Use_f(edict_t* ent)
 		}
 		else if (Q_stricmp(s, "weapon1") == 0)
 		{
-			if ((it = FindItem(ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon1)) != NULL) /* MetalGod != NULL*/
-				strcpy(s, ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon1);
+			if ((it = FindItem(ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon1)) != NULL)	/* MetalGod != NULL*/
+				Com_strcpy(s, sizeof(s), ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon1);
 			else
 				it = ent->client->pers.weapon;
 		}
 		else if (Q_stricmp(s, "weapon2") == 0)
 		{
-			if ((it = FindItem(ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon2)) != NULL) /* MetalGod != NULL*/
-				strcpy(s, ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon2);
+			if ((it = FindItem(ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon2)) != NULL)	/* MetalGod != NULL*/
+				Com_strcpy(s, sizeof(s), ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon2);
 			else
 				it = ent->client->pers.weapon;
 		}
@@ -1207,74 +1208,74 @@ void Cmd_Use_f(edict_t* ent)
 		*/
 		else if (Q_stricmp(s, "special") == 0)
 		{
-			if ((it = FindItem(ent->client->resp.team_on->mos[ent->client->resp.mos]->special)) != NULL) /* MetalGod != NULL*/
-				strcpy(s, ent->client->resp.team_on->mos[ent->client->resp.mos]->special);
+			if ((it = FindItem(ent->client->resp.team_on->mos[ent->client->resp.mos]->special)) != NULL)	/* MetalGod != NULL*/
+				Com_strcpy(s, sizeof(s), ent->client->resp.team_on->mos[ent->client->resp.mos]->special);
 			else
 				it = ent->client->pers.weapon;
 		}
 		else if (Q_stricmp(s, "grenades") == 0)
 		{
 			it = FindNextPickup(ent, LOC_GRENADES);
-			strcpy(s, it->pickup_name);
+			Com_strcpy(s, sizeof(s), it->pickup_name);
 		}
 		else if (Q_stricmp(s, "melee") == 0)
 		{
 			it = FindNextPickup(ent, LOC_KNIFE);
-			strcpy(s, it->pickup_name);
+			Com_strcpy(s, sizeof(s), it->pickup_name);
 		}
 		else if (Q_stricmp(s, "pickup") == 0)
 		{
 			it = FindNextPickup(ent, LOC_NONE);
-			strcpy(s, it->pickup_name);
+			Com_strcpy(s, sizeof(s), it->pickup_name);
 		}
 
 		//faf
 		else if (Q_stricmp(s, "sniper") == 0)
 		{
 			it = FindNextPickup(ent, LOC_SNIPER);
-			strcpy(s, it->pickup_name);
+			Com_strcpy(s, sizeof(s), it->pickup_name);
 		}
 
 		else if (Q_stricmp(s, "pistol") == 0)
 		{
 			it = FindNextPickup(ent, LOC_PISTOL);
-			strcpy(s, it->pickup_name);
+			Com_strcpy(s, sizeof(s), it->pickup_name);
 		}
 
 		else if (Q_stricmp(s, "rifle") == 0)
 		{
 			it = FindNextPickup(ent, LOC_RIFLE);
-			strcpy(s, it->pickup_name);
+			Com_strcpy(s, sizeof(s), it->pickup_name);
 		}
 
 		else if (Q_stricmp(s, "smg") == 0)
 		{
 			it = FindNextPickup(ent, LOC_SUBMACHINEGUN2);
-			strcpy(s, it->pickup_name);
+			Com_strcpy(s, sizeof(s), it->pickup_name);
 			it = FindNextPickup(ent, LOC_SUBMACHINEGUN);
-			strcpy(s, it->pickup_name);
+			Com_strcpy(s, sizeof(s), it->pickup_name);
 		}
 
 		else if (Q_stricmp(s, "lmg") == 0)
 		{
 			it = FindNextPickup(ent, LOC_L_MACHINEGUN);
-			strcpy(s, it->pickup_name);
+			Com_strcpy(s, sizeof(s), it->pickup_name);
 		}
 
 		else if (Q_stricmp(s, "hmg") == 0)
 		{
 			it = FindNextPickup(ent, LOC_H_MACHINEGUN);
-			strcpy(s, it->pickup_name);
+			Com_strcpy(s, sizeof(s), it->pickup_name);
 		}
 		else if (Q_stricmp(s, "rocket") == 0)
 		{
 			it = FindNextPickup(ent, LOC_ROCKET);
-			strcpy(s, it->pickup_name);
+			Com_strcpy(s, sizeof(s), it->pickup_name);
 		}
 		else if (Q_stricmp(s, "flamer") == 0)
 		{
 			it = FindNextPickup(ent, LOC_FLAME);
-			strcpy(s, it->pickup_name);
+			Com_strcpy(s, sizeof(s), it->pickup_name);
 		}
 		//end faf
 
@@ -1614,7 +1615,7 @@ void Cmd_Objectives(edict_t* ent)
 		j = strlen(entry);
 		if (stringlength + j > 1024)
 			break;
-		strcpy(string + stringlength, entry);
+		Com_strcpy(string + stringlength, sizeof(string), entry);
 		stringlength += j;
 		y++;
 	}
@@ -1625,7 +1626,7 @@ void Cmd_Objectives(edict_t* ent)
 		if (strlen(string) < 1000)
 		{
 			Com_sprintf(entryb, sizeof(entryb), "xr -200 yt %i string \" %i Kills\" ", 120 + (y * 10), team_list[ent->client->resp.team_on->index]->need_kills);
-			strcpy(string + strlen(string), entryb);
+			Com_strcpy(string + strlen(string), sizeof(string), entryb);
 		}
 		y++;
 	}
@@ -1960,14 +1961,12 @@ void Cmd_Players_f(edict_t* ent)
 			game.clients[index[i]].pers.netname);
 		if (strlen(small) + strlen(large) > sizeof(large) - 100)
 		{	// can't print all of them in one packet
-			/* MetalGod Let's use a destination size checking function
-			strcat(large, "...\n");	*/
-			Q_strncatz(large, sizeof(large), "...\n");
+			/* MetalGod Let's use a destination size checking function;	*/
+			Com_strcat(large, sizeof(large), "...\n");
 			break;
 		}
-		/* MetalGod NOPE! Let's use a destination size checking function
-		strcat(large, small);	   */
-		Q_strncatz(large, sizeof(large), small);
+		/* MetalGod NOPE! Let's use a destination size checking function  */
+		Com_strcat(large, sizeof(large), small);
 	}
 
 	safe_cprintf(ent, PRINT_HIGH, "%s\n%i players\n", large, count);
@@ -2051,7 +2050,7 @@ void GetNearbyTeammates(edict_t* self, char* buf)
 
 	if (nearby_teammates_num == 0)
 	{
-		strcpy(buf, "");
+		Com_strcpy(buf, sizeof(buf), "");
 		return;
 	}
 
@@ -2059,37 +2058,31 @@ void GetNearbyTeammates(edict_t* self, char* buf)
 	{
 		if (l == 0)
 		{
-			strcpy(buf, nearby_teammates[l]);
+			Com_strcpy(buf, sizeof(buf), nearby_teammates[l]);
 		}
 		else
 		{
 			if (nearby_teammates_num == 2)
 			{
 
-				/* MetalGod Let's use a destination size checking function
-				strcat(buf, " and ");
-				strcat(buf, nearby_teammates[l]); */
-				Q_strncatz(buf, sizeof(buf), " and ");
-				Q_strncatz(buf, sizeof(buf), nearby_teammates[1]);
+				/* MetalGod Let's use a destination size checking function */
+				Com_strcat(buf, sizeof(buf), " and ");
+				Com_strcat(buf, sizeof(buf), nearby_teammates[1]);
 
 			}
 			else
 			{
 				if (l == (nearby_teammates_num - 1))
 				{
-					/* MetalGod Let's use a destination size checking function
-				strcat(buf, " and ");
-				strcat(buf, nearby_teammates[l]); */
-					Q_strncatz(buf, sizeof(buf), ", and ");
-					Q_strncatz(buf, sizeof(buf), nearby_teammates[1]);
+					/* MetalGod Let's use a destination size checking function*/
+					Com_strcat(buf, sizeof(buf), ", and ");
+					Com_strcat(buf, sizeof(buf), nearby_teammates[1]);
 				}
 				else
 				{
-					/* MetalGod Let's use a destination size checking function
-					strcat(buf, " and ");
-					strcat(buf, nearby_teammates[l]); */
-					Q_strncatz(buf, sizeof(buf), ", ");
-					Q_strncatz(buf, sizeof(buf), nearby_teammates[1]);;
+					/* MetalGod Let's use a destination size checking function */
+					Com_strcat(buf, sizeof(buf), ", ");
+					Com_strcat(buf, sizeof(buf), nearby_teammates[1]);;
 				}
 			}
 		}
@@ -2131,10 +2124,10 @@ void GetNearestMedic(edict_t* self, char* buf)
 
 	if (nearest != NULL)
 	{
-		strcpy(buf, nearest->client->pers.netname);
+		Com_strcpy(buf, sizeof(buf), nearest->client->pers.netname);
 	}
 	else
-		strcpy(buf, "Medic");
+		Com_strcpy(buf, sizeof(buf), "Medic");
 }
 
 //faf
@@ -2190,16 +2183,16 @@ void GetNearbyLocation(edict_t* self, char* buf)
 	}
 	if (nearest_distance > 500)
 	{
-		strcpy(buf, "somewhere");
+		Com_strcpy(buf, sizeof(buf), "somewhere");
 	}
 	else
 	{
 		if (closest->obj_name)
-			strcpy(buf, closest->obj_name);
+			Com_strcpy(buf, sizeof(buf), closest->obj_name);
 		else if (closest->message)
-			strcpy(buf, closest->message);
+			Com_strcpy(buf, sizeof(buf), closest->message);
 		else
-			strcpy(buf, "somewhere");
+			Com_strcpy(buf, sizeof(buf), "somewhere");
 	}
 
 	return;
@@ -2229,34 +2222,34 @@ void GetClass(edict_t* self, char* buf)
 		switch (self->client->resp.mos)
 		{
 		case OFFICER:
-			strcpy(buf, "Officer");
+			Com_strcpy(buf, sizeof(buf), "Officer");
 			break;
 		case INFANTRY:
-			strcpy(buf, "Infantry");
+			Com_strcpy(buf, sizeof(buf), "Infantry");
 			break;
 		case L_GUNNER:
-			strcpy(buf, "Light Gunner");
+			Com_strcpy(buf, sizeof(buf), "Light Gunner");
 			break;
 		case H_GUNNER:
-			strcpy(buf, "Heavy Gunner");
+			Com_strcpy(buf, sizeof(buf), "Heavy Gunner");
 			break;
 		case SNIPER:
-			strcpy(buf, "Sniper");
+			Com_strcpy(buf, sizeof(buf), "Sniper");
 			break;
 		case SPECIAL:
-			strcpy(buf, "Airborne");
+			Com_strcpy(buf, sizeof(buf), "Airborne");
 			break;
 		case ENGINEER:
-			strcpy(buf, "Engineer");
+			Com_strcpy(buf, sizeof(buf), "Engineer");
 			break;
 		case MEDIC:
-			strcpy(buf, "Medic");
+			Com_strcpy(buf, sizeof(buf), "Medic");
 			break;
 		case FLAMER:
-			strcpy(buf, "Flamethrower");
+			Com_strcpy(buf, sizeof(buf), "Flamethrower");
 			break;
 		default:
-			strcpy(buf, "x");
+			Com_strcpy(buf, sizeof(buf), "x");
 			break;
 		}
 	}
@@ -2290,25 +2283,25 @@ void ParseSayText(edict_t* ent, char* text)
 			{
 			case 'L':
 				GetNearbyLocation(ent, infobuf);
-				strcpy(pbuf, infobuf);
+				Com_strcpy(pbuf, sizeof(pbuf), infobuf);
 				pbuf = SeekBufEnd(pbuf);
 				p += 2;
 				continue;
 			case 'T':
 				GetNearbyTeammates(ent, infobuf);
-				strcpy(pbuf, infobuf);
+				Com_strcpy(pbuf, sizeof(pbuf), infobuf);
 				pbuf = SeekBufEnd(pbuf);
 				p += 2;
 				continue;
 			case 'M':
 				GetNearestMedic(ent, infobuf);
-				strcpy(pbuf, infobuf);
+				Com_strcpy(pbuf, sizeof(pbuf), infobuf);
 				pbuf = SeekBufEnd(pbuf);
 				p += 2;
 				continue;
 			case 'C':
 				GetClass(ent, infobuf);
-				strcpy(pbuf, infobuf);
+				Com_strcpy(pbuf, sizeof(pbuf), infobuf);
 				pbuf = SeekBufEnd(pbuf);
 				p += 2;
 				continue;
@@ -2382,9 +2375,8 @@ void Cmd_Say_f(edict_t* ent, qboolean team, qboolean arg0, qboolean saved)
 			p[strlen(p) - 1] = 0;
 		}
 
-		/* MetalGod Let's use a destination size checking function
-		strcat(text, p);*/
-		Q_strncatz(text, sizeof(text), p);
+		/* MetalGod Let's use a destination size checking function*/
+		Com_strcat(text, sizeof(text), p);
 		//Wheaty: Avoid the 'null spamming'...
 		if (!team) {
 			if (2 == strlen(text) - strlen(ent->client->pers.netname)) {
@@ -2405,9 +2397,8 @@ void Cmd_Say_f(edict_t* ent, qboolean team, qboolean arg0, qboolean saved)
 		if (ent->solid != SOLID_NOT && ent->deadflag != DEAD_DEAD)
 			ParseSayText(ent, text + offset_of_text);  //FB 5/31/99 - offset change
 							// this will parse the % variables,
-		/* MetalGod Let's use a destination size checking function
-		strcat(text, "\n");*/
-		Q_strncatz(text, sizeof(text), "\n");
+		/* MetalGod Let's use a destination size checking function */
+		Com_strcat(text, sizeof(text), "\n");
 
 		if (flood_msgs->value) {
 			cl = ent->client;
@@ -3157,19 +3148,16 @@ void Cmd_Shout_f(edict_t* ent)
 		newshout = false;
 	}
 
-	strcpy(filename, shout);
+	Com_strcpy(filename, sizeof(filename), shout);
 
 	for (i = 0; filename[i]; i++)
 		filename[i] = tolower(filename[i]);
 
-	/* MetalGod Let's use a destination size checking function
-	strcat(filename, ".wav\0");
-	strcpy(soundfile, va("%s/shout/", ent->client->resp.team_on->teamid));
-	strcat(soundfile, filename);  */
+	/* MetalGod Let's use a destination size checking function */
 
-	Q_strncatz(filename, sizeof(filename), ".wav\0");
-	Q_strncatz(soundfile, sizeof(soundfile), va("%s/shout/", ent->client->resp.team_on->teamid));
-	Q_strncatz(soundfile, sizeof(soundfile), filename);
+	Com_strcat(filename, sizeof(filename), ".wav\0");
+	Com_strcat(soundfile, sizeof(soundfile), va("%s/shout/", ent->client->resp.team_on->teamid));
+	Com_strcat(soundfile, sizeof(soundfile), filename);
 
 	if (newshout)
 	{
@@ -3241,8 +3229,14 @@ void Cmd_MOTD(edict_t* ent)
 	FILE* motd_file;
 	char motd[1000];
 	char line[100];
-
-	if ((motd_file = fopen(GAMEVERSION "/motd.txt", "r")) != NULL)/* MetalGod !=NULL */
+	/* MetalGod */
+	if ((motd_file = fopen(GAMEVERSION "/motd.txt", "r")) == NULL)
+	{
+		gi.cprintf(NULL, PRINT_HIGH, "Couldn't open \"%s\".\n\n", GAMEVERSION "/motd.txt", strerror(errno));
+		return;
+	}/* END */
+	else
+		/* if ((motd_file = fopen(GAMEVERSION "/motd.txt", "r")) != NULL)/* MetalGod !=NULL */
 	{
 		// we successfully opened the file "motd.txt"
 		if (fgets(motd, 900, motd_file))
@@ -3253,9 +3247,8 @@ void Cmd_MOTD(edict_t* ent)
 			{
 				// add each new line to motd, to create a BIG message string.
 				// we are using strcat: STRing conCATenation function here.
-				/* MetalGod NOPE! Let's use a destination size checking function
-				strcat(motd, line); */
-				Q_strncatz(motd, sizeof(motd), line);
+				/* MetalGod NOPE! Let's use a destination size checking function*/
+				Com_strcat(motd, sizeof(motd), line);
 			}
 
 			// print our message.
@@ -3264,6 +3257,7 @@ void Cmd_MOTD(edict_t* ent)
 		// be good now ! ... close the file
 		fclose(motd_file);
 	}
+
 }
 
 /*

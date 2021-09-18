@@ -60,7 +60,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <stdlib.h>
 #include <stddef.h> /* MetalGod added */
 #include <time.h>
-#include <ctype.h> /* MetalGod added September 21, 2020 */
+#include <ctype.h> /* MetalGod */
+#include <errno.h>
 
 /*
 #if (defined _M_IX86 || defined __i386__) && !defined C_ONLY && !defined __sun__
@@ -123,10 +124,10 @@ __inline int Q_vsnprintf(char* Dest, size_t Count, const char* Format, va_list A
 // TODO: do we need Mac define?
 #define Q_vsnprintf vsnprintf
 #endif
-/* MetalGod END */
 
-size_t Q_strncpyz(char* dst, size_t dstSize, const char* src);
-size_t Q_strncatz(char* dst, size_t dstSize, const char* src);
+
+size_t Com_strcpy(char* dst, size_t dstSize, const char* src);
+size_t Com_strcat(char* dst, size_t dstSize, const char* src);	  /* MetalGod END */
 
 // angle indexes
 #define	PITCH				0		// up / down

@@ -510,7 +510,7 @@ func_explosive_objective
 */
 void func_explosive_objective_explode(edict_t* self, edict_t* inflictor, edict_t* attacker, int damage, vec3_t point)
 {
-	vec3_t	origin;
+	vec3_t	origin = { 0 };
 	vec3_t	chunkorigin;
 	vec3_t	size;
 	int		count;
@@ -692,19 +692,26 @@ void GetMapObjective(void) {
 	FILE* map_file;
 	char filename[100];
 
-	strcpy(filename, GAMEVERSION "/pics/objectives/");
-	strcat(filename, level.mapname);
-	strcat(filename, ".pcx");
+	Com_strcpy(filename, sizeof(filename), GAMEVERSION "/pics/objectives/"); /* MetalGod */
+	Com_strcat(filename, sizeof(filename), level.mapname); /* MetalGod */
+	Com_strcat(filename, sizeof(filename), ".pcx");/* MetalGod */
 
+	/* MetalGod */
+	if ((map_file = fopen(filename, "r")) == NULL)
+	{
+		gi.cprintf(NULL, PRINT_HIGH, "Couldn't open map objective pic \"%s\".\n\n", filename, strerror(errno));
+		return;
+	}/* END */
 	gi.dprintf("Loading map objective pic %s...", filename);
-	if ((map_file = fopen(filename, "r")) != NULL) /* MetalGod != NULL*/
+
+	//if ((map_file = fopen(filename, "r")) != NULL) /* MetalGod != NULL*/
 	{
 		fclose(map_file);
 		level.objectivepic = filename;
 		gi.dprintf("done.\n");
 	}
-	else
-		gi.dprintf("error.\n");
+	//else
+		//gi.dprintf("error.\n");
 }
 
 //faf:  ctb code

@@ -51,13 +51,13 @@ FILE* DDay_OpenFile(char* filename_ptr)
 	FILE* fp = NULL;
 	char filename[256];
 
-	strcpy(filename, GAMEVERSION "/");
-	strcat(filename, filename_ptr);
+	Com_strcpy(filename, sizeof(filename), GAMEVERSION "/");  /* MetalGod */
+	Com_strcat(filename, sizeof(filename), filename_ptr);	 /* MetalGod */
 
 	if ((fp = fopen(filename, "r")) == NULL)       // test to see if file opened
 	{
 		// file did not load
-		gi.dprintf("Could not open file \"%s\".\n", filename);
+		gi.cprintf(NULL, PRINT_HIGH, "Couldn't open \"%s\".\n\n", filename, strerror(errno));
 		return NULL;
 	}
 
@@ -102,7 +102,7 @@ int LoadMapList(char* filename)
 {
 	FILE* fp;
 	int  i = 0;
-	char szLineIn[80];
+	char szLineIn[80] = { 0 }; /* MetalGod initialized */
 
 	fp = DDay_OpenFile(filename);
 

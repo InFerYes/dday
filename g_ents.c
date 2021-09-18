@@ -577,8 +577,8 @@ void SP_info_team_start(edict_t* ent)
 			default: team = "jpn"; break;
 			}
 		}
-		strcpy(ent->pathtarget, team);
-		strcpy(ent->message, team);
+		Com_strcpy(ent->pathtarget, sizeof(ent->pathtarget), team);
+		Com_strcpy(ent->message, sizeof(ent->message),team);
 	}
 
 	team_list[i]->teamname = ent->message;
@@ -587,16 +587,16 @@ void SP_info_team_start(edict_t* ent)
 
 	//	if (strlen(ent->message) > 12) team_list[i]->teamname = team_list[i]->teamid;
 	//	team_list[i]->playermodel = gi.TagMalloc( 64, TAG_LEVEL );
-	strcpy(team_list[i]->teamid, ent->pathtarget);
-	strcpy(team_list[i]->playermodel, ent->pathtarget);
+	Com_strcpy(team_list[i]->teamid, sizeof(team_list[i]->teamid), ent->pathtarget);
+	Com_strcpy(team_list[i]->playermodel, sizeof(team_list[i]->playermodel),ent->pathtarget);
 
 	if (ent->style == 2)
 		team_list[i]->kills_and_points = true;
 
 	if (!Q_stricmp(team_list[i]->teamid, "usm"))
 	{
-		strcpy(team_list[i]->teamid, "usa");
-		strcpy(team_list[i]->playermodel, "usa");
+		Com_strcpy(team_list[i]->teamid, sizeof(team_list[i]->teamid), "usa");
+		Com_strcpy(team_list[i]->playermodel, sizeof(team_list[i]->playermodel), "usa");
 	}
 
 	team_list[i]->nextmap = gi.TagMalloc(64, TAG_LEVEL);

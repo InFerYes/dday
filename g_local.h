@@ -1830,7 +1830,7 @@ int usm_index;
 #define WEAP_MELEE				9
 
 #define WEAP_NONE			0
-#define WEAP_TOTAL			10 /* 9  MetalGod this needs to be 10 to fit the array Septemember 21, 2020 */
+#define WEAP_TOTAL			10 /* MetalGod was 9, but we must include WEAP_NONE */
 //JABot[end]
 
 typedef enum

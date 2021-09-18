@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (C) 1997-2001 Id Software, Inc.
 
 This program is free software; you can redistribute it and/or
@@ -687,10 +687,15 @@ qboolean AI_LoadPLKFile(char* mapname)
 
 	Com_sprintf(filename, sizeof(filename), "%s/%s/%s.%s", AI_MOD_FOLDER, AI_NODES_FOLDER, mapname, NAV_FILE_EXTENSION);
 
-	pIn = fopen(filename, "rb");
+	/*pIn = fopen(filename, "rb");
 	if (pIn == NULL)
+		return false; */
+		/* MetalGod */
+	if ((pIn = fopen(filename, "rb")) == NULL)
+	{
+		gi.cprintf(NULL, PRINT_HIGH, "Couldn't open \"%s\".\n\n", filename, strerror(errno));
 		return false;
-
+	}/* END */
 	// check version
 	fread(&version, sizeof(int), 1, pIn);
 

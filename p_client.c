@@ -2636,7 +2636,7 @@ void ClientUserinfoChanged(edict_t* ent, char* userinfo)
 	// check for malformed or illegal info strings
 	if (!Info_Validate(userinfo))
 	{
-		strcpy(userinfo, "\\name\\badinfo\\skin\\usa/USMC");
+		Com_strcpy(userinfo, sizeof(userinfo), "\\name\\badinfo\\skin\\usa/USMC");
 	}
 
 	// set name
@@ -2666,34 +2666,34 @@ void ClientUserinfoChanged(edict_t* ent, char* userinfo)
 
 			if (team_list[ent->client->resp.team_on->index]->skin)
 			{
-				strcpy(skin, va("%s/%s_",
+				Com_strcpy(skin, sizeof(skin), va("%s/%s_",
 					ent->client->resp.team_on->playermodel,
 					team_list[ent->client->resp.team_on->index]->skin)
 				);
 				if (ent->client->resp.mos == MEDIC)
-					strcat(skin, "medic");
+					Com_strcat(skin, sizeof(skin), "medic");
 				else if (ent->client->resp.mos == INFANTRY)
-					strcat(skin, "infantry");
+					Com_strcat(skin, sizeof(skin), "infantry");
 				else if (ent->client->resp.mos == OFFICER)
-					strcat(skin, "officer");
+					Com_strcat(skin, sizeof(skin), "officer");
 				else if (ent->client->resp.mos == L_GUNNER)
-					strcat(skin, "lmg");
+					Com_strcat(skin, sizeof(skin), "lmg");
 				else if (ent->client->resp.mos == H_GUNNER)
-					strcat(skin, "hmg");
+					Com_strcat(skin, sizeof(skin), "hmg");
 				else if (ent->client->resp.mos == SNIPER)
-					strcat(skin, "sniper");
+					Com_strcat(skin, sizeof(skin), "sniper");
 				else if (ent->client->resp.mos == SPECIAL)
-					strcat(skin, "special");
+					Com_strcat(skin, sizeof(skin), "special");
 				else if (ent->client->resp.mos == ENGINEER)
-					strcat(skin, "engineer");
+					Com_strcat(skin, sizeof(skin), "engineer");
 				else if (ent->client->resp.mos == FLAMER)
-					strcat(skin, "flamethrower");
+					Com_strcat(skin, sizeof(skin), "flamethrower");
 				else
-					strcat(skin, "infantry");
+					Com_strcat(skin, sizeof(skin), "infantry");
 			}
 			else
 			{
-				strcpy(skin, va("%s/%s",
+				Com_strcpy(skin, sizeof(skin), va("%s/%s",
 					ent->client->resp.team_on->playermodel,
 					ent->client->resp.team_on->mos[ent->client->resp.mos]->skinname));
 			}
@@ -2719,7 +2719,7 @@ void ClientUserinfoChanged(edict_t* ent, char* userinfo)
 		else
 		{
 			// default to allied infantry
-			strcpy(skin, "grm/class_infantry");
+			Com_strcpy(skin, sizeof(skin), "grm/class_infantry");
 
 			gi.configstring(CS_PLAYERSKINS + playernum, va("%s\\%s",
 				ent->client->pers.netname, skin));
@@ -4473,40 +4473,44 @@ void Write_Player_Stats(edict_t* ent)
 
 	sprintf(filename, "dday/stats/%s.stats", ip);
 
-	FILE* fn = fopen(filename, "w"); /* MetalGod redid for clarity*/
-	if (!fn)
+	FILE* fn;
+	/*if (!fp)
 	{
 		gi.error("Couldn't open %s, you may need to create a 'dday/stats' folder.", filename);
-	}
-	else
+	}*/
+	/* MetalGod */
+	if ((fn = fopen(filename, "w")) == NULL)
 	{
-		fprintf(fn, "%s\n", ent->client->pers.netname);
-		fprintf(fn, "%i\n", games);
-		fprintf(fn, "%i\n", ent->client->ping);
-		fprintf(fn, "%i\n", human_kills);
-		fprintf(fn, "%i\n", human_deaths);
-		fprintf(fn, "%i\n", bot_kills);
-		fprintf(fn, "%i\n", bot_deaths);
-		fprintf(fn, "%i\n", games_won);
-		fprintf(fn, "%i\n", games_lost);
-		fprintf(fn, "%i\n", played_allies);
-		fprintf(fn, "%i\n", played_axis);
-		fprintf(fn, "%i\n", infantry);
-		fprintf(fn, "%i\n", officer);
-		fprintf(fn, "%i\n", lgunner);
-		fprintf(fn, "%i\n", hgunner);
-		fprintf(fn, "%i\n", sniper);
-		fprintf(fn, "%i\n", special);
-		fprintf(fn, "%i\n", engineer);
-		fprintf(fn, "%i\n", medic);
-		fprintf(fn, "%i\n", flamer);
-		fprintf(fn, "%i\n", castrations);
-		fprintf(fn, "%i\n", helmets);
-		fprintf(fn, "%i\n", fists);
-		fprintf(fn, "%s\n", ent->client->pers.stat_chat);
+		gi.cprintf(NULL, PRINT_HIGH, "Couldn't open %s, you may need to create a 'dday/stats' folder.", filename, strerror(errno));
+		return;
+	}/* END */
+	fprintf(fn, "%s\n", ent->client->pers.netname);
+	fprintf(fn, "%i\n", games);
+	fprintf(fn, "%i\n", ent->client->ping);
+	fprintf(fn, "%i\n", human_kills);
+	fprintf(fn, "%i\n", human_deaths);
+	fprintf(fn, "%i\n", bot_kills);
+	fprintf(fn, "%i\n", bot_deaths);
+	fprintf(fn, "%i\n", games_won);
+	fprintf(fn, "%i\n", games_lost);
+	fprintf(fn, "%i\n", played_allies);
+	fprintf(fn, "%i\n", played_axis);
+	fprintf(fn, "%i\n", infantry);
+	fprintf(fn, "%i\n", officer);
+	fprintf(fn, "%i\n", lgunner);
+	fprintf(fn, "%i\n", hgunner);
+	fprintf(fn, "%i\n", sniper);
+	fprintf(fn, "%i\n", special);
+	fprintf(fn, "%i\n", engineer);
+	fprintf(fn, "%i\n", medic);
+	fprintf(fn, "%i\n", flamer);
+	fprintf(fn, "%i\n", castrations);
+	fprintf(fn, "%i\n", helmets);
+	fprintf(fn, "%i\n", fists);
+	fprintf(fn, "%s\n", ent->client->pers.stat_chat);
 
-		fclose(fn);
-	}
+	fclose(fn);
+
 
 	if (f)
 	{

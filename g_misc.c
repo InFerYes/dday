@@ -3143,8 +3143,8 @@ void Medic_Screen(edict_t* ent)
 
 		j = strlen(entry);
 		if (stringlength + j > 1024)
-			break;
-		strcpy(string + stringlength, entry);
+			break;						
+		Com_strcpy(string + stringlength, sizeof(string), entry);
 		stringlength += j;
 		y++;
 	}
