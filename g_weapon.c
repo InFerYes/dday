@@ -1641,9 +1641,9 @@ void fire_grenade2(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int s
 				grenade->s.modelindex = gi.modelindex("models/objects/masher/tris.md2");
 			else
 			{
-				Com_strcpy(grenadefilename, sizeof(grenadefilename), "models/objects/"); /* MetalGod */
-				Com_strcat(grenadefilename, sizeof(grenadefilename), team_list[team]->teamid); /* MetalGod */
-				Com_strcat(grenadefilename, sizeof(grenadefilename), "grenade/tris.md2"); /* MetalGod */
+				strcpy(grenadefilename, "models/objects/");
+				strcat(grenadefilename, team_list[team]->teamid);
+				strcat(grenadefilename, "grenade/tris.md2");
 				grenade->s.modelindex = gi.modelindex(grenadefilename);
 			}
 		}

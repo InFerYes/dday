@@ -119,7 +119,7 @@ void PMenu_Update(edict_t* ent)
 
 	hnd = ent->client->menu;
 
-	Com_strcpy(string, sizeof(string), "xv 32 yv 8 picn inventory ");
+	strcpy(string, "xv 32 yv 8 picn inventory ");
 
 	for (i = 0, p = hnd->entries; i < hnd->num; i++, p++) {
 		if (!p->text || !*(p->text) || *p->text == '^')

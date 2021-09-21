@@ -905,8 +905,8 @@ void ParseBotChat(char* text, edict_t* attacker)
 				//infobuf = attacker->client->pers.netname;
 
 				/* MetalGod destination size checking function
-				 */
-				Com_strcat(pbuf, sizeof(pbuf), infobuf);
+				strcpy(pbuf, infobuf);	  */
+				Q_strncatz(pbuf, sizeof(pbuf), infobuf);
 				pbuf = SeekBufEnd(pbuf);
 				p += 2;
 				continue;
@@ -1393,14 +1393,16 @@ void AI_Think(edict_t* self)
 			{
 				if ((int)rand() % 2 == 1)
 				{
-					/* MetalGod destination size checking function */
-					Com_strcpy(soundfile, sizeof(soundfile), va("%s/shout/move%i.wav", self->client->resp.team_on->teamid, 1 + (int)rand() % 2));
+					/* MetalGod destination size checking function
+					strcpy(soundfile, va("%s/shout/move%i.wav", self->client->resp.team_on->teamid, 1 + (int)rand() % 2));	 */
+					Q_strncpyz(soundfile, sizeof(soundfile), va("%s/shout/move%i.wav", self->client->resp.team_on->teamid, 1 + (int)rand() % 2));
 					Cmd_Wave_f(self, 4);
 				}
 				else
 				{
-					/* MetalGod destination size checking function */
-					Com_strcpy(soundfile, sizeof(soundfile), va("%s/shout/attack%i.wav", self->client->resp.team_on->teamid, 1 + (int)rand() % 2));
+					/* MetalGod destination size checking function
+					strcpy(soundfile, va("%s/shout/attack%i.wav", self->client->resp.team_on->teamid, 1 + (int)rand() % 2));  */
+					Q_strncpyz(soundfile, sizeof(soundfile), va("%s/shout/attack%i.wav", self->client->resp.team_on->teamid, 1 + (int)rand() % 2));
 					Cmd_Wave_f(self, 3);
 				}
 				gi.sound(self, CHAN_VOICE, gi.soundindex(soundfile), 1, ATTN_NORM, 0);
@@ -1415,8 +1417,9 @@ void AI_Think(edict_t* self)
 			if (rand() % 3 == 1)
 			{
 				//if ((int)rand()%2 == 1)
-				/* MetalGod destination size checking function  */
-				Com_strcpy(soundfile, sizeof(soundfile), va("%s/shout/cease%i.wav", self->client->resp.team_on->teamid, 1 + (int)rand() % 2));
+				/* MetalGod destination size checking function
+				strcpy(soundfile, va("%s/shout/cease%i.wav", self->client->resp.team_on->teamid, 1 + (int)rand() % 2));	  */
+				Q_strncpyz(soundfile, sizeof(soundfile), va("%s/shout/cease%i.wav", self->client->resp.team_on->teamid, 1 + (int)rand() % 2));
 
 				gi.sound(self, CHAN_VOICE, gi.soundindex(soundfile), 1, ATTN_NORM, 0);
 				level.last_bot_shout_time = level.time;
@@ -1430,8 +1433,9 @@ void AI_Think(edict_t* self)
 		else if (self->health < 100 && level.framenum % 100 == 1 && (int)rand() % 5 == 1 && self->client && self->client->resp.mos && self->client->resp.mos != MEDIC)
 		{
 			//gi.dprintf("MEDIC\n");
-			/* MetalGod destination size checking function  */
-			Com_strcpy(soundfile, sizeof(soundfile), va("%s/shout/medic.wav", self->client->resp.team_on->teamid));
+			/* MetalGod destination size checking function
+			strcpy(soundfile, va("%s/shout/medic.wav", self->client->resp.team_on->teamid));  */
+			Q_strncpyz(soundfile, sizeof(soundfile), va("%s/shout/medic.wav", self->client->resp.team_on->teamid));
 			gi.sound(self, CHAN_VOICE, gi.soundindex(soundfile), 1, ATTN_NORM, 0);
 			level.last_bot_shout_time = level.time;
 			Cmd_Wave_f(self, 0);
@@ -1447,8 +1451,9 @@ void AI_Think(edict_t* self)
 				/* MetalGod hides previous local declaration
 				char soundfile[50];
 				*/
-				/* MetalGod destination size checking function */
-				Com_strcpy(soundfile, sizeof(soundfile), va("%s/shout/sniper%i.wav", self->client->resp.team_on->teamid, 1 + (int)rand() % 2));
+				/* MetalGod destination size checking function
+				strcpy(soundfile, va("%s/shout/sniper%i.wav", self->client->resp.team_on->teamid, 1 + (int)rand() % 2));  */
+				Q_strncpyz(soundfile, sizeof(soundfile), va("%s/shout/sniper%i.wav", self->client->resp.team_on->teamid, 1 + (int)rand() % 2));
 				gi.sound(self, CHAN_VOICE, gi.soundindex(soundfile), 1, ATTN_NORM, 0);
 				level.last_bot_shout_time = level.time;
 				Cmd_Wave_f(self, 4);
@@ -1464,11 +1469,13 @@ void AI_Think(edict_t* self)
 		{
 			if ((int)rand() % 4 > 1)
 
-				/* MetalGod destination size checking function  */
-				Com_strcpy(soundfile, sizeof(soundfile), va("%s/shout/funny%i.wav", self->client->resp.team_on->teamid, 1 + (int)rand() % 3));
+				/* MetalGod destination size checking function
+				strcpy(soundfile, va("%s/shout/funny%i.wav", self->client->resp.team_on->teamid, 1 + (int)rand() % 3));	  */
+				Q_strncpyz(soundfile, sizeof(soundfile), va("%s/shout/funny%i.wav", self->client->resp.team_on->teamid, 1 + (int)rand() % 3));
 			else
-				/* MetalGod destination size checking function */
-				Com_strcpy(soundfile, sizeof(soundfile), va("%s/shout/smoke1.wav", self->client->resp.team_on->teamid));
+				/* MetalGod destination size checking function
+				strcpy(soundfile, va("%s/shout/smoke1.wav", self->client->resp.team_on->teamid)); */
+				Q_strncpyz(soundfile, sizeof(soundfile), va("%s/shout/smoke1.wav", self->client->resp.team_on->teamid));
 			gi.sound(self, CHAN_VOICE, gi.soundindex(soundfile), 1, ATTN_NORM, 0);
 
 			//sndfixcheck

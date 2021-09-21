@@ -329,10 +329,13 @@ qboolean MapExists(char* map)
 	FILE* check;
 	char filename[256];
 
-	/* MetalGod destination size checking functions */
-	Com_strcpy(filename, sizeof(filename), "dday/maps/");
-	Com_strcat(filename, sizeof(filename), map);
-	Com_strcat(filename, sizeof(filename), ".bsp");
+	/* MetalGod destination size checking functions
+	strcpy(filename, "dday/maps/");
+	strcat(filename, map);
+	strcat(filename, ".bsp");	  */
+	Q_strncpyz(filename, sizeof(filename), "dday/maps/");
+	Q_strncatz(filename, sizeof(filename), map);
+	Q_strncatz(filename, sizeof(filename), ".bsp");
 
 	if ((check = fopen(filename, "r")) != NULL) /* MetalGod != NULL*/
 	{
@@ -340,10 +343,13 @@ qboolean MapExists(char* map)
 		return true;
 	}
 
-	/* MetalGod destination size checking functions*/
-	Com_strcpy(filename, sizeof(filename), "baseq2/maps/");
-	Com_strcat(filename, sizeof(filename), map);
-	Com_strcat(filename, sizeof(filename), ".bsp");
+	/* MetalGod destination size checking functions
+	strcpy(filename, "baseq2/maps/");
+	strcat(filename, map);
+	strcat(filename, ".bsp");		*/
+	Q_strncpyz(filename, sizeof(filename), "baseq2/maps/");
+	Q_strncatz(filename, sizeof(filename), map);
+	Q_strncatz(filename, sizeof(filename), ".bsp");
 
 	if ((check = fopen(filename, "r")) != NULL) /* MetalGod != NULL*/
 	{
@@ -351,10 +357,13 @@ qboolean MapExists(char* map)
 		return true;
 	}
 
-	/* MetalGod destination size checking functions */
-	Com_strcpy(filename, sizeof(filename), "dday/maps/");
-	Com_strcat(filename, sizeof(filename), map);
-	Com_strcat(filename, sizeof(filename), ".bsp.override");
+	/* MetalGod destination size checking functions
+	strcpy(filename, "dday/maps/");
+	strcat(filename, map);
+	strcat(filename, ".bsp.override");		*/
+	Q_strncpyz(filename, sizeof(filename), "dday/maps/");
+	Q_strncatz(filename, sizeof(filename), map);
+	Q_strncatz(filename, sizeof(filename), ".bsp.override");
 
 	if ((check = fopen(filename, "r")) != NULL) /* MetalGod != NULL*/
 	{
@@ -370,19 +379,12 @@ void Write_Last_Maps(void)
 	FILE* fp;
 	int i;
 
-	/* fp = fopen("dday/lastmaps.txt", "w");
-
+	fp = fopen("dday/lastmaps.txt", "w");
+	/* MetalGod reformatted for clarity and checking return values */
 	if (!fp)
 	{
 		gi.error("Couldn't open dday/lastmaps.txt");
-	}	*/
-	/* MetalGod */
-	if ((fp = fopen("dday/lastmaps.txt", "w")) == NULL)
-	{
-		gi.cprintf(NULL, PRINT_HIGH, "Couldn't open dday/lastmaps.txt\n\n", "dday/lastmaps.txt", strerror(errno));
-		return;
-	}/* END */
-
+	}
 	else
 	{
 		for (i = 0; i < 20 && last_maps_played[i]; i++)
@@ -664,8 +666,9 @@ void EndDMLevel(void)
 						//if campaign points back to first map, move on in maplist
 						char ck[20];
 						sprintf(ck, "%s", t);
-						/* MetalGod destination size checking functions	  */
-						Com_strcat(ck, sizeof(ck), "1");
+						/* MetalGod destination size checking functions
+						strcat(ck, "1");		  */
+						Q_strncatz(ck, sizeof(ck), "1");
 						//gi.dprintf ("crere %s %s\n",ck, t);
 						if (strcmp(ck, team_list[0]->nextmap))
 						{
@@ -722,8 +725,9 @@ void EndDMLevel(void)
 							else
 							{
 								check = t;
-								/* MetalGod destination size checking functions*/
-								Com_strcat(check, sizeof(check), "1");
+								/* MetalGod destination size checking functions
+								strcat(check, "1");		*/
+								Q_strncatz(check, sizeof(check), "1");
 
 								if (MapExists(check))
 								{
@@ -747,8 +751,9 @@ void EndDMLevel(void)
 							//last_maplist_map_played = t;
 							//first_non_maplist_map = NULL;
 							check = t;
-							/* MetalGod destination size checking functions*/
-							Com_strcat(check, sizeof(check), "1");
+							/* MetalGod destination size checking functions
+							strcat(check, "1");		*/
+							Q_strncatz(check, sizeof(check), "1");
 							//gi.dprintf("%s kljfdsjlk\n",check);
 							if (MapExists(check))
 							{
@@ -798,8 +803,9 @@ void EndDMLevel(void)
 					else
 					{
 						check = tb;
-						/* MetalGod destination size checking functions*/
-						Com_strcat(check, sizeof(check), "1");
+						/* MetalGod destination size checking functions
+							strcat(check, "1");		*/
+						Q_strncatz(check, sizeof(check), "1");
 						if (MapExists(check))
 						{
 							safe_bprintf(PRINT_HIGH, "Next map: %s \n", check);

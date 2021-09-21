@@ -776,15 +776,8 @@ char* ReadEntFile(char* filename)
 
 	for (;;)/* MetalGod shut up compiler */
 	{
-		/*
-	   fp = fopen(filename, "r");
-	   if (!fp) break;	*/
-	   /* MetalGod */
-		if ((fp = fopen(filename, "r")) == NULL)
-		{
-			gi.cprintf(NULL, PRINT_HIGH, "Loaded \"%s\".\n", filename, strerror(errno));
-			if (!fp) break;
-		}/* END */
+		fp = fopen(filename, "r");
+		if (!fp) break;
 
 		for (i = 0; (ch = fgetc(fp)) != EOF; i++)
 			;
@@ -1371,7 +1364,7 @@ void SP_worldspawn(edict_t * ent)
 		level.botfiles = ent->deathtarget;
 
 	if (st.nextmap)
-		Com_strcpy(level.nextmap, sizeof(level.nextmap), st.nextmap);
+		strcpy(level.nextmap, st.nextmap);
 
 	//	map_tree[0][0]=0;
 		// make some data visible to the server

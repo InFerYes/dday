@@ -428,7 +428,7 @@ char* G_CopyString(char* in)
 	char* out;
 
 	out = gi.TagMalloc(strlen(in) + 1, TAG_LEVEL);
-	Com_strcpy(out, sizeof(out), in);
+	strcpy(out, in);
 	return out;
 }
 

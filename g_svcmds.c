@@ -1,4 +1,4 @@
-﻿/*       D-Day: Normandy by Vipersoft
+/*       D-Day: Normandy by Vipersoft
  ************************************
  *   $Source: /usr/local/cvsroot/dday/src/g_svcmds.c,v $
  *   $Revision: 1.6 $
@@ -333,39 +333,35 @@ void WriteCampaignTxt(void)
 		return;
 
 	sprintf(campaignfilename, "dday/campaigns/%s.campaign", campaign->string);
-	/*fp = fopen(campaignfilename, "wb");
+	fp = fopen(campaignfilename, "wb");
 
 	if (!fp)
 	{
 		gi.error("Couldn't open %s", campaignfilename);
-	}  */
-	/* MetalGod */
-	if ((fp = fopen(campaignfilename, "wb")) == NULL)
-	{
-		gi.cprintf(NULL, PRINT_HIGH, "Couldn't open \"%s\".\n", campaignfilename, strerror(errno));
-		return;
-	}/* END */
-
-	fprintf(fp, "%i\n", alliedplatoons);
-	fprintf(fp, "%i\n", axisplatoons);
-	fprintf(fp, "%i\n", alliedneedspots);
-	fprintf(fp, "%i\n", axisneedspots);
-
-	for (i = 0; campaign_spots[i].bspname; i++)
-	{
-		fprintf(fp, "%s\n", campaign_spots[i].bspname);
-		fprintf(fp, "%s\n", campaign_spots[i].exita);
-		fprintf(fp, "%s\n", campaign_spots[i].exitb);
-		fprintf(fp, "%s\n", campaign_spots[i].exitc);
-		fprintf(fp, "%i\n", campaign_spots[i].owner);
-		fprintf(fp, "%i\n", campaign_spots[i].xpos);
-		fprintf(fp, "%i\n", campaign_spots[i].ypos);
-		fprintf(fp, "%i\n", campaign_spots[i].alliedstart);
-		fprintf(fp, "%i\n", campaign_spots[i].axisstart);
 	}
+	else
+	{
+		{
+			fprintf(fp, "%i\n", alliedplatoons);
+			fprintf(fp, "%i\n", axisplatoons);
+			fprintf(fp, "%i\n", alliedneedspots);
+			fprintf(fp, "%i\n", axisneedspots);
 
-	fclose(fp);
-
+			for (i = 0; campaign_spots[i].bspname; i++)
+			{
+				fprintf(fp, "%s\n", campaign_spots[i].bspname);
+				fprintf(fp, "%s\n", campaign_spots[i].exita);
+				fprintf(fp, "%s\n", campaign_spots[i].exitb);
+				fprintf(fp, "%s\n", campaign_spots[i].exitc);
+				fprintf(fp, "%i\n", campaign_spots[i].owner);
+				fprintf(fp, "%i\n", campaign_spots[i].xpos);
+				fprintf(fp, "%i\n", campaign_spots[i].ypos);
+				fprintf(fp, "%i\n", campaign_spots[i].alliedstart);
+				fprintf(fp, "%i\n", campaign_spots[i].axisstart);
+			}
+		}
+		fclose(fp);
+	}
 }
 
 //called when first creating campaign, or at map start.  Creates new [campaign].campaign file if needed or loads existing one
