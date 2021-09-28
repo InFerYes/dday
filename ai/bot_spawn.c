@@ -537,7 +537,7 @@ void BOT_DMClass_JoinGame(edict_t* ent, char* team_name)
 	/* int randnum = rand() % 5; Metalgod initialized, but not referenced */
 
 	if (!BOT_JoinCTFTeam(ent, team_name))
-		Com_Printf("%s joined the game.\n",
+		gi.dprintf("%s joined the game.\n",
 			ent->client->pers.netname);
 
 	ent->think = AI_Think;
@@ -665,13 +665,13 @@ void BOT_SpawnBot(int team, char* name, char* skin, char* userinfo)
 	if (!nobotwarn && (nav.loaded == -1))
 	{
 		nobotwarn = true;
-		Com_Printf("No .nav file for this map, can't load bots!\n");
+		gi.dprintf("No .nav file for this map, can't load bots!\n");
 		return;
 	}
 	if (!nobotwarn && total_camp_spots == 0)
 	{
 		nobotwarn = true;
-		Com_Printf("No .cmp file for this map, can't load bots!\n");
+		gi.dprintf("No .cmp file for this map, can't load bots!\n");
 		return;
 	}
 

@@ -962,12 +962,12 @@ void AI_InitNavigationData(void)
 	newlinks = AI_LinkServerNodes(servernodesstart);
 	newjumplinks = AI_LinkCloseNodes_JumpPass(servernodesstart);
 
-	Com_Printf("-------------------------------------\n");
-	Com_Printf("       : AI: Nodes Initialized.\n");
-	Com_Printf("       : loaded nodes:%i.\n", servernodesstart);
-	Com_Printf("       : added nodes:%i.\n", nav.num_nodes - servernodesstart);
-	Com_Printf("       : total nodes:%i.\n", nav.num_nodes);
-	Com_Printf("       : loaded links:%i.\n", linkscount);
-	Com_Printf("       : added links:%i.\n", newlinks);
-	Com_Printf("       : added jump links:%i.\n", newjumplinks);
+	gi.dprintf("-------------------------------------\n");
+	gi.dprintf("       : AI: Nodes Initialized.\n");
+	gi.dprintf("       : loaded nodes:%i.\n", servernodesstart);
+	gi.dprintf("       : added nodes:%i.\n", nav.num_nodes - servernodesstart);
+	gi.dprintf("       : total nodes:%i.\n", nav.num_nodes);
+	gi.dprintf("       : loaded links:%i.\n", linkscount);
+	gi.dprintf("       : added links:%i.\n", newlinks);
+	gi.dprintf("       : added jump links:%i.\n", newjumplinks);
 }

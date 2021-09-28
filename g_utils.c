@@ -745,7 +745,7 @@ void centerprintall(char* mesg, ...)
 
 	// erm this should never happen at all but it's here incase
 	if (len >= size)
-		Com_Printf("centerprintall: overflow of %i in %i\n", len, size);
+		gi.dprintf("centerprintall: overflow of %i in %i\n", len, size);
 
 	strncpy(print, buffer, size - 1);
 

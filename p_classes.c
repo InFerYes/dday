@@ -215,9 +215,9 @@ void Give_Class_Ammo(edict_t* ent)
 
 	if (ent->client->resp.team_on->mos[ent->client->resp.mos]->ammo1)
 	{
-		if ((mauser_only->value == 1) && (ent->client->resp.mos != MEDIC)) /* MetalGod simplified */
+		if ((mauser_only->value == 1) && !(ent->client->resp.mos == MEDIC))
 			item = FindTeamItem(team_list[1]->teamid, LOC_RIFLE);
-		else if ((sniper_only->value == 1) && (ent->client->resp.mos != MEDIC)) /* MetalGod simplified */
+		else if ((sniper_only->value == 1) && !(ent->client->resp.mos == MEDIC))
 			item = FindTeamItem(team_list[(ent->client->resp.team_on->index)]->teamid, LOC_SNIPER);
 		else
 			item = FindItem(ent->client->resp.team_on->mos[ent->client->resp.mos]->weapon1);
@@ -232,6 +232,8 @@ void Give_Class_Ammo(edict_t* ent)
 		item2 = FindItem(item->ammo);
 		Add_Ammo(ent, item2, ent->client->resp.team_on->mos[ent->client->resp.mos]->ammo2);
 	}
+
+
 }
 /*	 MetalGod unused
 void Show_Mos(edict_t* ent)
