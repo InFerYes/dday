@@ -687,10 +687,15 @@ qboolean AI_LoadPLKFile(char* mapname)
 
 	Com_sprintf(filename, sizeof(filename), "%s/%s/%s.%s", AI_MOD_FOLDER, AI_NODES_FOLDER, mapname, NAV_FILE_EXTENSION);
 
+	/* MetalGod
 	pIn = fopen(filename, "rb");
 	if (pIn == NULL)
+		return false;	 */
+	if ((pIn = fopen(filename, "rb")) == NULL)
+	{
+		gi.dprintf("Unable to open file! %s.\n", strerror(errno));
 		return false;
-
+	}  /* END */
 	// check version
 	fread(&version, sizeof(int), 1, pIn);
 

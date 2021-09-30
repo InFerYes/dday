@@ -138,12 +138,12 @@ void Give_Class_Weapon(edict_t* ent)
 	item = FindItem("Knife");
 	client->pers.inventory[ITEM_INDEX(item)] = 1;
 
-	// faf rifle-only code  //ddaylife
-	if ((mauser_only->value == 1) && (client->resp.mos != MEDIC))/* MetalGod simplified */
+	// faf rifle-only code  //ddaylife 
+	if ((mauser_only->value == 1) && !(client->resp.mos == MEDIC))
 	{
 		item = FindTeamItem(team_list[1]->teamid, LOC_RIFLE);
 	}
-	else if ((sniper_only->value == 1) && (client->resp.mos != MEDIC))	/* MetalGod simplified */
+	else if ((sniper_only->value == 1) && !(client->resp.mos == MEDIC))
 	{
 		item = FindTeamItem(team_list[(client->resp.team_on->index)]->teamid, LOC_SNIPER);
 	}
@@ -155,14 +155,14 @@ void Give_Class_Weapon(edict_t* ent)
 	else
 		item = FindItem(client->resp.team_on->mos[client->resp.mos]->weapon1);
 
-
+	// Loads primary weapon when spawning
+	Load_Weapon(ent, item); /* MetalGod moved this to AFTER the check to see if Item exists */
 
 	if (!item) { //pbowens: prevents from crashing the game
 		safe_cprintf(ent, PRINT_HIGH, "weapon1 item not found!\n");
 		return;
 	}
-	// Loads primary weapon when spawning
-	Load_Weapon(ent, item); /* MetalGod moved this to AFTER the check to see if Item exists */
+	
 
 	client->pers.selected_item = ITEM_INDEX(item);
 	client->newweapon = item;

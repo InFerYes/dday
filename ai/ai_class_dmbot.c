@@ -697,7 +697,7 @@ void BOT_DMclass_ChooseWeapon(edict_t* self)
 	gitem_t* it;
 	int index;
 
-	if (!self->enemy && self->client->resp.mos == SNIPER && self->client->pers.weapon->position != LOC_SNIPER &&
+	if (!self->enemy && self->client->resp.mos == SNIPER && self->client->pers.weapon && self->client->pers.weapon->position != LOC_SNIPER &&
 		self->ai->last_enemy_time && self->ai->last_enemy_time < level.time - 3)
 	{
 		it = FindNextPickup(self, LOC_SNIPER);
@@ -710,7 +710,7 @@ void BOT_DMclass_ChooseWeapon(edict_t* self)
 		return;
 	}
 
-	if (!self->enemy && self->client->resp.mos == FLAMER && self->client->pers.weapon->position != LOC_FLAME &&
+	if (!self->enemy && self->client->resp.mos == FLAMER && self->client->pers.weapon && self->client->pers.weapon->position != LOC_FLAME &&
 		self->ai->last_enemy_time && self->ai->last_enemy_time < level.time - 3)
 	{
 		it = FindNextPickup(self, LOC_FLAME);

@@ -2105,6 +2105,7 @@ void Helmet_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* su
 void func_explosive_objective_explode(edict_t* self, edict_t* inflictor, edict_t* attacker, int damage, vec3_t point);
 void train_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int damage, vec3_t point);
 int Play_Bullet_Hit(edict_t* ent, char* surface, vec3_t endpos, edict_t* impact_ent);
+void SpawnItem(edict_t* ent, gitem_t* item);
 
 char botchat_taunt[MAX_TEAMS][200][150];
 int  botchat_taunt_count[MAX_TEAMS];

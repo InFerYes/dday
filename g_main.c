@@ -378,22 +378,25 @@ void Write_Last_Maps(void)
 {
 	FILE* fp;
 	int i;
-
+	/* MetalGod
 	fp = fopen("dday/lastmaps.txt", "w");
-	/* MetalGod reformatted for clarity and checking return values */
 	if (!fp)
 	{
 		gi.error("Couldn't open dday/lastmaps.txt");
-	}
-	else
+	} */
+	if ((fp = fopen("dday/lastmaps.txt", "w")) == NULL)
 	{
-		for (i = 0; i < 20 && last_maps_played[i]; i++)
-		{
-			fprintf(fp, "%s\n", last_maps_played[i]);
-		}
-		fclose(fp);
+		gi.dprintf("Unable to open file! %s.\n", strerror(errno));
+		return;
+	} /* END */
+	for (i = 0; i < 20 && last_maps_played[i]; i++)
+	{
+		fprintf(fp, "%s\n", last_maps_played[i]);
 	}
+	fclose(fp);
+
 }
+
 void Read_Last_Maps()
 {
 	int		i, c;

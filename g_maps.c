@@ -54,12 +54,18 @@ FILE* DDay_OpenFile(char* filename_ptr)
 	strcpy(filename, GAMEVERSION "/");
 	strcat(filename, filename_ptr);
 
+	/* MetalGod *
 	if ((fp = fopen(filename, "r")) == NULL)       // test to see if file opened
 	{
 		// file did not load
 		gi.dprintf("Could not open file \"%s\".\n", filename);
 		return NULL;
-	}
+	}	   */
+	if ((fp = fopen(filename, "r")) == NULL)
+	{
+		gi.dprintf("Unable to open file! %s.\n", strerror(errno));
+		return false;
+	} /* END */
 
 	return fp;
 }

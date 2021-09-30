@@ -703,8 +703,10 @@ void GetMapObjective(void) {
 		level.objectivepic = filename;
 		gi.dprintf("done.\n");
 	}
-	else
-		gi.dprintf("error.\n");
+	else /* MetalGod */
+	{
+		gi.dprintf("Unable to open file! %s.\n", strerror(errno));
+	} /* END */
 }
 
 //faf:  ctb code

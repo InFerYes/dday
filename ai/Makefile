@@ -30,15 +30,14 @@ ARCH := $(shell uname -m | sed -e s/i.86/i386/ -e s/sun4u/sparc64/ -e s/arm.*/ar
 #ARCH=i386
 #ARCH=x86_64
 
-CC=gcc
+CC = gcc -std=c11 -Wall -Wpedantic
 BASE_CFLAGS=-Dstricmp=strcasecmp -I..
 
 #CFLAGS_RELEASE=$(BASE_CFLAGS) -O1
 
 # Nick - fixed 'make build_release' flags.
 
-CFLAGS_RELEASE=$(BASE_CFLAGS) -O3 -funroll-loops \
-	-fomit-frame-pointer -fexpensive-optimizations
+CFLAGS_RELEASE=$(BASE_CFLAGS) -O3 
 # Nick - fixed 'make build_debug' flags.
 CFLAGS_DEBUG=$(BASE_CFLAGS) -g
 

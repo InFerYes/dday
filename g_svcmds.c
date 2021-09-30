@@ -333,12 +333,19 @@ void WriteCampaignTxt(void)
 		return;
 
 	sprintf(campaignfilename, "dday/campaigns/%s.campaign", campaign->string);
+	/* MetalGod
 	fp = fopen(campaignfilename, "wb");
 
 	if (!fp)
 	{
 		gi.error("Couldn't open %s", campaignfilename);
-	}
+
+	}  */
+	if ((fp = fopen(campaignfilename, "wb")) == NULL)
+	{
+		gi.dprintf("Unable to open file! %s.\n", strerror(errno));
+		return;
+	} /* END */
 	else
 	{
 		{

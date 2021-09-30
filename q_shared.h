@@ -61,6 +61,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <stddef.h> /* MetalGod added */
 #include <time.h>
 #include <ctype.h> /* MetalGod added September 21, 2020 */
+#include <errno.h>
+
 
 /*
 #if (defined _M_IX86 || defined __i386__) && !defined C_ONLY && !defined __sun__

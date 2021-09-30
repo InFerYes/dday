@@ -488,9 +488,14 @@ qboolean AI_SavePLKFile(char* mapname)
 	int			version = NAV_FILE_VERSION;
 
 	Com_sprintf(filename, sizeof(filename), "%s/%s/%s.%s", AI_MOD_FOLDER, AI_NODES_FOLDER, mapname, NAV_FILE_EXTENSION);
-
+	 /*	 MetalGod
 	if ((pOut = fopen(filename, "wb")) == NULL)
+		return false;							*/
+	if ((pOut = fopen(filename, "wb")) == NULL) 
+	{
+		gi.dprintf("Unable to open file! %s.\n", strerror(errno));
 		return false;
+	}  /* END */
 
 	fwrite(&version, sizeof(int), 1, pOut);
 	fwrite(&nav.num_nodes, sizeof(int), 1, pOut);
@@ -558,20 +563,24 @@ void Camp_Spot(void)
 		sprintf(filename, "dday/navigation/%s.cmp", level.botfiles);
 	else
 		sprintf(filename, "dday/navigation/%s.cmp", level.mapname);
-
+	/* MetalGod 
 	f = fopen(filename, "a");
 	if (!f)
-		gi.error("Couldn't open %s", filename);
-	if (f) /* MetalGod sanity check */
+		gi.error("Couldn't open %s", filename);	 */
+	if ((f = fopen(filename, "a")) == NULL)
 	{
-		fprintf(f, "%i\n", player.ent->client->resp.team_on->index);
-		fprintf(f, "%i\n", (int)player.ent->s.origin[0]);
-		fprintf(f, "%i\n", (int)player.ent->s.origin[1]);
-		fprintf(f, "%i\n", (int)player.ent->s.origin[2]);
-		fprintf(f, "%i\n", (int)player.ent->s.angles[1]);
-		fprintf(f, "%i\n", player.ent->stanceflags);
+		gi.dprintf("Unable to open file! %s.\n", strerror(errno));
+		return;
+	} /* END */
 
-		fclose(f);
-	}
+	fprintf(f, "%i\n", player.ent->client->resp.team_on->index);
+	fprintf(f, "%i\n", (int)player.ent->s.origin[0]);
+	fprintf(f, "%i\n", (int)player.ent->s.origin[1]);
+	fprintf(f, "%i\n", (int)player.ent->s.origin[2]);
+	fprintf(f, "%i\n", (int)player.ent->s.angles[1]);
+	fprintf(f, "%i\n", player.ent->stanceflags);
+
+	fclose(f);
+
 	gi.dprintf("camp spot added.\n");
 }
