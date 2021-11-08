@@ -711,10 +711,10 @@ void ClientObituary(edict_t* self, edict_t* inflictor, edict_t* attacker)
 				/*-----------------------------------------------------------------*/
 			case MOD_KNIFE:
 
-				if (/*attacker->client->pers.weapon && MetalGod redundant check */
+				if (attacker->client->pers.weapon && 
 					attacker->client->pers.weapon->classnameb == WEAPON_KATANA)
 					message = "was sliced in half by";
-				else if (/*attacker->client->pers.weapon &&  MetalGod redundant check */
+				else if (attacker->client->pers.weapon && 
 					attacker->client->pers.weapon->classnameb == WEAPON_SABRE)
 					message = "was sliced in half by";
 				else
@@ -2772,7 +2772,7 @@ qboolean ClientConnect(edict_t* ent, char* userinfo)
 	// check to see if they are on the banned IP list
 	value = Info_ValueForKey(userinfo, "ip");
 
-	f = strdup(value);
+	f = G_CopyString(value);
 	ip = strtok(f, ":");
 
 	//for people with dynamic ip's, let them save their stats by name if they set gender to cyborg
@@ -3158,7 +3158,7 @@ qboolean Setup_Map_Vote(void)
 	if (maps)
 	{
 		c = 0;
-		f = strdup(maps);
+		f = G_CopyString(maps);
 		s = strtok(f, "\n");
 
 		while (c < 300)
@@ -4311,7 +4311,7 @@ void Write_Player_Stats(edict_t* ent)
 	if (statsc)
 	{
 		c = 0;
-		f = strdup(statsc);
+		f = G_CopyString(statsc);
 		s = strtok(f, "\n");
 
 		if (s != NULL) {
@@ -4556,7 +4556,7 @@ void SetPlayerRating(edict_t* ent)
 	if (stats->value)
 	{
 		c = 0;
-		f = strdup(statsc);
+		f = G_CopyString(statsc);
 		s = strtok(f, "\n");
 		if (s != NULL) {
 			name = s;

@@ -90,7 +90,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 TODO: Replace all calls to this function with something that doesn't hide reserving memory and/or appropriate frees
 */
 #ifdef _WIN32
-#define strdup _strdup
+#define G_CopyString _G_CopyString
 #endif
 
 typedef unsigned char 		byte;

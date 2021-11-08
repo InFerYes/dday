@@ -425,7 +425,7 @@ void LoadBotChat(int teamnum, char* teamid)
 	tempchat = ReadEntFile(filename);
 	if (!tempchat) tempchat = ReadEntFile("dday/botchat/usa-sorry.txt");
 	if (tempchat) {
-		f = strdup(tempchat);
+		f = G_CopyString(tempchat);
 		s = strtok(f, "\n");
 		Com_sprintf(botchat_sorry[teamnum][c], sizeof(botchat_sorry[teamnum][c]), "%s", s);
 		while (s != NULL) {
@@ -441,7 +441,7 @@ void LoadBotChat(int teamnum, char* teamid)
 	tempchat = ReadEntFile(filename);
 	if (!tempchat) tempchat = ReadEntFile("dday/botchat/usa-killed.txt");
 	if (tempchat) {
-		f = strdup(tempchat);
+		f = G_CopyString(tempchat);
 		s = strtok(f, "\n");
 		Com_sprintf(botchat_killed[teamnum][c], sizeof(botchat_killed[teamnum][c]), "%s", s);
 		while (s != NULL) {
@@ -457,7 +457,7 @@ void LoadBotChat(int teamnum, char* teamid)
 	tempchat = ReadEntFile(filename);
 	if (!tempchat) tempchat = ReadEntFile("dday/botchat/usa-forgive.txt");
 	if (tempchat) {
-		f = strdup(tempchat);
+		f = G_CopyString(tempchat);
 		s = strtok(f, "\n");
 		Com_sprintf(botchat_forgive[teamnum][c], sizeof(botchat_forgive[teamnum][c]), "%s", s);
 		while (s != NULL) {
@@ -473,7 +473,7 @@ void LoadBotChat(int teamnum, char* teamid)
 	tempchat = ReadEntFile(filename);
 	if (!tempchat) tempchat = ReadEntFile("dday/botchat/usa-self.txt");
 	if (tempchat) {
-		f = strdup(tempchat);
+		f = G_CopyString(tempchat);
 		s = strtok(f, "\n");
 		Com_sprintf(botchat_self[teamnum][c], sizeof(botchat_self[teamnum][c]), "%s", s);
 		while (s != NULL) {
@@ -489,7 +489,7 @@ void LoadBotChat(int teamnum, char* teamid)
 		tempchat = ReadEntFile(filename);
 		if (!tempchat) tempchat = ReadEntFile("dday/botchat/usa-random.txt");
 		if (tempchat)	{
-			f = strdup (tempchat);
+			f = G_CopyString (tempchat);
 			s = strtok(f, "\n");
 			Com_sprintf (botchat_random[teamnum][c], sizeof(botchat_random[teamnum][c]), "%s", s);
 			while (s!= NULL)		{

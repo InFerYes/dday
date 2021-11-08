@@ -237,7 +237,7 @@ g_cmds_t id_GameCmds[NUM_ID_CMDS] = // remember to set back to NUM_ID_COMDS
 	"spot", 1, Cmd_Spot,//for mappers to find coordinates for map entities
 	"removedoors", 1, Cmd_RemoveDoors,
 	"showlinks", 1, ShowLinks,
-	"removenode", 1, SV_Remove_Node
+	"removenode", 1, SV_Remove_Node,
 };
 
 // MENUS
@@ -310,7 +310,6 @@ void Cmd_Spot(edict_t* ent)
 void Cmd_RemoveDoors(edict_t* ent)//for help with adding bot support /* MetalGod typo(edict_t* end) corrected to ent */
 {
 	edict_t* check;
-
 
 	check = g_edicts + 1;
 	if (sv_cheats->value != 0)
@@ -529,7 +528,7 @@ qboolean Cmd_Scope_f(edict_t* ent)
 	}
 
 	//faf:  turret stuff
-	if (/* ent->client->pers.weapon && */ent->client->pers.weapon->classnameb == WEAPON_FISTS /* MetalGod removed redundant check */
+	if (ent->client->pers.weapon && ent->client->pers.weapon->classnameb == WEAPON_FISTS
 		&& !ent->client->aim)
 	{
 		if (ent->client->turret)
@@ -562,7 +561,7 @@ qboolean Cmd_Scope_f(edict_t* ent)
 	}
 
 	//faf
-	if (/* ent->client->pers.weapon && MetalGod removed redundant check */
+	if (ent->client->pers.weapon &&
 		(ent->client->pers.weapon->classnameb == WEAPON_MAUSER98K ||
 			ent->client->pers.weapon->classnameb == WEAPON_ARISAKA ||
 			ent->client->pers.weapon->classnameb == WEAPON_CARCANO ||
@@ -572,7 +571,7 @@ qboolean Cmd_Scope_f(edict_t* ent)
 		return false;
 
 	// do not let a sniper reload bolt if there is no ammo
-	if (/* ent->client->pers.weapon && MetalGod removed redundant check */
+	if (ent->client->pers.weapon &&
 		ent->client->pers.weapon->position == LOC_SNIPER &&
 		ent->client->p_rnd &&
 		*ent->client->p_rnd == 0)
@@ -787,7 +786,6 @@ void Cmd_Give_f(edict_t* ent)
 	int			index;
 	int			i;
 	qboolean	give_all;
-
 
 	if (deathmatch->value && !sv_cheats->value)
 	{
@@ -2065,13 +2063,11 @@ void GetNearbyTeammates(edict_t* self, char* buf)
 		{
 			if (nearby_teammates_num == 2)
 			{
-
 				/* MetalGod Let's use a destination size checking function
 				strcat(buf, " and ");
 				strcat(buf, nearby_teammates[l]); */
 				Q_strncatz(buf, sizeof(buf), " and ");
 				Q_strncatz(buf, sizeof(buf), nearby_teammates[1]);
-
 			}
 			else
 			{
@@ -2271,7 +2267,6 @@ char* SeekBufEnd(char* buf)
 static char buf[0x8000], infobuf[0x8000]; /* MetalGod no need to be unsigned / moved here/to heap*/
 void ParseSayText(edict_t* ent, char* text)
 {
-
 	char* p, * pbuf;
 
 	p = text;
@@ -2484,7 +2479,7 @@ void Cmd_Say_f(edict_t* ent, qboolean team, qboolean arg0, qboolean saved)
 		}
 
 		//save a random chat message for stats page
-		if (!saved && strlen(p) > 9 && rand() % 25 == 1 || (!strcmp(ent->client->pers.stat_chat, "") && rand() % 3 == 1))
+		if (!saved && (strlen(p) > 9 && rand() % 25 == 1) || ((!strcmp(ent->client->pers.stat_chat, "") && rand() % 3 == 1)))
 		{
 			Com_sprintf(ent->client->pers.stat_chat, sizeof(ent->client->pers.stat_chat), "%s", p);
 		}
@@ -2914,10 +2909,7 @@ qboolean Cmd_Reload(edict_t* ent)
 			return false;
 	}
 
-	/* MetalGod remove redundant checks!
 	if (ent->client->weaponstate && ent->client->weaponstate == WEAPON_RELOADING && ent->client->pers.weapon && ent->client->pers.weapon->position == LOC_SHOTGUN)
-	*/
-	if (ent->client->weaponstate == WEAPON_RELOADING && ent->client->pers.weapon->position == LOC_SHOTGUN)
 	{
 		ent->client->weaponstate = WEAPON_READY;
 		gi.sound(ent, CHAN_VOICE, gi.soundindex("misc/null.wav"), 1, ATTN_NORM, 0);//silences reload sound
@@ -3419,7 +3411,7 @@ g_cmds_t* FindCommand(char* cmd)
 void ClientCommand(edict_t* ent)
 {
 	char* cmd;
-	g_cmds_t* cmdptr;
+	g_cmds_t* cmdptr = NULL;
 
 	if (!ent->client)
 		return;         // not fully in game yet

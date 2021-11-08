@@ -412,7 +412,7 @@ void SetupCampaign(qboolean restart)
 		level.campaign = campaign->string;
 
 		c = 0;
-		f = strdup(campinfo);
+		f = G_CopyString(campinfo);
 		s = strtok(f, "\n");
 		if (s != NULL) {
 			alliedplatoons = atoi(s);

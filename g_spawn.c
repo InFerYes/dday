@@ -900,7 +900,7 @@ void LoadCampFile(void)
 		gi.dprintf("%s.cmp Loaded\n", level.mapname);
 
 		c = 0;
-		f = strdup(camplocs);
+		f = G_CopyString(camplocs);
 		s = strtok(f, "\n");
 		while (s != NULL)
 		{

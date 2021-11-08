@@ -126,7 +126,7 @@ void Cmd_Arty_f(edict_t* ent)
 	int i;
 
 	/* MetalGod sanity check*/
-	if (!ent)
+	if (!ent || !ent->client)
 	{
 		return;
 	}
@@ -137,7 +137,6 @@ void Cmd_Arty_f(edict_t* ent)
 
 	if (ent->deadflag)
 		return;
-
 
 	for (i = 0; i < game.maxentities; i++)
 	{
@@ -191,7 +190,7 @@ void Cmd_Arty_f(edict_t* ent)
 		turret_off(ent);
 		return;
 	}
-	if (/* ent->client && MetalGod redundant */
+	if (ent->client &&
 		ent->client->pers.weapon &&
 		ent->client->pers.weapon->classnameb == WEAPON_ARISAKA)
 	{
@@ -206,7 +205,7 @@ void Cmd_Arty_f(edict_t* ent)
 		return;
 	}
 
-	if (/* ent->client && MetalGod redundant */
+	if (ent->client &&
 		ent->client->pers.weapon &&
 		ent->client->pers.weapon->classnameb == WEAPON_CARCANO)
 	{
@@ -221,7 +220,7 @@ void Cmd_Arty_f(edict_t* ent)
 		return;
 	}
 
-	if (/* ent->client && MetalGod redundant */
+	if (ent->client &&
 		ent->client->pers.weapon &&
 		ent->client->pers.weapon->classnameb == WEAPON_ENFIELD)
 	{
@@ -237,7 +236,7 @@ void Cmd_Arty_f(edict_t* ent)
 		return;
 	}
 
-	if (/* ent->client && MetalGod redundant */
+	if (ent->client &&
 		ent->client->pers.weapon &&
 		ent->client->pers.weapon->classnameb == WEAPON_SVT)
 	{
@@ -260,8 +259,7 @@ void Cmd_Arty_f(edict_t* ent)
 		ent->client->airstrike = NULL;
 		return;
 	}
-	else if ((ent->client->pers.weapon && /* MetalGod this is redundant April 28th 2020
-		ent->client->pers.weapon->classnameb) && */
+	else if ((ent->client->pers.weapon && (ent->client->pers.weapon->classnameb) &&
 		ent->client->pers.weapon->classnameb == WEAPON_BINOCULARS))
 	{
 		if (ent->client->aim)
@@ -540,7 +538,6 @@ void Plane_Fly_Off(edict_t* ent)
 
 void Plane_Fire(edict_t* ent)
 {
-
 	if (ent->leave_limbo_time < level.time - 20)
 	{
 		ent->nextthink = level.time + .1;
@@ -556,7 +553,6 @@ void Plane_Fire(edict_t* ent)
 	{
 		ent->nextthink = level.time + .2;
 	}
-
 
 	if (ent->count == 0 && ent->owner->client)
 		safe_cprintf(ent->owner, PRINT_HIGH, "Airstrike confirmed, sir!\n");
@@ -660,7 +656,7 @@ void Spawn_Plane(edict_t* ent)
 
 	edict_t* plane;
 
-	if (IsValidPlayer(ent) && ent->client->arty_entry) /* MetalGod removed redundant check for ent->client */
+	if (IsValidPlayer(ent) && ent->client && ent->client->arty_entry)
 	{
 		VectorCopy(ent->client->arty_entry, start);
 	}

@@ -196,57 +196,55 @@ qboolean Pickup_Weapon(edict_t* ent, edict_t* other)
 				ent->item->guninfo->rnd_count = ammo->quantity;
 
 			//faf: put bullets in map spawned guns
-			/* if (other->client) MetalGod - Let's do this check in a different way! */
-			Load_Weapon(other, item);
+			if (other->client)
+				Load_Weapon(other, item);
 
-			/*
-						if (ent->item->guninfo &&
-							ent->item->guninfo->rnd_count)
-						{
-							if (!strcmp(item->ammo, "p38_mag")) {
-								other->client->mags[1].pistol_rnd = item->guninfo->rnd_count;
-							}
-							else if (!strcmp(item->ammo, "mauser98k_mag")) { // Both Rifle and Sniper ammo
-								other->client->mags[1].rifle_rnd = item->guninfo->rnd_count;
-							}
-							else if (!strcmp(item->ammo, "mp40_mag")) {
-								other->client->mags[1].submg_rnd = item->guninfo->rnd_count;
-							}
-							else if (!strcmp(item->ammo, "mp43_mag")) {
-								other->client->mags[1].lmg_rnd = item->guninfo->rnd_count;
-							}
-							else if (!strcmp(item->ammo, "mg42_mag")) {
-								other->client->mags[1].hmg_rnd = item->guninfo->rnd_count;
-							}
-							else if (!strcmp(item->ammo, "grm_rockets")) {
-								other->client->mags[1].antitank_rnd = item->guninfo->rnd_count;
-							}
-							else if (!strcmp(item->ammo, "colt45_mag")) {
-								other->client->mags[0].pistol_rnd = item->guninfo->rnd_count;
-							}
-							else if (!strcmp(item->ammo, "m1_mag")) {
-								other->client->mags[0].rifle_rnd = item->guninfo->rnd_count;
-							}
-							else if (!strcmp(item->ammo, "thompson_mag")) {
-								other->client->mags[0].submg_rnd = item->guninfo->rnd_count;
-							}
-							else if (!strcmp(item->ammo, "bar_mag")) {
-								other->client->mags[0].lmg_rnd = item->guninfo->rnd_count;
-							}
-							else if (!strcmp(item->ammo, "hmg_mag")) {
-								other->client->mags[0].hmg_rnd = item->guninfo->rnd_count;
-							}
-							else if (!strcmp(item->ammo, "usa_rockets")) {
-								other->client->mags[0].antitank_rnd = item->guninfo->rnd_count;
-							}
-							else if (!strcmp(item->ammo, "m1903_mag")) {
-								other->client->mags[0].sniper_rnd = item->guninfo->rnd_count;
-							}
-							else if (!strcmp(item->ammo, "flame_mag")) {
-								other->client->flame_rnd = item->guninfo->rnd_count;
-							}
-						}
-			*/
+			if (ent->item->guninfo &&
+				ent->item->guninfo->rnd_count)
+			{
+				if (!strcmp(item->ammo, "p38_mag")) {
+					other->client->mags[1].pistol_rnd = item->guninfo->rnd_count;
+				}
+				else if (!strcmp(item->ammo, "mauser98k_mag")) { // Both Rifle and Sniper ammo
+					other->client->mags[1].rifle_rnd = item->guninfo->rnd_count;
+				}
+				else if (!strcmp(item->ammo, "mp40_mag")) {
+					other->client->mags[1].submg_rnd = item->guninfo->rnd_count;
+				}
+				else if (!strcmp(item->ammo, "mp43_mag")) {
+					other->client->mags[1].lmg_rnd = item->guninfo->rnd_count;
+				}
+				else if (!strcmp(item->ammo, "mg42_mag")) {
+					other->client->mags[1].hmg_rnd = item->guninfo->rnd_count;
+				}
+				else if (!strcmp(item->ammo, "grm_rockets")) {
+					other->client->mags[1].antitank_rnd = item->guninfo->rnd_count;
+				}
+				else if (!strcmp(item->ammo, "colt45_mag")) {
+					other->client->mags[0].pistol_rnd = item->guninfo->rnd_count;
+				}
+				else if (!strcmp(item->ammo, "m1_mag")) {
+					other->client->mags[0].rifle_rnd = item->guninfo->rnd_count;
+				}
+				else if (!strcmp(item->ammo, "thompson_mag")) {
+					other->client->mags[0].submg_rnd = item->guninfo->rnd_count;
+				}
+				else if (!strcmp(item->ammo, "bar_mag")) {
+					other->client->mags[0].lmg_rnd = item->guninfo->rnd_count;
+				}
+				else if (!strcmp(item->ammo, "hmg_mag")) {
+					other->client->mags[0].hmg_rnd = item->guninfo->rnd_count;
+				}
+				else if (!strcmp(item->ammo, "usa_rockets")) {
+					other->client->mags[0].antitank_rnd = item->guninfo->rnd_count;
+				}
+				else if (!strcmp(item->ammo, "m1903_mag")) {
+					other->client->mags[0].sniper_rnd = item->guninfo->rnd_count;
+				}
+				else if (!strcmp(item->ammo, "flame_mag")) {
+					other->client->flame_rnd = item->guninfo->rnd_count;
+				}
+			}
 		}
 
 		if (!(ent->spawnflags & DROPPED_PLAYER_ITEM))
@@ -1018,7 +1016,7 @@ void Weapon_Grenade(edict_t* ent)
 		ent->client->grenade_index = 0;
 	}
 
-	if (/* ent->client->pers.weapon && MetalGod redundant check */
+	if (ent->client->pers.weapon &&
 		ent->client->pers.weapon->pickup_name &&
 		frame_output)
 		gi.dprintf("%i / %i - %s\n", ent->client->weaponstate, ent->client->ps.gunframe, ent->client->pers.weapon->pickup_name);
@@ -1066,7 +1064,7 @@ void Weapon_Grenade(edict_t* ent)
 			if (1)//ent->client->pers.inventory[ent->client->ammo_index]) */
 			{
 				// You don't pull a pin from a live grenade
-				if (ent->client->pers.weapon->classnameb == AMMO_GRENADES_GBR)
+				if (ent->client->pers.weapon && ent->client->pers.weapon->classnameb == AMMO_GRENADES_GBR)
 					ent->client->ps.gunframe = (ent->client->grenade) ? 11 : 5;
 				else
 					ent->client->ps.gunframe = (ent->client->grenade) ? 11 : 1;
@@ -1119,9 +1117,8 @@ void Weapon_Grenade(edict_t* ent)
 		if (ent->client->ps.gunframe == 3)
 		{
 			//faf:  play part of wave animation when pulling pin
-			/* MetalGod - checking for ent-client is redundant here, sorry, faf!
-			if (ent->client && ent->stanceflags == STANCE_STAND)*/
-			if (ent->stanceflags == STANCE_STAND)
+
+			if (ent->client && ent->stanceflags == STANCE_STAND)
 			{
 				ent->client->anim_priority = ANIM_WAVE;
 				ent->s.frame = 61;//(FRAME_wave05);
@@ -1144,7 +1141,7 @@ void Weapon_Grenade(edict_t* ent)
 		// Pull the pin, and prime the grenade
 //faf		if (ent->client->ps.gunframe == 5 && !ent->client->grenade)
 		//faf:  time pin pull sound better
-		if (ent->client->pers.weapon->classnameb == AMMO_GRENADES_GBR)
+		if (ent->client->pers.weapon && ent->client->pers.weapon->classnameb == AMMO_GRENADES_GBR)
 		{
 			if (ent->client->ps.gunframe == 5 && !ent->client->grenade)//faf
 			{
@@ -1154,7 +1151,7 @@ void Weapon_Grenade(edict_t* ent)
 					ent->client->pers.inventory[ent->client->ammo_index]--;
 			}
 		}
-		else if (ent->client->pers.weapon->classnameb == AMMO_GRENADES_RUS)
+		else if (ent->client->pers.weapon && ent->client->pers.weapon->classnameb == AMMO_GRENADES_RUS)
 		{
 			if (ent->client->ps.gunframe == 2 && !ent->client->grenade)//faf
 			{
@@ -1164,7 +1161,7 @@ void Weapon_Grenade(edict_t* ent)
 					ent->client->pers.inventory[ent->client->ammo_index]--;
 			}
 		}
-		else if (ent->client->pers.weapon->classnameb == AMMO_GRENADES_JPN)
+		else if (ent->client->pers.weapon && ent->client->pers.weapon->classnameb == AMMO_GRENADES_JPN)
 		{
 			if (ent->client->ps.gunframe == 1 && !ent->client->grenade)//faf
 			{
@@ -1733,7 +1730,7 @@ void Weapon_Knife_Fire(edict_t* ent)
 	if (!armedfists && !ent->client->pers.inventory[knife_index])
 	{
 		// rezmoth - following line crashed the game [PBFIX]
-		if (/*ent->client && */ ent->client->pers.weapon &&//faf /* MetalGod - redundant check for ent-client removed */
+		if (ent->client && ent->client->pers.weapon &&//faf
 			ent->client->pers.weapon->guninfo)
 			ent->client->ps.gunframe = ent->client->pers.weapon->guninfo->LastFire;
 		ent->client->aim = false;
@@ -1772,7 +1769,7 @@ void Weapon_Knife_Fire(edict_t* ent)
 
 		if (!(ent->s.frame >= 283 && ent->s.frame <= 294))
 		{
-			if (/* ent->client && */ent->stanceflags == STANCE_STAND)/* MetalGod - redundant check for ent-client removed */
+			if (ent->client && ent->stanceflags == STANCE_STAND)
 			{
 				ent->client->anim_priority = ANIM_ATTACK;
 				ent->s.frame = 128;

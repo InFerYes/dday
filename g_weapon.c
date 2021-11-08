@@ -1364,7 +1364,6 @@ void Shrapnel_Explode(edict_t* ent)
 	/* MetalGOd always true, so simplify
 	if (1)		  */
 	{
-
 		edict_t* cl_ent;
 
 		for (i = 0; i < maxclients->value; i++)
@@ -1585,7 +1584,7 @@ void fire_grenade2(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int s
 	char grenadefilename[MAX_QPATH];  //faf
 
 	/* MetalGod sanity check! */
-	if (!self)
+	if (!self || !self->client)
 		return;
 
 	vectoangles(aimdir, dir);
@@ -1677,14 +1676,14 @@ void fire_grenade2(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int s
 		VectorSet(grenade->avelocity, 300, 300, 300);
 
 	//faf
-	if (/*self->client && MetalGod redundant check */
+	if (self->client &&
 		self->stanceflags == STANCE_CRAWL)
 	{
 		grenade->s.origin[2] += 10;
 	}
 
 	//faf:  play part of wave animation when throwing nade
-	if (/* self->client && */self->stanceflags == STANCE_STAND)/* MetalGod redundant check */
+	if (self->client && self->stanceflags == STANCE_STAND)
 	{
 		self->client->anim_priority = ANIM_WAVE;
 		self->s.frame = 116;//(FRAME_wave05);
@@ -1904,7 +1903,7 @@ void BotWarnThink(edict_t* ent)
 	//this "turns it on" //not sure this even works
 	ent->classnameb = BOTWARN;
 
-	if (!ent->owner ||/* ent->owner && */!ent->owner->inuse) /* MetalGod this is equivalent/removes redundant check */
+	if (!ent->owner || ent->owner && !ent->owner->inuse)
 	{
 		ent->think = G_FreeEdict;
 	}
@@ -2236,7 +2235,7 @@ void fire_gun(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick, 
 	}
 
 	// add spread to hip shots
-	if (/* self->client && */ !self->client->aim) /* MetalGod redundant check */
+	if (self->client && !self->client->aim)
 	{
 		r = 300 - crandom() * 600;
 		u = crandom() * 600;
@@ -4042,7 +4041,7 @@ void TNT_Think(edict_t* ent)
 	//switch teams exploit fix
 	if (ent->owner && ent->owner->client)
 	{
-		if (!ent->owner->client->resp.team_on || /* ent->owner->client->resp.team_on && */ ent->owner->client->resp.team_on->index != ent->obj_owner) /* Metalgod this is equivalent/removes redundant check */
+		if (!ent->owner->client->resp.team_on || ent->owner->client->resp.team_on && ent->owner->client->resp.team_on->index != ent->obj_owner)
 		{
 			ent->think = G_FreeEdict;
 			ent->nextthink = level.time + .1;

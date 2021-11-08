@@ -651,12 +651,12 @@ void SV_CalcGunOffset(edict_t* ent)
 {
 	int		i;
 	//	float	delta;
-	
+
 	/* MetalGod sanity check! */
-	if (!ent)
+	if (!ent || !ent->client)
 		return;
 
-	if (/* ent->client && MetalGod redundant check */
+	if (ent->client &&
 		ent->client->pers.weapon &&
 		ent->client->pers.weapon->classnameb == WEAPON_BINOCULARS)
 	{
@@ -798,7 +798,7 @@ void SV_CalcBlend(edict_t* ent)
 	int		remaining;
 	//	float	blendtime_remain;
 
-	if (/* ent->client->resp.mos && */ent->client->resp.mos == MEDIC) /* MetalGod redundant if && x is true */
+	if (ent->client->resp.mos && ent->client->resp.mos == MEDIC)
 		ent->client->ps.rdflags |= RDF_IRGOGGLES;
 	else
 		ent->client->ps.rdflags &= ~RDF_IRGOGGLES;
@@ -1852,7 +1852,7 @@ void G_SetClientFrame(edict_t* ent)
 				ent->s.frame == 180 ||
 				ent->s.frame == 186 ||
 				ent->s.frame == 194 ||
-			/*	ent->s.frame == 180 ||  Metalgod duplicate removed case */
+				/*	ent->s.frame == 180 ||  Metalgod duplicate removed case */
 				ent->s.frame == 237))
 		{
 			//ent->groundentity screws up on slopes, see if there's ground beneath, if so, finish death anim
@@ -2229,7 +2229,7 @@ void ClientEndServerFrame(edict_t* ent)
 	//	int oldframe, oldanimend, newframe, newanimend;//faf
 
 		/* MetalGod sanity check! */
-	if (!ent||!ent->client)
+	if (!ent || !ent->client)
 		return;
 
 	if (level.framenum - ent->client->resp.enterframe == 10)
@@ -2239,7 +2239,6 @@ void ClientEndServerFrame(edict_t* ent)
 		safe_centerprintf(ent, "Server is running in \"No Hud\" mode.\nRealism!!!\n");
 
 	//		gi.dprintf ("%i frame\n", (level.framenum - ent->client->resp.enterframe) );
-	
 
 	if (ent->client->smoke_effect_goal <= .005F) /* MetalGod explicit float */
 		ent->client->smoke_effect_goal = 0;

@@ -160,6 +160,8 @@ objective_touch
 void objective_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf) {
 	int otherteam;
 	//edict_t *entC = NULL;
+	if (!self)
+		return;
 
 	if (!IsValidPlayer(other))
 		return;

@@ -407,7 +407,7 @@ void Read_Last_Maps()
 
 	if (lastmaps) {
 		c = 0;
-		f = strdup(lastmaps);
+		f = G_CopyString(lastmaps);
 		s = strtok(f, "\n");
 
 		for (i = 1; i < 20; i++) {
@@ -417,6 +417,8 @@ void Read_Last_Maps()
 			}
 		}
 	}
+	if (lastmaps)
+		gi.TagFree(lastmaps); /* MetalGod */
 }
 
 char* Get_Next_MaplistTxt_Map()
@@ -441,7 +443,7 @@ char* Get_Next_MaplistTxt_Map()
 	if (maps)
 	{
 		c = 0;
-		f = strdup(maps);
+		f = G_CopyString(maps);
 		s = strtok(f, "\n");
 
 		while (c < 300)
@@ -507,6 +509,7 @@ char* Get_Next_MaplistTxt_Map()
 			}
 		}	*/
 	randnum = (int)(random() * newmapcount);
+	gi.TagFree(maps); /* MetalGod */
 
 	return possible_maps[randnum];
 }
@@ -654,7 +657,7 @@ void EndDMLevel(void)
 		}
 		else
 		{
-			s = strdup(sv_maplist->string);
+			s = G_CopyString(sv_maplist->string);
 			f = NULL;
 			t = strtok(s, seps);
 
@@ -693,7 +696,7 @@ void EndDMLevel(void)
 					f = t;
 				t = strtok(NULL, seps);
 			}
-			s = strdup(sv_maplist->string);
+			s = G_CopyString(sv_maplist->string);
 			f = NULL;
 			t = strtok(s, seps);
 
@@ -795,7 +798,7 @@ void EndDMLevel(void)
 				else
 				{
 					//restart maplist
-					sb = strdup(sv_maplist->string);
+					sb = G_CopyString(sv_maplist->string);
 					tb = strtok(sb, seps);
 					if (MapExists(tb))
 					{

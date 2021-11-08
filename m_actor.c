@@ -40,7 +40,7 @@ char* actor_names[MAX_ACTOR_NAMES] =
 	"Adrianator",
 	"Rambear",
 	"Titus",
-	"Bitterman"
+	"Bitterman",
 };
 
 mframe_t actor_frames_stand[] =
@@ -112,7 +112,7 @@ mframe_t actor_frames_walk[] =
 	ai_walk, 1,  NULL,
 	ai_walk, 4,  NULL,
 	ai_walk, 0,  NULL,
-	ai_walk, 0,  NULL
+	ai_walk, 0,  NULL,
 };
 mmove_t actor_move_walk = { FRAME_walk01, FRAME_walk08, actor_frames_walk, NULL };
 
@@ -134,7 +134,7 @@ mframe_t actor_frames_run[] =
 	ai_run, 12, NULL,
 	ai_run, -2, NULL,
 	ai_run, -2, NULL,
-	ai_run, -1, NULL
+	ai_run, -1, NULL,
 };
 mmove_t actor_move_run = { FRAME_run02, FRAME_run07, actor_frames_run, NULL };
 
@@ -162,7 +162,7 @@ mframe_t actor_frames_pain1[] =
 {
 	ai_move, -5, NULL,
 	ai_move, 4,  NULL,
-	ai_move, 1,  NULL
+	ai_move, 1,  NULL,
 };
 mmove_t actor_move_pain1 = { FRAME_pain101, FRAME_pain103, actor_frames_pain1, actor_run };
 
@@ -170,7 +170,7 @@ mframe_t actor_frames_pain2[] =
 {
 	ai_move, -4, NULL,
 	ai_move, 4,  NULL,
-	ai_move, 0,  NULL
+	ai_move, 0,  NULL,
 };
 mmove_t actor_move_pain2 = { FRAME_pain201, FRAME_pain203, actor_frames_pain2, actor_run };
 
@@ -178,7 +178,7 @@ mframe_t actor_frames_pain3[] =
 {
 	ai_move, -1, NULL,
 	ai_move, 1,  NULL,
-	ai_move, 0,  NULL
+	ai_move, 0,  NULL,
 };
 mmove_t actor_move_pain3 = { FRAME_pain301, FRAME_pain303, actor_frames_pain3, actor_run };
 
@@ -197,7 +197,7 @@ mframe_t actor_frames_flipoff[] =
 	ai_turn, 0,  NULL,
 	ai_turn, 0,  NULL,
 	ai_turn, 0,  NULL,
-	ai_turn, 0,  NULL
+	ai_turn, 0,  NULL,
 };
 mmove_t actor_move_flipoff = { FRAME_flip01, FRAME_flip14, actor_frames_flipoff, actor_run };
 
@@ -219,7 +219,7 @@ mframe_t actor_frames_taunt[] =
 	ai_turn, 0,  NULL,
 	ai_turn, 0,  NULL,
 	ai_turn, 0,  NULL,
-	ai_turn, 0,  NULL
+	ai_turn, 0,  NULL,
 };
 mmove_t actor_move_taunt = { FRAME_taunt01, FRAME_taunt17, actor_frames_taunt, actor_run };
 
@@ -316,7 +316,7 @@ mframe_t actor_frames_death1[] =
 	ai_move, 14,  NULL,
 	ai_move, 3,   NULL,
 	ai_move, -2,  NULL,
-	ai_move, 1,   NULL
+	ai_move, 1,   NULL,
 };
 mmove_t actor_move_death1 = { FRAME_death101, FRAME_death107, actor_frames_death1, actor_dead };
 
@@ -334,7 +334,7 @@ mframe_t actor_frames_death2[] =
 	ai_move, -9,  NULL,
 	ai_move, -13, NULL,
 	ai_move, -13, NULL,
-	ai_move, 0,   NULL
+	ai_move, 0,   NULL,
 };
 mmove_t actor_move_death2 = { FRAME_death201, FRAME_death213, actor_frames_death2, actor_dead };
 

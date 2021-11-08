@@ -425,10 +425,7 @@ qboolean BOT_DMclass_FindEnemy(edict_t* self)
 //		return true;
 
 	//medibot = check for wounded teammate
-	/* MetalGod redundant check removed
 	if (self->client && self->client->resp.mos && self->client->resp.mos == MEDIC)
-		*/
-	if (self->client && self->client->resp.mos == MEDIC)
 	{
 		for (i = 0; i < maxclients->value; i++)
 		{
@@ -441,7 +438,7 @@ qboolean BOT_DMclass_FindEnemy(edict_t* self)
 				continue;
 			if (cl_ent->client->resp.team_on != self->client->resp.team_on)
 				continue;
-			if (/*cl_ent->client->resp.mos && */cl_ent->client->resp.mos == MEDIC)/* MetalGod redundant check removed */
+			if (cl_ent->client->resp.mos && cl_ent->client->resp.mos == MEDIC)
 				continue;
 			if (cl_ent == self)
 				continue;
@@ -939,7 +936,7 @@ void BOT_CheckFireWeapon(edict_t* self, usercmd_t* ucmd)
 		return;
 
 	//medibot: if no enemy & wounded, heal yourself
-	if (self->ai->last_enemy_time < level.time - 5 &&/* self->client->resp.mos && */self->client->resp.mos == MEDIC && self->health < 100)/* MetalGod redundant check removed */
+	if (self->ai->last_enemy_time < level.time - 5 && self->client->resp.mos && self->client->resp.mos == MEDIC && self->health < 100)
 	{
 		if (self->client->pers.weapon && self->client->pers.weapon->classnameb != WEAPON_MORPHINE)
 		{
