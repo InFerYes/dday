@@ -93,7 +93,7 @@ void Weapon_Generic(edict_t* ent,
 
 	//	gi.dprintf(" %i < %i < %i\n",FRAME_RAISE_FIRST, ent->client->ps.gunframe, FRAME_RAISE_LAST);
 
-	if (ent->client->aim &&
+	if (ent->client->aim && ent->client->pers.weapon &&
 		ent->client->pers.weapon->position != LOC_SNIPER &&
 		ent->client->pers.weapon->position != LOC_KNIFE &&
 		ent->client->pers.weapon->position != LOC_GRENADES &&
@@ -103,7 +103,7 @@ void Weapon_Generic(edict_t* ent,
 
 	//	else if (!ent->client->aim && ent->client->pers.weapon->position != LOC_SNIPER)
 	//faf			ent->client->ps.fov = STANDARD_FOV;
-	else if (!ent->client->aim && ent->client->pers.weapon->position != LOC_SNIPER)
+	else if (!ent->client->aim && ent->client->pers.weapon && ent->client->pers.weapon->position != LOC_SNIPER)
 	{
 		check_unscope(ent);//faf
 
@@ -669,7 +669,7 @@ void Weapon_Generic(edict_t* ent,
 
 		ent->client->aim = true;
 
-		if (ent->client->pers.weapon->position == LOC_SNIPER &&
+		if (ent->client->pers.weapon && ent->client->pers.weapon->position == LOC_SNIPER &&
 			!ent->client->sniper_loaded[ent->client->resp.team_on->index])
 		{
 			GunInfo_t* guninfo = ent->client->pers.weapon->guninfo;
