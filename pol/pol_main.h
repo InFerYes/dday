@@ -25,12 +25,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
 
-#define USER_EXCLUDE_FUNCTIONS 1
+//#define USER_EXCLUDE_FUNCTIONS 1
 
 #include "pol_defines.h"
 #include "../g_local.h"
 #include "../g_cmds.h"
 
+/* MetalGod
 void Weapon_Pistol_Fire(edict_t* ent);
 void Weapon_Rifle_Fire(edict_t* ent);
 void Weapon_Submachinegun_Fire(edict_t* ent);
@@ -41,7 +42,7 @@ void Weapon_Sniper_Fire(edict_t* ent);
 void Weapon_MG34_Fire(edict_t* ent);
 void Weapon_PIAT_Fire(edict_t* ent);
 void Weapon_Sabre_Fire(edict_t* ent);
-
+ */
 void Weapon_Vis(edict_t* ent);
 void Weapon_SVT(edict_t* ent);
 //void Weapon_Sten(edict_t *ent);
@@ -52,6 +53,6 @@ void POL_Weapon_PIAT(edict_t* ent);
 void Weapon_POL_m98ks(edict_t* ent);
 void Weapon_Sabre(edict_t* ent);
 
-void Weapon_Generic(edict_t* ent, int FRAME_ACTIVATE_LAST, int FRAME_LFIRE_LAST, int FRAME_LIDLE_LAST, int FRAME_RELOAD_LAST, int FRAME_LASTRD_LAST,
-	int FRAME_DEACTIVATE_LAST, int FRAME_RAISE_LAST, int FRAME_AFIRE_LAST, int FRAME_AIDLE_LAST,
-	int* pause_frames, int* fire_frames, void (*fire)(edict_t* ent));
+//void Weapon_Generic(edict_t* ent, int FRAME_ACTIVATE_LAST, int FRAME_LFIRE_LAST, int FRAME_LIDLE_LAST, int FRAME_RELOAD_LAST, int FRAME_LASTRD_LAST,
+//	int FRAME_DEACTIVATE_LAST, int FRAME_RAISE_LAST, int FRAME_AFIRE_LAST, int FRAME_AIDLE_LAST,
+//	int* pause_frames, int* fire_frames, void (*fire)(edict_t* ent));

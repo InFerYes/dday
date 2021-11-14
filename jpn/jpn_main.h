@@ -25,19 +25,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
 
-#define USER_EXCLUDE_FUNCTIONS 1
+//#define USER_EXCLUDE_FUNCTIONS 1
 
 #include "jpn_defines.h"
 #include "../g_local.h"
 #include "../g_cmds.h"
 
+/* MetalGod
 void Weapon_Pistol_Fire(edict_t* ent);
 void Weapon_Rifle_Fire(edict_t* ent);
 void Weapon_Submachinegun_Fire(edict_t* ent);
 void Weapon_Bren_Fire(edict_t* ent);
 void Weapon_HMG_Fire(edict_t* ent);
 void Weapon_Rocket_Fire(edict_t* ent);
-void Weapon_Sniper_Fire(edict_t* ent);
+void Weapon_Sniper_Fire(edict_t* ent);	  */
 void Weapon_Katana_Fire(edict_t* ent);
 void Weapon_Molotov_Fire(edict_t* ent);
 
@@ -52,6 +53,6 @@ void JPN_Weapon_MG42(edict_t* ent);
 void Weapon_Katana(edict_t* ent);
 void Weapon_Molotov(edict_t* ent);
 
-void Weapon_Generic(edict_t* ent, int FRAME_ACTIVATE_LAST, int FRAME_LFIRE_LAST, int FRAME_LIDLE_LAST, int FRAME_RELOAD_LAST, int FRAME_LASTRD_LAST,
-	int FRAME_DEACTIVATE_LAST, int FRAME_RAISE_LAST, int FRAME_AFIRE_LAST, int FRAME_AIDLE_LAST,
-	int* pause_frames, int* fire_frames, void (*fire)(edict_t* ent));
+//void Weapon_Generic(edict_t* ent, int FRAME_ACTIVATE_LAST, int FRAME_LFIRE_LAST, int FRAME_LIDLE_LAST, int FRAME_RELOAD_LAST, int FRAME_LASTRD_LAST,
+//	int FRAME_DEACTIVATE_LAST, int FRAME_RAISE_LAST, int FRAME_AFIRE_LAST, int FRAME_AIDLE_LAST,
+//	int* pause_frames, int* fire_frames, void (*fire)(edict_t* ent));

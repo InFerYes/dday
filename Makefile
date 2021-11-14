@@ -30,7 +30,7 @@ ARCH := $(shell uname -m | sed -e s/i.86/i386/ -e s/sun4u/sparc64/ -e s/arm.*/ar
 #ARCH=i386
 #ARCH=x86_64
 
-CC = gcc -std=c11 -Wall -Wpedantic
+CC = gcc -std=c17 -Wall -Wpedantic
 BASE_CFLAGS= "-fcommon"
 
 #CFLAGS_RELEASE=$(BASE_CFLAGS) -S

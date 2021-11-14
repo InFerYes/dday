@@ -1055,6 +1055,30 @@ void player_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int damage
 void	ServerCommand(void);
 
 //
+// g_weapon.c
+//  MetalGod let's centralize all these prototypes
+void NoAmmoWeaponChange(edict_t* ent);
+//qboolean (*Pickup_Weapon)(edict_t *, edict_t *);
+void Cmd_WeapNext_f(edict_t* ent);
+void fire_gun(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick, int hspread, int vspread, int mod, qboolean calcv);
+void Weapon_Pistol_Fire(edict_t* ent);
+void Weapon_Rifle_Fire(edict_t* ent);
+void Weapon_Shotgun_Fire(edict_t* ent);
+void Weapon_Submachinegun_Fire(edict_t* ent);
+void Weapon_Bren_Fire(edict_t* ent);
+void Weapon_LMG_Fire(edict_t* ent);
+void Weapon_HMG_Fire(edict_t* ent);
+void Weapon_Rocket_Fire(edict_t* ent);
+void Weapon_Sniper_Fire(edict_t* ent);
+void Weapon_Panzerfaust_Fire(edict_t* ent);
+void Weapon_Breda_Fire(edict_t* ent);
+void Weapon_Ppsh41_Fire(edict_t* ent);
+void Weapon_Pps43_Fire(edict_t* ent);
+void Weapon_Molotov_Fire(edict_t* ent);
+void Weapon_MG34_Fire(edict_t* ent);
+void Weapon_PIAT_Fire(edict_t* ent);
+void Weapon_Sabre_Fire(edict_t* ent);
+//
 // p_view.c
 //
 void ClientEndServerFrame(edict_t* ent);
@@ -1070,9 +1094,10 @@ void ValidateSelectedItem(edict_t* ent);
 //void DeathmatchPlayerScore (edict_t *ent, edict_t *killer);
 
 //
-// g_pweapon.c
+// p_weapon.c
 //
 void PlayerNoise(edict_t* who, vec3_t where, int type);
+void P_ProjectSource(gclient_t* client, vec3_t point, vec3_t distance, vec3_t forward, vec3_t right, vec3_t result);
 
 //
 // m_move.c

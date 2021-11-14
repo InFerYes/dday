@@ -43,7 +43,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 void airstrike_touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* surf);
 void Airstrike_Plane_Launch(edict_t* ent);
 void fire_Knife(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick, char* wav, qboolean fists);
-void P_ProjectSource(gclient_t* client, vec3_t point, vec3_t distance, vec3_t forward, vec3_t right, vec3_t result);
+//void P_ProjectSource(gclient_t* client, vec3_t point, vec3_t distance, vec3_t forward, vec3_t right, vec3_t result);
 void Weapon_Bayonet_Fire1(edict_t* ent)
 {
 	vec3_t  forward, right;

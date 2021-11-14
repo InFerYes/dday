@@ -29,6 +29,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "../g_local.h"
 #include "../g_cmds.h"
 
+/* MetalGod
 void Weapon_Pistol_Fire(edict_t* ent);
 void Weapon_Rifle_Fire(edict_t* ent);
 void Weapon_Submachinegun_Fire(edict_t* ent);
@@ -36,7 +37,7 @@ void Weapon_LMG_Fire(edict_t* ent);
 void Weapon_HMG_Fire(edict_t* ent);
 void Weapon_Rocket_Fire(edict_t* ent);
 void Weapon_Sniper_Fire(edict_t* ent);
-
+*/
 void Weapon_P38(edict_t* ent);
 void Weapon_m98k(edict_t* ent);
 void Weapon_MP40(edict_t* ent);
@@ -45,6 +46,6 @@ void Weapon_MG42(edict_t* ent);
 void Weapon_Psk(edict_t* ent);
 void Weapon_m98ks(edict_t* ent);
 
-void Weapon_Generic(edict_t* ent, int FRAME_ACTIVATE_LAST, int FRAME_LFIRE_LAST, int FRAME_LIDLE_LAST, int FRAME_RELOAD_LAST, int FRAME_LASTRD_LAST,
-	int FRAME_DEACTIVATE_LAST, int FRAME_RAISE_LAST, int FRAME_AFIRE_LAST, int FRAME_AIDLE_LAST,
-	int* pause_frames, int* fire_frames, void (*fire)(edict_t* ent));
+//void Weapon_Generic(edict_t* ent, int FRAME_ACTIVATE_LAST, int FRAME_LFIRE_LAST, int FRAME_LIDLE_LAST, int FRAME_RELOAD_LAST, int FRAME_LASTRD_LAST,
+//	int FRAME_DEACTIVATE_LAST, int FRAME_RAISE_LAST, int FRAME_AFIRE_LAST, int FRAME_AIDLE_LAST,
+//	int* pause_frames, int* fire_frames, void (*fire)(edict_t* ent));

@@ -27,10 +27,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "g_local.h"
 
-void P_ProjectSource(gclient_t* client, vec3_t point, vec3_t distance, vec3_t forward, vec3_t right, vec3_t result);
-void NoAmmoWeaponChange(edict_t* ent);
-//qboolean (*Pickup_Weapon)(edict_t *, edict_t *);
-void Cmd_WeapNext_f(edict_t* ent);
 
 //faf:  tidies up coming out of the scope for the sniper.
 //      it wasnt showing the gun being lowered before
@@ -1903,7 +1899,7 @@ void BotWarnThink(edict_t* ent)
 	//this "turns it on" //not sure this even works
 	ent->classnameb = BOTWARN;
 
-	if (!ent->owner || ent->owner && !ent->owner->inuse)
+	if (!ent->owner || (ent->owner && !ent->owner->inuse))/* MetalGod  parenthesis for clarity */
 	{
 		ent->think = G_FreeEdict;
 	}
@@ -2141,7 +2137,7 @@ void fire_airstrike(edict_t* self, vec3_t start, vec3_t dir, int damage, int spe
 	gi.linkentity(airstrike);
 }
 
-void fire_gun(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick, int hspread, int vspread, int mod, qboolean calcv);
+
 void ricochetthink(edict_t* ricochet)
 {
 	fire_gun(ricochet->owner, ricochet->s.origin, ricochet->s.angles, ricochet->dmg, ricochet->count, 20, 20, ricochet->style, ricochet->is_step);

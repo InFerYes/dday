@@ -25,12 +25,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
 
-#define USER_EXCLUDE_FUNCTIONS 1
+// #define USER_EXCLUDE_FUNCTIONS 1
 
 #include "ita_defines.h"
 #include "../g_local.h"
 #include "../g_cmds.h"
 
+/* MetalGod
 void Weapon_Pistol_Fire(edict_t* ent);
 void Weapon_Rifle_Fire(edict_t* ent);
 void Weapon_Submachinegun_Fire(edict_t* ent);
@@ -39,7 +40,7 @@ void Weapon_HMG_Fire(edict_t* ent);
 void Weapon_Rocket_Fire(edict_t* ent);
 void Weapon_Sniper_Fire(edict_t* ent);
 void Weapon_Panzerfaust_Fire(edict_t* ent);
-void Weapon_Breda_Fire(edict_t* ent);
+void Weapon_Breda_Fire(edict_t* ent); */
 
 void Weapon_B34(edict_t* ent);
 void Weapon_Carcano(edict_t* ent);
@@ -49,12 +50,11 @@ void Weapon_B3842(edict_t* ent);
 void Weapon_Panzerfaust(edict_t* ent);
 void ITA_Weapon_m98ks(edict_t* ent);
 void Weapon_Breda(edict_t* ent);
-void Weapon_Panzerfaust(edict_t* ent);
 
-void Weapon_Generic(edict_t* ent, int FRAME_ACTIVATE_LAST, int FRAME_LFIRE_LAST, int FRAME_LIDLE_LAST, int FRAME_RELOAD_LAST, int FRAME_LASTRD_LAST,
-	int FRAME_DEACTIVATE_LAST, int FRAME_RAISE_LAST, int FRAME_AFIRE_LAST, int FRAME_AIDLE_LAST,
-	int* pause_frames, int* fire_frames, void (*fire)(edict_t* ent));
+//void Weapon_Generic(edict_t* ent, int FRAME_ACTIVATE_LAST, int FRAME_LFIRE_LAST, int FRAME_LIDLE_LAST, int FRAME_RELOAD_LAST, int FRAME_LASTRD_LAST,
+//	int FRAME_DEACTIVATE_LAST, int FRAME_RAISE_LAST, int FRAME_AFIRE_LAST, int FRAME_AIDLE_LAST,
+//	int* pause_frames, int* fire_frames, void (*fire)(edict_t* ent));
 
-void AngleVectors(vec3_t angles, vec3_t forward, vec3_t right, vec3_t up);
-void P_ProjectSource(gclient_t* client, vec3_t point, vec3_t distance, vec3_t forward, vec3_t right, vec3_t result);
-void fire_gun(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick, int hspread, int vspread, int mod, qboolean calcv);
+//void AngleVectors(vec3_t angles, vec3_t forward, vec3_t right, vec3_t up);
+//void P_ProjectSource(gclient_t* client, vec3_t point, vec3_t distance, vec3_t forward, vec3_t right, vec3_t result);
+//void fire_gun(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick, int hspread, int vspread, int mod, qboolean calcv);
