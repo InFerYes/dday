@@ -25,14 +25,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
 
-#define B34_MAG				9
+#define B34_MAG				7
 #define B38_MAG				40
 #define MC_MAG				6
 #define CARC_MAG			6
 #define MK_MAG				6
 #define K43_MAG				10
-#define B3842_MAG			40
-#define PANZER_MAG			1
+#define B3842_MAG			30
+#define PANZER_MAG		1
 #define BREDA_MAG			20
 
 #define B34_FRAME			0
@@ -48,7 +48,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define DAMAGE_CARCANO			100
 #define DAMAGE_B38			25
 #define DAMAGE_K43			45
-#define DAMAGE_B3842			30
+#define DAMAGE_B3842			25
 #define DAMAGE_PANZER_HIT	1100 //900
 #define DAMAGE_PANZER_RAD	450
 #define DAMAGE_M98KS		100
