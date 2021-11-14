@@ -91,9 +91,9 @@ SMos_t ITA_MOS_List[NUM_CLASSES] =
 	},
 
 	{
-		"Support Inf",//"Leicht Kanoier",
+		"Light Gunner",//"Leicht Kanoier",
 		"class_lmg",
-		"Gewehr 43",
+		"Beretta 38/42",
 		5,
 		NULL,
 		0,
@@ -153,7 +153,7 @@ SMos_t ITA_MOS_List[NUM_CLASSES] =
 	{
 		"Airborne",//"Waffen SS",
 		"class_special",
-		"MAB 1938",//		"Beretta 38/42",
+		"Gewehr 43",//		"Beretta 38/42",
 		5,
 		NULL,
 		0,
