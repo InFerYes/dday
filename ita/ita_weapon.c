@@ -54,10 +54,13 @@ void Weapon_B3842_Fire(edict_t* ent)
 
 	if (ent->client->aim)
 	{
-		if (ent->client->ps.gunframe == guninfo->LastAFire)
-			ent->client->ps.gunframe = guninfo->LastAFire - 1;
-		else
-			ent->client->ps.gunframe = guninfo->LastAFire;
+		// 2021-08-05/ed: Fix the original "Beretta 38/42" model frames for a firing animation
+		if (ent->client->ps.gunframe == 80) {
+			ent->client->ps.gunframe = 81;
+		}
+		else {
+			ent->client->ps.gunframe = 80;
+		}
 	}
 
 	else
@@ -81,14 +84,14 @@ void Weapon_B3842_Fire(edict_t* ent)
 		return;
 	}
 
-	// raise the gun as it is firing
-//	if (!deathmatch->value)
-//	{
-	ent->client->machinegun_shots++;
-	if (ent->client->machinegun_shots > 9)
-		ent->client->machinegun_shots = 9;
+	// 2021-08-05/ed: Do NOT raise the gun as it is firing
+	
+	//	if (!deathmatch->value)
+	//	{
+	//ent->client->machinegun_shots++;
+	//if (ent->client->machinegun_shots > 9)
+	//	ent->client->machinegun_shots = 9;
 	//	}
-
 	//	if (ent->client->pers.weapon->position == LOC_SUBMACHINEGUN)
 	VectorSet(offset, 0, 0, ent->viewheight - 0);	//10
 //	else
@@ -97,10 +100,11 @@ void Weapon_B3842_Fire(edict_t* ent)
 	// rezmoth - cosmetic recoil
 	if (level.framenum % 3 == 0)
 	{
+		// 2021-08-05/ed: Custom kick for "Beretta 38/42"
 		if (ent->client->aim)
-			ent->client->kick_angles[0] -= 1.5;
+			ent->client->kick_angles[0] -= .5; 
 		else
-			ent->client->kick_angles[0] = -3;
+			ent->client->kick_angles[0] = -.5;
 	}
 
 	// pbowens: for darwin's 3.2 kick
@@ -114,8 +118,10 @@ void Weapon_B3842_Fire(edict_t* ent)
 
 	fire_gun(ent, start, forward, damage, kick, SMG_SPREAD, SMG_SPREAD, mod, false);
 
-	gi.sound(ent, CHAN_WEAPON, gi.soundindex(guninfo->FireSound), 1, ATTN_NORM, 0);
-
+	// 2021-08-05/ed: Play_WepSound used instead of gi.sound as in the "Gewehr 43" implementation
+	//gi.sound(ent, CHAN_WEAPON, gi.soundindex(guninfo->FireSound), 1, ATTN_NORM, 0);
+	Play_WepSound(ent, guninfo->FireSound);
+	
 	gi.WriteByte(svc_muzzleflash);
 	gi.WriteShort(ent - g_edicts);
 	gi.WriteByte(MZ_MACHINEGUN);// | is_silenced);
