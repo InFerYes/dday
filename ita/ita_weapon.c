@@ -29,6 +29,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // p_weapon.c
 // D-Day: Normandy Player Weapon Code
+void Play_WepSound(edict_t* ent, char* sound);
 
 void Weapon_B3842_Fire(edict_t* ent)
 {
@@ -308,7 +309,6 @@ void Weapon_B38(edict_t* ent)
 
 		pause_frames, fire_frames, Weapon_Submachinegun_Fire);
 }
-void Play_WepSound(edict_t* ent, char* sound);
 void Weapon_K43_Fire(edict_t* ent)
 {
 	int	i;
