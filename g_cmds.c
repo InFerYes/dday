@@ -3154,14 +3154,11 @@ void Cmd_Shout_f(edict_t* ent)
 	for (i = 0; filename[i]; i++)
 		filename[i] = tolower(filename[i]);
 
-	/* MetalGod Let's use a destination size checking function
+	
 	strcat(filename, ".wav\0");
 	strcpy(soundfile, va("%s/shout/", ent->client->resp.team_on->teamid));
-	strcat(soundfile, filename);  */
+	strcat(soundfile, filename);  
 
-	Q_strncatz(filename, sizeof(filename), ".wav\0");
-	Q_strncatz(soundfile, sizeof(soundfile), va("%s/shout/", ent->client->resp.team_on->teamid));
-	Q_strncatz(soundfile, sizeof(soundfile), filename);
 
 	if (newshout)
 	{
