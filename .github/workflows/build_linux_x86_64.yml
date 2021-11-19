@@ -1,4 +1,4 @@
-name: build_linux_binary
+name: Linux build
 on: [push]
 jobs:
   run_make:
