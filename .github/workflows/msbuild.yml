@@ -21,18 +21,17 @@ jobs:
     #     - name: Get The build tools for v143
     #       run: nuget install mcpp.v143 
 
-    - name: Try setting up buildtool
-      run:  | 
-        curl -SL --output vs_buildtools.exe https://aka.ms/vs/17/release/vs_buildtools.exe &&
+    - name: Download buildtool
+      run:  curl -SL --output vs_buildtools.exe https://aka.ms/vs/17/release/vs_buildtools.exe &&
 
-        start /w vs_buildtools.exe --quiet --wait --norestart --nocache modify `
+    - name: Install buildtool
+      run:  start /w vs_buildtools.exe --quiet --wait --norestart --nocache modify `
             --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2022\BuildTools" `
             --add Microsoft.VisualStudio.Workload.AzureBuildTools `
             --remove Microsoft.VisualStudio.Component.Windows10SDK.10240 `
             --remove Microsoft.VisualStudio.Component.Windows10SDK.10586 `
             --remove Microsoft.VisualStudio.Component.Windows10SDK.14393 `
             --remove Microsoft.VisualStudio.Component.Windows81SDK `
-            || IF "%ERRORLEVEL%"=="3010" EXIT 0)
         
     
     - name: Add MSBuild to PATH
