@@ -1,10 +1,5 @@
 name: build_so
-on:
-  push:
-    branches:
-    - main
-    - master
-    - release/*
+on: [push]
 jobs:
   run_make:
     runs-on: ubuntu-latest
