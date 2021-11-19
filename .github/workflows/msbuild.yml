@@ -22,7 +22,7 @@ jobs:
     #       run: nuget install mcpp.v143 
 
     - name: Download buildtool
-      run:  curl -SL --output vs_buildtools.exe https://aka.ms/vs/17/release/vs_buildtools.exe &&
+      run:  curl -SL --output vs_buildtools.exe https://aka.ms/vs/17/release/vs_buildtools.exe
 
     - name: Install buildtool
       run:  start /w vs_buildtools.exe --quiet --wait --norestart --nocache modify `
