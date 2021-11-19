@@ -1,4 +1,5 @@
 name: build_so
+on:
   push:
     branches:
     - main
