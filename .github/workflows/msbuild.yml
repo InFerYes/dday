@@ -18,21 +18,21 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       
-    #     - name: Get The build tools for v143
-    #       run: nuget install mcpp.v143 
+    - name: Get The build tools for v143
+      run: nuget install mcpp.v143 
 
-    - name: Download buildtool
-      run:  curl -SL --output vs_buildtools.exe https://aka.ms/vs/17/release/vs_buildtools.exe
+#     - name: Download buildtool
+#       run:  curl -SL --output vs_buildtools.exe https://aka.ms/vs/17/release/vs_buildtools.exe
 
-    - name: Install buildtool
-      run:  |
-          cmd /S /C "vs_buildtools.exe --quiet --wait --norestart --nocache modify 
-            --installPath "%ProgramFiles%\Microsoft Visual Studio\2022\BuildTools" 
-            --add Microsoft.VisualStudio.Workload.AzureBuildTools 
-            --remove Microsoft.VisualStudio.Component.Windows10SDK.10240 
-            --remove Microsoft.VisualStudio.Component.Windows10SDK.10586 
-            --remove Microsoft.VisualStudio.Component.Windows10SDK.14393 
-            --remove Microsoft.VisualStudio.Component.Windows81SDK "
+#     - name: Install buildtool
+#       run:  |
+#           cmd /S /C "vs_buildtools.exe --quiet --wait --norestart --nocache modify 
+#             --installPath "%ProgramFiles%\Microsoft Visual Studio\2022\BuildTools" 
+#             --add Microsoft.VisualStudio.Workload.AzureBuildTools 
+#             --remove Microsoft.VisualStudio.Component.Windows10SDK.10240 
+#             --remove Microsoft.VisualStudio.Component.Windows10SDK.10586 
+#             --remove Microsoft.VisualStudio.Component.Windows10SDK.14393 
+#             --remove Microsoft.VisualStudio.Component.Windows81SDK "
         
     
     - name: Add MSBuild to PATH
