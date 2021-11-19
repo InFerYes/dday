@@ -20,6 +20,9 @@ jobs:
 
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
+      
+    - name: Get The build tools for v143
+      run: nuget install mcpp.v143
 
     - name: Restore NuGet packages
       working-directory: ${{env.GITHUB_WORKSPACE}}
