@@ -7,15 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Update containers
-	uses: appleboy/ssh-action@v0.1.4
-	with:
-	  host: ${{ secrets.DDAYBE_SERVER }}
-	  username: ${{ secrets.DDAYBE_SSH_USER }}
-	  key: ${{ secrets.DDAYBE_SSH_KEY }}
-	  port: {{ secrets.DDAYBE_SERVER_PORT }}
-	  script: |
-		cd /mnt/mmc/alarm/dday/
-                git pull
-                make clean && make release
-                mv ~/q2dday/dday/gamearm.real.so ~/q2dday/dday/gamearm.real.so.`date '+%Y-%m-%d_%H:%M:%S'`
-                mv gamearm.real.so ~/q2dday/dday/
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{ secrets.DDAYBE_SERVER }}
+          username: ${{ secrets.DDAYBE_SSH_USER }}
+          key: ${{ secrets.DDAYBE_SSH_KEY }}
+          port: ${{ secrets.DDAYBE_SERVER_PORT }}
+          script: |
+           cd /mnt/mmc/alarm/dday/
+           git pull
+           make clean && make release
+           mv ~/q2dday/dday/gamearm.real.so ~/q2dday/dday/gamearm.real.so.`date '+%Y-%m-%d_%H:%M:%S'`
+           mv gamearm.real.so ~/q2dday/dday/
