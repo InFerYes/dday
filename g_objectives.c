@@ -754,7 +754,7 @@ qboolean Pickup_Briefcase(edict_t* ent, edict_t* other)
 	gitem_t* item;
 	index = ITEM_INDEX(ent->item);
 
-	item = ent->item;
+	// unused item = ent->item;
 
 	other->client->pers.inventory[index]++;
 	other->s.modelindex3 = gi.modelindex("models/objects/briefcase/w_briefcase.md2");
