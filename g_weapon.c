@@ -248,14 +248,14 @@ void Play_Bullet_Whiz(edict_t* self, vec3_t start, vec3_t end, edict_t* hit_ent)
 	trace_t		tr;
 	edict_t* ignore;
 	int			mask;
-	qboolean	water;
+	//qboolean	water;
 
 	vec3_t  whizrangemax = { 40,40,40 };
 	vec3_t  whizrangemin = { -40,-40,-40 };
 
 	VectorCopy(start, from);
 	ignore = self;
-	water = false;
+	//water = false;
 	mask = MASK_SHOT | CONTENTS_SLIME | CONTENTS_LAVA;
 	while (ignore)
 	{
@@ -264,7 +264,7 @@ void Play_Bullet_Whiz(edict_t* self, vec3_t start, vec3_t end, edict_t* hit_ent)
 		if (tr.contents & (CONTENTS_SOLID | CONTENTS_SLIME | CONTENTS_LAVA | CONTENTS_MONSTER | CONTENTS_MIST))
 		{
 			mask &= ~(CONTENTS_SOLID | CONTENTS_SLIME | CONTENTS_LAVA | CONTENTS_MONSTER | CONTENTS_MIST);
-			water = true;
+			//water = true;
 		}
 		else
 		{

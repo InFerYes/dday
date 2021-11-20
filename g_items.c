@@ -28,9 +28,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "g_local.h"
 
 void Weapon_Katana(edict_t* ent);
-qboolean	Pickup_Weapon(edict_t* ent, edict_t* other);
-void		Use_Weapon(edict_t* ent, gitem_t* inv);
-void		Drop_Weapon(edict_t* ent, gitem_t* inv);
+
 
 void Weapon_Grenade(edict_t* ent);
 //bcass start - TNT

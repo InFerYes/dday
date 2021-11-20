@@ -64,7 +64,7 @@ FILE* DDay_OpenFile(char* filename_ptr)
 	if ((fp = fopen(filename, "r")) == NULL)
 	{
 		gi.dprintf("Unable to open file! %s.\n", strerror(errno));
-		return false;
+		return NULL;
 	} /* END */
 
 	return fp;

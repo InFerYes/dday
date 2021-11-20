@@ -156,11 +156,7 @@ qboolean Pickup_Weapon(edict_t* ent, edict_t* other)
 	gitem_t* ammo;
 	gitem_t* item;
 
-	/* MetalGod Sanity check! */
-	if (!ent || !other || !other->client)
-	{
-		return false;
-	}
+	
 
 	index = ITEM_INDEX(ent->item);
 

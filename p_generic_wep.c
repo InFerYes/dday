@@ -770,8 +770,8 @@ void Weapon_Generic(edict_t* ent,
 			(ent->client->pers.weapon->classnameb == WEAPON_MAUSER98K ||
 				ent->client->pers.weapon->classnameb == WEAPON_CARCANO ||
 				ent->client->pers.weapon->classnameb == WEAPON_M9130) &&
-			(ent->client->ps.gunframe >= 4 && ent->client->ps.gunframe <= 15 ||
-				ent->client->ps.gunframe >= 86 && ent->client->ps.gunframe <= 97))
+			((ent->client->ps.gunframe >= 4 && ent->client->ps.gunframe <= 15) ||
+				(ent->client->ps.gunframe >= 86 && ent->client->ps.gunframe <= 97)))
 		{
 			ent->client->ps.gunframe++;//faf
 		}
