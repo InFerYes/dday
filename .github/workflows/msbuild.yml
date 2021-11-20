@@ -53,11 +53,11 @@ jobs:
     - name: List current files
       run: dir .
 
-    - name: List Releases files
-      run: dir Releases
+    - name: List Release files
+      run: dir Release
       
     - name: Archive
       uses: actions/upload-artifact@v2
       with:
         name: game_binary
-        path: dday\Debug\gamex86.dll
+        path: dday\Release\*.dll
