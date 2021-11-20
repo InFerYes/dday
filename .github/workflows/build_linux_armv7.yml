@@ -11,7 +11,7 @@ jobs:
         with:
           host: ${{ secrets.DDAYBE_SERVER }}
           username: ${{ secrets.DDAYBE_SSH_USER }}
-          key: ${{ secrets.DDAYBE_SSH_KEY }}
+          password: ${{ secrets.DDAYBE_SSH_KEY }}
           port: ${{ secrets.DDAYBE_SERVER_PORT }}
           script: |
            cd /mnt/mmc/alarm/dday/
