@@ -339,7 +339,6 @@ void WriteCampaignTxt(void)
 	if (!fp)
 	{
 		gi.error("Couldn't open %s", campaignfilename);
-
 	}  */
 	if ((fp = fopen(campaignfilename, "wb")) == NULL)
 	{

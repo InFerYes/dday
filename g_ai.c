@@ -114,8 +114,6 @@ Distance is for slight position adjustments needed by the animations
 void civilian_think(edict_t* self);
 void ai_stand(edict_t* self, float dist)
 {
-	
-
 	if (!strcmp(self->classname, "misc_civilian"))
 		civilian_think(self);
 
@@ -424,7 +422,6 @@ qboolean FindTarget(edict_t* self)
 {
 	edict_t* client;
 	qboolean	heardit;
-	
 
 	if (self->monsterinfo.aiflags & AI_GOOD_GUY)
 	{
@@ -621,14 +618,13 @@ qboolean FacingIdeal(edict_t* self)
 
 qboolean M_CheckAttack(edict_t* self)
 {
-	
 	float	chance;
 	trace_t	tr;
 
 	if (self->enemy->health > 0)
-	{ 
+	{
 		vec3_t	spot1, spot2; /* MetalGod moved to reduce variable scope */
-		
+
 		// see if any entities are in the way of the shot
 		VectorCopy(self->s.origin, spot1);
 		spot1[2] += self->viewheight;
@@ -933,7 +929,7 @@ void ai_run(edict_t* self, float dist)
 	edict_t* marker;
 	float		d1;
 	trace_t		tr;
-	
+
 	vec3_t		left_target, right_target;
 
 	// if we're going to a combat point, just proceed
@@ -1065,11 +1061,11 @@ void ai_run(edict_t* self, float dist)
 		if (tr.fraction < 1)
 		{
 			/* MetalGod moved to reduce variable scope */
-			float	d2; 
+			float	d2;
 			vec3_t		v_forward, v_right;
 			float		left, center, right;
 			/* END */
-			
+
 			VectorSubtract(self->goalentity->s.origin, self->s.origin, v);
 			d1 = VectorLength(v);
 			center = tr.fraction;

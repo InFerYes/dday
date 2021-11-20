@@ -113,7 +113,7 @@ qboolean SV_RunThink(edict_t* ent)
 		gi.error("NULL ent->think");
 	}
 	else
-	ent->think(ent);
+		ent->think(ent);
 
 	return false;
 }
@@ -593,7 +593,7 @@ void SV_Physics_Pusher(edict_t* ent)
 				break;	// move was blocked
 		}
 	}
-	if (pushed_p > & pushed[MAX_EDICTS])
+	if (pushed_p > &pushed[MAX_EDICTS])
 		gi.error(ERR_FATAL, "pushed_p > &pushed[MAX_EDICTS], memory corrupted");
 
 	if (part)

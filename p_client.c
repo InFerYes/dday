@@ -64,8 +64,6 @@ static void SP_FixCoopSpots(edict_t* self)
 	edict_t* spot = NULL; /* MetalGod moved initialization/assignment up here. */
 	vec3_t	d;
 
-
-
 	while (1)
 	{
 		spot = G_Find(spot, FOFS(classname), "info_player_start");
@@ -338,7 +336,6 @@ void ClientObituary(edict_t* self, edict_t* inflictor, edict_t* attacker)
 
 	qboolean	ff;
 	edict_t* Tent;
-
 
 	/* MetalGod Sanity check */
 	if (!self || !self->client)
@@ -711,10 +708,10 @@ void ClientObituary(edict_t* self, edict_t* inflictor, edict_t* attacker)
 				/*-----------------------------------------------------------------*/
 			case MOD_KNIFE:
 
-				if (attacker->client->pers.weapon && 
+				if (attacker->client->pers.weapon &&
 					attacker->client->pers.weapon->classnameb == WEAPON_KATANA)
 					message = "was sliced in half by";
-				else if (attacker->client->pers.weapon && 
+				else if (attacker->client->pers.weapon &&
 					attacker->client->pers.weapon->classnameb == WEAPON_SABRE)
 					message = "was sliced in half by";
 				else

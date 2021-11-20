@@ -3154,11 +3154,9 @@ void Cmd_Shout_f(edict_t* ent)
 	for (i = 0; filename[i]; i++)
 		filename[i] = tolower(filename[i]);
 
-	
 	strcat(filename, ".wav\0");
 	strcpy(soundfile, va("%s/shout/", ent->client->resp.team_on->teamid));
-	strcat(soundfile, filename);  
-
+	strcat(soundfile, filename);
 
 	if (newshout)
 	{

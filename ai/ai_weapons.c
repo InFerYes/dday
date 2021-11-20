@@ -141,7 +141,7 @@ void AI_InitAIWeapons(void)
 	AIWeapons[WEAP_MELEE].RangeWeight[AIWEAP_MEDIUM_RANGE] = 0.0F;
 	AIWeapons[WEAP_MELEE].RangeWeight[AIWEAP_SHORT_RANGE] = 0.0F;
 	AIWeapons[WEAP_MELEE].RangeWeight[AIWEAP_MELEE_RANGE] = 0.9F;
-	/* END */ 
+	/* END */
 	AIWeapons[WEAP_MELEE].weaponItem = NULL;//FindItemByClassname("weapon_railgun");
 	AIWeapons[WEAP_MELEE].ammoItem = NULL;//FindItemByClassname("ammo_slugs");
 }

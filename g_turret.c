@@ -854,7 +854,7 @@ void turret_driver_link(edict_t* self)
 
 	int i;
 
-	if (self->client->turret->obj_gain && 
+	if (self->client->turret->obj_gain &&
 		self->client->turret->obj_gain == 1) //(mapper set ("tank" to 1))
 	{
 		self->svflags |= SVF_NOCLIENT;

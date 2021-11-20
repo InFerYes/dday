@@ -238,14 +238,12 @@ void safe_cprintf(edict_t* ent, int printlevel, char* fmt, ...)
 	gi.cprintf(ent, printlevel, CPrintBuff);
 }
 
-
 ///////////////////////////////////////////////////////////////////////
 // botsafe centerprintf
 ///////////////////////////////////////////////////////////////////////
 static char CenPrintBuff[0x8000]; /*  MetalGod move this here and reduce the size */
 void safe_centerprintf(edict_t* ent, char* fmt, ...)
 {
-
 	va_list		argptr;
 	/*  MetalGod unused!
 	char	bigbuffer[0x10000];

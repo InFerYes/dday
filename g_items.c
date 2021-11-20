@@ -29,7 +29,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 void Weapon_Katana(edict_t* ent);
 
-
 void Weapon_Grenade(edict_t* ent);
 //bcass start - TNT
 void Weapon_TNT(edict_t* ent);
@@ -776,7 +775,7 @@ void Touch_Item(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* surf)
 
 	if (other->client && other->client->resp.mos == MEDIC)
 	{
-		if (!(( ent->item->tag && ent->item->tag == AMMO_TYPE_PISTOL) || (ent->item->position && ent->item->position == LOC_PISTOL) 
+		if (!((ent->item->tag && ent->item->tag == AMMO_TYPE_PISTOL) || (ent->item->position && ent->item->position == LOC_PISTOL)
 			|| (ent->item->pickup_name && !Q_stricmp(ent->item->pickup_name, "Knife")) || (ent->item->pickup_name && !Q_stricmp(ent->item->pickup_name, "Helmet"))))
 			return;
 	}

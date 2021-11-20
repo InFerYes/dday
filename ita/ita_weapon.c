@@ -86,7 +86,7 @@ void Weapon_B3842_Fire(edict_t* ent)
 	}
 
 	// 2021-08-05/ed: Do NOT raise the gun as it is firing
-	
+
 	//	if (!deathmatch->value)
 	//	{
 	//ent->client->machinegun_shots++;
@@ -103,7 +103,7 @@ void Weapon_B3842_Fire(edict_t* ent)
 	{
 		// 2021-08-05/ed: Custom kick for "Beretta 38/42"
 		if (ent->client->aim)
-			ent->client->kick_angles[0] -= .5; 
+			ent->client->kick_angles[0] -= .5;
 		else
 			ent->client->kick_angles[0] = -.5;
 	}
@@ -122,7 +122,7 @@ void Weapon_B3842_Fire(edict_t* ent)
 	// 2021-08-05/ed: Play_WepSound used instead of gi.sound as in the "Gewehr 43" implementation
 	//gi.sound(ent, CHAN_WEAPON, gi.soundindex(guninfo->FireSound), 1, ATTN_NORM, 0);
 	Play_WepSound(ent, guninfo->FireSound);
-	
+
 	gi.WriteByte(svc_muzzleflash);
 	gi.WriteShort(ent - g_edicts);
 	gi.WriteByte(MZ_MACHINEGUN);// | is_silenced);

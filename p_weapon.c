@@ -156,8 +156,6 @@ qboolean Pickup_Weapon(edict_t* ent, edict_t* other)
 	gitem_t* ammo;
 	gitem_t* item;
 
-	
-
 	index = ITEM_INDEX(ent->item);
 
 	item = ent->item;

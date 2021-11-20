@@ -394,7 +394,6 @@ void Write_Last_Maps(void)
 		fprintf(fp, "%s\n", last_maps_played[i]);
 	}
 	fclose(fp);
-
 }
 
 void Read_Last_Maps()
@@ -406,7 +405,6 @@ void Read_Last_Maps()
 	lastmaps = ReadEntFile("dday/lastmaps.txt");
 
 	if (lastmaps) {
-
 		f = G_CopyString(lastmaps);
 		s = strtok(f, "\n");
 

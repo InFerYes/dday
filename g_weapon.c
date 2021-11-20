@@ -27,7 +27,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "g_local.h"
 
-
 //faf:  tidies up coming out of the scope for the sniper.
 //      it wasnt showing the gun being lowered before
 void check_unscope(edict_t* ent)
@@ -2136,7 +2135,6 @@ void fire_airstrike(edict_t* self, vec3_t start, vec3_t dir, int damage, int spe
 
 	gi.linkentity(airstrike);
 }
-
 
 void ricochetthink(edict_t* ricochet)
 {

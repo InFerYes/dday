@@ -111,8 +111,6 @@ char* AI_LinkString(int linktype)
 		break;
 	}  /* MetalGod END*/
 
-
-
 	return s;
 }
 
@@ -799,12 +797,10 @@ int AI_IsLadderLink(int n1, int n2)
 		eorg[j] = nodes[n2].origin[j] - nodes[n1].origin[j];
 	eorg[2] = 0; //ignore height
 
-
 	xzdist = VectorLength(eorg);
 
 	if (xzdist < 0)
 		xzdist = -xzdist;
-
 
 	//if both are ladder nodes
 	if (nodes[n1].flags & NODEFLAGS_LADDER && nodes[n2].flags & NODEFLAGS_LADDER)

@@ -488,10 +488,10 @@ qboolean AI_SavePLKFile(char* mapname)
 	int			version = NAV_FILE_VERSION;
 
 	Com_sprintf(filename, sizeof(filename), "%s/%s/%s.%s", AI_MOD_FOLDER, AI_NODES_FOLDER, mapname, NAV_FILE_EXTENSION);
-	 /*	 MetalGod
+	/*	 MetalGod
+   if ((pOut = fopen(filename, "wb")) == NULL)
+	   return false;							*/
 	if ((pOut = fopen(filename, "wb")) == NULL)
-		return false;							*/
-	if ((pOut = fopen(filename, "wb")) == NULL) 
 	{
 		gi.dprintf("Unable to open file! %s.\n", strerror(errno));
 		return false;
@@ -563,7 +563,7 @@ void Camp_Spot(void)
 		sprintf(filename, "dday/navigation/%s.cmp", level.botfiles);
 	else
 		sprintf(filename, "dday/navigation/%s.cmp", level.mapname);
-	/* MetalGod 
+	/* MetalGod
 	f = fopen(filename, "a");
 	if (!f)
 		gi.error("Couldn't open %s", filename);	 */

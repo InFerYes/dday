@@ -775,8 +775,8 @@ char* ReadEntFile(char* filename)
 	int			ch;
 
 	for (;;)/* MetalGod shut up compiler */
-	{	
-		/* MetalGod 
+	{
+		/* MetalGod
 		fp = fopen(filename, "r");
 		if (!fp) break;	*/
 		if ((fp = fopen(filename, "r")) == NULL)

@@ -760,7 +760,7 @@ void T_Damage(edict_t* targ, edict_t* inflictor, edict_t* attacker, vec3_t dir, 
 		targ->client->last_wound_inflictor = attacker;
 
 	//hacky
-	if (attacker && attacker->ai &&  targ->classnameb && targ->classnameb == SANDBAGS && !OnSameTeam(targ, attacker)) /* MetalGod added !OnSameTeam(targ, attacker) so bots don't destroy their teams sandbags */
+	if (attacker && attacker->ai && targ->classnameb && targ->classnameb == SANDBAGS && !OnSameTeam(targ, attacker)) /* MetalGod added !OnSameTeam(targ, attacker) so bots don't destroy their teams sandbags */
 		damage = 1000;
 
 	//JABOT:  if someone attacks this guy, the teammate bots go into aim mode                         ///make attacker their enemy: //needs work

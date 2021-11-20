@@ -301,8 +301,6 @@ float	anglemod(float a)
 	return a;
 }
 
-
-
 // this is the slow, general version
 int BoxOnPlaneSide2(vec3_t emins, vec3_t emaxs, struct cplane_s* p)
 {
@@ -310,7 +308,6 @@ int BoxOnPlaneSide2(vec3_t emins, vec3_t emaxs, struct cplane_s* p)
 	vec3_t	corners[2] = { 0 };
 	float	dist1, dist2;
 	int		sides;
-
 
 	for (i = 0; i < 3; i++)
 	{
@@ -1243,7 +1240,6 @@ size_t Q_strncpyz(char* dst, size_t dstSize, const char* src)
 	else
 		return (s - src - 1);    // returned count excludes NULL terminator
 }
-
 
 size_t Q_strncatz(char* dst, size_t dstSize, const char* src)
 {
