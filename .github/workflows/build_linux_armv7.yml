@@ -1,0 +1,21 @@
+# The workflow builds the dday game file for Linux x86_64.
+
+name: Linux ARMv7 build
+on: [push]
+jobs:
+  run_make:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update containers
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{ secrets.DDAYBE_SERVER }}
+          username: ${{ secrets.DDAYBE_SSH_USER }}
+          password: ${{ secrets.DDAYBE_SSH_KEY }}
+          port: ${{ secrets.DDAYBE_SERVER_PORT }}
+          script: |
+           cd /mnt/mmc/alarm/dday/
+           git pull
+           make clean && make build_release
+           mv ~/q2dday/dday/gamearm.real.so ~/q2dday/dday/gamearm.real.so.`date '+%Y-%m-%d_%H:%M:%S'`
+           mv gamearm.real.so ~/q2dday/dday/
