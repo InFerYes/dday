@@ -9,7 +9,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: Make
-        run: make -j${nproc}
+        run: make -j${nproc} build_release
       - name: Archive
         uses: actions/upload-artifact@v2
         with:
