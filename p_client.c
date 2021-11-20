@@ -164,11 +164,11 @@ void Create_InfoTeamStarts (edict_t *self)
 /*QUAKED info_player_start (1 0 0) (-16 -16 -24) (16 16 32)
 the normal starting point for a level.
 */
-void Create_CTB_Entities(edict_t* self);
+//void Create_CTB_Entities(edict_t* self);
 
 void SP_info_player_start(edict_t* self)
 {
-	Create_CTB_Entities(self);
+	//Create_CTB_Entities(self);
 
 	//faf
 //	Create_InfoTeamStarts(self);

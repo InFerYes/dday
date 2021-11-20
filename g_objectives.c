@@ -190,63 +190,62 @@ void objective_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t*
 
 			self->obj_owner = other->client->resp.team_on->index;
 			if (self->obj_perm_owner % 2 != other->client->resp.team_on->index)
-			{
 				if (team_list[self->obj_owner])
 				{
 					team_list[self->obj_owner]->score += self->health;
 				}
-			}
 		}
-		else
+	}
+	else
+	{
+		if (team_list[self->obj_owner])
 		{
-			if (team_list[self->obj_owner])
-			{
-				team_list[self->obj_owner]->score -= self->dmg;
+			team_list[self->obj_owner]->score -= self->dmg;
 
-				self->obj_owner = other->client->resp.team_on->index;
-				team_list[self->obj_owner]->score += self->health;
-			}
+			self->obj_owner = other->client->resp.team_on->index;
+			team_list[self->obj_owner]->score += self->health;
 		}
+	}
 
-		otherteam = (self->obj_owner);
+	otherteam = (self->obj_owner);
 
-		/* MetalGod sanity check */
-		if (NULL == team_list[otherteam])
-			return;
-		/* MetalGod */
+	/* MetalGod sanity check */
+	if (NULL == team_list[otherteam])
+		return;
+	/* MetalGod */
 
-		if (!team_list[otherteam]->need_points ||
-			(!team_list[otherteam]->kills_and_points && team_list[otherteam]->score < team_list[otherteam]->need_points) ||
-			(team_list[otherteam]->kills_and_points &&
-				team_list[otherteam]->kills < team_list[otherteam]->need_kills))
-			gi.sound(self, CHAN_NO_PHS_ADD, gi.soundindex(va("%s/objectives/touch_cap.wav", team_list[self->obj_owner]->teamid)), 1, 0, 0);
+	if (!team_list[otherteam]->need_points ||
+		(!team_list[otherteam]->kills_and_points && team_list[otherteam]->score < team_list[otherteam]->need_points) ||
+		(team_list[otherteam]->kills_and_points &&
+			team_list[otherteam]->kills < team_list[otherteam]->need_kills))
+		gi.sound(self, CHAN_NO_PHS_ADD, gi.soundindex(va("%s/objectives/touch_cap.wav", team_list[self->obj_owner]->teamid)), 1, 0, 0);
 
-		if (dedicated->value)
-			safe_cprintf(NULL, PRINT_HIGH, "%s taken by %s [%s]\n",
-				self->message,
-				other->client->pers.netname,
-				team_list[self->obj_owner]->teamname);
-
-		centerprintall("%s taken by:\n\n%s\n%s",
+	if (dedicated->value)
+		safe_cprintf(NULL, PRINT_HIGH, "%s taken by %s [%s]\n",
 			self->message,
 			other->client->pers.netname,
 			team_list[self->obj_owner]->teamname);
 
-		self->obj_count = level.framenum; // reset the touch count
+	centerprintall("%s taken by:\n\n%s\n%s",
+		self->message,
+		other->client->pers.netname,
+		team_list[self->obj_owner]->teamname);
 
-		G_UseTargets(self, other); //faf
+	self->obj_count = level.framenum; // reset the touch count
 
-		if (self->delay == -1)
-			self->touch = NULL;
-	}
+	G_UseTargets(self, other); //faf
+
+	if (self->delay == -1)
+		self->touch = NULL;
+}
 	else  // own team touched it
 	{
-		//gi.dprintf("%s deadflag: %i\n", other->client->pers.netname, other->deadflag);
+	//gi.dprintf("%s deadflag: %i\n", other->client->pers.netname, other->deadflag);
 
-		if (self->style % 5 == 3)return; //HILL FIX
+	if (self->style % 5 == 3)return; //HILL FIX
 
-		if (other->deadflag == DEAD_NO)
-			self->obj_count = level.framenum; // update the last time team touched it
+	if (other->deadflag == DEAD_NO)
+		self->obj_count = level.framenum; // update the last time team touched it
 	}
 }
 
@@ -832,14 +831,14 @@ void SP_briefcase(edict_t* self);
 void SP_usa_base(edict_t* ent);
 void SP_grm_base(edict_t* ent);
 
-//faf: ctb code
+/*faf: ctb code
 void Create_CTB_Entities(edict_t* self)
 {
 	edict_t* spot;
 	spot = NULL;
 
 	return;
-	/* MetalGod : Someone disabled this... faf?
+
 	* Contemplating making ctb a cvar_t to renable thes game option
 	*
 
@@ -1073,8 +1072,7 @@ void Create_CTB_Entities(edict_t* self)
 		spot->s.angles[1] = 10;
 		SP_briefcase(spot);
 	}
-	*/
-}
+}	 */
 
 //faf:  ctb code
 void base_think(edict_t* ent)

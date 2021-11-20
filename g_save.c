@@ -682,269 +682,269 @@ void ReadGame(char* filename)
 		fclose(f);
 	}
 }
+	  */
+	  //==========================================================
 
-//==========================================================
+	  /*
+	  ==============
+	  WriteEdict
 
-/*
-==============
-WriteEdict
+	  All pointer variables (except function pointers) must be handled specially.
+	  ==============
+	  */
+	  /*
+	  void WriteEdict(FILE* f, edict_t* ent)
+	  {
+		  field_t* field;
+		  edict_t		temp;
 
-All pointer variables (except function pointers) must be handled specially.
-==============
-*/
-/*
-void WriteEdict(FILE* f, edict_t* ent)
-{
-	field_t* field;
-	edict_t		temp;
+		  // all of the ints, floats, and vectors stay as they are
+		  temp = *ent;
 
-	// all of the ints, floats, and vectors stay as they are
-	temp = *ent;
+		  // change the pointers to lengths or indexes
+		  for (field = savefields; field->name; field++)
+		  {
+			  WriteField1(f, field, (byte*)&temp);
+		  }
 
-	// change the pointers to lengths or indexes
-	for (field = savefields; field->name; field++)
-	{
-		WriteField1(f, field, (byte*)&temp);
-	}
+		  // write the block
+		  fwrite(&temp, sizeof(temp), 1, f);
 
-	// write the block
-	fwrite(&temp, sizeof(temp), 1, f);
+		  // now write any allocated data following the edict
+		  for (field = savefields; field->name; field++)
+		  {
+			  WriteField2(f, field, (byte*)ent);
+		  }
+	  }
+	  */
+	  /*
+	  ==============
+	  WriteLevelLocals
 
-	// now write any allocated data following the edict
-	for (field = savefields; field->name; field++)
-	{
-		WriteField2(f, field, (byte*)ent);
-	}
-}
-*/
-/*
-==============
-WriteLevelLocals
+	  All pointer variables (except function pointers) must be handled specially.
+	  ==============
+	  */
+	  /*
+	  void WriteLevelLocals(FILE* f)
+	  {
+		  field_t* field;
+		  level_locals_t		temp;
 
-All pointer variables (except function pointers) must be handled specially.
-==============
-*/
-/*
-void WriteLevelLocals(FILE* f)
-{
-	field_t* field;
-	level_locals_t		temp;
+		  // all of the ints, floats, and vectors stay as they are
+		  temp = level;
 
-	// all of the ints, floats, and vectors stay as they are
-	temp = level;
+		  // change the pointers to lengths or indexes
+		  for (field = levelfields; field->name; field++)
+		  {
+			  WriteField1(f, field, (byte*)&temp);
+		  }
 
-	// change the pointers to lengths or indexes
-	for (field = levelfields; field->name; field++)
-	{
-		WriteField1(f, field, (byte*)&temp);
-	}
+		  // write the block
+		  fwrite(&temp, sizeof(temp), 1, f);
 
-	// write the block
-	fwrite(&temp, sizeof(temp), 1, f);
+		  // now write any allocated data following the edict
+		  for (field = levelfields; field->name; field++)
+		  {
+			  WriteField2(f, field, (byte*)&level);
+		  }
+	  }
+	  */
+	  /*
+	  ==============
+	  ReadEdict
 
-	// now write any allocated data following the edict
-	for (field = levelfields; field->name; field++)
-	{
-		WriteField2(f, field, (byte*)&level);
-	}
-}
-*/
-/*
-==============
-ReadEdict
+	  All pointer variables (except function pointers) must be handled specially.
+	  ==============
+	  */
+	  /*
+	  void ReadEdict(FILE* f, edict_t* ent)
+	  {
+		  field_t* field;
 
-All pointer variables (except function pointers) must be handled specially.
-==============
-*/
-/*
-void ReadEdict(FILE* f, edict_t* ent)
-{
-	field_t* field;
+		  fread(ent, sizeof(*ent), 1, f);
 
-	fread(ent, sizeof(*ent), 1, f);
+		  for (field = savefields; field->name; field++)
+		  {
+			  ReadField(f, field, (byte*)ent);
+		  }
+	  }
+	  */
 
-	for (field = savefields; field->name; field++)
-	{
-		ReadField(f, field, (byte*)ent);
-	}
-}
-*/
+	  /*
+	  ==============
+	  ReadLevelLocals
 
-/*
-==============
-ReadLevelLocals
+	  All pointer variables (except function pointers) must be handled specially.
+	  ==============
+	  */
+	  /*
+	  void ReadLevelLocals(FILE* f)
+	  {
+		  field_t* field;
 
-All pointer variables (except function pointers) must be handled specially.
-==============
-*/
-/*
-void ReadLevelLocals(FILE* f)
-{
-	field_t* field;
+		  fread(&level, sizeof(level), 1, f);
 
-	fread(&level, sizeof(level), 1, f);
+		  for (field = levelfields; field->name; field++)
+		  {
+			  ReadField(f, field, (byte*)&level);
+		  }
+	  }*/
 
-	for (field = levelfields; field->name; field++)
-	{
-		ReadField(f, field, (byte*)&level);
-	}
-}*/
+	  /*
+	  =================
+	  WriteLevel
 
-/*
-=================
-WriteLevel
+	  =================
+	  */
+	  /*
+	  void WriteLevel(char* filename)
+	  {
+		  int		i;
+		  edict_t* ent;
+		  FILE* f;
+		  void* base;
 
-=================
-*/
-/*
-void WriteLevel(char* filename)
-{
-	int		i;
-	edict_t* ent;
-	FILE* f;
-	void* base;
+		  f = fopen(filename, "wb");
 
-	f = fopen(filename, "wb");
+		  // MetalGod reformatted for clarity and checking return values
+		  if (!f)
+		  {
+			  gi.error("Couldn't open %s", filename);
+		  }
+		  else
+		  {
+			  {
+				  // write out edict size for checking
+				  i = sizeof(edict_t);
+				  fwrite(&i, sizeof(i), 1, f);
 
-	// MetalGod reformatted for clarity and checking return values
-	if (!f)
-	{
-		gi.error("Couldn't open %s", filename);
-	}
-	else
-	{
-		{
-			// write out edict size for checking
-			i = sizeof(edict_t);
-			fwrite(&i, sizeof(i), 1, f);
+				  // write out a function pointer for checking
+				  base = (void*)InitGame;
+				  fwrite(&base, sizeof(base), 1, f);
 
-			// write out a function pointer for checking
-			base = (void*)InitGame;
-			fwrite(&base, sizeof(base), 1, f);
+				  // write out level_locals_t
+				  WriteLevelLocals(f);
 
-			// write out level_locals_t
-			WriteLevelLocals(f);
+				  // write out all the entities
+				  for (i = 0; i < globals.num_edicts; i++)
+				  {
+					  ent = &g_edicts[i];
+					  if (!ent->inuse)
+						  continue;
+					  fwrite(&i, sizeof(i), 1, f);
+					  WriteEdict(f, ent);
+				  }
+				  i = -1;
+				  fwrite(&i, sizeof(i), 1, f);
+			  }
+			  fclose(f);
+		  }
+	  }
+	  */
+	  /*
+	  =================
+	  ReadLevel
 
-			// write out all the entities
-			for (i = 0; i < globals.num_edicts; i++)
-			{
-				ent = &g_edicts[i];
-				if (!ent->inuse)
-					continue;
-				fwrite(&i, sizeof(i), 1, f);
-				WriteEdict(f, ent);
-			}
-			i = -1;
-			fwrite(&i, sizeof(i), 1, f);
-		}
-		fclose(f);
-	}
-}
-*/
-/*
-=================
-ReadLevel
+	  SpawnEntities will already have been called on the
+	  level the same way it was when the level was saved.
 
-SpawnEntities will already have been called on the
-level the same way it was when the level was saved.
+	  That is necessary to get the baselines
+	  set up identically.
 
-That is necessary to get the baselines
-set up identically.
+	  The server will have cleared all of the world links before
+	  calling ReadLevel.
 
-The server will have cleared all of the world links before
-calling ReadLevel.
+	  No clients are connected yet.
+	  =================
+	  */
+	  /*
+	  void ReadLevel(char* filename)
+	  {
+		  int		entnum;
+		  FILE* f;
+		  int		i;
+		  void* base;
+		  edict_t* ent;
 
-No clients are connected yet.
-=================
-*/
-/*
-void ReadLevel(char* filename)
-{
-	int		entnum;
-	FILE* f;
-	int		i;
-	void* base;
-	edict_t* ent;
+		  f = fopen(filename, "rb");
+		  if (!f)
+			  gi.error("Couldn't open %s", filename);
 
-	f = fopen(filename, "rb");
-	if (!f)
-		gi.error("Couldn't open %s", filename);
+		  qbots = false;
 
-	qbots = false;
+		  // free any dynamic memory allocated by loading the level
+		  // base state
+		  gi.FreeTags(TAG_LEVEL);
 
-	// free any dynamic memory allocated by loading the level
-	// base state
-	gi.FreeTags(TAG_LEVEL);
+		  // wipe all the entities
+		  memset(g_edicts, 0, game.maxentities * sizeof(g_edicts[0]));
+		  globals.num_edicts = maxclients->value + 1;
 
-	// wipe all the entities
-	memset(g_edicts, 0, game.maxentities * sizeof(g_edicts[0]));
-	globals.num_edicts = maxclients->value + 1;
+		  // check edict size
+		  fread(&i, sizeof(i), 1, f);
+		  if (i != sizeof(edict_t))
+		  {
+			  fclose(f);
+			  gi.error("ReadLevel: mismatched edict size");
+		  }
 
-	// check edict size
-	fread(&i, sizeof(i), 1, f);
-	if (i != sizeof(edict_t))
-	{
-		fclose(f);
-		gi.error("ReadLevel: mismatched edict size");
-	}
+		  // check function pointer base address
+		  fread(&base, sizeof(base), 1, f);
+		  if (base != (void*)InitGame)
+		  {
+			  fclose(f);
+			  gi.error("ReadLevel: function pointers have moved");
+		  }
 
-	// check function pointer base address
-	fread(&base, sizeof(base), 1, f);
-	if (base != (void*)InitGame)
-	{
-		fclose(f);
-		gi.error("ReadLevel: function pointers have moved");
-	}
+		  // load the level locals
+		  ReadLevelLocals(f);
 
-	// load the level locals
-	ReadLevelLocals(f);
+		  // load all the entities
+		  while (1)
+		  {
+			  if (fread(&entnum, sizeof(entnum), 1, f) != 1)
+			  {
+				  fclose(f);
+				  gi.error("ReadLevel: failed to read entnum");
+			  }
+			  if (entnum == -1)
+				  break;
+			  if (entnum >= globals.num_edicts)
+				  globals.num_edicts = entnum + 1;
 
-	// load all the entities
-	while (1)
-	{
-		if (fread(&entnum, sizeof(entnum), 1, f) != 1)
-		{
-			fclose(f);
-			gi.error("ReadLevel: failed to read entnum");
-		}
-		if (entnum == -1)
-			break;
-		if (entnum >= globals.num_edicts)
-			globals.num_edicts = entnum + 1;
+			  ent = &g_edicts[entnum];
+			  ReadEdict(f, ent);
 
-		ent = &g_edicts[entnum];
-		ReadEdict(f, ent);
+			  // let the server rebuild world links for this ent
+			  memset(&ent->area, 0, sizeof(ent->area));
+			  gi.linkentity(ent);
+		  }
 
-		// let the server rebuild world links for this ent
-		memset(&ent->area, 0, sizeof(ent->area));
-		gi.linkentity(ent);
-	}
+		  fclose(f);
 
-	fclose(f);
+		  // mark all clients as unconnected
+		  for (i = 0; i < maxclients->value; i++)
+		  {
+			  ent = &g_edicts[i + 1];
+			  ent->client = game.clients + i;
+			  ent->client->pers.connected = false;
+		  }
 
-	// mark all clients as unconnected
-	for (i = 0; i < maxclients->value; i++)
-	{
-		ent = &g_edicts[i + 1];
-		ent->client = game.clients + i;
-		ent->client->pers.connected = false;
-	}
+		  // do any load time things at this point
+		  for (i = 0; i < globals.num_edicts; i++)
+		  {
+			  ent = &g_edicts[i];
 
-	// do any load time things at this point
-	for (i = 0; i < globals.num_edicts; i++)
-	{
-		ent = &g_edicts[i];
+			  if (!ent->inuse)
+				  continue;
 
-		if (!ent->inuse)
-			continue;
-
-		// fire any cross-level triggers
-		if (ent->classname)
-			if (strcmp(ent->classname, "target_crosslevel_target") == 0)
-				ent->nextthink = level.time + ent->delay;
-	}
-}
-*/
+			  // fire any cross-level triggers
+			  if (ent->classname)
+				  if (strcmp(ent->classname, "target_crosslevel_target") == 0)
+					  ent->nextthink = level.time + ent->delay;
+		  }
+	  }
+	  */
 
 void WriteGame(char* filename, qboolean autosave)
 {
