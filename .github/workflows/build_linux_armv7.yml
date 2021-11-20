@@ -16,6 +16,6 @@ jobs:
           script: |
            cd /mnt/mmc/alarm/dday/
            git pull
-           make clean && make release
+           make clean && make build_release
            mv ~/q2dday/dday/gamearm.real.so ~/q2dday/dday/gamearm.real.so.`date '+%Y-%m-%d_%H:%M:%S'`
            mv gamearm.real.so ~/q2dday/dday/
