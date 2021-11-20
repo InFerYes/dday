@@ -610,7 +610,6 @@ void Think_Weapon(edict_t* ent)
 	}
 }
 
-void turret_off(edict_t* self);
 /*
 ================
 Use_Weapon

@@ -45,7 +45,6 @@ qboolean Cmd_Scope_f(edict_t* ent);
 void Drop_Weapon(edict_t* ent, gitem_t* item);
 void weapon_grenade_fire(edict_t* ent);
 void check_unscope(edict_t* ent);//faf
-void turret_off(edict_t* self);
 
 //
 // Gross, ugly, disgustuing hack section
@@ -1135,7 +1134,7 @@ void AlignToGround(edict_t *ent)
 	}
 }
 */
-void turret_off(edict_t* self);
+
 void CopyToBodyQue(edict_t* ent);
 /*
 ==================

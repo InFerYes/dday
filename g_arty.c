@@ -95,7 +95,7 @@ void Weapon_Bayonet_Fire1(edict_t* ent)
 }
 mmove_t civilian_move_stand;
 qboolean CheckForTurret(edict_t* ent);
-void turret_off(edict_t* self);
+
 void Use_Weapon(edict_t* ent, gitem_t* item);
 void Arty_Sound(edict_t* ent);
 /*

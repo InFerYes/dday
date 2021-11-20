@@ -436,8 +436,6 @@ void Cmd_GameVersion_f(edict_t* ent)
 	safe_cprintf(ent, PRINT_HIGH, "%s : %s\n", GAMEVERSION, __DATE__);
 }
 
-void turret_off(edict_t* self);
-
 qboolean CheckForTurret(edict_t* ent);
 
 qboolean Cmd_Scope_f(edict_t* ent)
@@ -3011,7 +3009,6 @@ void Cmd_Reload_f(edict_t* ent)
 
 	return;
 }
-void turret_off(edict_t* self);
 
 void Cmd_Stance(edict_t* ent)
 {

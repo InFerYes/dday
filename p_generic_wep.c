@@ -5,24 +5,18 @@
  *   $Date: 2002/06/04 19:49:48 $
  *
  ***********************************
-
 Copyright (C) 2002 Vipersoft
-
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
 as published by the Free Software Foundation; either version 2
 of the License, or (at your option) any later version.
-
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
 See the GNU General Public License for more details.
-
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-
 */
 
 #include "g_local.h"
@@ -34,7 +28,6 @@ void check_unscope(edict_t* ent);//faf
 /*
 ================
 Weapon_Generic
-
 A generic function to handle the basics of weapon thinking
 ================
 */
@@ -79,12 +72,12 @@ void Weapon_Generic(edict_t* ent,
 	FRAME_IDLE_FIRST = (ent->client->aim) ? FRAME_AIDLE_FIRST : FRAME_LIDLE_FIRST;
 	FRAME_IDLE_LAST = (ent->client->aim) ? FRAME_AIDLE_LAST : FRAME_LIDLE_LAST;
 
-	if (ent->client->pers.weapon &&
+	if (/*ent->client->pers.weapon && MetalGod redundant check */
 		ent->client->pers.weapon->pickup_name &&
 		frame_output)
 		gi.dprintf("%i / %i - %s\n", ent->client->weaponstate, ent->client->ps.gunframe, ent->client->pers.weapon->pickup_name);
 
-	if (ent->client->pers.weapon && ent->client->pers.weapon->ammo)
+	if (ent->client->pers.weapon->ammo)
 	{
 		ammo_item = FindItem(ent->client->pers.weapon->ammo);
 		ammo_index = ITEM_INDEX(ammo_item);
@@ -93,7 +86,7 @@ void Weapon_Generic(edict_t* ent,
 
 	//	gi.dprintf(" %i < %i < %i\n",FRAME_RAISE_FIRST, ent->client->ps.gunframe, FRAME_RAISE_LAST);
 
-	if (ent->client->aim && ent->client->pers.weapon &&
+	if (ent->client->aim &&
 		ent->client->pers.weapon->position != LOC_SNIPER &&
 		ent->client->pers.weapon->position != LOC_KNIFE &&
 		ent->client->pers.weapon->position != LOC_GRENADES &&
@@ -103,7 +96,7 @@ void Weapon_Generic(edict_t* ent,
 
 	//	else if (!ent->client->aim && ent->client->pers.weapon->position != LOC_SNIPER)
 	//faf			ent->client->ps.fov = STANDARD_FOV;
-	else if (!ent->client->aim && ent->client->pers.weapon && ent->client->pers.weapon->position != LOC_SNIPER)
+	else if (!ent->client->aim && ent->client->pers.weapon->position != LOC_SNIPER)
 	{
 		check_unscope(ent);//faf
 
@@ -150,7 +143,6 @@ void Weapon_Generic(edict_t* ent,
 					{
 			//			if (ent->client->reload_pause_frame == level.framenum + 12)
 			//				gi.sound(ent, CHAN_WEAPON, gi.soundindex("weapons/tnt/pullout.wav"),.5, ATTN_NORM, 0);
-
 						if (ent->client->reload_pause_frame < level.framenum)
 						{
 							ent->client->reload_pause_frame = level.framenum + 8;
@@ -270,7 +262,7 @@ void Weapon_Generic(edict_t* ent,
 						*ent->client->p_rnd = *ent->client->p_fract;
 				}
 			}
-			/* MetalGod Duplicated as default below so... why bother?
+
 			else if (ent->client->pers.weapon->topoff == 2)//for beltfed
 			{
 				if (*ammo_amount)
@@ -279,7 +271,8 @@ void Weapon_Generic(edict_t* ent,
 						ent->client->pers.inventory[ammo_index]--;
 					*ent->client->p_rnd = ammo_item->quantity;
 				}
-			}*/
+			}
+
 			else
 			{
 				if (*ammo_amount) //feeder clips (not topoffable
@@ -404,7 +397,7 @@ void Weapon_Generic(edict_t* ent,
 			return;
 		}
 
-		if (Q_stricmp(ent->client->pers.weapon->pickup_name, "M1919 Browning") == 0)
+		if (stricmp(ent->client->pers.weapon->pickup_name, "M1919 Browning") == 0)
 		{
 			if (ent->client->ps.gunframe == 18)
 				gi.sound(ent, CHAN_WEAPON, gi.soundindex("weapons/sshotr1b.wav"), 1, ATTN_NORM, 0);
@@ -597,7 +590,7 @@ void Weapon_Generic(edict_t* ent,
 				goto skip_anim;
 
 			ent->client->anim_priority = ANIM_ATTACK;
-			if (ent->client->pers.weapon->classnameb != WEAPON_FISTS) /* MetalGod simplified */
+			if (!(ent->client->pers.weapon && ent->client->pers.weapon->classnameb == WEAPON_FISTS))
 			{
 				if (ent->stanceflags == STANCE_DUCK)
 				{
@@ -669,7 +662,7 @@ void Weapon_Generic(edict_t* ent,
 
 		ent->client->aim = true;
 
-		if (ent->client->pers.weapon && ent->client->pers.weapon->position == LOC_SNIPER &&
+		if (ent->client->pers.weapon->position == LOC_SNIPER &&
 			!ent->client->sniper_loaded[ent->client->resp.team_on->index])
 		{
 			GunInfo_t* guninfo = ent->client->pers.weapon->guninfo;
@@ -770,8 +763,8 @@ void Weapon_Generic(edict_t* ent,
 			(ent->client->pers.weapon->classnameb == WEAPON_MAUSER98K ||
 				ent->client->pers.weapon->classnameb == WEAPON_CARCANO ||
 				ent->client->pers.weapon->classnameb == WEAPON_M9130) &&
-			((ent->client->ps.gunframe >= 4 && ent->client->ps.gunframe <= 15) ||
-				(ent->client->ps.gunframe >= 86 && ent->client->ps.gunframe <= 97)))
+			(ent->client->ps.gunframe >= 4 && ent->client->ps.gunframe <= 15 ||
+				ent->client->ps.gunframe >= 86 && ent->client->ps.gunframe <= 97))
 		{
 			ent->client->ps.gunframe++;//faf
 		}
@@ -811,7 +804,7 @@ void Weapon_Generic(edict_t* ent,
 		}
 	}
 }
-/*	  MetalGod Unused
+/* MetalGod unused!
 void ifchangewep(edict_t* ent)
 {
 	//	if(auto_weapon_change->value) NoAmmoWeaponChange (ent);

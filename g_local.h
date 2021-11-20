@@ -996,6 +996,11 @@ qboolean visible(edict_t* self, edict_t* other);
 qboolean FacingIdeal(edict_t* self);
 
 //
+// g_turret.c
+//
+void turret_off(edict_t* self);
+
+//
 // g_weapon.c
 //
 void ThrowDebris(edict_t* self, char* modelname, float speed, vec3_t origin);

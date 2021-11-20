@@ -751,7 +751,7 @@ void Set_Briefcase_Respawn(edict_t* ent)
 qboolean Pickup_Briefcase(edict_t* ent, edict_t* other)
 {
 	int			index;
-	gitem_t* item;
+	//gitem_t* item;
 	index = ITEM_INDEX(ent->item);
 
 	// unused item = ent->item;
