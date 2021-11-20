@@ -110,8 +110,8 @@ void Chute_Think(edict_t* ent)
 	ent->nextthink = level.time + .1;
 	//	gi.dprintf("%f\n",ent->owner->client->jump_stamina);
 		//we've touched the ground
-	if (ent->owner->client &&
-		ent->owner->groundentity || ent->owner->velocity[2] > 0 ||
+	if ((ent->owner->client &&
+		ent->owner->groundentity) || ent->owner->velocity[2] > 0 ||
 		ent->owner->client->jump_stamina < 80 ||
 		ent->s.frame > 5)
 		//		ent->owner->client->ps.pmove.gravity == sv_gravity->value)//landed
