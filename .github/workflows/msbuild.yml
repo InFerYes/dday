@@ -52,6 +52,9 @@ jobs:
 
     - name: List current files
       run: dir .
+
+    - name: List Releases files
+      run: dir Releases
       
     - name: Archive
       uses: actions/upload-artifact@v2
