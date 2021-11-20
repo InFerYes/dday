@@ -399,14 +399,14 @@ void Write_Last_Maps(void)
 
 void Read_Last_Maps()
 {
-	int		i, c;
+	int		i;
 	char* s, * f;
 	char* lastmaps;
 
 	lastmaps = ReadEntFile("dday/lastmaps.txt");
 
 	if (lastmaps) {
-		c = 0;
+
 		f = G_CopyString(lastmaps);
 		s = strtok(f, "\n");
 

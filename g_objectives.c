@@ -385,7 +385,7 @@ void timed_objective_touch(edict_t* self, edict_t* other, cplane_t* plane, csurf
 		//		team_list[self->obj_owner]->score += self->health;
 
 		otherteam = (self->obj_owner + 1) % 2;
-		if (!team_list[otherteam]->kills_and_points && team_list[otherteam]->score < team_list[otherteam]->need_points ||
+		if ((!team_list[otherteam]->kills_and_points && team_list[otherteam]->score < team_list[otherteam]->need_points) ||
 			(team_list[otherteam]->kills_and_points &&
 				team_list[otherteam]->kills < team_list[otherteam]->need_kills))
 			gi.sound(self, CHAN_NO_PHS_ADD, gi.soundindex(va("%s/objectives/touch_cap.wav", team_list[self->obj_owner]->teamid)), 1, 0, 0);
@@ -600,7 +600,7 @@ void func_explosive_objective_explode(edict_t* self, edict_t* inflictor, edict_t
 	centerprintall("%s destroyed by:\n\n%s\n%s", self->obj_name, attacker->client->pers.netname, team_list[attacker->client->resp.team_on->index]->teamname);
 
 	otherteam = (self->obj_owner + 1) % 2;
-	if (!team_list[otherteam]->kills_and_points && team_list[otherteam]->score < team_list[otherteam]->need_points ||
+	if ((!team_list[otherteam]->kills_and_points && team_list[otherteam]->score < team_list[otherteam]->need_points)||
 		(team_list[otherteam]->kills_and_points &&
 			team_list[otherteam]->kills < team_list[otherteam]->need_kills))
 		gi.sound(self, CHAN_NO_PHS_ADD, gi.soundindex(va("%s/objectives/touch_cap.wav", team_list[otherteam]->teamid)), 1, 0, 0);

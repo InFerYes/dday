@@ -29,9 +29,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // g_items.c
 // D-Day: Normandy Team Items
-qboolean	Pickup_Weapon(edict_t* ent, edict_t* other);
-void		Use_Weapon(edict_t* ent, gitem_t* inv);
-void		Drop_Weapon(edict_t* ent, gitem_t* inv);
 qboolean Pickup_Ammo(edict_t* ent, edict_t* other);
 void Drop_Ammo(edict_t* ent, gitem_t* item);
 void Weapon_Grenade(edict_t* ent);

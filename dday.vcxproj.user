@@ -4,6 +4,7 @@
     <LocalDebuggerCommand>C:\quake2\dedicated</LocalDebuggerCommand>
     <LocalDebuggerCommandArguments>+set developer 1 +set game dday +set deathmatch 1 +exec server.cfg +set port 27911</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>C:\quake2\</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LocalDebuggerCommand>C:\quake2\dedicated</LocalDebuggerCommand>

@@ -237,7 +237,7 @@ g_cmds_t id_GameCmds[NUM_ID_CMDS] = // remember to set back to NUM_ID_COMDS
 	"spot", 1, Cmd_Spot,//for mappers to find coordinates for map entities
 	"removedoors", 1, Cmd_RemoveDoors,
 	"showlinks", 1, ShowLinks,
-	"removenode", 1, SV_Remove_Node,
+	"removenode", 1, SV_Remove_Node
 };
 
 // MENUS

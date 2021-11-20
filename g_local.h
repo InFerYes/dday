@@ -835,6 +835,9 @@ void SetRespawn(edict_t* ent, float delay);
 void ChangeWeapon(edict_t* ent);
 void SpawnItem(edict_t* ent, gitem_t* item);
 void Think_Weapon(edict_t* ent);
+qboolean	Pickup_Weapon(edict_t* ent, edict_t* other);
+void		Use_Weapon(edict_t* ent, gitem_t* inv);
+void		Drop_Weapon(edict_t* ent, gitem_t* inv);
 
 // CCH: new prototype for function called when airstrike arrives
 
