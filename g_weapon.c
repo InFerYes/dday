@@ -1419,7 +1419,7 @@ void Shrapnel_Dud(edict_t* ent)
 
 void Shrapnel_Touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
-	int	index;
+	//int	index;
 
 	if (surf && (surf->flags & SURF_SKY))
 	{
@@ -1501,7 +1501,7 @@ void Shrapnel_Touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* s
 	if (!ent->item)
 		return;
 
-	index = ITEM_INDEX(ent->item);
+	//index = ITEM_INDEX(ent->item);
 
 	ent->touch = NULL; // so it doesnt keep upping the count
 
@@ -2192,7 +2192,7 @@ void fire_gun(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick, 
 	/* MetalGod wtf, faf!?
 	if (self->client)
 	{
-		/*if (self->client->pers.weapon->position != LOC_SNIPER)//faf
+		if (self->client->pers.weapon->position != LOC_SNIPER)//faf
 		{
 			AngleVectors (self->client->v_angle, NULL, right, up);
 

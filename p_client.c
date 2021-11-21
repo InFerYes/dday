@@ -1599,16 +1599,16 @@ specify ent, go to a random point // faf, not this:, but NOT the two points clos
 */
 edict_t* SelectRandomDDaySpawnPoint(char* spawn_point, int team)
 {
-	edict_t* spot, * spotb, * spot1, * spot2;
+	edict_t* spot, * spotb, * spot2;
 	int		count = 0;
 	int		selection;
-	float	range1, range2;
+	float	 range2;
 	edict_t* e;
 	int i, otherteam;
 
 	spot = NULL;
-	range1 = range2 = 99999;
-	spot1 = spot2 = NULL;
+	range2 = 99999;
+	spot2 = NULL;
 
 	while ((spot = G_Find_Team(spot, FOFS(classname), spawn_point, team)) != NULL)
 	{
@@ -1673,8 +1673,7 @@ edict_t* SelectRandomDDaySpawnPoint(char* spawn_point, int team)
 	}
 
 	spotb = NULL;
-	range1 = range2 = 99999;
-	spot1 = spot2 = NULL;
+
 	count = 0;
 
 	while ((spotb = G_Find_Team(spotb, FOFS(classname), spawn_point, otherteam)) != NULL) {
@@ -3628,8 +3627,8 @@ void ClientThink(edict_t* ent, usercmd_t* ucmd)
 		}
 
 		if (ent->client->aim && (
-			(ent->stanceflags == STANCE_CRAWL && ent->client->pers.weapon && ent->client->pers.weapon->position != LOC_GRENADES) ||
-			ent->client->pers.weapon && ent->client->pers.weapon->classnameb == WEAPON_MORPHINE))
+			((ent->stanceflags == STANCE_CRAWL && ent->client->pers.weapon && ent->client->pers.weapon->position != LOC_GRENADES)) ||
+			(ent->client->pers.weapon && ent->client->pers.weapon->classnameb == WEAPON_MORPHINE)))
 		{
 			// pbowens: this directly undermines the purpose of ClientSetMaxSpeed :(
 			for (i = 0; i < 3; i++) {
@@ -3761,8 +3760,8 @@ void ClientThink(edict_t* ent, usercmd_t* ucmd)
 	//DDAY
 	if (!ent->deadflag)
 	{
-		if (ent->s.frame > 197 &&
-			ent->s.frame < 235 ||
+		if ((ent->s.frame > 197 &&
+			ent->s.frame < 235) ||
 			ent->s.frame > 290)
 			pronedist = 24;
 		else
