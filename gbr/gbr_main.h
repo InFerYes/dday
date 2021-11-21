@@ -55,4 +55,4 @@ void Weapon_Enfields(edict_t* ent);
 //void Weapon_Generic(edict_t* ent, int FRAME_ACTIVATE_LAST, int FRAME_LFIRE_LAST, int FRAME_LIDLE_LAST, int FRAME_RELOAD_LAST, int FRAME_LASTRD_LAST,
 //	int FRAME_DEACTIVATE_LAST, int FRAME_RAISE_LAST, int FRAME_AFIRE_LAST, int FRAME_AIDLE_LAST,
 //	int* pause_frames, int* fire_frames, void (*fire)(edict_t* ent));
-void SP_misc_banner_generic(edict_t* ent, char* model);
+//void SP_misc_banner_generic(edict_t* ent, char* model);

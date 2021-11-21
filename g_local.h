@@ -973,6 +973,7 @@ void ThrowClientHead(edict_t* self, int damage);
 
 void ThrowGib(edict_t* self, char* gibname, int damage, int type);
 void BecomeExplosion1(edict_t* self);
+void SP_misc_banner_generic(edict_t* ent, char* model);
 
 //Wheaty: HeadShotGib
 void HeadShotGib(edict_t* ent, vec3_t head_pos, vec3_t forward, vec3_t right, vec3_t player_vel);
