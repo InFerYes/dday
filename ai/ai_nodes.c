@@ -684,7 +684,7 @@ qboolean AI_LoadPLKFile(char* mapname)
 	int		i;
 	char	filename[MAX_OSPATH];
 	int		version;
-	int		num;
+	int		bytes_read;
 	Com_sprintf(filename, sizeof(filename), "%s/%s/%s.%s", AI_MOD_FOLDER, AI_NODES_FOLDER, mapname, NAV_FILE_EXTENSION);
 
 	/* MetalGod
@@ -697,7 +697,7 @@ qboolean AI_LoadPLKFile(char* mapname)
 		return false;
 	}  /* END */
 	// check version
-	num = fread(&version, sizeof(int), 1, pIn);
+	bytes_read = fread(&version, sizeof(int), 1, pIn);
 
 	if (version != NAV_FILE_VERSION)
 	{
@@ -705,13 +705,13 @@ qboolean AI_LoadPLKFile(char* mapname)
 		return false;
 	}
 
-	num = fread(&nav.num_nodes, sizeof(int), 1, pIn);
+	bytes_read = fread(&nav.num_nodes, sizeof(int), 1, pIn);
 
 	for (i = 0; i < nav.num_nodes; i++)
-		num = fread(&nodes[i], sizeof(nav_node_t), 1, pIn);
+		bytes_read = fread(&nodes[i], sizeof(nav_node_t), 1, pIn);
 
 	for (i = 0; i < nav.num_nodes; i++)
-		num = fread(&pLinks[i], sizeof(nav_plink_t), 1, pIn);
+		bytes_read = fread(&pLinks[i], sizeof(nav_plink_t), 1, pIn);
 
 	fclose(pIn);
 
