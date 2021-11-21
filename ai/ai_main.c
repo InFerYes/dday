@@ -107,7 +107,7 @@ void Set_Up_CampSpots_For_Ents(void)
 				}
 				if (obj_camp > -1)
 				{
-					camp_spots[obj_camp].type = (qboolean)CAMP_OBJECTIVE;
+					camp_spots[obj_camp].type = CAMP_OBJECTIVE;
 
 					if (e->classnameb == OBJECTIVE_VIP || e->classnameb == FUNC_EXPLOSIVE_OBJECTIVE || e->classnameb == FUNC_TRAIN)
 						allset = true;

@@ -1880,7 +1880,7 @@ typedef struct
 	vec3_t		origin;
 	int			angle;
 	int			stance;
-	qboolean	type;
+	int			type; // MetalGod this was qboolean buy had 3 states so always should have been int!
 	edict_t* owner;
 } camp_spots_t;
 
