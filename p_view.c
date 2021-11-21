@@ -1200,10 +1200,10 @@ void P_ShowID(edict_t* ent)
 			ent->client->last_id_time = level.time;  //faf:  to put delay on player id
 		}
 		else if (ent->client->resp.mos == MEDIC ||
-			ent->client->resp.show_id &&
-			(ent->client->resp.team_on && ent->client->resp.mos &&
-				tr.ent->client->resp.team_on && tr.ent->client->resp.mos &&
-				ent->client->resp.team_on->index == tr.ent->client->resp.team_on->index))
+			(ent->client->resp.show_id &&
+				(ent->client->resp.team_on && ent->client->resp.mos &&
+					tr.ent->client->resp.team_on && tr.ent->client->resp.mos &&
+					ent->client->resp.team_on->index == tr.ent->client->resp.team_on->index)))
 		{
 			ent->client->ps.stats[STAT_IDENT] = 1;
 			ent->client->ps.stats[STAT_IDENT_PLAYER] = CS_PLAYERSKINS + (tr.ent - g_edicts - 1);
@@ -1815,11 +1815,11 @@ void G_SetClientFrame(edict_t* ent)
 		&& !(run == false && client->sidestep_anim != 0))//faf: let them finish sidestepping
 		goto newanim;
 	if (!ent->deadflag &&
-		(!ent->groundentity
+		((!ent->groundentity
 			&& (client->last_jump_time > level.time - 1//faf:  only do jump anims when jump is pressed
-				&& client->anim_priority <= ANIM_WAVE) ||
-			ent->client->landed == false ||
-			(ent->waterlevel > 1 && ent->stanceflags != STANCE_CRAWL)))
+				&& client->anim_priority <= ANIM_WAVE)) ||
+			ent->client->landed == false || (
+				(ent->waterlevel > 1 && ent->stanceflags != STANCE_CRAWL))))
 		goto newanim;
 	//faf: go to new sidestep animations immediately
 	if (extra_anims->value != 0 &&

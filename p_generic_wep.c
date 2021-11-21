@@ -397,7 +397,7 @@ void Weapon_Generic(edict_t* ent,
 			return;
 		}
 
-		if (stricmp(ent->client->pers.weapon->pickup_name, "M1919 Browning") == 0)
+		if (Q_stricmp(ent->client->pers.weapon->pickup_name, "M1919 Browning") == 0)
 		{
 			if (ent->client->ps.gunframe == 18)
 				gi.sound(ent, CHAN_WEAPON, gi.soundindex("weapons/sshotr1b.wav"), 1, ATTN_NORM, 0);
@@ -763,20 +763,20 @@ void Weapon_Generic(edict_t* ent,
 			(ent->client->pers.weapon->classnameb == WEAPON_MAUSER98K ||
 				ent->client->pers.weapon->classnameb == WEAPON_CARCANO ||
 				ent->client->pers.weapon->classnameb == WEAPON_M9130) &&
-			(ent->client->ps.gunframe >= 4 && ent->client->ps.gunframe <= 15 ||
-				ent->client->ps.gunframe >= 86 && ent->client->ps.gunframe <= 97))
+			((ent->client->ps.gunframe >= 4 && ent->client->ps.gunframe <= 15) ||
+				(ent->client->ps.gunframe >= 86 && ent->client->ps.gunframe <= 97)))
 		{
 			ent->client->ps.gunframe++;//faf
 		}
 		else if ((ent->client->pers.weapon &&
 			ent->client->pers.weapon->classnameb == WEAPON_ENFIELD) &&
-			(ent->client->ps.gunframe >= 4 && ent->client->ps.gunframe <= 15 ||
-				ent->client->ps.gunframe >= 89 && ent->client->ps.gunframe <= 102))
+			((ent->client->ps.gunframe >= 4 && ent->client->ps.gunframe <= 15) ||
+				(ent->client->ps.gunframe >= 89 && ent->client->ps.gunframe <= 102)))
 			ent->client->ps.gunframe++;//faf
 		else if ((ent->client->pers.weapon &&
 			ent->client->pers.weapon->classnameb == WEAPON_ARISAKA) &&
-			(ent->client->ps.gunframe >= 4 && ent->client->ps.gunframe <= 15 ||
-				ent->client->ps.gunframe >= 62 && ent->client->ps.gunframe <= 72))
+			((ent->client->ps.gunframe >= 4 && ent->client->ps.gunframe <= 15) ||
+				(ent->client->ps.gunframe >= 62 && ent->client->ps.gunframe <= 72)))
 			ent->client->ps.gunframe++;//faf
 
 		// End Nick

@@ -1301,9 +1301,9 @@ void G_RunFrame(void)
 /*	if (bots->value && !qbots && level.framenum > 30 &&
 		playerminforbots->value < num_clients
 		)
-		/*&&		playerminforbots->value > num_clients &&
-		(!playermaxforbots->value || playermaxforbots->value > num_clients)) */
-		/*	{
+		&&		playerminforbots->value > num_clients &&
+		(!playermaxforbots->value || playermaxforbots->value > num_clients))
+			{
 				int allied, axis;
 
 				qbots = true;
