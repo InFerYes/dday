@@ -2942,7 +2942,6 @@ void ClientEndServerFrame(edict_t* ent)
 	//if (g_edicts[globals.num_edicts].classname)
 	//gi.dprintf("%i %s \n", globals.num_edicts, "X");// g_edicts[globals.num_edicts].classname);
 
-	/*
 		if (1)
 		{
 			int o;
@@ -2952,9 +2951,9 @@ void ClientEndServerFrame(edict_t* ent)
 			if (g_edicts[o].classname)
 				gi.dprintf("%s ", g_edicts[o].classname);
 			gi.dprintf("\n");
-		}*/
+		}
 
-		/*	if (level.framenum%10 ==1)
+			if (level.framenum%10 ==1)
 			{
 				gi.dprintf("Owned campspots:");
 				for (i=0; i< total_camp_spots; i++)

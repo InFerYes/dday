@@ -3611,8 +3611,8 @@ void Weapon_Rocket_Fire(edict_t* ent)
 		ent->stanceflags == STANCE_CRAWL ||
 		//faf		ent->client->movement			 ||
 		!ent->client->aim ||
-		gi.pointcontents(ent->s.origin) & MASK_WATER && //Wheaty: Don't let them fire in water
-		ent->client->weaponstate == WEAPON_READY) //faf
+		(gi.pointcontents(ent->s.origin) & MASK_WATER && //Wheaty: Don't let them fire in water
+			ent->client->weaponstate == WEAPON_READY)) //faf
 	{
 		if (ent->client->gunwarntime && ent->client->gunwarntime > level.time - 1)
 		{
@@ -4035,7 +4035,7 @@ void TNT_Think(edict_t* ent)
 	//switch teams exploit fix
 	if (ent->owner && ent->owner->client)
 	{
-		if (!ent->owner->client->resp.team_on || ent->owner->client->resp.team_on && ent->owner->client->resp.team_on->index != ent->obj_owner)
+		if (!ent->owner->client->resp.team_on || (ent->owner->client->resp.team_on && ent->owner->client->resp.team_on->index != ent->obj_owner))
 		{
 			ent->think = G_FreeEdict;
 			ent->nextthink = level.time + .1;
@@ -4821,7 +4821,7 @@ void Weapon_Bren_Fire(edict_t* ent)
 	if (ent->client->machinegun_shots > 9)
 		ent->client->machinegun_shots = 9;
 
-	if ((!ent->stanceflags == STANCE_STAND) && (ent->client->aim))
+	if ((!(ent->stanceflags) == STANCE_STAND) && (ent->client->aim))
 		ent->client->machinegun_shots = 0;
 	else
 	{

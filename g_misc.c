@@ -3047,8 +3047,8 @@ void Medic_Screen(edict_t* ent)
 	vec3_t	a, b;
 	int iconpos;
 
-	qboolean qleft, qforward, qback, qright;
-	qleft = qforward = qback = qright = false;
+	qboolean qforward, qback, qright;
+	qforward = qback = qright = false;
 
 	//JABot[start]
 	if (ent->ai || !ent->inuse || !ent->client)
