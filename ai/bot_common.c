@@ -306,7 +306,7 @@ qboolean objective_hittable(edict_t* self, edict_t* objective, vec3_t orig)
 	spot1[2] += self->viewheight;
 
 	//move spot to kneeling position if hmger is standing:
-	if (((self->client && self->client->resp.mos == H_GUNNER || self->client && self->client->resp.mos == ENGINEER)) && self->stanceflags == STANCE_STAND)
+	if ((self->client && self->client->resp.mos == H_GUNNER || self->client && self->client->resp.mos == ENGINEER) && (self->stanceflags == STANCE_STAND))
 	{
 		spot1[2] -= 16;
 	}

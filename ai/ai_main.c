@@ -1562,13 +1562,13 @@ void AI_Think(edict_t* self)
 	if (self->client->limbo_mode)
 		self->ai->bloqued_timeout = level.time + 10.0;
 
-	if (self->client->resp.AlreadySpawned &&
+	if ((self->client->resp.AlreadySpawned &&
 		!level.intermissiontime &&
 		(self->ai->state != BOT_STATE_CAMP &&
-			!(self->client->resp.mos == H_GUNNER && self->stanceflags != STANCE_STAND)) ||
-		(self->client->respawn_time < level.time - 60 &&
+			!((self->client->resp.mos == H_GUNNER && self->stanceflags != STANCE_STAND)))) ||
+		((self->client->respawn_time < level.time - 60 &&
 			self->client->last_fire_time < level.time - 60 &&
-			self->ai->actual_camp_start < level.time - 60)
+			self->ai->actual_camp_start < level.time - 60))
 		)
 	{
 		//if completely stuck somewhere

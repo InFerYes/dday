@@ -757,11 +757,11 @@ void A_ScoreboardMessage(edict_t* ent)//, edict_t *killer)
 			if (cl_ent->ai)
 				sprintf(pingstring, "BOT");
 			else if (game.clients[sorted[TEAM1][i]].ping < 10)
-				sprintf(pingstring, "  %i", game.clients[sorted[TEAM1][i]].ping);
+				sprintf(pingstring, "  %d", game.clients[sorted[TEAM1][i]].ping);
 			else if (game.clients[sorted[TEAM1][i]].ping < 100)
-				sprintf(pingstring, " %i", game.clients[sorted[TEAM1][i]].ping);
+				sprintf(pingstring, " %d", game.clients[sorted[TEAM1][i]].ping);
 			else if (game.clients[sorted[TEAM1][i]].ping < 1000)
-				sprintf(pingstring, "%i", game.clients[sorted[TEAM1][i]].ping);
+				sprintf(pingstring, "%d", game.clients[sorted[TEAM1][i]].ping);
 			else
 				sprintf(pingstring, "999");
 
@@ -802,11 +802,11 @@ game.clients[sorted[TEAM1][i]].resp.score);//, damage);
 			if (cl_ent->ai)
 				sprintf(pingstring, "BOT");
 			else if (game.clients[sorted[TEAM2][i]].ping < 10)
-				sprintf(pingstring, "  %i", game.clients[sorted[TEAM2][i]].ping);
+				sprintf(pingstring, "  %d", game.clients[sorted[TEAM2][i]].ping);
 			else if (game.clients[sorted[TEAM2][i]].ping < 100)
-				sprintf(pingstring, " %i", game.clients[sorted[TEAM2][i]].ping);
+				sprintf(pingstring, " %d", game.clients[sorted[TEAM2][i]].ping);
 			else if (game.clients[sorted[TEAM2][i]].ping < 1000)
-				sprintf(pingstring, "%i", game.clients[sorted[TEAM2][i]].ping);
+				sprintf(pingstring, "%d", game.clients[sorted[TEAM2][i]].ping);
 			else
 				sprintf(pingstring, "999");
 
@@ -1338,11 +1338,11 @@ void ShowCampaign(edict_t* ent)
 	sprintf(dest, "%sxv 7 yv 7 picn %s ", string, level.campaign);
 
 	if (curx && cury)
-		sprintf(dest, "%sxv %i yv %i picn o ", string, curx, cury);
+		sprintf(dest, "%sxv %d yv %d picn o ", string, curx, cury);
 
 	for (i = 0; campaign_spots[i].bspname; i++)
 	{
-		sprintf(dest, "%sxv %i yv %i picn ", string, campaign_spots[i].xpos, campaign_spots[i].ypos);
+		sprintf(dest, "%sxv %d yv %d picn ", string, campaign_spots[i].xpos, campaign_spots[i].ypos);
 
 		if (campaign_spots[i].owner == 0)
 			sprintf(dest, "%su ", string);
