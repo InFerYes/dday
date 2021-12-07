@@ -1614,36 +1614,34 @@ void fire_grenade2(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int s
 		if (grenade->item)
 		{
 			// team = Q_stricmp(grenade->item->ammo , "Mk 2 Grenade");  //faf: team dll support, replaced with below
-			if (!strcmp(grenade->item->dllname, team_list[0]->teamid))
+			if (!strcmp(grenade->item->dllname, team_list[0]->teamid)){
 				team = 0;
-			else if (!strcmp(grenade->item->dllname, team_list[1]->teamid))
+			}else if (!strcmp(grenade->item->dllname, team_list[1]->teamid)){
 				team = 1;
-			else
-			{
+			}else{
 				safe_cprintf(self, PRINT_HIGH, "*** fire_grenade2 error");
 				team = self->client->resp.team_on->index;
 			}
-		}
-		else // this should not happen, but does
+		}else{
 			team = self->client->resp.team_on->index;
-
+		}
+		
 		if (grenade->item && grenade->item->ammo)
 		{
-			if (!strcmp(grenade->item->ammo, "Mk 2 Grenade"))
+			if (!strcmp(grenade->item->ammo, "Mk 2 Grenade")){
 				grenade->s.modelindex = gi.modelindex("models/objects/grenade2/tris.md2");
-			else if (!strcmp(grenade->item->ammo, "M24 Grenade"))
+			}else if (!strcmp(grenade->item->ammo, "M24 Grenade")){
 				grenade->s.modelindex = gi.modelindex("models/objects/masher/tris.md2");
-			else
-			{
+			}else{
 				strcpy(grenadefilename, "models/objects/");
 				strcat(grenadefilename, team_list[team]->teamid);
 				strcat(grenadefilename, "grenade/tris.md2");
 				grenade->s.modelindex = gi.modelindex(grenadefilename);
 			}
-		}
-		else
+		}else{
 			grenade->s.modelindex = gi.modelindex(va("models/objects/%s/tris.md2", (team) ? "masher" : "grenade2"));
-
+		}
+		
 		// faf:  for team dll support-> new grenade models must be named
 		//        "[name of dll]grenade/tris.md2" to work.  usa & grm will keep old names.
 
@@ -1661,18 +1659,16 @@ void fire_grenade2(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int s
 	VectorMA(grenade->velocity, crandom() * 10.0, right, grenade->velocity);
 	VectorSet(grenade->avelocity, 300, 300, 300);
 
-	if (grenade->item && grenade->item->ammo && !strcmp(grenade->item->ammo, "M24 Grenade"))
-	{
+	if (grenade->item && grenade->item->ammo && !strcmp(grenade->item->ammo, "M24 Grenade")){
 		VectorCopy(self->s.angles, grenade->s.angles);
 		grenade->s.angles[YAW] -= 90;
 		VectorSet(grenade->avelocity, crandom() * 20 - 20, 0, 1000);
-	}
-	else
+	}else{
 		VectorSet(grenade->avelocity, 300, 300, 300);
-
+	}
+	
 	//faf
-	if (self->client &&
-		self->stanceflags == STANCE_CRAWL)
+	if (self->client && self->stanceflags == STANCE_CRAWL)
 	{
 		grenade->s.origin[2] += 10;
 	}
@@ -2260,20 +2256,20 @@ void fire_gun(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick, 
 	{
 		AngleVectors(self->client->v_angle, NULL, right, up);
 
-		if (self->client->pers.hand == LEFT_HANDED)
+		if (self->client->pers.hand == LEFT_HANDED){
 			VectorMA(end, (self->client->ps.gunangles[YAW]) * 143, right, end);
-		else
-		{
+		}else{
 			VectorMA(end, (self->client->ps.gunangles[YAW]) * (-143), right, end);
 		}
 
 		VectorMA(end, (self->client->ps.gunangles[PITCH]) * (-143), up, end);
 
-		if (self->client->pers.hand == LEFT_HANDED)
+		if (self->client->pers.hand == LEFT_HANDED){
 			VectorMA(end, (self->client->explosion_angles[YAW]) * 143, right, end);
-		else
+		}else{
 			VectorMA(end, (self->client->explosion_angles[YAW]) * (-143), right, end);
-
+		}
+		
 		VectorMA(end, (self->client->explosion_angles[PITCH]) * (-143), up, end);
 	}
 
@@ -2293,10 +2289,9 @@ void fire_gun(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick, 
 		}
 		else
 		{
-			if ((tr.ent->svflags & SVF_MONSTER) || (tr.ent->client))
+			if ((tr.ent->svflags & SVF_MONSTER) || (tr.ent->client)){
 				ignore = tr.ent;
-			else
-			{
+			}else{
 				ignore = NULL;
 				soundtype = Play_Bullet_Hit(self, tr.surface->name, tr.endpos, tr.ent);
 				//gi.dprintf("hit\n");
@@ -2315,11 +2310,12 @@ void fire_gun(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick, 
 		VectorCopy(tr.endpos, from);
 	}
 
-	if (hits)
+	if (hits){
 		self->client->resp.accuracy_hits += hits;
-	else
+	}else{
 		self->client->resp.accuracy_misses++;
-
+	}
+	
 	// send gun puff / flash
 	if (!((tr.surface) && (tr.surface->flags & SURF_SKY)))
 	{
