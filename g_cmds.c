@@ -2262,7 +2262,7 @@ char* SeekBufEnd(char* buf)
 		buf++;
 	return buf;
 }
-static char buf[0x8000], infobuf[0x8000]; /* MetalGod no need to be unsigned / moved here/to heap*/
+static char buf[0x2000], infobuf[0x2000]; /* MetalGod no need to be unsigned / moved here/to heap*/
 void ParseSayText(edict_t* ent, char* text)
 {
 	char* p, * pbuf;
@@ -2327,7 +2327,7 @@ void Cmd_Say_f(edict_t* ent, qboolean team, qboolean arg0, qboolean saved)
 	edict_t* entR = NULL;
 	/* edict_t* entG = NULL; MetalGod initialized, but not referenced */
 	char* p = NULL; /* MetalGod initialized */
-	char		text[2048];
+	char		text[1024];
 	gclient_t* cl;
 	char teamname[5];
 
