@@ -5,24 +5,18 @@
  *   $Date: 2002/07/23 22:48:27 $
  *
  ***********************************
-
 Copyright (C) 2002 Vipersoft
-
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
 as published by the Free Software Foundation; either version 2
 of the License, or (at your option) any later version.
-
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
 See the GNU General Public License for more details.
-
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-
 */
 
 #include "g_local.h"
@@ -138,8 +132,6 @@ void Give_Class_Weapon(edict_t* ent)
 	item = FindItem("Knife");
 	client->pers.inventory[ITEM_INDEX(item)] = 1;
 
-	// Loads primary weapon when spawning
-	Load_Weapon(ent, item);
 	// faf rifle-only code  //ddaylife
 	if ((mauser_only->value == 1) && !(client->resp.mos == MEDIC))
 	{
@@ -149,13 +141,16 @@ void Give_Class_Weapon(edict_t* ent)
 	{
 		item = FindTeamItem(team_list[(client->resp.team_on->index)]->teamid, LOC_SNIPER);
 	}
-	else if (swords->value == 1 && client->resp.mos && client->resp.mos != MEDIC)
+	else if (swords->value == 1 && client->resp.mos != MEDIC)
 	{
 		item = FindItem("Sword");
 	}
 
 	else
 		item = FindItem(client->resp.team_on->mos[client->resp.mos]->weapon1);
+
+	// Loads primary weapon when spawning
+	Load_Weapon(ent, item); /* MetalGod moved this to AFTER the check to see if Item exists */
 
 	if (!item) { //pbowens: prevents from crashing the game
 		safe_cprintf(ent, PRINT_HIGH, "weapon1 item not found!\n");
@@ -235,15 +230,12 @@ void Give_Class_Ammo(edict_t* ent)
 void Show_Mos(edict_t* ent)
 {
 		int i;
-
 		if(!ent->client->resp.team_on || !ent->client->resp.mos)
 		{
 			safe_cprintf(ent,PRINT_HIGH,"Must be on a team to view the open class slots.\n");
 			return;
 		}
-
 		safe_cprintf(ent,PRINT_HIGH,"\nOpen class slots for %s: \n",ent->client->resp.team_on->teamname);
-
 		for(i=1; i < MAX_MOS; i++) {
 			if (ent->client->resp.team_on->mos[i]->available == 99)
 			{
