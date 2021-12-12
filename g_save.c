@@ -380,6 +380,7 @@ void InitGame(void)
 
 	afk_time = gi.cvar("afk_time", "120", 0);
 
+	allow_kill = gi.cvar("allow_kill", "1", 0); // MetalGOd eneble kill by default.
 	// items
 	InitItems();
 

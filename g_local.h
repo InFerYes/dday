@@ -755,6 +755,8 @@ extern cvar_t* afk_time;
 
 //extern	cvar_t	*crosshair;
 
+extern cvar_t* allow_kill; // MetalGod
+
 #define world	(&g_edicts[0])
 
 // item spawnflags

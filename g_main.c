@@ -154,6 +154,9 @@ cvar_t* sandbaglimit;
 
 cvar_t* afk_time;
 
+cvar_t* allow_kill; // MetalGod
+
+
 void SpawnEntities(char* mapname, char* entities, char* spawnpoint);
 void ClientThink(edict_t* ent, usercmd_t* cmd);
 qboolean ClientConnect(edict_t* ent, char* userinfo);

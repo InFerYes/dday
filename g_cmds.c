@@ -1877,21 +1877,27 @@ Cmd_Kill_f
 */
 void Cmd_Kill_f(edict_t* ent)
 {
-	safe_cprintf(ent, PRINT_HIGH, "Kill who? ME? HAHAHAHAhahaha....\n");
-	/*
-	if((level.time - ent->client->respawn_time) < 5)
+	
+	// MetalGod lets allow the kill comand if the serv er admin wants it available
+	if (!allow_kill->value)
+	{
+		safe_cprintf(ent, PRINT_HIGH, "Kill who? ME? HAHAHAHAhahaha....\n enable with set allow_kill 1 in server.cfg");
 		return;
+	}
+	else 
+	{
+		if ((level.time - ent->client->respawn_time) < 5)
+			return;
 
-	//T_Damage(ent,ent,ent, ent->maxs, ent->s.origin, NULL, 999, 0,  DAMAGE_NO_PROTECTION,
-	//			MOD_SUICIDE);
+		T_Damage(ent,ent,ent, ent->maxs, ent->s.origin, NULL, 999, 0,  DAMAGE_NO_PROTECTION, MOD_SUICIDE);
 
-	ent->flags &= ~FL_GODMODE;
-	ent->health = 0;
-	meansOfDeath = MOD_SUICIDE;
-	ent->deadflag = 0; // PLAY the animations
-	player_die (ent, ent, ent, 100000, vec3_origin);
-	respawn (ent);
-	*/
+		ent->flags &= ~FL_GODMODE;
+		ent->health = 0;
+		meansOfDeath = MOD_SUICIDE;
+		ent->deadflag = 0; // PLAY the animations
+		player_die(ent, ent, ent, 100000, vec3_origin);
+		respawn(ent);
+	}
 }
 
 /*
