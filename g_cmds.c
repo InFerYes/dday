@@ -484,12 +484,12 @@ qboolean Cmd_Scope_f(edict_t* ent)
 	{
 		if (!ent->client->aim) {
 			ent->client->aim = true;
-			safe_centerprintf(ent, "Long range throw!\n");
+			safe_centerprintf(ent, "Short range throw!\n");
 		}
 		else
 		{
 			ent->client->aim = false;
-			safe_centerprintf(ent, "Short range throw!\n");
+			safe_centerprintf(ent, "Long range throw!\n");
 		}
 		return true;
 	}
@@ -501,8 +501,8 @@ qboolean Cmd_Scope_f(edict_t* ent)
 	//faf:  crosshair cheat prevention measures
 //	if (!ent->client->aim)
 //	{
-	ent->client->crosshair_offset_x = random() * 4 - 2;
-	ent->client->crosshair_offset_y = random() * 4 - 2;
+	//ent->client->crosshair_offset_x = random() * 4 - 2;
+	//ent->client->crosshair_offset_y = random() * 4 - 2;
 	//	gi.dprintf ("%f\n", ent->client->crosshair_offset_x);
 
 //	}

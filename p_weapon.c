@@ -897,7 +897,7 @@ void weapon_grenade_fire(edict_t* ent)
 
 		speed = 500;
 	}
-	if (ent->client->aim)
+	if (!ent->client->aim)
 		speed *= 1.4;
 
 	ent->client->aim = false;
