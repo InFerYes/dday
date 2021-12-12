@@ -897,6 +897,8 @@ void weapon_grenade_fire(edict_t* ent)
 
 		speed = 500;
 	}
+
+	//InFerNo: Long throw set as default
 	if (!ent->client->aim)
 		speed *= 1.4;
 
