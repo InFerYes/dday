@@ -2374,7 +2374,7 @@ void ClientEndServerFrame(edict_t* ent)
 			gi.unicast(ent, true);
 		}
 		if (level.time == delay + 1)
-			safe_cprintf(ent, PRINT_HIGH, "Please report bugs @ https://www.ddaydev.com/bugtracker\n");/* MetalGod changed to https */
+		    safe_cprintf(ent, PRINT_HIGH, "Please report bugs @ https://github.com/InFerYes/dday/issues\n"); //InFerNo: Update to active tracker
 
 		return;
 	}
