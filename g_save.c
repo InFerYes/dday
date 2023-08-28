@@ -295,9 +295,9 @@ void InitGame(void)
 	gi.cvar("gamename", GAMEVERSION, CVAR_SERVERINFO | CVAR_LATCH);
 	gi.cvar("gamedate", __DATE__, CVAR_SERVERINFO | CVAR_LATCH);
 
-	gi.cvar("dll_version", "Metal!nfy's DDay 5.99b "__DATE__, CVAR_SERVERINFO | CVAR_LATCH); //faf //InFerNo_/* MetalGod */
+	gi.cvar("dll_version", "Dday 5.066"__DATE__, CVAR_SERVERINFO | CVAR_LATCH); //faf //InFerNo_/* MetalGod */
 
-	gi.cvar("website", "https://www.DdayDev.com", CVAR_SERVERINFO | CVAR_LATCH); //faf	 /* MetalGod changed  to https */
+	gi.cvar("website", "https://www.DdayDev.com", CVAR_SERVERINFO | CVAR_LATCH); //faf	 /* MetalGod changed to https */
 
 	sv_maplist = gi.cvar("sv_maplist", "dday inland invade soviet desert poldday itadday", 0); //faf: from q2 code
 
@@ -352,6 +352,8 @@ void InitGame(void)
 
 	chile = gi.cvar("chile", "0", CVAR_LATCH);
 	toggle_tired_sway = gi.cvar("sv_toggle_tired_sway", "1", 0);
+	allow_medic_pickup = gi.cvar("allow_medic_pickup", "0", 0);
+	
 
 	knifefest = gi.cvar("knifefest", "0", 0);
 

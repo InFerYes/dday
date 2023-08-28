@@ -773,7 +773,7 @@ void Touch_Item(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* surf)
 	if (other->client->resp.autopickup == false && ent->item->classnameb != HGRENADE)
 		return;
 
-	if (other->client && other->client->resp.mos == MEDIC)
+	if (allow_medic_pickup && allow_medic_pickup->value == 0 && other->client && other->client->resp.mos == MEDIC)
 	{
 		if (!((ent->item->tag && ent->item->tag == AMMO_TYPE_PISTOL) || (ent->item->position && ent->item->position == LOC_PISTOL)
 			|| (ent->item->pickup_name && !Q_stricmp(ent->item->pickup_name, "Knife")) || (ent->item->pickup_name && !Q_stricmp(ent->item->pickup_name, "Helmet"))))

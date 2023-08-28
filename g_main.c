@@ -132,6 +132,7 @@ cvar_t* mapvoting;
 cvar_t* constant_play;
 cvar_t* serverimg;
 cvar_t* toggle_tired_sway;
+cvar_t* allow_medic_pickup;
 
 //cvar_t	*crosshair;
 
