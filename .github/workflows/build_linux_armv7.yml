@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Update containers
-        uses: appleboy/ssh-action@v0.1.4
+        uses: appleboy/ssh-action@55dabf81b49d4120609345970c91507e2d734799
         with:
           host: ${{ secrets.DDAYBE_SERVER }}
           username: ${{ secrets.DDAYBE_SSH_USER }}
